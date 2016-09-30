@@ -1,0 +1,59 @@
+---
+layout: page
+title: Webview sample
+header: Webview sample
+---
+
+<script type="text/javascript">
+function showInResultPage(keywordHint){
+  var keyword = document.getElementById("search_keyword").value;
+	WebViewTest.showInResultPage(keyword, keywordHint);
+}
+
+function showSortMenu(selectSortType) {
+  WebViewTest.showSortMenu(selectSortType);
+}
+
+function showComparePriceDetail(a, b, c, keyword, d) {
+  WebViewTest.showComparePriceDetail(a,b,c,keyword,d);
+}
+
+function onShowDetailCategory(a, b, c) {
+  WebViewTest.showDetailCategory(a,b,c);
+}
+
+function showProductWebView(a, b, c, d, e,f,g) {
+  WebViewTest.showProductWebView(a,b,c,d,e,f,g);
+}
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+function updateSearchKeyword(keyword) {
+  document.getElementById("search_keyword").value = keyword;
+}
+
+function updateSortType(param_select_sort_type) {
+	document.getElementById("param_select_sort_type").innerHTML = param_select_sort_type;
+}
+</script>
+
+<p id="param_select_sort_type">param_select_sort_type</p>
+<br />
+<input type="text" id="search_keyword" value="검색" />
+<h1 onClick="showInResultPage('검색 힌트')">Show search</h1>
+<br />
+<h1 onClick="showSortMenu('0')">Show sort</h1>
+<br />
+<h1 onClick="showComparePriceDetail('a','b','c','aaa','0')">Show price</h1>
+<br />
+<h1 onClick="onShowDetailCategory('a','b','c')">Show detail</h1>
+<br />
+<h1 onClick="showProductWebView('a','b','c','d','e','f','g')">Show product</h1>

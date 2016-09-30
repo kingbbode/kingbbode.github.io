@@ -1,78 +1,80 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Kingbbode 개발노트 by kingbbode</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-75876601-1', 'auto');
-    ga('send', 'pageview');
-    </script>
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/kingbbode">View On GitHub</a></li>
-        </nav>
-      </div><!-- end header -->
+---
+layout: page
+tagline:
+---
 
-    <div class="wrapper">
+{% for post in paginator.posts %}
 
-      <section>
-        <div id="title">
-          <h1>Kingbbode 개발노트</h1>
-          <p></p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/kingbbode">kingbbode</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+<article class="home">
 
-        <h1>
-<a id="kingbbode-개발노트" class="anchor" href="#kingbbode-%EA%B0%9C%EB%B0%9C%EB%85%B8%ED%8A%B8" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>Kingbbode 개발노트</strong>
-</h1>
+  <span class="post-date">
+    {% assign d = post.date | date: "%d" | plus:'0' %}
+    {{ post.date | date: "%B" }}
+    {% case d %}
+    {% when 1 or 21 or 31 %}{{ d }}st,
+    {% when 2 or 22 %}{{ d }}nd,
+    {% when 3 or 23 %}{{ d }}rd,
+    {% else %}{{ d }}th,
+    {% endcase %}
+    {{ post.date | date: "%Y" }}
+  </span>
 
-<blockquote>
-<p>최초작성일 : 2016년 7월 24일</p>
-</blockquote>
+  <h2>
+    {%if post.outlink == 0 %}
+      {% assign path = site.BASE_PATH + post.url %}
+    {%else%}
+      {% assign path = "http://kingbbode.tistory.com/" + post.outlink %}
+    {%endif %}
+    <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+    }
+  </h2>
 
-<p>Blog, OneNote, GitHub으로 분리되어 작성하던 개발에 대한 내용들을 GitHub로 통일  </p>
+  <div>
+    {% if post.fullview %}
+    {{ post.content }}
+    {% else %}
+    {% if post.shortinfo %}
+    {{ post.shortinfo }}
+    {% elsif post.description %}
+    {{ post.description }}
+    {% else %}
+    {{ post.excerpt }}
+    {% endif %}
+    {% endif %}
+  </div>
 
-<hr>
+</article>
+{% endfor %}
+<hr/>
 
-<h3>
-<a id="주-내용" class="anchor" href="#%EC%A3%BC-%EB%82%B4%EC%9A%A9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>주 내용</h3>
+<ul class="pager"> 
 
-<blockquote>
-<p>
-<a href="http://kingbbode.tistory.com">1. 개발 지식 정리</a> (<em>추후 github으로 이전 예정</em>)<br>
-<a href="http://kingbbode.github.io/algorithm/">2. 알고리즘</a><br>
-<a href="https://kingbbode.github.io/seminar/">3. 세미나 노트</a><br>
-</p>
-프로젝트
-<ul>
-  <li><a href="https://github.com/kingbbode/spring-nashorn-isomorphic">Spring Nashorn isomorphic</a></li>
+  {% if paginator.previous_page %}
+  <li class="previous">
+    {% if paginator.previous_page == 1 %}
+    <a href="{{ site.BASE_PATH }}/">&larr; Newer</a>
+    {% else %}
+    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.previous_page }}">&larr; Newer</a>
+    {% endif %}
+  </li>
+  {% else %}
+  <li class="previous disabled">
+    <a>&larr; Newer</a>
+  </li>
+  {% endif %}
+  
+  <li>
+    <span class="page_number">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  </li>
+
+  {% if paginator.next_page %}
+  <li class="next">
+    <a href="{{ site.BASE_PATH }}/{{ site.paginate_path | replace: ':num', paginator.next_page }}">Older &rarr;</a>
+  </li>
+  {% else %}
+  <li class="next disabled">
+    <a>Older &rarr;</a>        
+  </li>
+  {% endif %}
+
 </ul>
-
-</blockquote>
-      </section>
-
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
-</html>
