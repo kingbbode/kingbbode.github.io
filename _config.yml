@@ -11,7 +11,7 @@ google_analytics: UA-75876601-1
 facebook_user_id: kingbbode
 facebook_app_id:
 
-title: Kingbbode - 개발노트
+title: KING BBODE DEV
 
 defaults:
   -
@@ -25,12 +25,13 @@ author:
   name: YG
   email: kingbbode@gmail.com
   github: kingbbode
-  twitter: 
-  linkedin: 
+  twitter:
+  linkedin:
   bio: Portal Web development
-  email_md5: 
+  email_md5:
+  blog: http://kingbbode.tistory.com
 
-rss_path: feed.xml
+rss_path:
 categories_path: categories.html
 tags_path: tags.html
 about_path: about.html
