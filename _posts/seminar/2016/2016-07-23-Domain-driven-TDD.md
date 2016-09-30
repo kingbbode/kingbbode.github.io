@@ -11,8 +11,6 @@ outlink: 0
 
 세미나 정리 및 후기.
 
-<br />
-
 # **Domain Driven TDD**
 >2016년 7월 23일
 
