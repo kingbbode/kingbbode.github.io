@@ -8,12 +8,11 @@ comments: true
 published: true
 outlink: 0
 ---
-도메인 드리븐 정기 세미나 - 테스트 주도 개발  
-  
-  
-  
+
+세미나 정리 및 후기.
+
 <br />
-  
+
 # **Domain Driven TDD**
 >2016년 7월 23일
 

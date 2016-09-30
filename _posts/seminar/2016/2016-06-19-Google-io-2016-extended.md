@@ -8,12 +8,9 @@ comments: true
 published: true
 outlink: 0
 ---
-구글 io 2016 extended  
-  
-  
-  
-<br />
-  
+
+세미나 정리 및 후기.
+
 # **구글 IO 2016 EXTENDED**
 >2016년 6월 19일
 

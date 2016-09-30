@@ -8,12 +8,9 @@ comments: true
 published: true
 outlink: 0
 ---
-GDG WebTech!  
-측정하는 놈  
-그리는 놈  
-로딩하는 놈  
-<br />
-  
+
+세미나 정리 및 후기.
+
 # **GDG WebTech Web**
 ## **측정하는 놈, 그리는 놈, 로딩하는 놈**
 >2016년 8월 27일

@@ -8,12 +8,9 @@ comments: true
 published: true
 outlink: 0
 ---
-도메인 드리븐 정기 세미나 - APM Scouter  
-  
-  
-  
-<br />
-  
+
+세미나 정리 및 후기.
+
 # **Domain Driven APM(SCOUTER)**
 >2016년 8월 10일
 
