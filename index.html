@@ -21,12 +21,10 @@ tagline:
 
   <h2>
     {% if post.outlink == 0 %}
-      {% assign path = site.BASE_PATH + post.url %}
+      <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
     {% else%}
-      {% assign path = "http://kingbbode.tistory.com/" + post.outlink %}
+      <a href="http://kingbbode.tistory.com/{{ post.outlink }}" target="_blank">{{ post.title }}</a>
     {% endif %}
-    {{ path }}
-    <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
   </h2>
 
   <div>
