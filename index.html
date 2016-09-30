@@ -25,6 +25,7 @@ tagline:
     {% else%}
       {% assign path = "http://kingbbode.tistory.com/" + post.outlink %}
     {% endif %}
+    {{ path }}
     <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
   </h2>
 

@@ -27,10 +27,10 @@ author:
   github: kingbbode
   twitter: 
   linkedin: 
-  bio: 
+  bio: Portal Web development
   email_md5: 
 
-rss_path: 
+rss_path: feed.xml
 categories_path: categories.html
 tags_path: tags.html
 about_path: about.html
