@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 스프링 properties 변경 감자하여 동적 로딩하기
+title: 스프링 properties 변경 감지하여 동적 로딩하기
 categories: [blog]
 tags: [Spring,properties]
 fullview: false
