@@ -20,9 +20,9 @@ defaults:
     values:
       title: KING BBODE DEV
 
-description: Portal Dev
+description: Portal Web Development
 author:
-  name: YG
+  name: kingbbode
   email: kingbbode@gmail.com
   github: kingbbode
   twitter:
