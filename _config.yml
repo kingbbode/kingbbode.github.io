@@ -20,14 +20,14 @@ defaults:
     values:
       title: KING BBODE DEV
 
-description: Portal Web Development
+description: Portal Web Developer
 author:
   name: kingbbode
   email: kingbbode@gmail.com
   github: kingbbode
   twitter:
   linkedin:
-  bio: Portal Web development
+  bio: Portal Web Developer
   email_md5: f4c8a1baaf62285612634ec4eec327fd
   blog: http://kingbbode.tistory.com
 
