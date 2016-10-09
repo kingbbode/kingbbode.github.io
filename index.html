@@ -4,7 +4,8 @@ tagline:
 ---
 <div class="btn-group btn-group-justified">
   {% for category in site.categories %}
-    <a href="https://kingbbode.github.io/categories.html#{{ category[0] | replace:' ','-' }}-ref" class="btn btn-default">
+    <!--<a href="https://kingbbode.github.io/categories.html#{{ category[0] | replace:' ','-' }}-ref" class="btn btn-default">-->
+    <a href="javascript:;" class="btn btn-default">
       {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
     </a>
   {% endfor %}
