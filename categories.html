@@ -34,7 +34,7 @@ group: navigation
 <div class="tab-content col-sm-9 col-xs-6">
   {% for category in site.categories %}
     <div class="tab-pane" id="{{ category[0] | replace:' ','-' }}-ref">
-      <h2 style="margin-top: 0px">Posts in {{ category[0] | capitalize }}</h2>
+      <!--<h2 style="margin-top: 0px">Posts in {{ category[0] | capitalize }}</h2>-->
       <ul class="list-unstyled">
         {% assign pages_list = category[1] %}
         {% for node in pages_list %}
