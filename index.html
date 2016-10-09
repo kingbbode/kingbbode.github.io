@@ -2,9 +2,10 @@
 layout: page
 tagline:
 ---
+<!--
 <div class="btn-group btn-group-justified">
   {% for category in site.categories %}
-    <!--<a href="https://kingbbode.github.io/categories.html#{{ category[0] | replace:' ','-' }}-ref" class="btn btn-default">-->
+    <a href="https://kingbbode.github.io/categories.html#{{ category[0] | replace:' ','-' }}-ref" class="btn btn-default">
     <a href="javascript:;" class="btn btn-default">
       {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
     </a>
@@ -24,6 +25,7 @@ tagline:
     </div>
   {% endfor %}
 </div>
+-->
 {% for category in site.categories %}
   {% if forloop.index == 1 %}
     {% assign color = 'success' %}
@@ -33,7 +35,7 @@ tagline:
     {% assign color = 'danger' %}
   {% endif %}
   <div class="progress progress-striped">
-    <div class="progress-bar progress-bar-{{color}}" role="progressbar" aria-valuenow="{{ category[1].size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ category[1].size }}%">
+    <div class="progress-bar progress-bar-{{color}}" role="progressbar" aria-valuenow="{{ category[1].size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ category[1].size * 2 }}%">
       {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
     </div>
   </div>
