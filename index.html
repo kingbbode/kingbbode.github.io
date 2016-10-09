@@ -11,11 +11,10 @@ tagline:
   {% endfor %}
 </div>
 <div class="progress">
-  {% assign index = 0 %}
   {% for category in site.categories %}
-    {% if index == 0 %}
+    {% if forloop.index == 0 %}
       {% assign color = 'success' %}
-    {% else if index == 1%}
+    {% elsif forloop.index == 1 %}
       {% assign color = 'warning' %}
     {% else %}
       {% assign color = 'danger' %}
@@ -23,7 +22,6 @@ tagline:
     <div class="progress-bar progress-bar-{{color}}" style="width: 33.3%">
       {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
     </div>
-    {% index = index + 1 %}
   {% endfor %}
 </div>
 <hr>
@@ -47,7 +45,7 @@ tagline:
     {% if post.outlink == 0 %}
       {% if post.categories[0] == 'seminar' %}
         {% assign c = '세미나' %}
-      {% else if post.categories[0] == 'algorithm' %}
+      {% elsif post.categories[0] == 'algorithm' %}
         {% assign c = '알고리즘' %}
       {% endif %}
       <a href="{{ site.BASE_PATH }}{{ post.url }}">[{{ c }}] {{ post.title }}</a>
