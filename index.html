@@ -24,7 +24,7 @@ tagline:
       {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
     </div>
   {% endfor %}
-</div>1
+</div>
 -->
 {% for category in site.categories %}
   {% if forloop.index == 1 %}
@@ -34,9 +34,8 @@ tagline:
   {% else %}
     {% assign color = 'danger' %}
   {% endif %}
-  {% assign wt = (0 + category[1].size)*2 %}
   <div class="progress progress-striped">
-    <div class="progress-bar progress-bar-{{color}}" role="progressbar" aria-valuenow="{{ category[1].size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ wt }}%">
+    <div class="progress-bar progress-bar-{{color}}" role="progressbar" aria-valuenow="{{ category[1].size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ category[1].size | plus:'0' }}%">
       {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
     </div>
   </div>
