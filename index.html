@@ -12,9 +12,9 @@ tagline:
 </div>
 <div class="progress">
   {% for category in site.categories %}
-    {% if forloop.index == 0 %}
+    {% if forloop.index == 1 %}
       {% assign color = 'success' %}
-    {% elsif forloop.index == 1 %}
+    {% elsif forloop.index == 2 %}
       {% assign color = 'warning' %}
     {% else %}
       {% assign color = 'danger' %}
@@ -24,6 +24,20 @@ tagline:
     </div>
   {% endfor %}
 </div>
+{% for category in site.categories %}
+  {% if forloop.index == 1 %}
+    {% assign color = 'success' %}
+  {% elsif forloop.index == 2 %}
+    {% assign color = 'warning' %}
+  {% else %}
+    {% assign color = 'danger' %}
+  {% endif %}
+  <div class="progress progress-striped">
+    <div class="progress-bar progress-bar-{{color}}" role="progressbar" aria-valuenow="{{ category[1].size }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ category[1].size }}%">
+      {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
+    </div>
+  </div>
+{% endfor %}
 <hr>
 {% for post in paginator.posts %}
 
