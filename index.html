@@ -19,7 +19,7 @@ tagline:
     {{ post.date | date: "%Y" }}
   </span>
 
-  <h2>
+  <h4>
     {% if post.outlink == 0 %}
       {% if post.categories[0] == 'seminar' %}
         {% assign c = '세미나' %}
@@ -30,7 +30,7 @@ tagline:
     {% else%}
       <a href="http://kingbbode.tistory.com/{{ post.outlink }}" target="_blank">[블로그] {{ post.title }}</a>
     {% endif %}
-  </h2>
+  </h4>
 
   <div>
     {% if post.fullview %}
