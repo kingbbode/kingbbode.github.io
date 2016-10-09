@@ -6,7 +6,7 @@ group: navigation
 ---
 
 <div class="col-sm-3 col-xs-6">
-    <ul class="nav nav-tabs-vertical cat-tag-menu">
+    <ul class="nav nav-tabs cat-tag-menu">
       {% assign categories_list = site.categories %}
       {% if categories_list.first[0] == null %}
         {% for category in categories_list %}
@@ -28,6 +28,8 @@ group: navigation
       {% assign categories_list = nil %}
     </ul>
 </div>
+
+
 <!-- Tab panes -->
 <div class="tab-content col-sm-9 col-xs-6">
   {% for category in site.categories %}
