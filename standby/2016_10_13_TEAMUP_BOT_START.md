@@ -33,6 +33,8 @@ Spring Boot 기반 개발 시작!
 
 스프링 부트 간략 설명~어쩌구.
 
+목차<br> Dependency<br> Configuration<br> Oauth2 인증<br> RealTime Message Event<br> Meesage Read<br> Meesage Write<br>
+
 Dependency
 ----------
 
@@ -271,5 +273,256 @@ public class TokenManager {
 RealTime Message Event
 ----------------------
 
+> src/main/java/com.teamup.bot/sensor/TeamUpEventSensor.java
+
+```java
+@Component
+public class TeamUpEventSensor {
+
+    private static final Logger logger = LoggerFactory.getLogger( TeamUpEventSensor.class );
+    @Autowired
+    TeamUpEventSensorRunner teamUpEventSensorRunner;
+
+    @Autowired
+    MessageService messageService;
+
+    @Autowired
+    EventTemplate eventTemplate;
+
+    private static final String EVENT_MESSAGE = "chat.message";
+    private static final String EVENT_JOIN = "chat.join";    
+
+    public void sensingEvent(){
+        EventResponse eventResponse = null;
+        try {
+            eventResponse = eventTemplate.getEvent();
+        }catch (Exception e) {
+            logger.error("TeamUpEventSensor - sensingEvent : {}", e);
+        }
+        teamUpEventSensorRunner.exceute();
+        if (!ObjectUtils.isEmpty(eventResponse)) {
+            ArrayList<EventResponse.Event> eventTypes = eventResponse.getEvents();
+            if (eventTypes.size() > 0) {
+                eventTypes.stream().forEach(event->{
+                    if(EVENT_MESSAGE.equals(event.getType())){
+                        if(!event.getChat().getUser().equals("10849")) {
+                            messageService.readMessage(event.getChat().getMsg(), event.getChat().getRoom(), event.getChat().getUser());
+                        }
+                    }else if(EVENT_JOIN.equals(event.getType())){
+                        messageService.sendMessage(BrainUtil.getGreeting(),event.getChat().getRoom());
+                    }
+                });
+            }
+        }
+    }
+}
+```
+
+> src/main/java/com.teamup.bot/sensor/TeamUpEventSensorRunner.java
+
+```java
+@Service
+@EnableScheduling
+public class TeamUpEventSensorRunner {
+    public static class FetcherTask implements Runnable {
+        TeamUpEventSensor teamUpEventSensor;
+        public FetcherTask(TeamUpEventSensor teamUpEventSensor) {
+            this.teamUpEventSensor = teamUpEventSensor;
+        }
+
+        @Override
+        public void run() {
+            teamUpEventSensor.sensingEvent();
+        }
+    }
+
+    @Autowired
+    private ThreadPoolTaskExecutor executer;
+
+    @Autowired
+    private TeamUpEventSensor teamUpEventSensor;
+
+    public void exceute() {
+        executer.execute(new FetcherTask(teamUpEventSensor));
+    }
+}
+```
+
 Meesage Read
 ------------
+
+> src/main/java/com.teamup.bot/teamup/templates/BaseTemplate.java
+
+```java
+public class BaseTemplate {
+    private static final Logger logger = LoggerFactory.getLogger(BaseTemplate.class);
+
+    @Autowired
+    TokenManager tokenManager;
+
+    RestOperations restOperations;
+
+    public void setRestOperations(RestOperations restOperations) {
+        this.restOperations = restOperations;
+    }
+
+    protected <T> T get(String url, ParameterizedTypeReference<T> p) {
+        return send(url, null, p, HttpMethod.GET);
+    }
+
+    protected <T> T post(String url, Object request, ParameterizedTypeReference<T> p) {
+        return send(url, request, p, HttpMethod.POST);
+    }
+
+    private <T> T send(String url, Object request, ParameterizedTypeReference<T> p, HttpMethod httpMethod) {
+
+        HttpEntity<Object> entity = getEntity(request);
+        ResponseEntity<T> responseEntity = null;
+
+        try {
+            responseEntity = restOperations.exchange(url, httpMethod, entity, p);
+        } catch (ResourceAccessException e) {
+            Throwable t = e.getCause();
+            if (t != null && !(t instanceof SocketTimeoutException)) {
+                logger.error("ResourceAccessException - {}", e);
+            }
+        }catch (HttpClientErrorException e){            
+            logger.error("HttpClientErrorException - {}", e);        
+        } catch (RestClientException e) {
+            logger.error(url, e);
+        }
+        catch (Exception e) {
+            logger.error("url", e);
+        }
+
+        if (responseEntity != null && responseEntity.getStatusCode().equals(HttpStatus.OK)) {
+            return responseEntity.getBody();
+        } else {
+            if(responseEntity != null){
+                logger.error("StatusCode : " + responseEntity.getStatusCode());
+            }
+        }
+        return null;
+    }
+
+    private HttpEntity<Object> getEntity(Object request) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.add("Authorization", "bearer " + tokenManager.getAccessToken());
+        return new HttpEntity<>(request, headers);
+    }
+}
+
+```
+
+> src/main/java/com.teamup.bot/teamup/templates/template/EventTemplate.java
+
+```java
+@Component
+public class EventTemplate extends BaseTemplate {
+    @Autowired
+    EnvironmentProperties environmentProperties;
+
+
+    @Autowired
+    @Qualifier(value = "eventRestOperations")
+    RestOperations restOperations;
+
+    @PostConstruct
+    void init(){
+        super.setRestOperations(restOperations);
+    }
+
+    public EventResponse getEvent() {
+        ParameterizedTypeReference<EventResponse> p = new ParameterizedTypeReference<EventResponse>() {
+        };
+        return get(environmentProperties.getEventUrl(),  p);
+    }
+}
+
+```
+
+> src/main/java/com.teamup.bot/teamup/templates/template/EdgeTemplate.java
+
+```java
+@Component
+public class EdgeTemplate extends BaseTemplate {
+    @Autowired
+    EnvironmentProperties environmentProperties;
+
+    @Autowired
+    BotProperties botProperties;
+
+    @Autowired
+    MessageService messageService;
+
+    private static final String TEST_FEED_GROUP = "13572";
+    private static final String TEST_MESSAGE_GROUP = "70367";
+
+    @Autowired
+    @Qualifier(value = "messageRestOperations")
+    RestOperations restOperations;
+    @PostConstruct
+    void init(){
+        super.setRestOperations(restOperations);
+    }
+
+    @Async
+    public ReadResponse readMessage(String message, String room) {
+        ParameterizedTypeReference<ReadResponse> p = new ParameterizedTypeReference<ReadResponse>() {
+        };
+        return get(environmentProperties.getReadUrl() + room + "/1/0/" + message, p);
+
+    }
+
+    @Async
+    public void sendMessage(String message, String room) {
+        if(!room.equals("999999999999") && !StringUtils.isEmpty(message)) {
+            ParameterizedTypeReference<ReadResponse> p = new ParameterizedTypeReference<ReadResponse>() {
+            };
+            post(environmentProperties.getSendUrl() + (botProperties.isTestMode()?TEST_MESSAGE_GROUP:room), new SendMessage(message), p);
+        }
+    }
+
+    @Async
+    public void writeFeed(String message, Team team) {
+        ParameterizedTypeReference<ReadResponse> p = new ParameterizedTypeReference<ReadResponse>() {
+        };
+        post(environmentProperties.getFeedWriteUrl() + (botProperties.isTestMode()?TEST_FEED_GROUP:team.getFeed()),new SendMessage(message), p);
+    }
+}
+
+```
+
+> src/main/java/com.teamup.bot/service/impl/MessageServiceImpl.java
+
+```java
+@Component
+public class MessageServiceImpl implements MessageService {
+    @Autowired
+    EdgeTemplate edgeTemplate;
+
+    @Override
+    public void readMessage(String message, String room, String user) {
+        ReadResponse readResponse = edgeTemplate.readMessage(message, room);
+        if (!ObjectUtils.isEmpty(readResponse) && readResponse.getMsgs().size() > 0) {
+            String content = readResponse.getMsgs().get(0).getContent();
+            if (!StringUtils.isEmpty(content)) {              
+                String command = content.split(" ")[0];
+                excuteMessage(room, user, content, command);
+            }
+        }
+    }
+
+    @Override
+    public void sendMessage(String message, String room) {
+        edgeTemplate.sendMessage(message, room);
+    }
+
+    @Override
+    public void writeFeed(String message, Team team) {
+        edgeTemplate.writeFeed(message, team);
+    }
+}
+
+```
