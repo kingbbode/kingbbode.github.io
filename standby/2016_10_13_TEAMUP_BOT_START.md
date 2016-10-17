@@ -34,22 +34,18 @@ Spring Boot로 TEAMUP BOT 만들기
 
 ---
 
-준비
-====
+API Key 신청
+============
 
 [팀업 Developer Center](https://tmup.com/main/developer)로 접속하여 API Key 신청합니다!  
 ![팀업](../images/2016/2016_10_13_TEAMUP_BOT_START/developer_center.png)
 
 신청이 승인되어 `client_id`와 `client_secret`을 발급받으면 모든 준비 완료!
 
-이제 스트링 부트로 TeamUP 연동 봇을 만들어보겠습니다.
-
 Spring Boot 기반 개발 시작!
 ===========================
 
 스프링 부트는 스프링 프레임워크를 사용하는 프로젝트를 아주 간편하게 최소한의 설정으로 셋업할 수 있는, 스프링 프레임워크의 진입장벽을 낮춰준 고마운 서브프로젝트입니다. 스프링 부트로 간편하게 stand-alone 환경의 봇을 만들어보겠습니다!
-
-<TOC>
 
 Dependency
 ----------
@@ -71,7 +67,8 @@ Configuration
 
 ### POJO
 
-![teamupAPI](../images/2016/2016_10_13_TEAMUP_BOT_START/teamup_api.png)[TeamUp developer에서 제공하는 API 문서](http://team-up.github.io/)를 참고하여 POJO를 작성하여 주도록 합니다.
+![teamupAPI](../images/2016/2016_10_13_TEAMUP_BOT_START/teamup_api.png)  
+[TeamUp developer에서 제공하는 API 문서](http://team-up.github.io/)를 참고하여 POJO를 작성하여 주도록 합니다.
 
 ### Properties
 
