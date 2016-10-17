@@ -3,7 +3,10 @@ Spring Boot로 TEAMUP BOT 만들기
 
 2016년 연초 줌인터넷에서는 2016년 전략이 발표되었습니다. <br>그 중 눈을 의심하게 만드는 목표가 있었으니, 그것이 바로<br><br>`잉여력 확보!?`<br> ![잉여력?](../images/2016/2016_10_13_TEAMUP_BOT_START/yy.png)
 
-이런 의미는 아니고, 더 높은 도약을 위해 개개인의 잉여 시간을 확보하여 업무를 더 효율적으로 하자는 의도! 그렇게 확보된 잉여력으로 무엇을 할까 고민하여 사내에서 사용하는 메신저 팀업의 봇을 만들게 되었습니다.
+이런 의미는 아니고, `더 높은 도약을 위해 개개인의 잉여 시간을 확보하여 업무를 더 효율적으로 하자는 의도!` 그렇게 확보된 잉여력으로 무엇을 할까 고민하여 사내에서 사용하는 메신저 팀업의 봇을 만들게 되었습니다.
+
+팀업이란?
+=========
 
 이스트소프트의 기업용 메신저 [팀업(TeamUP)](http://tmup.com)은
 
@@ -16,21 +19,25 @@ Spring Boot로 TEAMUP BOT 만들기
 
 [![팀업](../images/2016/2016_10_13_TEAMUP_BOT_START/teamup.jpg)](https://tmup.com/)
 
-팀업을 활용한 이 잉여로운 봇으로 할 수 있는 것은!  
-* 피드에 연차 알림  
-![연차](../images/2016/2016_10_13_TEAMUP_BOT_START/ex1.jpg)  
-* 빈 회의실 조회  
-![회의실](../images/2016/2016_10_13_TEAMUP_BOT_START/ex2.png)  
-* 통계  
-![통계](../images/2016/2016_10_13_TEAMUP_BOT_START/ex3.jpg)  
-* 근처 식당 점심 메뉴  
-![점심](../images/2016/2016_10_13_TEAMUP_BOT_START/ex4.png)  
-* 모임 알림  
-![모임](../images/2016/2016_10_13_TEAMUP_BOT_START/ex5.png)
+자세한 내용은 [팀업 소개 페이지](https://tmup.com/main/function)로!
 
-<br>외에도 투표, 사다리 등등 귀차니즘을 해결해줄 수 있는 다양한 기능을 구현할 수 있습니다!
+---
 
-그럼 시작해보겠습니다!
+활용 예시?!
+===========
+
+-	피드에 연차 알림  
+	![연차](../images/2016/2016_10_13_TEAMUP_BOT_START/ex1.jpg)  
+-	빈 회의실 조회  
+	![회의실](../images/2016/2016_10_13_TEAMUP_BOT_START/ex2.png)  
+-	통계  
+	![통계](../images/2016/2016_10_13_TEAMUP_BOT_START/ex3.jpg)  
+-	근처 식당 점심 메뉴  
+	![점심](../images/2016/2016_10_13_TEAMUP_BOT_START/ex4.png)  
+-	모임 알림  
+	![모임](../images/2016/2016_10_13_TEAMUP_BOT_START/ex5.png)
+
+<br>외에도 투표, 사다리 등등 **귀차니즘을 해결해줄 수 있는 다양한 기능** 을 구현할 수 있습니다!
 
 ---
 
@@ -40,7 +47,11 @@ API Key 신청
 [팀업 Developer Center](https://tmup.com/main/developer)로 접속하여 API Key 신청합니다!  
 ![팀업](../images/2016/2016_10_13_TEAMUP_BOT_START/developer_center.png)
 
-신청이 승인되어 `client_id`와 `client_secret`을 발급받으면 모든 준비 완료!
+신청이 승인되어 `client_id`와 `client_secret`을 발급받으면 모든 준비 완료!<br><br>
+
+### **본격적으로 개발을 시작하여보겠습니다!**
+
+<br>
 
 Spring Boot 기반 개발 시작!
 ===========================
@@ -558,7 +569,10 @@ public void excuteMessage(String room, String user, String content){
 
 ---
 
-Event부터 Message까지 기본적인 봇을 구현해보았습니다. 이제 이 봇에 코딩을 통해 보다 많은 기능을 마음 껏 달 수가 있습니다.
+끝
+==
+
+Event부터 Message까지 기본적인 봇을 구현해보았습니다. 이제 이 봇에 코딩을 통해 보다 많은 기능을 마음 껏 달 수가 있습니다. <br> 봇을 활용해서 재미있는 사내 문화를 만들어보세요!
 
 [팀업 문의](https://tmup.com/)  
 [팀업 API](http://team-up.github.io/)
