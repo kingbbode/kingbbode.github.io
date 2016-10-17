@@ -1,18 +1,5 @@
----
-layout: post
-title: Spring Boot로 TEAMUP BOT 만들기 - (2)
-categories: [blog]
-tags: [Spring,boot,bot,teamup]
-fullview: false
-comments: true
-published: true
-outlink: 0
----
-
-Spring Boot로 TEAMUP BOT 구조 잡기!.
-
 Spring Boot로 TEAMUP BOT 만들기 - (2)
---------------------------------------
+-------------------------------------
 
 이전 포스팅에서 기본적인 봇의 뼈대를 완성했다면, 이번 포스팅에서는 보다 체계적인 구조와 기능을 완성하기 위해 스프링에서 제공해주는 아래 기능들을 활용해보려고 합니다!
 
@@ -23,15 +10,15 @@ Spring Boot로 TEAMUP BOT 만들기 - (2)
 -	**Scheduling**
 	-	스케줄링을 활용하여 기능을 구현합니다.
 
-**Reflection**
-==============
+### **Reflection**
 
 `Reflection`이란 객체를 통해 클래스의 정보를 분석해 내는 프로그램 기법을 말합니다. 스프링이 아닌 자바의 특징으로 실행중인 자바프로그램 내부를 검사하고 내부의 속성을 수정할 수 있습니다. `Spring Container`의 `BeanFactory`가 어플리케이션이 실행한 후 객체가 호출 될 당시 객체의 인스턴스를 생성하게 되는데 그 때 Reflection 기술을 사용하고 있습니다.
 
 늘어나는 명령어를 하나씩 분기처리 또는 어딘가에 저장하여 매칭하는 수고를 덜기 위하여, `Reflection`을 사용하여 봇 기능의 컨트롤러를 만들어보겠습니다.
 
-Defendency
-----------
+<br>
+
+#### Defendency
 
 ```java
 compile('org.reflections:reflections:0.9.10')
@@ -39,14 +26,11 @@ compile('org.reflections:reflections:0.9.10')
 
 <br>
 
-Annotation
-----------
+#### Annotation
 
 어노테이션(Annotation)은 Java 5부터 등장한 기능입니다.
 
 어노테이션은 설명 그 이상의 활동을 합니다. 어노테이션이 붙은 코드는 어노테이션의 구현된 정보에 따라 연결되는 방향이 결정됩니다. 따라서 전체 소스코드에서 비즈니스 로직에는 영향을 주지는 않지만 해당 타겟의 연결 방법이나 소스코드의 구조를 변경할 수 있습니다. 쉽게 말해서 "이 속성을 어떤 용도로 사용할까, 이 클래스에게 어떤 역할을 줄까?"를 결정해서 붙여준다고 볼 수 있습니다. 어노테이션은 소스코드에 메타데이터를 삽입하는 것이기 때문에 잘 이용하면 구독성 뿐 아니라 체계적인 소스코드를 구성하는데 도움을 줍니다.([참고:nextree](http://www.nextree.co.kr/p5864/)\)
-
-<br>
 
 어노테이션은 Method에도 사용 가능합니다. 저는 `Annotation`을 새로 작성하여 해당 Method가 봇의 기능을 담당하는 Method라는 것을 설명해주려고 합니다. 봇의 두뇌와 같다고 생각하여 Brain이라는 이름으로 작성하였습니다.
 
@@ -65,8 +49,7 @@ public @interface Brain {
 
 <br>
 
-Reflection 구현!
-----------------
+#### Reflection 구현!
 
 명령들의 집합을 가지고 있는 Comoponent를 구현합니다.<br> 모든 Method는 String room, String user를 가져야하며, param이 null이 아닌 Method는 String param을 갖도록하는 규칙을 가져야 합니다. 이는 Reflection으로 추출된 Method를 Invoke 시키기 위함입니다.
 
@@ -75,7 +58,7 @@ Reflection 구현!
 ```java
 @Component
 public class BrainComponent {
-		@Brain(key = "안녕", param = BrainUtil.PARAM_NULL)
+        @Brain(key = "안녕", param = BrainUtil.PARAM_NULL)
     public String hello(String room, String user) {
         return "그래, 안녕";
     }
@@ -96,23 +79,23 @@ public class BrainComponent {
 
  @PostConstruct
  public void loadBrain() {
-		 Reflections reflections = new Reflections(new ConfigurationBuilder()
-						 .setUrls(ClasspathHelper.forPackage("com.teamup.bot")).setScanners(
-										 new MethodAnnotationsScanner()));
+         Reflections reflections = new Reflections(new ConfigurationBuilder()
+                         .setUrls(ClasspathHelper.forPackage("com.teamup.bot")).setScanners(
+                                         new MethodAnnotationsScanner()));
 
-		 Set<Method> methods = reflections
-						 .getMethodsAnnotatedWith(Brain.class);
+         Set<Method> methods = reflections
+                         .getMethodsAnnotatedWith(Brain.class);
 
-		 try {
-				 methods.stream().forEach(method -> {
-						 Brain brainAnnotation = method.getAnnotation(Brain.class);
-						 String key = brainAnnotation.key();
-						 brain.put(key, method);
-						 brainType.put(key, brainAnnotation.param());
-				 });
-		 } catch (RuntimeException e) {
-				 logger.error("MessageComponent - loadBrain : {}", e);
-		 }
+         try {
+                 methods.stream().forEach(method -> {
+                         Brain brainAnnotation = method.getAnnotation(Brain.class);
+                         String key = brainAnnotation.key();
+                         brain.put(key, method);
+                         brainType.put(key, brainAnnotation.param());
+                 });
+         } catch (RuntimeException e) {
+                 logger.error("MessageComponent - loadBrain : {}", e);
+         }
  }
 ```
 
@@ -120,32 +103,31 @@ public class BrainComponent {
 
 <br>
 
-Invoke
-------
+#### Invoke
 
 > src/main/java/com.teamup.bot/service/MessageService.java
 
 ```java
 public void excuteMessage(String room, String user, String content){
-	/*
-	* 지난 코드는 지우고!
-	if("#안녕".equals(content)){
-		sendMessage("그래 안녕", room);
-	}
-	*/
-	String command = content.split(" ")[0];
-	String param = cotent.replaceAll(command+" ","");
-	if (brain.containsKey(command)) {
-		 try {
-				 if (BrainUtil.PARAM_STRING.equals(brainType.get(command))) {
-						 result = (String) brain.get(command).invoke(brainComponent, room, user, param);
-				 } else {
-						 result = (String) brain.get(command).invoke(brainComponent, room, user);
-				 }
-		 } catch (Exception e) {
-				 logger.error("MessageComponent - readMessage - invoke : {}", e);
-		 }
-	}
+    /*
+    * 지난 코드는 지우고!
+    if("#안녕".equals(content)){
+        sendMessage("그래 안녕", room);
+    }
+    */
+    String command = content.split(" ")[0];
+    String param = cotent.replaceAll(command+" ","");
+    if (brain.containsKey(command)) {
+         try {
+                 if (BrainUtil.PARAM_STRING.equals(brainType.get(command))) {
+                         result = (String) brain.get(command).invoke(brainComponent, room, user, param);
+                 } else {
+                         result = (String) brain.get(command).invoke(brainComponent, room, user);
+                 }
+         } catch (Exception e) {
+                 logger.error("MessageComponent - readMessage - invoke : {}", e);
+         }
+    }
 }
 ```
 
@@ -153,17 +135,17 @@ public void excuteMessage(String room, String user, String content){
 
 기능이 완성되었습니다. `Reflection`을 활용하여 brainComponent에는 Controller와 같이 매칭시키는 로직을 구현하고, 사용되는 비지니스로직은 서비스 계층으로 뺀다면 더 깔끔한 구조가 될 것 입니다.
 
-<br>
+---
 
-**AOP**
-=======
+### **AOP**
 
 AOP(Aspect Oriented Programming)는 관점 지향 프로그래밍을 의미합니다. 스프링의 `AOP`는 기본적으로 프록시 방식입니다. 프록시 오브젝트를 타깃 오브젝트를 앞에 두고 호출과정을 가로채서 트랜잭션과 같은 부가적인 작업을 진행해줍니다. `AOP`는 보기보다 어려운 개념이므로 따로 더 찾아보는 것을 추천!
 
 Brain Method의 앞단에 프록시를 두어 메소드가 실행되기 전 권한에 대한 유효성 체크를 해보도록 하겠습니다! 늘어나는 명령어에 모두 레벨체크를 하는 수고를 덜기 위하여, AOP를 사용하여 봇 기능의 권한 체크 기능을 만들어보겠습니다.
 
-준비
-----
+<br>
+
+#### 준비
 
 TeamUp Event API는 기본적으로 USER의 번호를 줍니다. 이 유저에 대한 권한을 체크하려면 해당 유저의 권한을 가지고 있는 테이블이 있어야 합니다. 데이터베이스든 내부 소스든 어딘가에는 User의 권한 정보를 입력해주시기 바랍니다!
 
@@ -172,8 +154,7 @@ ex)
 
 <br>
 
-Defendency
-----------
+#### Defendency
 
 ```java
 compile ("org.aspectj:aspectjweaver:1.8.8")
@@ -181,8 +162,7 @@ compile ("org.aspectj:aspectjweaver:1.8.8")
 
 <br>
 
-Annotation
-----------
+#### Annotation
 
 어노테이션에 대한 설명은 위 Reflection에서 했으므로 생략하겠습니다!
 
@@ -205,18 +185,17 @@ BrainComponet에 적용하여 봅니다.
 ```java
 @Component
 public class BrainComponent {
-	@Level(level=levelType.LEVEL4)
-	@Brain(key = "안녕", param = BrainUtil.PARAM_NULL)
+    @Level(level=levelType.LEVEL4)
+    @Brain(key = "안녕", param = BrainUtil.PARAM_NULL)
     public String hello(String room, String user) {
         return "그래, 안녕";
     }
-	...
+    ...
 ```
 
 <br>
 
-AspectJ
--------
+#### AspectJ
 
 @AspectJ는 Java 5 어노테이션을 사용한 일반 Java 클래스로 관점(Aspect)를 정의하는 방식입니다.
 
@@ -237,9 +216,9 @@ public class TeamOnlyAspect {
         Object[] args = joinPoint.getArgs();
         for (int i = 0; i < args.length; i++) {
             if ("user".equals(params[i])){
-								User user = UserDao.get(args[i]);
+                                User user = UserDao.get(args[i]);
                 if(user == null || !type.equals(user.getLevel()))
-									return type.getLelvel() + "만 사용할 수 있습니다.";
+                                    return type.getLelvel() + "만 사용할 수 있습니다.";
                 }
             }
         }
@@ -258,10 +237,9 @@ public class TeamOnlyAspect {
 
 권한 체크 기능이 완성 되었습니다!
 
-<br>
+---
 
-**Scheduling**
-==============
+### **Scheduling**
 
 봇에 빠질 수 없는 Scheduling 기능!<br>Spring boot와 함께한다면 엄청나게 간단하게 구현할 수 있습니다. 바로 EnableScheduling 어노테이션 때문입니다!
 
@@ -275,8 +253,8 @@ public class TeamOnlyAspect {
 @Service
 @EnableScheduling
 public class ScheduleService {
-	@Autowired
- 	MessageService messageService;
+    @Autowired
+    MessageService messageService;
 
   @Scheduled(cron = "0 0 12 * * 1-5")
   public void lunch() {
@@ -291,6 +269,8 @@ Scheduled 어노테이션의 상세한 사용법은 [Spring Docs](http://docs.sp
 다른 서비스계층에 구현한 로직과 함께 여러가지 기능이 구현 가능합니다!
 
 ex)<br> ![레벨](/images/2016/2016_10_13_TEAMUP_BOT_TIP/ex4.png)
+
+---
 
 끝
 ==

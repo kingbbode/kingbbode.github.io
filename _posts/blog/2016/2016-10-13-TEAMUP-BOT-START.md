@@ -1,25 +1,11 @@
----
-layout: post
-title: Spring Boot로 TEAMUP BOT 만들기 - (1)
-categories: [blog]
-tags: [Spring,boot,bot,teamup]
-fullview: false
-comments: true
-published: true
-outlink: 0
----
-
-Spring Boot로 TEAMUP BOT 뼈대 만들기!.
-
 Spring Boot로 TEAMUP BOT 만들기 - (1)
--------------------------------
+-------------------------------------
 
 2016년 연초 줌인터넷에서는 2016년 전략이 발표되었습니다. <br>그 중 눈을 의심하게 만드는 목표가 있었으니, 그것이 바로<br><br>`잉여력 확보!?`<br> ![잉여력?](/images/2016/2016_10_13_TEAMUP_BOT_START/yy.png)
 
 이런 의미는 아니고, `더 높은 도약을 위해 개개인의 잉여 시간을 확보하여 업무를 더 효율적으로 하자는 의도!` 그렇게 확보된 잉여력으로 무엇을 할까 고민하여 사내에서 사용하는 메신저 팀업의 봇을 만들게 되었습니다.
 
-팀업이란?
-=========
+### 팀업이란?
 
 이스트소프트의 기업용 메신저 [팀업(TeamUP)](http://tmup.com)은
 
@@ -36,8 +22,7 @@ Spring Boot로 TEAMUP BOT 만들기 - (1)
 
 ---
 
-활용 예시?!
-===========
+### 활용 예시?!
 
 -	피드에 연차 알림  
 	![연차](/images/2016/2016_10_13_TEAMUP_BOT_START/ex1.jpg)  
@@ -54,8 +39,7 @@ Spring Boot로 TEAMUP BOT 만들기 - (1)
 
 ---
 
-API Key 신청
-============
+### API Key 신청
 
 [팀업 Developer Center](https://tmup.com/main/developer)로 접속하여 API Key 신청합니다!  
 ![팀업](/images/2016/2016_10_13_TEAMUP_BOT_START/developer_center.png)
@@ -67,12 +51,11 @@ API Key 신청
 <br>
 
 Spring Boot 기반 개발 시작!
-===========================
+---------------------------
 
 스프링 부트는 스프링 프레임워크를 사용하는 프로젝트를 아주 간편하게 최소한의 설정으로 셋업할 수 있는, 스프링 프레임워크의 진입장벽을 낮춰준 고마운 서브프로젝트입니다. 스프링 부트로 간편하게 stand-alone 환경의 봇을 만들어보겠습니다!
 
-**Dependency**
---------------
+### **Dependency**
 
 > build.gradle
 
@@ -86,17 +69,18 @@ compile('org.springframework.security.oauth:spring-security-oauth2:2.0.8.RELEASE
 -	**spring-security-oauth2**
 	-	TeamUP의 Oauth2 Token을 쉽게 사용하기위해 사용
 
-Configuration
--------------
+---
 
-### POJO
+### Configuration
+
+#### POJO
 
 ![teamupAPI](/images/2016/2016_10_13_TEAMUP_BOT_START/teamup_api.png)  
 [TeamUp developer에서 제공하는 API 문서](http://team-up.github.io/)를 참고하여 POJO를 작성하여 주도록 합니다.
 
 <br>
 
-### Properties
+#### Properties
 
 변경될 여지가 있는, 민감하고 다소 정적인 설정 값들을 외부 설정 파일로 관리를 하고 있습니다. 스프링은 `@PropertySource`를 통해서 Spring initializr로 제공되는 application.properties 외에 별도로 생성한 properties로 환경 변수를 할당할 수 있도록 지원하고 있습니다.
 
@@ -175,7 +159,7 @@ public class TeamUpProperties {
 
 <br>
 
-### RestTemplate
+#### RestTemplate
 
 스프링은 RESTful 서비스를 쉽게 사용할 수 있도록 `RestTemplate` 객체를 제공합니다. API 통신을 위한 `RestTemplate Bean`을 생성합니다. <br>RestTemplate를 두 개 생성한 이유와 `eventRestOperations`의 ReadTimeout이 30초인 이유는 아래에 RealTime Message Event에 설명하겠습니다!<br> 두 개 이상의 같은 객체를 반환되는 Bean을 설정할 때는 `@Primary` 어노테이션으로 default로 사용될 Bean을 명시해주도록 합니다. API와 통신 조건을 만족하기 위해 4가지 MessageConverter를 사용하였습니다.
 
@@ -227,7 +211,7 @@ public class ApplicationConfig {
 
 <br>
 
-### ThreadPoolTaskExecutor
+#### ThreadPoolTaskExecutor
 
 스레드 풀은 작업 처리에 사용되는 스레드를 제한된 개수만큼 정해 놓고 작업 큐에 들어오는 작업들을 하나씩 스레드가 맡아 처리합니다. 스프링에서는 `ThreadPoolTaskExecutor`를 기본적으로 제공하며, Message Event를 병렬로 효과적으로 처리하기 위해서 사용될 것 입니다.
 
@@ -236,9 +220,9 @@ public class ApplicationConfig {
 ```java
 @Configuration
 public class ApplicationConfig {
-		...
+        ...
 
-		@Bean
+        @Bean
     public ThreadPoolTaskExecutor threadPoolTaskExecutorDefault() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(5);
@@ -248,16 +232,15 @@ public class ApplicationConfig {
         return executor;
     }
 
-		...
+        ...
 }
 ```
 
 여기까지 했다면 기본 Configuration 끝!
 
-<br>
+---
 
-**Oauth2 인증**
----------------
+### **Oauth2 인증**
 
 TeamUp API는 Oauth2 Token 기반이며, Oauth2를 제외한 모든 API 기능은 Access 토큰을 필요로하고 있습니다. 이제 토큰을 발급받아보겠습니다.
 
@@ -323,7 +306,7 @@ public class Oauth2Template  {
 ```java
 @Component
 public class TokenManager {
-		...
+        ...
     @PostConstruct
     void init(){
         accessToken = oauth2Template.token(accessToken);
@@ -336,10 +319,9 @@ public class TokenManager {
 }
 ```
 
-<br>
+---
 
-**BaseTemplate**
-----------------
+### **BaseTemplate**
 
 Oaut2Template는 다른 Template와 다르게 동작하여 따로 생성하였지만, Read, Write 등 API 통신을 하는 다른 요청은 기본적으로 같은 방식으로 동작을 합니다. `BaseTemplate`는 공통으로 사용될 RESTful 서비스를 제공하는 상위 구현체입니다.
 
@@ -347,7 +329,7 @@ Oaut2Template는 다른 Template와 다르게 동작하여 따로 생성하였�
 public class BaseTemplate {
     ...
 
-		public void setRestOperations(RestOperations restOperations) {
+        public void setRestOperations(RestOperations restOperations) {
         this.restOperations = restOperations;
     }
 
@@ -399,21 +381,20 @@ public class BaseTemplate {
 }
 ```
 
-<br>
+---
 
-**RealTime Message Event**
---------------------------
+### **RealTime Message Event**
 
 `EventTemplate`는 `BaseTemplate`를 상속하여 Event에 대한 API 통신만 하는 구현체입니다. 팀업에서 제공하는 Event API는 이벤트 대기 API이며, 요청 중 이벤트가 발생했을 때 이벤트를 반환합니다. 아무런 이벤트가 없을 경우 발생하는 ReadTimeout을 최소화하기 위하여 ReadTimeout을 30초로 지정해두었던 `RestTemplate`를 사용합니다.
 
 ```java
 @Component
 public class EventTemplate extends BaseTemplate {
-		...
+        ...
 
-		@Autowired
-		@Qualifier(value = "eventRestOperations")
-		RestOperations restOperations;
+        @Autowired
+        @Qualifier(value = "eventRestOperations")
+        RestOperations restOperations;
 
     @PostConstruct
     void init(){
@@ -435,7 +416,7 @@ public class EventTemplate extends BaseTemplate {
 ```java
 @Component
 public class TeamUpEventSensor {
-		...
+        ...
 
     private static final String EVENT_MESSAGE = "chat.message";
     private static final String EVENT_JOIN = "chat.join";    
@@ -495,10 +476,9 @@ public class TeamUpEventSensorRunner {
 }
 ```
 
-<br>
+---
 
-**Meesage Read, Write**
------------------------
+### **Meesage Read, Write**
 
 팀업의 Event API는 메시지 내용을 반환하여 주지 않습니다.([TeamUP API : EVENT](http://team-up.github.io/v3/ev/)\) 대신 Event에서는 메시지번호를 반환하여 주는데 이 메세지 번호를 통해 메세지를 읽어올 수 있습니다. 또한 Event는 해당 이벤트가 발생한 room id와 발생시킨 주체의 user id를 반환하여 줍니다. 메세지를 write 할 때는 room id를 사용하여 해당 방에 설정해둔 반응을 전송하여 줍니다. TeamUp API의 다양한 기능으로 보다 정밀하고 고도화된 구현도 가능합니다.
 
@@ -570,7 +550,7 @@ public class MessageServiceImpl implements MessageService {
     public void sendMessage(String message, String room) {
         edgeTemplate.sendMessage(message, room);
     }
-		...
+        ...
 }
 ```
 
@@ -578,9 +558,9 @@ public class MessageServiceImpl implements MessageService {
 
 ```java
 public void excuteMessage(String room, String user, String content){
-	if("#안녕".equals(content)){
-		sendMessage("그래 안녕", room);
-	}
+    if("#안녕".equals(content)){
+        sendMessage("그래 안녕", room);
+    }
 }
 ```
 
