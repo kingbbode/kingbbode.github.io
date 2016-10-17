@@ -473,9 +473,7 @@ public class TeamUpEventSensorRunner {
 Meesage Read, Write
 -------------------
 
-### Read
-
-팀업의 Event API는 메시지 내용을 반환하여 주지 않습니다.([TeamUP API:EVENT](http://team-up.github.io/v3/ev/)\) 대신 Event에서는 메시지번호를 반환하여 주는데 이 메세지 번호를 통해 메세지를 읽어올 수 있습니다. 또한 Event는 해당 이벤트가 발생한 room id와 발생시킨 주체의 user id를 반환하여 줍니다. 메세지를 write 할 때는 room id를 사용하여 해당 방에 설정해둔 반응을 전송하여 줍니다. TeamUp API의 다양한 기능으로 보다 정밀하고 고도화된 구현도 가능합니다.
+팀업의 Event API는 메시지 내용을 반환하여 주지 않습니다.([TeamUP API : EVENT](http://team-up.github.io/v3/ev/)\) 대신 Event에서는 메시지번호를 반환하여 주는데 이 메세지 번호를 통해 메세지를 읽어올 수 있습니다. 또한 Event는 해당 이벤트가 발생한 room id와 발생시킨 주체의 user id를 반환하여 줍니다. 메세지를 write 할 때는 room id를 사용하여 해당 방에 설정해둔 반응을 전송하여 줍니다. TeamUp API의 다양한 기능으로 보다 정밀하고 고도화된 구현도 가능합니다.
 
 `EdgeTemplate`는 `BaseTemplate`를 상속하여 Message에 대한 API 통신만 하는 구현체입니다.
 
