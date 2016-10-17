@@ -1,4 +1,17 @@
-Spring Boot로 TEAMUP BOT 만들기
+---
+layout: post
+title: Spring Boot로 TEAMUP BOT 만들기 - (1)
+categories: [blog]
+tags: [Spring,boot,bot,teamup]
+fullview: false
+comments: true
+published: true
+outlink: 0
+---
+
+Spring Boot로 TEAMUP BOT 뼈대 만들기!.
+
+Spring Boot로 TEAMUP BOT 만들기 - (1)
 -------------------------------
 
 2016년 연초 줌인터넷에서는 2016년 전략이 발표되었습니다. <br>그 중 눈을 의심하게 만드는 목표가 있었으니, 그것이 바로<br><br>`잉여력 확보!?`<br> ![잉여력?](../images/2016/2016_10_13_TEAMUP_BOT_START/yy.png)

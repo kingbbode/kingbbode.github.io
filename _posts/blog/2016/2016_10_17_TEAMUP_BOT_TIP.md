@@ -1,4 +1,17 @@
-Spring Boot로 TEAMUP BOT 만들기 - 심화
+---
+layout: post
+title: Spring Boot로 TEAMUP BOT 만들기 - (2)
+categories: [blog]
+tags: [Spring,boot,bot,teamup]
+fullview: false
+comments: true
+published: true
+outlink: 0
+---
+
+Spring Boot로 TEAMUP BOT 구조 잡기!.
+
+Spring Boot로 TEAMUP BOT 만들기 - (2)
 --------------------------------------
 
 이전 포스팅에서 기본적인 봇의 뼈대를 완성했다면, 이번 포스팅에서는 보다 체계적인 구조와 기능을 완성하기 위해 스프링에서 제공해주는 아래 기능들을 활용해보려고 합니다!
