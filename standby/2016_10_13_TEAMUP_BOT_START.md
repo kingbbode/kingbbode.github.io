@@ -1,7 +1,9 @@
-TEAMUP BOT 만들기 (Spring Boot)
+Spring Boot로 TEAMUP BOT 만들기
 -------------------------------
 
-팀업 소개는 나중에....
+2016년 연초 줌인터넷에서는 2016년 전략이 발표되었습니다. <br>그 중 눈을 의심하게 만드는 목표가 있었으니, 그것이 바로<br><br>`잉여력 확보!?`<br> ![잉여력?](../images/2016/2016_10_13_TEAMUP_BOT_START/yy.png)
+
+이런 의미는 아니고, 더 높은 도약을 위해 개개인의 잉여 시간을 확보하여 업무를 더 효율적으로 하자는 의도! 그렇게 확보된 잉여력으로 무엇을 할까 고민하여 사내에서 사용하는 메신저 팀업의 봇을 만들게 되었습니다.
 
 이스트소프트의 기업용 메신저 [팀업(TeamUP)](http://tmup.com)은
 
@@ -14,7 +16,21 @@ TEAMUP BOT 만들기 (Spring Boot)
 
 [![팀업](../images/2016/2016_10_13_TEAMUP_BOT_START/teamup.jpg)](https://tmup.com/)
 
-시작해보겠다~~
+팀업을 활용한 이 잉여로운 봇으로 할 수 있는 것은!  
+* 피드에 연차 알림  
+![연차](../images/2016/2016_10_13_TEAMUP_BOT_START/ex1.jpg)  
+* 빈 회의실 조회  
+![회의실](../images/2016/2016_10_13_TEAMUP_BOT_START/ex2.png)  
+* 통계  
+![통계](../images/2016/2016_10_13_TEAMUP_BOT_START/ex3.jpg)  
+* 근처 식당 점심 메뉴  
+![점심](../images/2016/2016_10_13_TEAMUP_BOT_START/ex4.png)  
+* 모임 알림  
+![모임](../images/2016/2016_10_13_TEAMUP_BOT_START/ex5.png)
+
+<br>외에도 투표, 사다리 등등 귀차니즘을 해결해줄 수 있는 다양한 기능을 구현할 수 있습니다!
+
+그럼 시작해보겠습니다!
 
 ---
 
@@ -31,9 +47,9 @@ TEAMUP BOT 만들기 (Spring Boot)
 Spring Boot 기반 개발 시작!
 ===========================
 
-스프링 부트 간략 설명~어쩌구.
+스프링 부트는 스프링 프레임워크를 사용하는 프로젝트를 아주 간편하게 최소한의 설정으로 셋업할 수 있는, 스프링 프레임워크의 진입장벽을 낮춰준 고마운 서브프로젝트입니다. 스프링 부트로 간편하게 stand-alone 환경의 봇을 만들어보겠습니다!
 
-목차<br> Dependency<br> Configuration<br> Oauth2 인증<br> RealTime Message Event<br> Meesage Read<br> Meesage Write<br>
+<TOC>
 
 Dependency
 ----------
@@ -53,9 +69,15 @@ compile('org.springframework.security.oauth:spring-security-oauth2:2.0.8.RELEASE
 Configuration
 -------------
 
+### POJO
+
+![teamupAPI](../images/2016/2016_10_13_TEAMUP_BOT_START/teamup_api.png)[TeamUp developer에서 제공하는 API 문서](http://team-up.github.io/)를 참고하여 POJO를 작성하여 주도록 합니다.
+
 ### Properties
 
-API를 사용하기 위해 먼저 발급받은 `client id`,`client_secret`과 봇과 연동될 `팀업 계정 정보`를 properties에 적어줍니다.<br> 사용할 TeamUP API도 명세해줍니다.
+변경될 여지가 있는, 민감하고 다소 정적인 설정 값들을 외부 설정 파일로 관리를 하고 있습니다. 스프링은 `@PropertySource`를 통해서 Spring initializr로 제공되는 application.properties 외에 별도로 생성한 properties로 환경 변수를 할당할 수 있도록 지원하고 있습니다.
+
+properties로 API를 사용하기 위해 먼저 발급받은 `client id`,`client_secret`과 봇과 연동될 `팀업 계정 정보`를 properties에 적어줍니다.<br> 사용할 TeamUP API도 명세해줍니다.
 
 > src/main/resources/properties/bot.properties
 
@@ -71,7 +93,7 @@ bot.teamup.id={{봇과 연동될 팀업 계정 ID}}
 bot.teamup.pw={{봇과 연동될 팀업 계정 비밀번호}}
 ```
 
-<br> @Configuration을 사용하여 properties를 셋팅합니다.
+<br> @Configuration을 사용하여 기본 환변 변수를 셋팅합니다.
 
 > src/main/java/com.teamup.bot/config/TeamUpConfiguration.java
 
@@ -88,7 +110,9 @@ public class TeamUpConfiguration {
 }
 ```
 
-사용하는 각 서비스단에서 @Value 어노테이션을 사용하여도 괜찬지만, 통합하여 관리하기 위하여 저는 Component를 하나 만들었습니다.
+PropertySource는 명세된 순서데로 환경 변수를 로드하며, 같은 이름으로 할당된 환경 변수는 나중에 불러진 것으로 덮어씌워집니다. classpath에는 내부 테스트용으로 사용할 환경변수를 할당하는 것이 좋으며, 외부 설정파일에 다소 민감한 정보를 명세하도록 합니다.
+
+사용하는 각 서비스단에서 @Value 어노테이션으로 환경 변수를 직접 호출하여도 괜찬지만, 통합하여 관리하기 위하여 저는 Component를 하나 만들었습니다.
 
 > src/main/java/com.teamup.bot/properties/TeamUpProperties.java
 
@@ -128,7 +152,7 @@ public class TeamUpProperties {
 
 ### RestTemplate
 
-API 통신을 위한 `RestTemplate Bean`을 생성합니다. RestTemplate를 두 개 생성한 이유와 `eventRestOperations`의 ReadTimeout이 30초인 이유는 아래에 RealTime Message Event에 설명하겠습니다!
+스프링은 RESTful 서비스를 쉽게 사용할 수 있도록 `RestTemplate` 객체를 제공합니다. API 통신을 위한 `RestTemplate Bean`을 생성합니다. <br>RestTemplate를 두 개 생성한 이유와 `eventRestOperations`의 ReadTimeout이 30초인 이유는 아래에 RealTime Message Event에 설명하겠습니다!<br> 두 개 이상의 같은 객체를 반환되는 Bean을 설정할 때는 `@Primary` 어노테이션으로 default로 사용될 Bean을 명시해주도록 합니다. API와 통신 조건을 만족하기 위해 4가지 MessageConverter를 사용하였습니다.
 
 > src/main/java/com.teamup.bot/config/ApplicationConfig.java
 
@@ -176,6 +200,31 @@ public class ApplicationConfig {
 }
 ```
 
+### ThreadPoolTaskExecutor
+
+스레드 풀은 작업 처리에 사용되는 스레드를 제한된 개수만큼 정해 놓고 작업 큐에 들어오는 작업들을 하나씩 스레드가 맡아 처리합니다. 스프링에서는 `ThreadPoolTaskExecutor`를 기본적으로 제공하며, Message Event를 병렬로 효과적으로 처리하기 위해서 사용될 것 입니다.
+
+> src/main/java/com.teamup.bot/config/ApplicationConfig.java
+
+```java
+@Configuration
+public class ApplicationConfig {
+		...
+
+		@Bean
+    public ThreadPoolTaskExecutor threadPoolTaskExecutorDefault() {
+        ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+        executor.setCorePoolSize(5);
+        executor.setMaxPoolSize(10);
+        executor.setQueueCapacity(1000);
+        executor.setWaitForTasksToCompleteOnShutdown(true);
+        return executor;
+    }
+
+		...
+}
+```
+
 여기까지 했다면 기본 Configuration 끝!
 
 Oauth2 인증
@@ -190,30 +239,21 @@ TeamUp API는 Oauth2 Token 기반이며, Oauth2를 제외한 모든 API 기능�
 ```java
 @Component
 public class Oauth2Template  {
-    @Autowired
-    @Qualifier(value = "messageRestOperations")
-    private RestOperations restOperations;
-
-    @Autowired
-    private TeamUpProperties teamUpProperties;
+    ...
 
     public OAuth2AccessToken token(OAuth2AccessToken accessToken){
         if (accessToken == null) {
             return post(accessToken, GrantType.PASSWORD);
         }else{
             if (accessToken.isExpired()) {
-                return refresh(accessToken);
+                return post(accessToken, GrantType.REFRESH);
             }
         }
         return accessToken;
     }
 
-    private OAuth2AccessToken refresh(OAuth2AccessToken accessToken) {
-        return post(accessToken, GrantType.REFRESH);
-    }
-
     private OAuth2AccessToken post(OAuth2AccessToken accessToken, GrantType grantType) {
-        ResponseEntity<OAuth2AccessToken> response = restOperations.postForEntity(environmentProperties.getTokenUrl(), getEntity(accessToken, grantType),
+        ResponseEntity<OAuth2AccessToken> response = restOperations.postForEntity(teamUpProperties.getTokenUrl(), getEntity(accessToken, grantType),
                 OAuth2AccessToken.class);
 
         if (response.getStatusCode().equals(HttpStatus.OK)) {
@@ -243,21 +283,18 @@ public class Oauth2Template  {
 }
 ```
 
-`spring-security-oauth2`의 `OAuth2AccessToken`을 이용하여 간편하게 만료를 확인하고 갱신을 해주고 있습니다!
+반환되는 Oatuh2 Token은 `spring-security-oauth2`에서 제공하는 Oatuh2Token 객체로 쉽게 만료를 확인하고 갱신을 해주고 있습니다!
 
 다음은 Oauth2 Token을 보관, 관리하는 `TokenManager`입니다. getAccessToken()이 실행될 때마다 `Oauth2Template`의 token()을 호출하여, 없다면 생성, 만료되었다면 갱신한 토큰을 전달해 주게됩니다.
+
+`@PostConstruct`는 자바 객체의 기본 생성자와는 다르게 의존하는 객체를 설정한 이후에 초기화 작업입니다. 자바 객체 생성 시점에는 oatuh2Template가 주입되기 전이기때문에 의존 객체를 사용하기 위해 사용합니다.
 
 > src/main/java/com.teamup.bot/teamup/TokenManager.java
 
 ```java
 @Component
 public class TokenManager {
-
-    private OAuth2AccessToken accessToken;
-
-    @Autowired
-    Oauth2Template oauth2Template;
-
+		...
     @PostConstruct
     void init(){
         accessToken = oauth2Template.token(accessToken);
@@ -270,99 +307,16 @@ public class TokenManager {
 }
 ```
 
-RealTime Message Event
-----------------------
-
-> src/main/java/com.teamup.bot/sensor/TeamUpEventSensor.java
-
-```java
-@Component
-public class TeamUpEventSensor {
-
-    private static final Logger logger = LoggerFactory.getLogger( TeamUpEventSensor.class );
-    @Autowired
-    TeamUpEventSensorRunner teamUpEventSensorRunner;
-
-    @Autowired
-    MessageService messageService;
-
-    @Autowired
-    EventTemplate eventTemplate;
-
-    private static final String EVENT_MESSAGE = "chat.message";
-    private static final String EVENT_JOIN = "chat.join";    
-
-    public void sensingEvent(){
-        EventResponse eventResponse = null;
-        try {
-            eventResponse = eventTemplate.getEvent();
-        }catch (Exception e) {
-            logger.error("TeamUpEventSensor - sensingEvent : {}", e);
-        }
-        teamUpEventSensorRunner.exceute();
-        if (!ObjectUtils.isEmpty(eventResponse)) {
-            ArrayList<EventResponse.Event> eventTypes = eventResponse.getEvents();
-            if (eventTypes.size() > 0) {
-                eventTypes.stream().forEach(event->{
-                    if(EVENT_MESSAGE.equals(event.getType())){
-                        if(!event.getChat().getUser().equals("10849")) {
-                            messageService.readMessage(event.getChat().getMsg(), event.getChat().getRoom(), event.getChat().getUser());
-                        }
-                    }else if(EVENT_JOIN.equals(event.getType())){
-                        messageService.sendMessage(BrainUtil.getGreeting(),event.getChat().getRoom());
-                    }
-                });
-            }
-        }
-    }
-}
-```
-
-> src/main/java/com.teamup.bot/sensor/TeamUpEventSensorRunner.java
-
-```java
-@Service
-@EnableScheduling
-public class TeamUpEventSensorRunner {
-    public static class FetcherTask implements Runnable {
-        TeamUpEventSensor teamUpEventSensor;
-        public FetcherTask(TeamUpEventSensor teamUpEventSensor) {
-            this.teamUpEventSensor = teamUpEventSensor;
-        }
-
-        @Override
-        public void run() {
-            teamUpEventSensor.sensingEvent();
-        }
-    }
-
-    @Autowired
-    private ThreadPoolTaskExecutor executer;
-
-    @Autowired
-    private TeamUpEventSensor teamUpEventSensor;
-
-    public void exceute() {
-        executer.execute(new FetcherTask(teamUpEventSensor));
-    }
-}
-```
-
-Meesage Read
+BaseTemplate
 ------------
 
-> src/main/java/com.teamup.bot/teamup/templates/BaseTemplate.java
+Oaut2Template는 다른 Template와 다르게 동작하여 따로 생성하였지만, Read, Write 등 API 통신을 하는 다른 요청은 기본적으로 같은 방식으로 동작을 합니다. `BaseTemplate`는 공통으로 사용될 RESTful 서비스를 제공하는 상위 구현체입니다.
 
 ```java
 public class BaseTemplate {
-    private static final Logger logger = LoggerFactory.getLogger(BaseTemplate.class);
+    ...
 
-    @Autowired
-    TokenManager tokenManager;
-
-    RestOperations restOperations;
-
-    public void setRestOperations(RestOperations restOperations) {
+		public void setRestOperations(RestOperations restOperations) {
         this.restOperations = restOperations;
     }
 
@@ -412,21 +366,21 @@ public class BaseTemplate {
         return new HttpEntity<>(request, headers);
     }
 }
-
 ```
 
-> src/main/java/com.teamup.bot/teamup/templates/template/EventTemplate.java
+RealTime Message Event
+----------------------
+
+`EventTemplate`는 `BaseTemplate`를 상속하여 Event에 대한 API 통신만 하는 구현체입니다. 팀업에서 제공하는 Event API는 이벤트 대기 API이며, 요청 중 이벤트가 발생했을 때 이벤트를 반환합니다. 아무런 이벤트가 없을 경우 발생하는 ReadTimeout을 최소화하기 위하여 ReadTimeout을 30초로 지정해두었던 `RestTemplate`를 사용합니다.
 
 ```java
 @Component
 public class EventTemplate extends BaseTemplate {
-    @Autowired
-    EnvironmentProperties environmentProperties;
+		...
 
-
-    @Autowired
-    @Qualifier(value = "eventRestOperations")
-    RestOperations restOperations;
+		@Autowired
+		@Qualifier(value = "eventRestOperations")
+		RestOperations restOperations;
 
     @PostConstruct
     void init(){
@@ -436,11 +390,86 @@ public class EventTemplate extends BaseTemplate {
     public EventResponse getEvent() {
         ParameterizedTypeReference<EventResponse> p = new ParameterizedTypeReference<EventResponse>() {
         };
-        return get(environmentProperties.getEventUrl(),  p);
+        return get(teamUpProperties.getEventUrl(),  p);
     }
 }
-
 ```
+
+실시간으로 메세지를 처리하기 위해 `ThreadPoolTaskExecutor`를 사용할 것 입니다. 이벤트 대기 상태에서 이벤트가 반환되었을 때 바로 다음 이벤트를 대기할 수 있도록 `teamUpEventSensorRunner.exceute();`를 실행하여 이벤트 대기 스레드를 할당합니다.
+
+> src/main/java/com.teamup.bot/sensor/TeamUpEventSensor.java
+
+```java
+@Component
+public class TeamUpEventSensor {
+		...
+
+    private static final String EVENT_MESSAGE = "chat.message";
+    private static final String EVENT_JOIN = "chat.join";    
+
+    public void sensingEvent(){
+        EventResponse eventResponse = null;
+        try {
+            eventResponse = eventTemplate.getEvent();
+        }catch (Exception e) {
+            logger.error("TeamUpEventSensor - sensingEvent : {}", e);
+        }
+        teamUpEventSensorRunner.exceute();
+        if (!ObjectUtils.isEmpty(eventResponse)) {
+            ArrayList<EventResponse.Event> eventTypes = eventResponse.getEvents();
+            if (eventTypes.size() > 0) {
+                eventTypes.stream().forEach(event->{
+                    if(EVENT_MESSAGE.equals(event.getType())){
+                        messageService.readMessage(event.getChat().getMsg(), event.getChat().getRoom(), event.getChat().getUser());
+                    }else if(EVENT_JOIN.equals(event.getType())){
+                        messageService.sendMessage(BrainUtil.getGreeting(),event.getChat().getRoom());
+                    }
+                });
+            }
+        }
+    }
+}
+```
+
+`ThreadPoolTaskExecutor`를 사용하는 구현체입니다. Task로 `TeamUpEventSensor`의 sesingEvent를 사용합니다.
+
+> src/main/java/com.teamup.bot/sensor/TeamUpEventSensorRunner.java
+
+```java
+@Service
+public class TeamUpEventSensorRunner {
+    public static class FetcherTask implements Runnable {
+        TeamUpEventSensor teamUpEventSensor;
+        public FetcherTask(TeamUpEventSensor teamUpEventSensor) {
+            this.teamUpEventSensor = teamUpEventSensor;
+        }
+
+        @Override
+        public void run() {
+            teamUpEventSensor.sensingEvent();
+        }
+    }
+
+    @Autowired
+    private ThreadPoolTaskExecutor executer;
+
+    @Autowired
+    private TeamUpEventSensor teamUpEventSensor;
+
+    public void exceute() {
+        executer.execute(new FetcherTask(teamUpEventSensor));
+    }
+}
+```
+
+Meesage Read, Write
+-------------------
+
+### Read
+
+팀업의 Event API는 메시지 내용을 반환하여 주지 않습니다.([TeamUP API:EVENT](http://team-up.github.io/v3/ev/)\) 대신 Event에서는 메시지번호를 반환하여 주는데 이 메세지 번호를 통해 메세지를 읽어올 수 있습니다. 또한 Event는 해당 이벤트가 발생한 room id와 발생시킨 주체의 user id를 반환하여 줍니다. 메세지를 write 할 때는 room id를 사용하여 해당 방에 설정해둔 반응을 전송하여 줍니다. TeamUp API의 다양한 기능으로 보다 정밀하고 고도화된 구현도 가능합니다.
+
+`EdgeTemplate`는 `BaseTemplate`를 상속하여 Message에 대한 API 통신만 하는 구현체입니다.
 
 > src/main/java/com.teamup.bot/teamup/templates/template/EdgeTemplate.java
 
@@ -467,7 +496,6 @@ public class EdgeTemplate extends BaseTemplate {
         super.setRestOperations(restOperations);
     }
 
-    @Async
     public ReadResponse readMessage(String message, String room) {
         ParameterizedTypeReference<ReadResponse> p = new ParameterizedTypeReference<ReadResponse>() {
         };
@@ -475,29 +503,25 @@ public class EdgeTemplate extends BaseTemplate {
 
     }
 
-    @Async
     public void sendMessage(String message, String room) {
-        if(!room.equals("999999999999") && !StringUtils.isEmpty(message)) {
+        if(!StringUtils.isEmpty(message)) {
             ParameterizedTypeReference<ReadResponse> p = new ParameterizedTypeReference<ReadResponse>() {
             };
-            post(environmentProperties.getSendUrl() + (botProperties.isTestMode()?TEST_MESSAGE_GROUP:room), new SendMessage(message), p);
+            post(environmentProperties.getSendUrl() + room, new SendMessage(message), p);
         }
-    }
-
-    @Async
-    public void writeFeed(String message, Team team) {
-        ParameterizedTypeReference<ReadResponse> p = new ParameterizedTypeReference<ReadResponse>() {
-        };
-        post(environmentProperties.getFeedWriteUrl() + (botProperties.isTestMode()?TEST_FEED_GROUP:team.getFeed()),new SendMessage(message), p);
     }
 }
 
 ```
 
+`edgeTemplate`를 서비스로 사용할 수도 있지만, @Service 어노테이션을 사용하는 것이 서비스계층의 클래스들을 처리하는데 더 적합하며 관점에 더 연관성을 부여할 수 있습니다. 구조적인 효율을 위해 서비스계층인 `MessageService` 구현합니다.
+
+서비스계층에서 room, user, meesage를 조합하여 비지니스로직을 구현합니다.
+
 > src/main/java/com.teamup.bot/service/impl/MessageServiceImpl.java
 
 ```java
-@Component
+@Service
 public class MessageServiceImpl implements MessageService {
     @Autowired
     EdgeTemplate edgeTemplate;
@@ -507,9 +531,8 @@ public class MessageServiceImpl implements MessageService {
         ReadResponse readResponse = edgeTemplate.readMessage(message, room);
         if (!ObjectUtils.isEmpty(readResponse) && readResponse.getMsgs().size() > 0) {
             String content = readResponse.getMsgs().get(0).getContent();
-            if (!StringUtils.isEmpty(content)) {              
-                String command = content.split(" ")[0];
-                excuteMessage(room, user, content, command);
+            if (!StringUtils.isEmpty(content)) {
+                excuteMessage(room, user, content);
             }
         }
     }
@@ -518,11 +541,27 @@ public class MessageServiceImpl implements MessageService {
     public void sendMessage(String message, String room) {
         edgeTemplate.sendMessage(message, room);
     }
-
-    @Override
-    public void writeFeed(String message, Team team) {
-        edgeTemplate.writeFeed(message, team);
-    }
+		...
 }
-
 ```
+
+다음은 `excuteMessage`의 예제입니다.
+
+```java
+public void excuteMessage(String room, String user, String content){
+	if("#안녕".equals(content)){
+		sendMessage("그래 안녕", room);
+	}
+}
+```
+
+실행해보면!!
+
+![그래, 안녕!](../images/2016/2016_10_13_TEAMUP_BOT_START/message_ex.png)
+
+---
+
+Event부터 Message까지 기본적인 봇을 구현해보았습니다. 이제 이 봇에 코딩을 통해 보다 많은 기능을 마음 껏 달 수가 있습니다.
+
+[팀업 문의](https://tmup.com/)  
+[팀업 API](http://team-up.github.io/)
