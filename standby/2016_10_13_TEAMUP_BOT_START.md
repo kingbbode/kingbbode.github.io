@@ -491,9 +491,6 @@ public class EdgeTemplate extends BaseTemplate {
     @Autowired
     MessageService messageService;
 
-    private static final String TEST_FEED_GROUP = "13572";
-    private static final String TEST_MESSAGE_GROUP = "70367";
-
     @Autowired
     @Qualifier(value = "messageRestOperations")
     RestOperations restOperations;
@@ -506,7 +503,6 @@ public class EdgeTemplate extends BaseTemplate {
         ParameterizedTypeReference<ReadResponse> p = new ParameterizedTypeReference<ReadResponse>() {
         };
         return get(environmentProperties.getReadUrl() + room + "/1/0/" + message, p);
-
     }
 
     public void sendMessage(String message, String room) {
