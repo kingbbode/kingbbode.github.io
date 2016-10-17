@@ -14,7 +14,7 @@ Spring Boot로 TEAMUP BOT 뼈대 만들기!.
 Spring Boot로 TEAMUP BOT 만들기 - (1)
 -------------------------------
 
-2016년 연초 줌인터넷에서는 2016년 전략이 발표되었습니다. <br>그 중 눈을 의심하게 만드는 목표가 있었으니, 그것이 바로<br><br>`잉여력 확보!?`<br> ![잉여력?](../images/2016/2016_10_13_TEAMUP_BOT_START/yy.png)
+2016년 연초 줌인터넷에서는 2016년 전략이 발표되었습니다. <br>그 중 눈을 의심하게 만드는 목표가 있었으니, 그것이 바로<br><br>`잉여력 확보!?`<br> ![잉여력?](/images/2016/2016_10_13_TEAMUP_BOT_START/yy.png)
 
 이런 의미는 아니고, `더 높은 도약을 위해 개개인의 잉여 시간을 확보하여 업무를 더 효율적으로 하자는 의도!` 그렇게 확보된 잉여력으로 무엇을 할까 고민하여 사내에서 사용하는 메신저 팀업의 봇을 만들게 되었습니다.
 
@@ -30,7 +30,7 @@ Spring Boot로 TEAMUP BOT 만들기 - (1)
 
 등 다양한 업무 도구를 제공해 빠른 커뮤니케이션(소통)을 통한 업무 효율을 향상시켜주는 기업용 통합 커뮤니케이션 플랫폼입니다.
 
-[![팀업](../images/2016/2016_10_13_TEAMUP_BOT_START/teamup.jpg)](https://tmup.com/)
+[![팀업](/images/2016/2016_10_13_TEAMUP_BOT_START/teamup.jpg)](https://tmup.com/)
 
 자세한 내용은 [팀업 소개 페이지](https://tmup.com/main/function)로!
 
@@ -40,15 +40,15 @@ Spring Boot로 TEAMUP BOT 만들기 - (1)
 ===========
 
 -	피드에 연차 알림  
-	![연차](../images/2016/2016_10_13_TEAMUP_BOT_START/ex1.jpg)  
+	![연차](/images/2016/2016_10_13_TEAMUP_BOT_START/ex1.jpg)  
 -	빈 회의실 조회  
-	![회의실](../images/2016/2016_10_13_TEAMUP_BOT_START/ex2.png)  
+	![회의실](/images/2016/2016_10_13_TEAMUP_BOT_START/ex2.png)  
 -	통계  
-	![통계](../images/2016/2016_10_13_TEAMUP_BOT_START/ex3.jpg)  
+	![통계](/images/2016/2016_10_13_TEAMUP_BOT_START/ex3.jpg)  
 -	근처 식당 점심 메뉴  
-	![점심](../images/2016/2016_10_13_TEAMUP_BOT_START/ex4.png)  
+	![점심](/images/2016/2016_10_13_TEAMUP_BOT_START/ex4.png)  
 -	모임 알림  
-	![모임](../images/2016/2016_10_13_TEAMUP_BOT_START/ex5.png)
+	![모임](/images/2016/2016_10_13_TEAMUP_BOT_START/ex5.png)
 
 <br>외에도 투표, 사다리 등등 **귀차니즘을 해결해줄 수 있는 다양한 기능** 을 구현할 수 있습니다!
 
@@ -58,7 +58,7 @@ API Key 신청
 ============
 
 [팀업 Developer Center](https://tmup.com/main/developer)로 접속하여 API Key 신청합니다!  
-![팀업](../images/2016/2016_10_13_TEAMUP_BOT_START/developer_center.png)
+![팀업](/images/2016/2016_10_13_TEAMUP_BOT_START/developer_center.png)
 
 신청이 승인되어 `client_id`와 `client_secret`을 발급받으면 모든 준비 완료!<br><br>
 
@@ -91,7 +91,7 @@ Configuration
 
 ### POJO
 
-![teamupAPI](../images/2016/2016_10_13_TEAMUP_BOT_START/teamup_api.png)  
+![teamupAPI](/images/2016/2016_10_13_TEAMUP_BOT_START/teamup_api.png)  
 [TeamUp developer에서 제공하는 API 문서](http://team-up.github.io/)를 참고하여 POJO를 작성하여 주도록 합니다.
 
 <br>
@@ -586,7 +586,7 @@ public void excuteMessage(String room, String user, String content){
 
 실행해보면!!
 
-![그래, 안녕!](../images/2016/2016_10_13_TEAMUP_BOT_START/message_ex.png)
+![그래, 안녕!](/images/2016/2016_10_13_TEAMUP_BOT_START/message_ex.png)
 
 <br>
 

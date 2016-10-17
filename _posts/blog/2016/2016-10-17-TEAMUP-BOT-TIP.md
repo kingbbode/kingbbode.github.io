@@ -149,7 +149,7 @@ public void excuteMessage(String room, String user, String content){
 }
 ```
 
-조건을 만족한다면 저장해두었던 Method를 `invoke()`시킵니다.<br> 그러면 짜잔! <br> ![그래, 안녕!](../images/2016/2016_10_13_TEAMUP_BOT_TIP/ex1.png)
+조건을 만족한다면 저장해두었던 Method를 `invoke()`시킵니다.<br> 그러면 짜잔! <br> ![그래, 안녕!](/images/2016/2016_10_13_TEAMUP_BOT_TIP/ex1.png)
 
 기능이 완성되었습니다. `Reflection`을 활용하여 brainComponent에는 Controller와 같이 매칭시키는 로직을 구현하고, 사용되는 비지니스로직은 서비스 계층으로 뺀다면 더 깔끔한 구조가 될 것 입니다.
 
@@ -168,7 +168,7 @@ Brain Method의 앞단에 프록시를 두어 메소드가 실행되기 전 권�
 TeamUp Event API는 기본적으로 USER의 번호를 줍니다. 이 유저에 대한 권한을 체크하려면 해당 유저의 권한을 가지고 있는 테이블이 있어야 합니다. 데이터베이스든 내부 소스든 어딘가에는 User의 권한 정보를 입력해주시기 바랍니다!
 
 ex)  
-![권한](../images/2016/2016_10_13_TEAMUP_BOT_TIP/ex2.jpg)
+![권한](/images/2016/2016_10_13_TEAMUP_BOT_TIP/ex2.jpg)
 
 <br>
 
@@ -254,7 +254,7 @@ public class TeamOnlyAspect {
 
 실행하여 보면!!
 
-![레벨](../images/2016/2016_10_13_TEAMUP_BOT_TIP/ex3.png)
+![레벨](/images/2016/2016_10_13_TEAMUP_BOT_TIP/ex3.png)
 
 권한 체크 기능이 완성 되었습니다!
 
@@ -290,7 +290,7 @@ Scheduled 어노테이션의 상세한 사용법은 [Spring Docs](http://docs.sp
 
 다른 서비스계층에 구현한 로직과 함께 여러가지 기능이 구현 가능합니다!
 
-ex)<br> ![레벨](../images/2016/2016_10_13_TEAMUP_BOT_TIP/ex4.png)
+ex)<br> ![레벨](/images/2016/2016_10_13_TEAMUP_BOT_TIP/ex4.png)
 
 끝
 ==
