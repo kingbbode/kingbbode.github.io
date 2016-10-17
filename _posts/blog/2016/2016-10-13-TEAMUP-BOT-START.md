@@ -48,7 +48,7 @@ Spring Boot로 TEAMUP BOT 만들기 - (1)
 -	근처 식당 점심 메뉴  
 	![점심](/images/2016/2016_10_13_TEAMUP_BOT_START/ex4.png)  
 -	모임 알림  
-	![모임](/images/2016/2016_10_13_TEAMUP_BOT_START/ex5.png)
+	![모임](/images/2016/2016_10_13_TEAMUP_BOT_START/ex5.jpg)
 
 <br>외에도 투표, 사다리 등등 **귀차니즘을 해결해줄 수 있는 다양한 기능** 을 구현할 수 있습니다!
 
