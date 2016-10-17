@@ -229,7 +229,39 @@ public class TeamOnlyAspect {
 Scheduling
 ==========
 
-봇에 빠질 수 없는 Scheduling 기능! Spring boot와 함께한다면 엄청나게 간단하게 구현할 수 있습니다.
+봇에 빠질 수 없는 Scheduling 기능!<br>Spring boot와 함께한다면 엄청나게 간단하게 구현할 수 있습니다. 바로 EnableScheduling 어노테이션 때문입니다!
+
+`@EnableScheduling`은 Annotation으로 설정된 `@Scheduled` 를 찾아 등록하고 실행해줍니다.
+
+예제로 매주 월~금요일 점심시간마다 점심시간을 알리는 스케줄을 등록해봅니다!
+
+> src/main/java/com.teamup.bot/service/ScheduleService.java
+
+```java
+@Service
+@EnableScheduling
+public class ScheduleService {
+	@Autowired
+ 	MessageService messageService;
+
+  @Scheduled(cron = "0 0 12 * * 1-5")
+  public void lunch() {
+      messageService.sendMessage("점심시간이다아~~!", {{방 번호}})
+  }
+
+}
+```
+
+Scheduled 어노테이션의 상세한 사용법은 [Spring Docs](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/scheduling.html#scheduling-annotation-support-scheduled) 참조!
+
+다른 서비스계층에 구현한 로직과 함께 여러가지 기능이 구현 가능합니다!
+
+ex)<br> ![레벨](../images/2016/2016_10_13_TEAMUP_BOT_TIP/ex4.png)
+
+끝
+==
+
+스프링에서 제공하는 기능으로 봇을 한 층 더 업그레이드 시켜보았습니다. <br> 봇을 활용해서 재미있는 사내 문화를 만들어보세요!
 
 <br>[팀업 문의](https://tmup.com/)  
 [팀업 API](http://team-up.github.io/)
