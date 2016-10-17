@@ -10,8 +10,8 @@ Spring Boot로 TEAMUP BOT 만들기 - 심화
 -	**Scheduling**
 	-	스케줄링을 활용하여 기능을 구현합니다.
 
-Reflection
-==========
+**Reflection**
+==============
 
 `Reflection`이란 객체를 통해 클래스의 정보를 분석해 내는 프로그램 기법을 말합니다. 스프링이 아닌 자바의 특징으로 실행중인 자바프로그램 내부를 검사하고 내부의 속성을 수정할 수 있습니다. `Spring Container`의 `BeanFactory`가 어플리케이션이 실행한 후 객체가 호출 될 당시 객체의 인스턴스를 생성하게 되는데 그 때 Reflection 기술을 사용하고 있습니다.
 
@@ -24,12 +24,16 @@ Defendency
 compile('org.reflections:reflections:0.9.10')
 ```
 
+<br>
+
 Annotation
 ----------
 
 어노테이션(Annotation)은 Java 5부터 등장한 기능입니다.
 
 어노테이션은 설명 그 이상의 활동을 합니다. 어노테이션이 붙은 코드는 어노테이션의 구현된 정보에 따라 연결되는 방향이 결정됩니다. 따라서 전체 소스코드에서 비즈니스 로직에는 영향을 주지는 않지만 해당 타겟의 연결 방법이나 소스코드의 구조를 변경할 수 있습니다. 쉽게 말해서 "이 속성을 어떤 용도로 사용할까, 이 클래스에게 어떤 역할을 줄까?"를 결정해서 붙여준다고 볼 수 있습니다. 어노테이션은 소스코드에 메타데이터를 삽입하는 것이기 때문에 잘 이용하면 구독성 뿐 아니라 체계적인 소스코드를 구성하는데 도움을 줍니다.([참고:nextree](http://www.nextree.co.kr/p5864/)\)
+
+<br>
 
 어노테이션은 Method에도 사용 가능합니다. 저는 `Annotation`을 새로 작성하여 해당 Method가 봇의 기능을 담당하는 Method라는 것을 설명해주려고 합니다. 봇의 두뇌와 같다고 생각하여 Brain이라는 이름으로 작성하였습니다.
 
@@ -45,6 +49,8 @@ public @interface Brain {
 ```
 
 `key`는 해당 Method와 매핑되는 메시지가 될 것이며, param은 parameter의 type(필요없는지, String인지, Integer인지를)을 설명합니다.
+
+<br>
 
 Reflection 구현!
 ----------------
@@ -99,7 +105,12 @@ public class BrainComponent {
 
 지난 포스팅에서 설명했던 PostConstruct를 활용하여 의존성이 주입된 후 초기화 작업으로 brain, brainType을 설정했습니다. Class를 따로 생성하여 brain과 brainType을 하나의 map에 저장하여도 좋습니다. `Reflection`을 사용하여 `Annotation`을 기준으로 Method를 추출하여 저장하였습니다.
 
-> src/main/java/com.teamup.bot/annotations/Brain.java
+<br>
+
+Invoke
+------
+
+> src/main/java/com.teamup.bot/service/MessageService.java
 
 ```java
 public void excuteMessage(String room, String user, String content){
@@ -129,8 +140,10 @@ public void excuteMessage(String room, String user, String content){
 
 기능이 완성되었습니다. `Reflection`을 활용하여 brainComponent에는 Controller와 같이 매칭시키는 로직을 구현하고, 사용되는 비지니스로직은 서비스 계층으로 뺀다면 더 깔끔한 구조가 될 것 입니다.
 
-AOP
-===
+<br>
+
+**AOP**
+=======
 
 AOP(Aspect Oriented Programming)는 관점 지향 프로그래밍을 의미합니다. 스프링의 `AOP`는 기본적으로 프록시 방식입니다. 프록시 오브젝트를 타깃 오브젝트를 앞에 두고 호출과정을 가로채서 트랜잭션과 같은 부가적인 작업을 진행해줍니다. `AOP`는 보기보다 어려운 개념이므로 따로 더 찾아보는 것을 추천!
 
@@ -144,12 +157,16 @@ TeamUp Event API는 기본적으로 USER의 번호를 줍니다. 이 유저에 �
 ex)  
 ![권한](../images/2016/2016_10_13_TEAMUP_BOT_TIP/ex2.jpg)
 
+<br>
+
 Defendency
 ----------
 
 ```java
 compile ("org.aspectj:aspectjweaver:1.8.8")
 ```
+
+<br>
 
 Annotation
 ----------
@@ -182,6 +199,8 @@ public class BrainComponent {
     }
 	...
 ```
+
+<br>
 
 AspectJ
 -------
@@ -226,8 +245,10 @@ public class TeamOnlyAspect {
 
 권한 체크 기능이 완성 되었습니다!
 
-Scheduling
-==========
+<br>
+
+**Scheduling**
+==============
 
 봇에 빠질 수 없는 Scheduling 기능!<br>Spring boot와 함께한다면 엄청나게 간단하게 구현할 수 있습니다. 바로 EnableScheduling 어노테이션 때문입니다!
 
