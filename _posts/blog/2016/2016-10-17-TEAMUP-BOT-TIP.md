@@ -65,7 +65,7 @@ public class BrainComponent {
 
     @Brain(key = "너는", param = BrainUtil.PARAM_STRING)
     public String me(String room, String user, String param) {
-        return "나는" + param;
+        return "나는 " + param;
     }
 ```
 
