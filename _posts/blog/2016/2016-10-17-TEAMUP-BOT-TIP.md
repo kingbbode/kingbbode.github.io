@@ -1,3 +1,17 @@
+---
+layout: post
+title: Spring Boot로 TEAMUP BOT 만들기 - (2)
+categories: [blog]
+tags: [Spring,boot,bot,teamup]
+fullview: false
+comments: true
+published: true
+outlink: 0
+---
+
+Spring Boot로 TEAMUP BOT 구조 잡기!.
+
+
 Spring Boot로 TEAMUP BOT 만들기 - (2)
 -------------------------------------
 
