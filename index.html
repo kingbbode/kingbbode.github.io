@@ -66,7 +66,7 @@ tagline:
     {% elsif post.categories[0] == 'blog'%}
       {% assign c = '블로그' %}
     {% endif %}
-    {% if post.outlink == 0 %} 
+    {% if post.outlink == 0 %}
       <a href="{{ site.BASE_PATH }}{{ post.url }}">[{{ c }}] {{ post.title }}</a>
     {% else%}
       <a href="http://kingbbode.tistory.com/{{ post.outlink }}" target="_blank">[{{ c }}] {{ post.title }}</a>
@@ -91,7 +91,7 @@ tagline:
 {% endfor %}
 <hr/>
 
-<ul class="pager"> 
+<ul class="pager">
 
   {% if paginator.previous_page %}
   <li class="previous">
@@ -106,7 +106,7 @@ tagline:
     <a>&larr; Newer</a>
   </li>
   {% endif %}
-  
+
   <li>
     <span class="page_number">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
   </li>
@@ -117,8 +117,9 @@ tagline:
   </li>
   {% else %}
   <li class="next disabled">
-    <a>Older &rarr;</a>        
+    <a>Older &rarr;</a>
   </li>
   {% endif %}
+  <iframe src="/iframe_test2.html"></iframe>
 
 </ul>
