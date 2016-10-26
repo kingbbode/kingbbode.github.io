@@ -30,7 +30,7 @@ DEVEIW 2016
 
 개인적으로 관심을 가지고 지속적으로 보고 있는 Scouter APM도 홍보 부스를 열었습니다! <br>Scouter APM은 이번 DEVIEW 2일차 2번 트랙의 세번째 세션의 주제로도 진행되었습니다. Scouter TeamUP 플러그인을 개인적으로 만들어보았는데, 제작자분께 컨트리뷰트를 제안했더니 흔쾌히 허락해주셨습니다ㅎㅎ 잘하면 조만간 Scouter에 TeamUP 플러그인이 공식적으로 올라갈 수도 있을 것 같습니다!
 
-### 스타트업 부스들
+### 3. 스타트업 부스들
 
 ![s1](/zuminternet/images/devs.JPG)
 
