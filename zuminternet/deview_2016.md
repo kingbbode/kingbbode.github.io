@@ -3,7 +3,7 @@ DEVEIW 2016
 
 안녕하세요. 포털개발팀 권용근 담당입니다!<br>BackEnd 위주로 진행되는 DEVIEW 2016 2일차 후기를 올립니다.<br> 개발적인 내용은 최대한 줄여 간단한 참석 후기 및 생각을 정리해보았습니다.
 
-![main](/zuminternet/images/main.jpg)
+![main](/zuminternet/images/main.JPG)
 
 정말 많은 개발자들이 왔습니다. 코엑스 그랜드볼륨에서 총 4개의 트랙으로 진행되었고, 다양한 부스가 준비되었습니다.
 
@@ -12,7 +12,7 @@ DEVEIW 2016
 
 ### 1. 개발 서적 할인 판매 부스
 
-![book](/zuminternet/images/b1.jpg)
+![book](/zuminternet/images/b1.JPG)
 
 다양한 개발서적 출판사에서 서적 홍보 및 판매를 위해서 부스를 열었습니다! 개발 컨퍼런스에서 흔히 볼 수 있는 광경이지만, 컨퍼런스 규모가 큰만큼 정말 많은 출판사에서 왔습니다!
 
@@ -20,19 +20,19 @@ DEVEIW 2016
 
 **Naver OpenSource**
 
-![o1](/zuminternet/images/nl.png)
+![o1](/zuminternet/images/nl.PNG)
 
 최근 도입을 고려했던 APM PINPOINT와 사내에서 잘 사용하고 있는 nGrinder 등을 오픈소스로 제공해주는 Naver의 OpenSource 프로젝트를 홍보하기 위해서 부스를 열었네요!
 
 **Scouter**
 
-![o2](/zuminternet/images/scouter.jpg)
+![o2](/zuminternet/images/scouter.JPG)
 
 개인적으로 관심을 가지고 지속적으로 보고 있는 Scouter APM도 홍보 부스를 열었습니다! <br>Scouter APM은 이번 DEVIEW 2일차 2번 트랙의 세번째 세션의 주제로도 진행되었습니다. Scouter TeamUP 플러그인을 개인적으로 만들어보았는데, 제작자분께 컨트리뷰트를 제안했더니 흔쾌히 허락해주셨습니다ㅎㅎ 잘하면 조만간 Scouter에 TeamUP 플러그인이 공식적으로 올라갈 수도 있을 것 같습니다!
 
 ### 스타트업 부스들
 
-![s1](/zuminternet/images/devs.jpg)
+![s1](/zuminternet/images/devs.JPG)
 
 쿠키런으로 잘 알려진 데브시스터즈의 부스입니다. AI를 이기면 피규어를 주는 이벤트를 진행하고 있었습니다. 게임에는 소질이 없어서, 참여는 못했습니다..
 
@@ -42,9 +42,9 @@ DEVEIW 2016
 
 > 그런데! 이 많은 스타트업이 어째서 굳이 개발 컨퍼런스에 제품을 홍보하러 왔을까 의문이 들었습니다. 많은 사람들이 온다지만 전부 개발자들인데(?)!<br>그래서 부스에 다가가 부스에 방문한 사람들이 하는 대화를 들어보았습니다. <br> "무슨 언어로 개발되었나요?", "어떤 기술을 사용하나요?" 등의 대화와 결정적으로 `"채용을 하고 있나요?"`라는 대화!<br> 제가 생각한 결론은 `채용 홍보`를 위한 부스라고 생각을 했습니다. 많은 경력 개발자들 중 열에 반은 스타트업으로 이직을 한다고 들었습니다. 아마 더 새롭고 재미있는 기술들을 사용하고 싶어하고, 도전하고 싶어하는 개발자들 특유의 욕구때문이라고 생각하고 있습니다. 이런 부스가 개발자들의 욕구에 어필을 많이 하고있지 않을까 생각합니다.
 
-![s1](/zuminternet/images/pr.jpg)
+![s1](/zuminternet/images/pr.JPG)
 
-![s1](/zuminternet/images/st.jpg)
+![s1](/zuminternet/images/st.JPG)
 
 부스들을 전부 다 돌고나니 선물들도 많이 챙기게 되었습니다!ㅎㅎ
 
@@ -53,7 +53,7 @@ DEVEIW 2016
 
 ### Session 1. 나는 서버를 썰 터이니 너는 개발만 하여라
 
-![s1](/zuminternet/images/devops.jpg)
+![s1](/zuminternet/images/devops.JPG)
 
 개발자가 개발 업무에만 충실 할 수 있도록 신뢰 할 수 있는 인프라 시스템 구축! <br>즉 `DevOps`를 말합니다.
 
