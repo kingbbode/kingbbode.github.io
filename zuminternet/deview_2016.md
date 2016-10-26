@@ -75,7 +75,7 @@ DEVEIW 2016
 
 성능 메트릭의 Visualization으로 결과는 알 수 있다. 그러나 원인을 알 수 없다! 그래서 등장한 APM(성능 메트릭 + 원인 분석을 위한 @) 중 Scouter를 소개하는 세션입니다.
 
-Scouter APM을 구현하는 핵심 기술인 **BCI(Byte code instrumentation)** 를 소개해주어 정말 유익했던 발표였습니다! 이 외의 내용은 이전 제가 들었던 세미나에서 했던 내용과 같았습니다. 정보가 필요하신 분인 [제 블로그로](https://kingbbode.github.io/seminar/2016/08/10/Domain-driven-scouter.html)!
+Scouter APM을 구현하는 핵심 기술인 **BCI(Byte code instrumentation)** 를 소개해주어 정말 유익했던 발표였습니다! 이 외의 내용은 이전 제가 들었던 세미나에서 했던 내용과 같았습니다. 정보가 필요하신 분은 [제 블로그로](https://kingbbode.github.io/seminar/2016/08/10/Domain-driven-scouter.html)!
 
 발표자료 : http://www.slideshare.net/deview/213monitoringwithscouter
 
