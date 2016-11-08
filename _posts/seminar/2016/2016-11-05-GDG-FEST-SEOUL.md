@@ -1,5 +1,18 @@
-GDG
-===
+---
+layout: post
+title: GDG DevFest Seoul 2016
+categories: [seminar]
+tags: [seminar]
+fullview: false
+comments: true
+published: true
+outlink: 0
+---
+
+한국 Google Developers Group의 개발 컨퍼런스!.
+
+GDG DevFest Seoul 2016
+======================
 
 Session 1. 머신러닝
 -------------------
@@ -41,7 +54,7 @@ Session 1. 머신러닝
 
 -	Reinforcement Learning
 
--	....
+**무슨 말인지 몰라서 정리 실패 ㅜㅜ**
 
 Session 2. ES 6+ (ECMAScript 2015+)
 -----------------------------------
@@ -184,10 +197,6 @@ for(const v of iter){
   console.log(v);
 }
 ```
-
-#### 제곱을 요소로 갖는 가상컬렉션
-
-활용을 위해 중요. 정리 필요
 
 #### Iterator의 구현을 돕는 Generator
 
