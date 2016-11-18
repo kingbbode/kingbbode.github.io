@@ -60,6 +60,11 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#favorite-site">
+				<i class="fa fa-star-o fa-lg"></i>
+			</button>
+
       {% if site.author.blog %}
       <a type="button" class="navbar-toggle nav-link" href="{{ site.author.blog }}">
 				<i class="fa fa-external-link fa-lg"></i>
@@ -85,6 +90,14 @@
 				{{ site.title }}
 			</a>
 		</div>
+    
+    <div class="collapse navbar-collapse" id="favorite-site">
+			<ul class="nav navbar-nav">
+        <li><a href="http://jojoldu.tistory.com" target="_blank">창천향로님의 블로그</a></li>
+        <li><a href="https://wckhg89.github.io/" target="_blank">줌구님의 블로그</a></li>
+        <li><a href="http://haviyj.tistory.com/" target="_blank">Havi님의 블로그</a></li>
+			</ul>
+		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -98,16 +111,15 @@
 	</nav>
 
 	<!-- nav-menu-dropdown -->
-  <div id="nav-menu">
+  <div class="btn-group" id="nav-menu">
   	<div class="btn-group hidden-xs">
   		<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-  			<i class="fa fa-bars"></i>
+  			<i class="fa fa-star-o"></i>
   		</button>
   		<ul class="dropdown-menu" role="menu">
-  			<li><a href="{{ site.BASE_PATH}}/"><i class="fa fa-home"></i>Home</a></li>
-  			<li><a href="{{ site.BASE_PATH}}/{{ site.categories_path }}"><i class="fa fa-folder"></i>Categories</a></li>
-  			<li><a href="{{ site.BASE_PATH}}/{{ site.tags_path }}"><i class="fa fa-tags"></i>Tags</a></li>
-        <li><a href="{{ site.BASE_PATH}}/{{ site.about_path }}"><i class="fa-about"></i>About</a></li>
+        <li><a href="http://jojoldu.tistory.com" target="_blank">창천향로님의 블로그</a></li>
+        <li><a href="https://wckhg89.github.io/" target="_blank">줌구님의 블로그</a></li>
+        <li><a href="http://haviyj.tistory.com/" target="_blank">Havi님의 블로그</a></li>
   			<li class="divider"></li>
   			<li><a href="#"><i class="fa fa-arrow-up"></i>Top of Page</a></li>
   		</ul>
