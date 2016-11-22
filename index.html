@@ -56,7 +56,11 @@ tagline:
     {% endcase %}
     {{ post.date | date: "%Y" }}
   </span>
-
+  {% if post.categories[0] == 'edu' %}
+  <h5>
+    <a href="{{ site.BASE_PATH }}{{ post.url }}">[교육] {{ post.title }}</a>
+  </h5>
+  {% else %}
   <h4>
     {% assign c = '' %}
     {% if post.categories[0] == 'seminar' %}
@@ -86,7 +90,7 @@ tagline:
     {% endif %}
     {% endif %}
   </div>
-
+  {% endif %}
 </article>
 {% endfor %}
 <hr/>

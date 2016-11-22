@@ -1,3 +1,14 @@
+---
+layout: post
+title: 패스트캠퍼스 자바 웹 프로그래밍 1
+categories: [edu]
+tags: [edu]
+fullview: false
+comments: true
+published: true
+outlink: 0
+---
+
 첫번째 강의
 ===========
 
