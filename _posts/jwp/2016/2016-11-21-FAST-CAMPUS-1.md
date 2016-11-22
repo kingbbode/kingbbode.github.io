@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 패스트캠퍼스 자바 웹 프로그래밍 1
-categories: [edu]
-tags: [edu]
+title: 첫 강의
+categories: [jwp]
+tags: [jwp]
 fullview: false
 comments: true
 published: true

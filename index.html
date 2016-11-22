@@ -31,8 +31,10 @@ tagline:
     {% assign color = 'success' %}
   {% elsif forloop.index == 2 %}
     {% assign color = 'warning' %}
+  {% elsif forloop.index == 3 %}
+    {% assign color = 'danger' %}  
   {% else %}
-    {% assign color = 'danger' %}
+    {% assign color = 'primary' %}
   {% endif %}
   <div class="progress progress-striped">
     <div class="progress-bar progress-bar-{{color}}" role="progressbar" aria-valuenow="{{ category[1].size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ category[1].size | plus:'15' }}%">
@@ -56,9 +58,9 @@ tagline:
     {% endcase %}
     {{ post.date | date: "%Y" }}
   </span>
-  {% if post.categories[0] == 'edu' %}
+  {% if post.categories[0] == 'jwp' %}
   <h5>
-    <a href="{{ site.BASE_PATH }}{{ post.url }}">[교육] {{ post.title }}</a>
+    <a href="{{ site.BASE_PATH }}{{ post.url }}">[패스트캠퍼스 자바 웹 프로그래밍 캠프] {{ post.title }}</a>
   </h5>
   {% else %}
   <h4>
