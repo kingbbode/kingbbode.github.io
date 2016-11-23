@@ -31,10 +31,8 @@ tagline:
     {% assign color = 'success' %}
   {% elsif forloop.index == 2 %}
     {% assign color = 'warning' %}
-  {% elsif forloop.index == 3 %}
-    {% assign color = 'danger' %}  
   {% else %}
-    {% assign color = 'primary' %}
+    {% assign color = 'danger' %}
   {% endif %}
   <div class="progress progress-striped">
     <div class="progress-bar progress-bar-{{color}}" role="progressbar" aria-valuenow="{{ category[1].size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ category[1].size | plus:'15' }}%">
@@ -42,6 +40,13 @@ tagline:
     </div>
   </div>
 {% endfor %}
+<hr>
+<h5><a href="{{ site.BASE_PATH }}/jwp">패스트캠퍼스 자바 웹 프로그래밍 캠프</a></h5>
+<div class="progress progress-striped">
+  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ site.jwp.size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ site.jwp.size }}%">
+    <span class="badge pull-right">{{ site.jwp.size/2 + 1 }}주차</span>
+  </div>
+</div>
 <hr>
 {% for post in paginator.posts %}
 

@@ -5,7 +5,7 @@ paginate_path: "page:num"
 exclude: ["README.md"] # files to exclude
 highlighter: rouge
 markdown: kramdown
-disqus: 
+disqus:
 google_analytics: UA-75876601-1
 # Enter your Facebook app-code
 facebook_user_id: kingbbode.dev
@@ -19,6 +19,10 @@ defaults:
       path: "" # empty string for all files
     values:
       title: KING BBODE DEV
+
+collections:
+  jwp:
+    output: true
 
 description: Portal Web Developer
 author:
