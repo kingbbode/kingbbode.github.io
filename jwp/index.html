@@ -6,7 +6,7 @@ tagline:
 <hr>
 <div class="progress progress-striped">
   <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ site.jwp.size }}" aria-valuemin="0" aria-valuemax="20" style="width: {{ site.jwp.size  | plus:'4' }}%">
-    <span class="badge pull-right">주차</span>
+    <span class="badge pull-right">{{ site.jwp.size | divided_by:2 | plus:'1' }}주차</span>
   </div>
 </div>
 <hr>
