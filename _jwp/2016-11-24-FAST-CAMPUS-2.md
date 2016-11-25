@@ -1,3 +1,8 @@
+---
+layout: post
+title: 두번째 강의
+---
+
 두번째 강의
 ===========
 
@@ -25,8 +30,20 @@
 
 ### MVC
 
--	Controller : 데이터를 받음 -
+-	MVC를 이해하자!
+	- Model
+	- View
+	- Controller
 
 ### Java Bean 규약
 
-Setter, Getter
+Setter, Getter는 꼭 필요한 것은 아니다.
+Reflection을 통해 getter 없이도 private 접근이 가능하다!
+
+### Controller Mapping
+
+- @GetMaping
+	- 스프링 4 이상부터 지원하는 어노테이션으로 RequestMapping Method Type을 Get으로 가지고 있어서 편함!
+- @PostMaping
+	- 스프링 4 이상부터 지원하는 어노테이션으로 RequestMapping Method Type을 POST로 가지고 있어서 편함!
+	- Key, Value를 값은 일반 매개변수로도 맵핑이 가능하지만, Json 같은 데이터 가공이 필요한 데이터는 @RequestBody를 통해 Mapping이 가능하다.
