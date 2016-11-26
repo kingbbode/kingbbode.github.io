@@ -2,7 +2,7 @@
 layout: post
 title: GDG DevFest Seoul 2016
 categories: [seminar]
-tags: [seminar]
+tags: [seminar, machine learning, ECMAScript 2015, ES6, ]
 fullview: false
 comments: true
 published: true
