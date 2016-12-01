@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu:500&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
 
 body{
 	color: #2c3e50;
@@ -172,7 +173,7 @@ article.home h3,
 article.home h4,
 article.home h5,
 article.home h6 {
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Hanna', sans-serif;
 	color: #f2756a;
 }
 
@@ -196,7 +197,7 @@ article.home h4 a:hover {
 
 footer {
 	padding-top: 15px;
-	font-family: 'Ubuntu';
+	font-family: 'Hanna';
 }
 
 /* nav-vertical-tabs component */
