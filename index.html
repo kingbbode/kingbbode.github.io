@@ -40,7 +40,15 @@ tagline:
       {{ category[0] | capitalize }} <span class="badge pull-right">{{ category[1].size }}</span>
     </div>
   </div>
-{% endfor %}  
+{% endfor %}
+  <hr>
+  <h5><a href="{{ site.BASE_PATH }}/algorithm">알고리즘</a></h5>
+  <div class="progress progress-striped">
+    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ site.algorithm.size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ site.algorithm.size | plus:'15'  }}%">
+      <span class="badge pull-right">{{ site.algorithm.size }}</span>
+    </div>
+  </div>
+</div>  
   <hr>
   <h5><a href="{{ site.BASE_PATH }}/jwp">패스트캠퍼스 자바 웹 프로그래밍 캠프</a></h5>
   <div class="progress progress-striped">
