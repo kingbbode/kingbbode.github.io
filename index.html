@@ -51,18 +51,6 @@ tagline:
 {% for post in paginator.posts %}
 
 <article class="home">
-
-  <span class="post-date">
-    {% assign d = post.date | date: "%d" | plus:'0' %}
-    {{ post.date | date: "%B" }}
-    {% case d %}
-    {% when 1 or 21 or 31 %}{{ d }}st,
-    {% when 2 or 22 %}{{ d }}nd,
-    {% when 3 or 23 %}{{ d }}rd,
-    {% else %}{{ d }}th,
-    {% endcase %}
-    {{ post.date | date: "%Y" }}
-  </span>
   {% if post.categories[0] == 'jwp' %}
   <h5>
     <a href="{{ site.BASE_PATH }}{{ post.url }}">[패스트캠퍼스 자바 웹 프로그래밍 캠프] {{ post.title }}</a>
@@ -98,6 +86,17 @@ tagline:
     {% endif %}
   </div>
   {% endif %}
+  <span class="post-date">
+    {% assign d = post.date | date: "%d" | plus:'0' %}
+    {{ post.date | date: "%B" }}
+    {% case d %}
+    {% when 1 or 21 or 31 %}{{ d }}st,
+    {% when 2 or 22 %}{{ d }}nd,
+    {% when 3 or 23 %}{{ d }}rd,
+    {% else %}{{ d }}th,
+    {% endcase %}
+    {{ post.date | date: "%Y" }}
+  </span>
 </article>
 <hr/>
 {% endfor %}

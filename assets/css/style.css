@@ -93,8 +93,9 @@ article .share .gplus:hover {
     }
 }
 
-article{
-	margin-bottom: 40px;
+hr {
+  margin-top: 5px;
+  margin-bottom: 5px;  
 }
 
 .article_body{
