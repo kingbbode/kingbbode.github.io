@@ -4,7 +4,9 @@ body{
 	color: #2c3e50;
   font-family: 'Jeju Gothic', sans-serif;
 }
-
+.progress {
+  margin-bottom: 0px;
+}
 .sidebar {
 	position: fixed;
 	top: 0px;

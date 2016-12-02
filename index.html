@@ -29,12 +29,12 @@ tagline:
 <div class='index_header'>
   <div class="row">
     <div class="col-xs-3">
-      <a href="{{ site.BASE_PATH }}/algorithm"><strong>알고리즘</strong></a>
+      <a href="{{ site.BASE_PATH }}/jwp"><strong>패스트캠퍼스 자바 웹 프로그래밍 캠프</strong></a>
     </div>
     <div class="col-xs-9">
       <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ site.algorithm.size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ site.algorithm.size | plus:'15'  }}%">
-          <span class="badge pull-right">{{ site.algorithm.size }}</span>
+        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ site.jwp.size }}" aria-valuemin="0" aria-valuemax="30" style="width: {{ site.jwp.size | plus:'14'  }}%">
+          <span class="badge pull-right">{{ site.jwp.size | minus:'1' | divided_by:2 | plus:'1' }}주차</span>
         </div>
       </div>
     </div>
@@ -42,12 +42,12 @@ tagline:
   <hr>
   <div class="row">
     <div class="col-xs-3">
-      <a href="{{ site.BASE_PATH }}/jwp"><strong>패스트캠퍼스 자바 웹 프로그래밍 캠프</strong></a>
+      <a href="{{ site.BASE_PATH }}/algorithm"><strong>알고리즘</strong></a>
     </div>
     <div class="col-xs-9">
       <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ site.jwp.size }}" aria-valuemin="0" aria-valuemax="30" style="width: {{ site.jwp.size | plus:'14'  }}%">
-          <span class="badge pull-right">{{ site.jwp.size | minus:'1' | divided_by:2 | plus:'1' }}주차</span>
+        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ site.algorithm.size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ site.algorithm.size | plus:'15'  }}%">
+          <span class="badge pull-right">{{ site.algorithm.size }}</span>
         </div>
       </div>
     </div>
@@ -63,7 +63,7 @@ tagline:
     {% endif %}
   <div class="row">
     <div class="col-xs-3">
-      <a href="{{ site.BASE_PATH }}/categories.html#{{ category[0] | capitalize }}-ref"><strong>{{ category[0] | capitalize }}</strong></a>
+      <a href="{{ site.BASE_PATH }}/categories.html#{{ category[0] | capitalize | downcase }}-ref"><strong>{{ category[0] | capitalize }}</strong></a>
     </div>
     <div class="col-xs-9">
       <div class="progress progress-striped">
