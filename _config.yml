@@ -11,14 +11,14 @@ google_analytics: UA-75876601-1
 facebook_user_id: kingbbode.dev
 facebook_app_id: 1024035644361984
 
-title: KINGBBODE 개발노트
+title: KINGBBODE
 
 defaults:
   -
     scope:
       path: "" # empty string for all files
     values:
-      title: KING BBODE DEV
+      title: KINGBBODE 개발노트
 
 collections:
   jwp:
