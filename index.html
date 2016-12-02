@@ -39,6 +39,7 @@ tagline:
       </div>
     </div>
   </div>
+  <hr>
   <div class="row">
     <div class="col-xs-3">
       <a href="{{ site.BASE_PATH }}/jwp"><strong>패스트캠퍼스 자바 웹 프로그래밍 캠프</strong></a>
@@ -51,6 +52,7 @@ tagline:
       </div>
     </div>
   </div>
+  <hr>
   {% for category in site.categories %}
     {% if forloop.index == 1 %}
       {% assign color = 'success' %}
@@ -71,9 +73,9 @@ tagline:
       </div>
     </div>
   </div>
+  <hr>
 {% endfor %}
 </div>
-<hr>
 {% for post in paginator.posts %}
 
 <article class="home">
