@@ -27,7 +27,20 @@ tagline:
 </div>
 -->
 <div class='index_header'>
-{% for category in site.categories %}
+  <h5><a href="{{ site.BASE_PATH }}/algorithm">알고리즘</a></h5>
+  <div class="progress progress-striped">
+    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ site.algorithm.size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ site.algorithm.size | plus:'15'  }}%">
+      <span class="badge pull-right">{{ site.algorithm.size }}</span>
+    </div>
+  </div>
+  <h5><a href="{{ site.BASE_PATH }}/jwp">패스트캠퍼스 자바 웹 프로그래밍 캠프</a></h5>
+  <div class="progress progress-striped">
+    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ site.jwp.size }}" aria-valuemin="0" aria-valuemax="30" style="width: {{ site.jwp.size | plus:'14'  }}%">
+      <span class="badge pull-right">{{ site.jwp.size | minus:'1' | divided_by:2 | plus:'1' }}주차</span>
+    </div>
+  </div>
+  <hr>
+  {% for category in site.categories %}
   {% if forloop.index == 1 %}
     {% assign color = 'success' %}
   {% elsif forloop.index == 2 %}
@@ -41,20 +54,6 @@ tagline:
     </div>
   </div>
 {% endfor %}
-  <hr>
-  <h5><a href="{{ site.BASE_PATH }}/algorithm">알고리즘</a></h5>
-  <div class="progress progress-striped">
-    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{ site.algorithm.size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ site.algorithm.size | plus:'15'  }}%">
-      <span class="badge pull-right">{{ site.algorithm.size }}</span>
-    </div>
-  </div>
-  <hr>
-  <h5><a href="{{ site.BASE_PATH }}/jwp">패스트캠퍼스 자바 웹 프로그래밍 캠프</a></h5>
-  <div class="progress progress-striped">
-    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ site.jwp.size }}" aria-valuemin="0" aria-valuemax="30" style="width: {{ site.jwp.size | plus:'14'  }}%">
-      <span class="badge pull-right">{{ site.jwp.size | minus:'1' | divided_by:2 | plus:'1' }}주차</span>
-    </div>
-  </div>
 </div>
 <hr>
 {% for post in paginator.posts %}
