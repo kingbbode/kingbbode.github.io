@@ -19,7 +19,9 @@ Redis란?
 
 ![Redis](/images/2016/2016_12_04_Spring_Boot_Redis/redis.png)
 
--	`Remote Dictionary Server`의 약자 - 오픈 소스 소프트웨어 - `휘발성`이면서 `영속성`을 가진 `key-value` 저장소
+-	`Remote Dictionary Server`의 약자 
+- 오픈 소스 소프트웨어 
+- `휘발성`이면서 `영속성`을 가진 `key-value` 저장소
 
 ### Redis는 NoSQL
 
