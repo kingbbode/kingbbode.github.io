@@ -37,7 +37,7 @@ author:
   email_md5: f4c8a1baaf62285612634ec4eec327fd
   blog: http://kingbbode.tistory.com
 
-rss_path:
+rss_path: feed.xml
 categories_path: categories.html
 tags_path: tags.html
 about_path: about.html
