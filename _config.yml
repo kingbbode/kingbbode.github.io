@@ -18,7 +18,7 @@ defaults:
     scope:
       path: "" # empty string for all files
     values:
-      title: kingbbode 개발노트
+      title: KINGBBODE 개발노트
 
 collections:
   jwp:
