@@ -324,12 +324,10 @@ public void redisTest1() {
 
 ![결과](/images/2016/2016_12_04_Spring_Boot_Redis/result.jpeg)
 
+[GitHub Source](https://github.com/kingbbode/spring-boot-redis)
+
 ---
 
 [Redis command 문서](https://redis.io/commands)에 redis가 어떤 command를 가지고 있는지 모두 나오며, Operation에서 제공해주는 메서드명이 모두 짐작 가능한 메서드이므로 문서를 잘 참고한다면 누구라도 사용하는데 무리가 없을 것 같습니다.
 
 인기가 많기도 하며, 개인 프로젝트에서 사용하긴 했는데, Redis가 무엇이며, 장점이 무엇이며, 언제 써야하는 것인지를 잘 모르고 많이 썼던 것 같습니다. 이번 정리를 통해 Redis를 좀 더 알 것 같습니다! 아직 멀었지만..
-
----
-
-[GitHub Source](https://github.com/kingbbode/spring-boot-redis)
