@@ -84,7 +84,7 @@ tagline:
     <a href="{{ site.BASE_PATH }}{{ post.url }}">[패스트캠퍼스 JWP] {{ post.title }}</a>
   </h5>
   {% else %}
-  <h4>
+  <h2>
     {% assign c = '' %}
     {% if post.categories[0] == 'seminar' %}
       {% assign c = '세미나' %}
@@ -98,7 +98,7 @@ tagline:
     {% else%}
       <a href="http://kingbbode.tistory.com/{{ post.outlink }}" target="_blank">[{{ c }}] {{ post.title }}</a>
     {% endif %}
-  </h4>
+  </h2>
 
   <div>
     {% if post.fullview %}
