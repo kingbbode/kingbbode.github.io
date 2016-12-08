@@ -60,7 +60,7 @@ Tomcat은 패키징된 War의 Servlet을 실행
 
 Embed Tomcat에서는 `@SpringBootApplication`로 실행할 메인 클레스를 명시를 해주지만, <br> 외장 톰켓에서는 SpringBootServletInitializer의 상속을 통해 실행될 Class를 지정할 수 있다.
 
-#### 배포
+#### Step 3. 배포
 
 외장 톰켓의 기본 설정 APP은 `webapp/ROOT`
 
