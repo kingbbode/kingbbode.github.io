@@ -71,3 +71,28 @@ Embed Tomcat에서는 `@SpringBootApplication`로 실행할 메인 클레스를 
 ```
 
 빌드된 폴더를 해당 경로로 설정하여 톰켓 실행
+
+#### Step 4. 배포 자동화
+
+bash shell script 사용
+
+```bash
+#!/bin/bash
+
+REPOSITORIES_DIR=~/my-jwp2
+TOMCAT_HOME=~/tomcat
+
+cd $REPOSITORIES_DIR
+pwd
+git pull
+./mvnw clean package
+
+$TOMCAT_HOME/bin/shutdown.sh
+
+rm -rf $TOMCAT_HOME/webapps/ROOT
+mv $REPOSITORIES_DIR/target/my-jwp-1.0 $TOMCAT_HOME/webapps/ROOT
+
+$TOMCAT_HOME/bin/startup.sh
+
+tail -500f $TOMCAT_HOME/logs/catalina.out
+```
