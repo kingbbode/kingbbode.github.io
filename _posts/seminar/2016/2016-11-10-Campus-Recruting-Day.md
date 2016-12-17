@@ -1,3 +1,14 @@
+---
+layout: post
+title: Campus Recruiting Day
+categories: [seminar]
+tags: [seminar, job]
+fullview: false
+comments: true
+published: true
+outlink: 0
+---
+
 Campus Recruiting Day
 =====================
 
@@ -35,7 +46,3 @@ Campus Recruiting Day
 첫 시작은 조직이 있는 곳에서 전체를 볼 수 있도록 성장을!
 
 ---
-
-자료구조, 알고리즘?
-
-문제 해결 능력이 좋은 개발자를 뽑는 기준은??
