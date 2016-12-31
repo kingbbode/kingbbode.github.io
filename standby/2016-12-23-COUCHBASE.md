@@ -246,6 +246,19 @@ CouchBase(Membase)가 가지고 있어야 하는 데이터는 많이 여유롭�
 
 ![현상](/images/2016/2016_12_23_COUCHBASE/memorystatus.png)
 
+---
+
+월요일 해야할 일
+----------------
+
+-	tcmalloc
+	-	Log 확인
+-	couchbase tuning Guide
+	-	설정 확인
+-	KV Service
+
+---
+
 **2. 특정 사용자의 로그아웃 오류**
 
 **3. 리밸런싱 도중 어플리케이션 장애 발생**
