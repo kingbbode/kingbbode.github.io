@@ -87,5 +87,12 @@ moveTeam에 의해 영속성을 갖는 Member 객체가 변경된 것을 영속�
 
 > Transaction이 종료되는 시점에 삭제될 객체는 Removed 상태를 갖습니다.
 
+지연 로딩(Lazy Loading)
+-----------------------
+
 Open Session In View Pattern의 등장
 -----------------------------------
+
+### Open Session In View Filter
+
+### Open Session In View In Spring Boot
