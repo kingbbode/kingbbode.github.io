@@ -90,6 +90,68 @@ moveTeam에 의해 영속성을 갖는 Member 객체가 변경된 것을 영속�
 지연 로딩(Lazy Loading)
 -----------------------
 
+Open Session In View Pattern의 등장을 설명하기 앞서 중요한 개념이 `지연 로딩(Lazy Loading)`입니다.
+
+그리고 `지연 로딩`을 설명하기 앞서 알아야 할 개념은 JPA의 `지연 페치` 전략과 `프록시`의 개념입니다.
+
+**지연 페치(Lazy Feth)**
+
+지연 페치 전략이란 기본적으로 쿼리 수행과 관련된 객체를 로드하고 해당 객체와 연관 관계를 맺고 있는 객체나 컬렉션은 로드하지 않는다는 것을 의미합니다. JPA는 모든 ENTITY와 컬렉션에 대해 `지연 페치(Lazy Fetch)` 전략을 적용합니다.
+
+**프록시**
+
+`지연 페치` 전략에 따라 모든 연관 관계를 맺고 있는 객체와 컬렉션에는 실제 ENTITY 대신 실제 객체처럼 위장한 `프록시(Proxy)` 객체가 생성됩니다.
+
+**프록시 객체의 지연 페치**
+
+JPA는 `프록시` 객체가 `Fetch`되는 시점을 갖는 타입을 두 가지로 나누었고, 관계의 종류에 따라 기본으로 갖는 `Fetch` 전략을 다르게 설정해두었습니다.
+
+-	즉시로딩(FetchType.EAGER)
+
+	-	쿼리 실행 후 즉시 로딩
+		-	`@ManyToOne`
+		-	`@OneToOne`
+
+-	지연로딩(FetchType.LAZY)
+
+	-	실제로 사용되는 시점에 로딩
+		-	`@OneToMany`
+		-	`@ManyToMany`
+
+대부분의 사람들이 `지연 페치 전략`과 `지연 로딩`을 같은 것으로 생각하고 있습니다. `즉시로딩(EAGER)`과 `지연로딩(LAZY)` 모두 `지연 페치 전략`의 페치 방법이며, 쿼리 실행 후 프록시 객체를 Fetch하는 시점을 구분합니다.
+
+아래는 1:N 관계를 갖는 Team과 Member입니다.
+
+![M-T-ERD](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/mt_erd.png)
+
+Team 도메인은 Member와 `@OneToMany`의 관계를 맺고 있습니다.
+
+```java
+@Entity
+public class Team {
+    @Id
+    @GeneratedValue
+    private Long idx;
+
+    @Column(nullable = false, length = 20)
+    private String name;
+
+    @OneToMany(mappedBy="team")
+    private List<Member> members;
+```
+
+JPA의 기본 Select를 통하여 Team을 조회하였을 때, 연관관계를 맺고 있는 members List 객체는 지연페치의 대상이되어, Proxy 객체로 채워질 것 입니다.
+
+![M-T-ERD](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/mt_proxy.png)
+
+`@OneToMany`의 Default는 LAZY이기 때문에 Team 객체를 통해 Member List를 사용하려고 할 때 `Fetch`가 되어 쿼리가 실행되게 됩니다.
+
+```java
+team.getMembers().iterator().next()
+```
+
+*getMembers를 통해 객체를 호출해왔을 때가 아닌 내부의 값을 호출할 때 Fetch된다는 것!*
+
 Open Session In View Pattern의 등장
 -----------------------------------
 
