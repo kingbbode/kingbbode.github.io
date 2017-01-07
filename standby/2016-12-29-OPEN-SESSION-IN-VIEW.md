@@ -92,33 +92,37 @@ moveTeam에 의해 영속성을 갖는 Member 객체가 변경된 것을 영속�
 
 Open Session In View Pattern의 등장을 설명하기 앞서 중요한 개념이 `지연 로딩(Lazy Loading)`입니다.
 
-그리고 `지연 로딩`을 설명하기 앞서 알아야 할 개념은 JPA의 `지연 페치` 전략과 `프록시`의 개념입니다.
+그리고 `지연 로딩`을 설명하기 앞서 알아야 할 것이 JPA의 `페치 전략`과 `프록시`의 개념입니다.
 
-**지연 페치(Lazy Feth)**
+**페치 전략**
 
-지연 페치 전략이란 기본적으로 쿼리 수행과 관련된 객체를 로드하고 해당 객체와 연관 관계를 맺고 있는 객체나 컬렉션은 로드하지 않는다는 것을 의미합니다. JPA는 모든 ENTITY와 컬렉션에 대해 `지연 페치(Lazy Fetch)` 전략을 적용합니다.
+페치 전략이란 **쿼리 수행과 관련된 객체와 연관 관계를 맺고 있는 객체나 컬렉션** 을 어느 시점에서 가져올지에 대한 전략 입니다. 즉 데이터베이스에서 데이터를 가져 오는 전략을 정의합니다.
+
+JPA에서 정의하는 전략은 두 가지가 있습니다.
+
+`EAGER` - 데이터를 즉시 가져오는 전략으로 `즉시 로딩`이라고 합니다.
+
+`LAZY` - 데이터가 처음 액세스 될 때 가져오는 전략으로 `지연 로딩`이라고 합니다.
+
+JPA에서는 연관관계의 종류에 따라서 기본으로 갖는 페치 전략을 다르게 가지고 있습니다.
+
+-	즉시로딩(EAGER)
+
+	-	`@ManyToOne`
+	-	`@OneToOne`
+
+-	지연로딩
+
+	-	`@OneToMany`
+	-	`@ManyToMany`
+
+`프록시` 객체는 주로 연관된 데이터를 `지연로딩`할 때 사용됩니다.
 
 **프록시**
 
-`지연 페치` 전략에 따라 모든 연관 관계를 맺고 있는 객체와 컬렉션에는 실제 ENTITY 대신 실제 객체처럼 위장한 `프록시(Proxy)` 객체가 생성됩니다.
+`지연 페치` 전략에 따라 연관 관계를 맺고 있는 객체와 컬렉션에는 실제 ENTITY 대신 실제 객체처럼 위장한 `프록시(Proxy)` 객체가 생성됩니다.
 
-**프록시 객체의 지연 페치**
-
-JPA는 `Fetch`되는 시점을 갖는 타입을 두 가지로 나누었고, 관계의 종류에 따라 기본으로 갖는 `Fetch` 전략을 다르게 설정해두었습니다.
-
--	즉시로딩(FetchType.EAGER)
-
-	-	쿼리 실행 후 즉시 로딩
-		-	`@ManyToOne`
-		-	`@OneToOne`
-
--	지연로딩(FetchType.LAZY)
-
-	-	실제로 사용되는 시점에 로딩
-		-	`@OneToMany`
-		-	`@ManyToMany`
-
-지연로딩인 FetchType.LAZY에 대하여만 `프록시` 객체가 생성됩니다.
+프록시는 실제 객체의 참조를 보관하는데, 실제 클래스를 기반으로 만들어 지므로 실제 객체와 유사합니다. 실제 엔티티의 데이터에 접근할 때 영속성 컨텍스트에 엔티티가 생성되어 있지 않으면 영속성 컨텍스트에 객체 생성을 요청하게 됩니다. 이를 `프록시 초기화`라 하고 처음 사용될 때 **한번만** 초기화됩니다. 초기화되면 프록시를 통해 실제 엔티티에 접근 가능하게 됩니다.
 
 아래는 1:N 관계를 갖는 Team과 Member입니다.
 
@@ -151,6 +155,27 @@ team.getMembers().iterator().next()
 ```
 
 *getMembers를 통해 객체를 호출해왔을 때가 아닌 내부의 값을 호출할 때 Fetch된다는 것!*
+
+```java
+@Test
+@Transactional
+public void 지연_로딩_프록시_테스트() throws Exception {
+    System.out.println("teamRepository.findOne(1L)");
+    Team team = teamRepository.findOne(1L);
+    System.out.println("team.getMembers()");
+    List<Member> members = team.getMembers();
+    System.out.println("members.iterator()");
+    members.iterator();
+}
+```
+
+위와 같은 테스트 코드를 작성해보면 더욱 확실하게 알 수 있습니다.
+
+![프록시 테스트](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/proxy_test.png)
+
+최초 `Team` 객체를 호출시 연관관계의 `Member`들을 호출하지 않는 지연 로딩이 잘 적용되고 있습니다.
+
+`team.getMembers` Method로 연관관계 객체를 가져오는 시점이 아닌 `members.iterator`를 통해 프록시 객체의 데이터에 접근할 때 프록시 객체의 초기화가 이루어지며 지연 로딩이 성공적으로 동작하는 것을 볼 수 있습니다.
 
 Open Session In View Pattern의 등장
 -----------------------------------
