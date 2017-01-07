@@ -151,7 +151,7 @@ JPA의 기본 Select를 통하여 Team을 조회하였을 때, 연관관계를 �
 `@OneToMany`의 Default는 LAZY이기 때문에 Team 객체를 통해 Member List를 사용하려고 할 때 `Fetch`가 되어 쿼리가 실행되게 됩니다.
 
 ```java
-team.getMembers().iterator().next()
+team.getMembers().iterator()
 ```
 
 *getMembers를 통해 객체를 호출해왔을 때가 아닌 내부의 값을 호출할 때 Fetch된다는 것!*
@@ -179,6 +179,57 @@ public void 지연_로딩_프록시_테스트() throws Exception {
 
 Open Session In View Pattern의 등장
 -----------------------------------
+
+![레이어 구성](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/layer.png)
+
+일반적인 엔터프라이즈 애플리케이션의 레이어 구성 <Br>[출처: Domain-Driven Design]
+
+다음과 같은 원칙에 따라 레이어가 분리되며,
+
+-	모델-뷰 분리(Model-View Separation)[Fowler PEAA, Larman AUP]
+
+-	깔끔하고 얇은 뷰(Clean and Thin View)[Johnson J2EEDD]
+
+-	영속성 분리(PI, Persistence Ignorance)[Nilsson ADDD]
+
+-	도메인 레이어 고립(Domain Layer Isolation)[Evans DDD]
+
+레이어의 명칭이나 개수는 문헌에 따라 약간의 차이가 있지만 대부분의 애플리케이션은 `사용자 화면을 구성하는 사용자 인터페이스 레이어(User Interface Layer)`, `애플리케이션의 제어 흐름을 관리하는 애플리케이션 레이어(Application Layer)`, `도메인의 핵심 로직을 포함하는 도메인 레이어(Domain Layer)`, `상위 계층을 지원하기 위한 인프라스트럭처 레이어(Infrastructure Layer)`로 구성됩니다.
+
+이 때 애플리케이션 레이어는 애플리케이션의 트랜잭션 경계를 정의하는 역할을 하게 되고, 이로인해 발생하는 문제가 Open Session In View Pattern을 등장하게 했습니다.
+
+```
+//Controller
+@GetMapping("")
+public String home(Model model){
+    model.addAttribute("teams", teamService.findAll());
+    return "home";
+}
+
+//Service
+@Transactional
+public List<Team> findAll(){
+    return teamRepository.findAll();
+}
+```
+
+`View Layer`에서 연관 객체를 사용하려 할 때 발생하는 `LazyInitializationException`!
+
+`Application Layer`에서 관리되는 `Transaction`이 View Layer로 넘어가면서 종료되었기 때문입니다.
+
+```java
+org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.kingbbode.model.Team.members, could not initialize proxy - no Session
+```
+
+이러한 문제점을 해결하기 위해서 등장한 방법들이 있습니다.
+
+1.	뷰 렌더링에 필요한 객체 그래프를 모두 로드
+
+	<br>뷰에서 필요로 하는 모든 연관 관계의 객체를 `EAGER Fetch`로 설정하거나, Join 쿼리를 작성하는 방법입니다. 그러나 REPOSITORY의 재사용성 감소 및 복잡성 증가를 야기하는 방법이며, 뷰와 영속성 관심사의 강한 결합(뷰를 수정하면, 모델도 변경해야 하는)은 관심사의 분리 원칙을 위반하게 됩니다.<br><br>
+
+2.	POJO FACADE 패턴
+
+	<br> 애플리케이션 레이어 안에서 새로운 객체를 통해 프록시를 초기화한 후 사용자 인터페이스로 반한하는 방법이며, 이런 객체를 POJO FACADE 라고 합니다. POJO FACADE 패턴은 뷰에 대핚 관심사를 애플리케이션 레이어의 흐름 관리와 관련된 관심사와 혼합하는 것 입니다. 비록 SERVICE와 독립된 별도의 FACADE 에 프록시 초기화 로직을 위치시킨다고 해도 애플리케이션 레이어 개발 시에 렌더링될 뷰에 대한 존재와 렌더링과 관련된 요구사항을 고려해야 합니다.
 
 ### Open Session In View Filter
 
