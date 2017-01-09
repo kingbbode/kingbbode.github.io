@@ -184,6 +184,18 @@ Open Session In View Pattern의 등장
 
 일반적인 엔터프라이즈 애플리케이션의 레이어 구성 <Br>[출처: Domain-Driven Design]
 
+레이어의 명칭이나 개수는 문헌에 따라 약간의 차이가 있지만 대부분의 애플리케이션은 `사용자 화면을 구성하는 사용자 인터페이스 레이어(User Interface Layer)`, `애플리케이션의 제어 흐름을 관리하는 애플리케이션 레이어(Application Layer)`, `도메인의 핵심 로직을 포함하는 도메인 레이어(Domain Layer)`, `상위 계층을 지원하기 위한 인프라스트럭처 레이어(Infrastructure Layer)`로 구성됩니다.
+
+일반적인 엔터프라이즈 애플리케이션의 레이어 구성을 스프링 레이어와 매칭해보자면(개념적으로 다르지만),
+
+![스프링 레이어 구성](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_layer.png)
+
+-	`User Inteface Layer`는 `Paresentiation Layer`
+-	`Application Layer`는 `Service Layer`
+-	`Infrastructure Layer`는 `Persistence Layer`\(`Data access Layer`\)
+
+로 매칭될 수 있습니다.
+
 다음과 같은 원칙에 따라 레이어가 분리되며,
 
 -	모델-뷰 분리(Model-View Separation)[Fowler PEAA, Larman AUP]
@@ -194,11 +206,9 @@ Open Session In View Pattern의 등장
 
 -	도메인 레이어 고립(Domain Layer Isolation)[Evans DDD]
 
-레이어의 명칭이나 개수는 문헌에 따라 약간의 차이가 있지만 대부분의 애플리케이션은 `사용자 화면을 구성하는 사용자 인터페이스 레이어(User Interface Layer)`, `애플리케이션의 제어 흐름을 관리하는 애플리케이션 레이어(Application Layer)`, `도메인의 핵심 로직을 포함하는 도메인 레이어(Domain Layer)`, `상위 계층을 지원하기 위한 인프라스트럭처 레이어(Infrastructure Layer)`로 구성됩니다.
+이 때 서비스 레이어는 애플리케이션의 트랜잭션 경계를 정의하는 역할을 하게 되고, 이로인해 발생하는 문제가 Open Session In View Pattern을 등장하게 했습니다.
 
-이 때 애플리케이션 레이어는 애플리케이션의 트랜잭션 경계를 정의하는 역할을 하게 되고, 이로인해 발생하는 문제가 Open Session In View Pattern을 등장하게 했습니다.
-
-```
+```java
 //Controller
 @GetMapping("")
 public String home(Model model){
