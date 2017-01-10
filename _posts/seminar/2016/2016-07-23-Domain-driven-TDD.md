@@ -7,12 +7,8 @@ fullview: false
 comments: true
 published: true
 outlink: 0
+description : 세미나 정리 및 후기
 ---
-
-세미나 정리 및 후기.
-
-# **Domain Driven TDD**
->2016년 7월 23일
 
 ### 재미있게 개발하기
 

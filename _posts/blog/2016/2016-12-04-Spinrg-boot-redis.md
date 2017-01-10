@@ -7,12 +7,8 @@ fullview: false
 comments: true
 published: true
 outlink: 0
+description : Redis를 쓰고 있으면서도 잘 몰랐습니다. 그래서 정리했습니다!
 ---
-
-Redis를 쓰고 있으면서도 잘 몰랐습니다. 그래서 정리했습니다!
-
-Spring Boot에서 Redis 사용하기
-==============================
 
 Redis란?
 --------

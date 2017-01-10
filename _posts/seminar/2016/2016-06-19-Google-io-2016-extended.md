@@ -7,14 +7,8 @@ fullview: false
 comments: true
 published: true
 outlink: 0
+description : 세미나 정리 및 후기
 ---
-
-세미나 정리 및 후기.
-
-# **구글 IO 2016 EXTENDED**
->2016년 6월 19일
-
-***
 
 ## **Session1. Progress Web App**
 #### Web이 점차 App 형태로(App이 아닌) 변할 것

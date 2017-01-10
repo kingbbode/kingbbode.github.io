@@ -7,12 +7,8 @@ fullview: false
 comments: true
 published: true
 outlink: 0
+description : 조금 밖에 못들은.. W3C HTML5 Conference 2016.. 
 ---
-
-W3C HTML5 Conference 2016.
-
-W3C HTML5 Conference 2016
-=========================
 
 Session 4. Angular1 + ES6
 -------------------------

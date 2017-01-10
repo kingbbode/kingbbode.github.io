@@ -7,12 +7,8 @@ fullview: false
 comments: true
 published: true
 outlink: 0
+description : 한국 Google Developers Group의 개발 컨퍼런스!
 ---
-
-한국 Google Developers Group의 개발 컨퍼런스!.
-
-GDG DevFest Seoul 2016
-======================
 
 Session 1. 머신러닝
 -------------------

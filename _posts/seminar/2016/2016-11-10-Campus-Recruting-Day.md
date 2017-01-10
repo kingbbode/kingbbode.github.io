@@ -7,12 +7,8 @@ fullview: false
 comments: true
 published: true
 outlink: 0
+description : 구글 캠퍼스 리쿠르팅 데이
 ---
-
-구글 캠퍼스 리쿠르팅 데이.
-
-Campus Recruiting Day
-=====================
 
 1.패널 토크
 -----------

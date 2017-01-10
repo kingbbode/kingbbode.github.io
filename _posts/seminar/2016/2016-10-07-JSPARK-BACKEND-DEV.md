@@ -7,13 +7,7 @@ fullview: false
 comments: true
 published: true
 outlink: 0
----
-
- 자바지기 박재성님이 제안하는 학습 방법을 소개.
-
-# **학습 방법 및 웹 BackEnd 개발자 학습 로드맵**
-
->2016년 10월 07일
+description : 자바지기 박재성님이 제안하는 학습 방법을 소개
 ---
 
 ## **우리는 왜 개발이 어려운가?**

@@ -7,12 +7,8 @@ fullview: false
 comments: true
 published: true
 outlink: 0
+description : 세미나 정리 및 후기
 ---
-
-세미나 정리 및 후기.
-
-# **Domain Driven APM(SCOUTER)**
->2016년 8월 10일
 
 ### 모니터링?
  - UXM
