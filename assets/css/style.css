@@ -1,8 +1,17 @@
-@import url(https://fonts.googleapis.com/earlyaccess/hanna.css);
+@font-face {
+  font-family: 'BM JUA';
+  font-weight: normal;
+  font-style: normal;
+  src: url('https://kingbbode.github.io/assets/resources/font/BM-JUA.eot');
+  src: url('https://kingbbode.github.io/assets/resources/font/BM-JUA.eot?#iefix') format('embedded-opentype'),
+    url('https://kingbbode.github.io/assets/resources/font/BM-JUA.woff') format('woff'),
+    url('https://kingbbode.github.io/assets/resources/font/BM-JUA.svg#BM-JUA') format('svg'),
+    url('https://kingbbode.github.io/assets/resources/font/BM-JUA.ttf') format('truetype');
+}
 
 body{
 	color: #2c3e50;
-  font-family: 'Hanna', sans-serif;
+  font-family: 'BM JUA','배달의민족 주아', sans-serif;
 }
 .progress {
   margin-bottom: 0px;
@@ -40,7 +49,7 @@ a.nav-link i{
 a.nav-link:hover { color: #777; }
 
 #bio {
-	font-family: 'Hanna', sans-serif;
+	font-family: 'BM JUA','배달의민족 주아', sans-serif;
 	font-size: 11px;
 	margin: 0 auto;
 	margin-bottom: 10px;
@@ -126,7 +135,7 @@ article.home div a:hover, article.home pre a:hover { color: #2c3e50; text-decora
 article img { max-width: 100%; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Hanna', sans-serif;
+  font-family: 'BM JUA','배달의민족 주아', sans-serif;
   margin: 20px 0 10px;
   padding: 0;
   font-weight: bold;
@@ -183,7 +192,7 @@ article.home h3,
 article.home h4,
 article.home h5,
 article.home h6 {
-	font-family: 'Hanna', sans-serif;
+	font-family: 'BM JUA','배달의민족 주아', sans-serif;
 	color: #f2756a;
 }
 
@@ -207,7 +216,7 @@ article.home h4 a:hover {
 
 footer {
 	padding-top: 15px;
-	font-family: 'Hanna', sans-serif;
+	font-family: 'BM JUA','배달의민족 주아', sans-serif;
 }
 
 /* nav-vertical-tabs component */
