@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Open Session In View
+title: Spring - Open Session In ViewOpen Session In View
 categories: [blog]
 tags: [spring,boot,jpa,osiv,hibernate,spring layer]
 fullview: false
@@ -9,9 +9,6 @@ published: true
 outlink: 0
 description : 나는 Spring Jpa의 동작을 잘 이해했을까? 뷰까지 확장되는 영속성 컨텍스트를 이해해보자.
 ---
-
-Spring - Open Session In View
-=============================
 
 Spring에서 ORM을 사용하여 개발을 하며, `Transaction`을 이해할 때 쯔음 닥쳐온 혼란이 있습니다.
 
