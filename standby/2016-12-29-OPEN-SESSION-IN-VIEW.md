@@ -1,9 +1,27 @@
 Spring - Open Session In View
 =============================
 
-`Spring Boot`를 사용하면서 Boot가 제공해주는 수많은 자동 설정은 우리에게 많은 편리함을 느끼게 합니다. **그러나 이 편리함 뒤에는 개발자에게 치명적인 함정이 있습니다.**
+Spring3, 4 기반으로 개발을 하며, `Transaction`을 이해할 때 쯔음 닥쳐온 혼란이 있습니다.
 
-`Spring Boot`에서 지원해주는 `default` 설정들은 사실 이전에는 개발자들이 직접 작성해줘야 했던 설정이기 때문입니다. 저는 서블릿이 등장하고, 프레임워크가 등장하면서 겪었던 함정과 같다고 생각하고 있습니다.
+지인에게 자신있게 `Transaction`을 설명해주기 위해 Spring Boot 빨게 어플리케이션을 올렸고
+
+```java
+@GetMapping("/member/{memberIdx}")
+public String member(@PathVariable Long memberIdx, Model model) {
+    Member member = memberRepository.findOne(memberIdx);
+
+    model.addAttribute("name", member.getName());
+    model.addAttribute("team", model.getTeam().getName());
+
+    return "index";
+}
+```
+
+`Transaction`이 끝난 상태에서 `Team`을 조회하니까 `LazyInitializationException`이 발생할꺼야!
+
+하는 순간 페이지가 정상적으로 노출되는 당황스러운 순간이,,!
+
+---
 
 본 내용은 [Open Session In View Pattern](http://pds19.egloos.com/pds/201106/28/18/Open_Session_In_View_Pattern.pdf)의 내용을 기반으로 Spring 사용에 집중하여 내용을 재정리하였습니다.(본 내용을 이해하는데 `레이어 아키텍쳐`를 알면 더 이해가 빠를 수 있습니다.)
 
@@ -303,4 +321,39 @@ Stack으로 살펴보면,
 
 **즉 Open Session In View 패턴을 적용한다면, 이전의 `LazyInitializationException` 문제는 발생하지 않게 됩니다.**
 
-### Open Session In View In Spring Boot
+#### Open Session In View In Spring Boot
+
+```
+그런데 나는 Boot로 어플리케이션을 올렸을 뿐이고, Open Session In View 패턴을 적용한 적이 없었는데?
+```
+
+스프링 Boot `Application.properties` [Docs](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)를 읽어보면, 알 수 있습니다.
+
+```
+# JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)
+
+...
+
+spring.jpa.open-in-view=true # Register OpenEntityManagerInViewInterceptor. Binds a JPA EntityManager to the thread for the entire processing of the request.
+
+...
+
+```
+
+스프링 Boot에서는 `Open Session In View 패턴`을 OpenEntityManagerInViewInterceptor를 통해 default로 지원을 해주고 있습니다.
+
+spring.jpa.open-in-view를 바꿔가며 테스트해본다면 명확하게 알 수 있을 것 입니다.
+
+[예제 GitHub](https://github.com/kingbbode/spring-boot-jpa-osiv)
+
+---
+
+### 마무리
+
+`Spring Boot`를 사용하면서 Boot가 제공해주는 수많은 자동 설정은 우리에게 많은 편리함을 느끼게 합니다. **그러나 이 편리함 뒤에는 개발자에게 치명적인 함정이 있습니다.**
+
+`Spring Boot`에서 지원해주는 `default` 설정들은 사실 이전에는 개발자들이 직접 작성해줘야 했던 설정이기 때문입니다. 저는 서블릿이 등장하고, 프레임워크가 등장하면서 겪었던 함정과 같다고 생각하고 있습니다.
+
+`어느 하나도 자동으로 해주는 것은 없다`고 생각합니다. 모든 것이 언젠가 누군가 겪었을 불편함을 편하게 만들어준 것일 뿐이지 않을까요?!
+
+모든 것이 대해서 다 알 순 없지만, 적어도 이렇게라도 하나씩 더 많이 알아갈 수 있도록 노력해야겠습니다.
