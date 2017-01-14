@@ -206,7 +206,7 @@ Open Session In View Pattern의 등장
 
 -	도메인 레이어 고립(Domain Layer Isolation)[Evans DDD]
 
-이 때 서비스 레이어는 애플리케이션의 트랜잭션 경계를 정의하는 역할을 하게 되고, 이로인해 발생하는 문제가 Open Session In View Pattern을 등장하게 했습니다.
+이 때 `서비스 레이어`는 `애플리케이션`의 `트랜잭션` 경계를 정의하는 역할을 하게 되고, 이로인해 발생하는 문제가 `Open Session In View Pattern`을 등장하게 했습니다.
 
 ```java
 //Controller
@@ -225,22 +225,82 @@ public List<Team> findAll(){
 
 `View Layer`에서 연관 객체를 사용하려 할 때 발생하는 `LazyInitializationException`!
 
-`Application Layer`에서 관리되는 `Transaction`이 View Layer로 넘어가면서 종료되었기 때문입니다.
-
 ```java
 org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: com.kingbbode.model.Team.members, could not initialize proxy - no Session
 ```
 
+스택으로 살펴보면,
+
+![Non-OSIV](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/non_osiv.png)
+
+`Transaction`이 종료되며, `JDBC Connection`이 종료되고, `Hibernate Session`이 종료되며, 영속 객체는 `Detaced` 상태로 변경됩니다. 즉 `Application Layer`에서 관리되는 `Transaction`이 View Layer로 넘어가면서 종료되었기 때문에 발생하는 문제입니다.
+
 이러한 문제점을 해결하기 위해서 등장한 방법들이 있습니다.
 
-1.	뷰 렌더링에 필요한 객체 그래프를 모두 로드
+### 뷰 렌더링에 필요한 객체 그래프를 모두 로드
 
-	<br>뷰에서 필요로 하는 모든 연관 관계의 객체를 `EAGER Fetch`로 설정하거나, Join 쿼리를 작성하는 방법입니다. 그러나 REPOSITORY의 재사용성 감소 및 복잡성 증가를 야기하는 방법이며, 뷰와 영속성 관심사의 강한 결합(뷰를 수정하면, 모델도 변경해야 하는)은 관심사의 분리 원칙을 위반하게 됩니다.<br><br>
+```
+뷰에서 필요로 하는 모든 연관 관계의 객체를 `EAGER Fetch`로 설정하거나, Join 쿼리를 작성하는 방법입니다.
+```
 
-2.	POJO FACADE 패턴
+그러나 REPOSITORY의 재사용성 감소 및 복잡성 증가를 야기하는 방법이며, 뷰와 영속성 관심사의 강한 결합(뷰를 수정하면, 모델도 변경해야 하는)은 관심사의 분리 원칙을 위반하게 됩니다.
 
-	<br> 애플리케이션 레이어 안에서 새로운 객체를 통해 프록시를 초기화한 후 사용자 인터페이스로 반한하는 방법이며, 이런 객체를 POJO FACADE 라고 합니다. POJO FACADE 패턴은 뷰에 대핚 관심사를 애플리케이션 레이어의 흐름 관리와 관련된 관심사와 혼합하는 것 입니다. 비록 SERVICE와 독립된 별도의 FACADE 에 프록시 초기화 로직을 위치시킨다고 해도 애플리케이션 레이어 개발 시에 렌더링될 뷰에 대한 존재와 렌더링과 관련된 요구사항을 고려해야 합니다.
+### POJO FACADE 패턴
 
-### Open Session In View Filter
+```
+애플리케이션 레이어 안에서 새로운 객체를 통해 프록시를 초기화한 후 사용자 인터페이스로 반한하는 방법입니다.
+```
+
+POJO FACADE 패턴은 뷰에 대한 관심사를 애플리케이션 레이어의 흐름 관리와 관련된 관심사와 혼합하는 것 입니다. 비록 SERVICE와 독립된 별도의 Pojo 객체에 프록시 초기화 로직을 위치시킨다고 해도 애플리케이션 레이어 개발시에 렌더링될 뷰에 대한 존재와 렌더링과 관련된 요구사항을 고려해야 합니다.
+
+POJO FACADE 패턴의 가장 적절한 용도는 분산 환경에서 원격 통신을 지원하기 위한 REMOTE FACADE[Fowler PEAA]로 사용하는 것 입니다. 분산 환경이 아닌 단일 JVM 상에서 뷰를 렌더링하기 위한 객체 그래프를 전달하는 경우에는 POJO FACADE 를 사용하는 것을 권하지 않습니다.
+
+---
+
+*뷰 렌더링에 필요한 객체 그래프를 모두 로드하는 방식은 많은 단점이 존재하며, POJO FACADE 패턴은 분산 환경에 적합하다는 결론입니다. 그리고 등장한 것이 `Open Session In View 패턴` 입니다*
+
+---
+
+### Open Session In View 패턴
+
+```
+뷰 렌더링 시점에 영속성 컨텍스트가 존재하지 않기 때문에 Detached 객체의 프록시를 초기화할 수 없다면 영속성 컨텍스트를 오픈된 채로 뷰 렌더링 시점까지 유지하자는 것 입니다. 즉, 작업 단위를 요청 시작 시점부터 뷰 렌더링 완료 시점까지로 확장하는 것 입니다.
+```
+
+`Open Session In View` 패턴에 대한 많은 논쟁들이 있었지만, 결론은 `Open Session In View` 패턴은 레이어 아키텍처를 해치는 안티패턴이 아니라는 것 입니다.
+
+이 내용에 대한 자세히 알고 싶다면 꼭 참조한 문서를 읽어보시길 바랍니다.
+
+#### 전통적인 Open Session In View 패턴
+
+전통적인 `Open Session In View` 패턴은 서블릿 필터 시작 시에 하이버네이트 `Session` 을 열고 트랜잭션을 시작합니다.
+
+이후 서블릿 필터는 컨트롤러에 요청을 위임하고 뷰 렌더링이 모두 완료된 후에 트랜잭션을 커밋 또는 롤백합니다. 일반적으로 플러시 모드 기본값인 `FlushMode.AUTO` 를 사용하므로 영속성 컨텍스트에서 관리하고 있는 모든 `Persistent` 상태의 객체는 뷰의 렌더링이 모두 완료되고 서블릿 필터에서 트랜잭션을 커밋하는 순간 데이터베이스로 플러시됩니다.
+
+또한 `ConnectionReleaseMode` 의 기본값인 `AFTER_TRANSACTION` 에 따라 JDBC 커넥션의 반환 역시 시점 역시 뷰가 모두 렌더링되고 서블릿 필터 내에서 트랜잭션이 커밋(또는 롤백)되는 시점에 이루어지게 됩니다.
+
+![전통적인 OSIV](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/servlet_osiv.png)
+
+그러나 서블릿 필터 방식의 `Open Session In View` 패턴에는 JDBC 커넥션은 뷰의 렌더링이 모두 완료된 후에야 커넥션 풀로 반환되는 `JDBC 커넥션 보유 시간 증가`라는 단점과 , 뷰까지 트랜잭션이 확장될 수 있는 `모호한 트랜잭션 경계`라는 큰 단점이 있습니다.
+
+#### Spring의 Open Session In View 패턴
+
+Spring 프레임워크에서는 `FlushMode` 와 `ConnectionReleaseMode`의 조정을 통해 전통적인 서블릿 필터의 단점을 보완핚 `OpenSessionInViewFilter` 와 `OpenSessionInViewInterceptor` 를 제공합니다.
+
+두 클래스의 가장 큰 특징은 기존 처럼 뷰에서 지연 로딩을 가능하게 하는 동시에 서비스 레이어에 트랜잭션 경계를 선언할 수 있다는 점 입니다.
+
+서블릿 필터에서 `Session`을 오픈하고 트랜잭션을 시작하던 전통적인 방식의 `Open Session In View` 패턴과 달리 SpringMVC 에서 제공하는 `OpenSessionInViewFilter` 는 필터 내에서 `Session`을 오픈하지만 트랜잭션은 시작하지 않습니다.
+
+![Spring의 OSIV](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_osiv.png)
+
+Stack으로 살펴보면,
+
+![OSIV](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/osiv.png)
+
+`Transaction`이 종료된 후에도 `Controller`의 `Session`이 `close`되지 않았기 때문에, 영속 객체는 `Persistence` 상태를 유지할 수 있으며, `Session`이 열려있고 `Persistence` 상태이기 때문에 프록시 객체에 대한 `Lazy Loading`을 수행할 수 있게 됩니다.
+
+또한 `Flush Mode`가 `Manual로` 변경되었기 때문에, 뷰 단에서의 영속 객체의 상태 변화는 `Flush`되지 않고 유지될 수 있습니다.
+
+**즉 Open Session In View 패턴을 적용한다면, 이전의 `LazyInitializationException` 문제는 발생하지 않게 됩니다.**
 
 ### Open Session In View In Spring Boot
