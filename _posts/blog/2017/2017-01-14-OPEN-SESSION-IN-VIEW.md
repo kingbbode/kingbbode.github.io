@@ -33,7 +33,7 @@ public String member(@PathVariable Long memberIdx, Model model) {
 
 하는 순간 페이지가 정상적으로 노출되는 당황스러운 순간이,,!
 
-![출처:하이버네이트 완벽 가이드](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/hrrrrrr.png)
+![출처:하이버네이트 완벽 가이드](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/hrrrrrr.png)
 
 ---
 
@@ -91,7 +91,7 @@ moveTeam에 의해 영속성을 갖는 Member 객체가 변경된 것을 영속�
 
 위 4 가지 상태를 가집니다.
 
-![출처:하이버네이트 완벽 가이드](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/status.png)
+![출처:하이버네이트 완벽 가이드](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/status.png)
 
 [출처 : 하이버네이트 완벽 가이드]
 
@@ -158,7 +158,7 @@ JPA에서는 연관관계의 종류에 따라서 기본으로 갖는 페치 전�
 
 아래는 1:N 관계를 갖는 Team과 Member입니다.
 
-![M-T-ERD](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/mt_erd.png)
+![M-T-ERD](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/mt_erd.png)
 
 Team 도메인은 Member와 `@OneToMany`의 관계를 맺고 있습니다.
 
@@ -178,7 +178,7 @@ public class Team {
 
 JPA의 기본 Select를 통하여 Team을 조회하였을 때, 연관관계를 맺고 있는 members List 객체는 지연페치의 대상이되어, Proxy 객체로 채워질 것 입니다.
 
-![M-T-ERD](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/mt_proxy.png)
+![M-T-ERD](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/mt_proxy.png)
 
 `@OneToMany`의 Default는 LAZY이기 때문에 Team 객체를 통해 Member List를 사용하려고 할 때 `Fetch`가 되어 쿼리가 실행되게 됩니다.
 
@@ -203,7 +203,7 @@ public void 지연_로딩_프록시_테스트() throws Exception {
 
 위와 같은 테스트 코드를 작성해보면 더욱 확실하게 알 수 있습니다.
 
-![프록시 테스트](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/proxy_test.png)
+![프록시 테스트](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/proxy_test.png)
 
 최초 `Team` 객체를 호출시 연관관계의 `Member`들을 호출하지 않는 지연 로딩이 잘 적용되고 있습니다.
 
@@ -212,7 +212,7 @@ public void 지연_로딩_프록시_테스트() throws Exception {
 Open Session In View Pattern의 등장
 -----------------------------------
 
-![레이어 구성](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/layer.png)
+![레이어 구성](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/layer.png)
 
 일반적인 엔터프라이즈 애플리케이션의 레이어 구성 <Br>[출처: Domain-Driven Design]
 
@@ -220,7 +220,7 @@ Open Session In View Pattern의 등장
 
 일반적인 엔터프라이즈 애플리케이션의 레이어 구성을 스프링 레이어와 매칭해보자면(개념적으로 다르지만),
 
-![스프링 레이어 구성](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_layer.png)
+![스프링 레이어 구성](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_layer.png)
 
 -	`User Inteface Layer`는 `Paresentiation Layer`
 -	`Application Layer`는 `Service Layer`
@@ -263,7 +263,7 @@ org.hibernate.LazyInitializationException: failed to lazily initialize a collect
 
 스택으로 살펴보면,
 
-![Non-OSIV](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/non_osiv.png)
+![Non-OSIV](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/non_osiv.png)
 
 `Transaction`이 종료되며, `JDBC Connection`이 종료되고, `Hibernate Session`이 종료되며, 영속 객체는 `Detaced` 상태로 변경됩니다. 즉 `Application Layer`에서 관리되는 `Transaction`이 View Layer로 넘어가면서 종료되었기 때문에 발생하는 문제입니다.
 
@@ -311,7 +311,7 @@ POJO FACADE 패턴의 가장 적절한 용도는 분산 환경에서 원격 통�
 
 또한 `ConnectionReleaseMode` 의 기본값인 `AFTER_TRANSACTION` 에 따라 JDBC 커넥션의 반환 역시 시점 역시 뷰가 모두 렌더링되고 서블릿 필터 내에서 트랜잭션이 커밋(또는 롤백)되는 시점에 이루어지게 됩니다.
 
-![전통적인 OSIV](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/servlet_osiv.png)
+![전통적인 OSIV](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/servlet_osiv.png)
 
 그러나 서블릿 필터 방식의 `Open Session In View` 패턴에는 JDBC 커넥션은 뷰의 렌더링이 모두 완료된 후에야 커넥션 풀로 반환되는 `JDBC 커넥션 보유 시간 증가`라는 단점과 , 뷰까지 트랜잭션이 확장될 수 있는 `모호한 트랜잭션 경계`라는 큰 단점이 있습니다.
 
@@ -323,11 +323,11 @@ Spring 프레임워크에서는 `FlushMode` 와 `ConnectionReleaseMode`의 조�
 
 서블릿 필터에서 `Session`을 오픈하고 트랜잭션을 시작하던 전통적인 방식의 `Open Session In View` 패턴과 달리 SpringMVC 에서 제공하는 `OpenSessionInViewFilter` 는 필터 내에서 `Session`을 오픈하지만 트랜잭션은 시작하지 않습니다.
 
-![Spring의 OSIV](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_osiv.png)
+![Spring의 OSIV](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_osiv.png)
 
 Stack으로 살펴보면,
 
-![OSIV](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/osiv.png)
+![OSIV](/images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/osiv.png)
 
 `Transaction`이 종료된 후에도 `Controller`의 `Session`이 `close`되지 않았기 때문에, 영속 객체는 `Persistence` 상태를 유지할 수 있으며, `Session`이 열려있고 `Persistence` 상태이기 때문에 프록시 객체에 대한 `Lazy Loading`을 수행할 수 있게 됩니다.
 
