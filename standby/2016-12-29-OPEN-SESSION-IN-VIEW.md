@@ -21,6 +21,8 @@ public String member(@PathVariable Long memberIdx, Model model) {
 
 하는 순간 페이지가 정상적으로 노출되는 당황스러운 순간이,,!
 
+![출처:하이버네이트 완벽 가이드](../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/hrrrrrr.png)
+
 ---
 
 본 내용은 [Open Session In View Pattern](http://pds19.egloos.com/pds/201106/28/18/Open_Session_In_View_Pattern.pdf)의 내용을 기반으로 Spring 사용에 집중하여 내용을 재정리하였습니다.(본 내용을 이해하는데 `레이어 아키텍쳐`를 알면 더 이해가 빠를 수 있습니다.)
