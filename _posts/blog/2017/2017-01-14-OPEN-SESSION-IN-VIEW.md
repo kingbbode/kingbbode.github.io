@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Spring - Open Session In ViewOpen Session In View
+title: Spring - Open Session In View
 categories: [blog]
 tags: [spring,boot,jpa,osiv,hibernate,spring layer]
 fullview: false
