@@ -1,6 +1,7 @@
+
 ---
 layout: post
-title: Spring - Open Session In View
+title: Spring - Open Session In View Pattern
 categories: [blog]
 tags: [spring,boot,jpa,osiv,hibernate,spring layer]
 fullview: false
@@ -34,7 +35,7 @@ public String member(@PathVariable Long memberIdx, Model model) {
 
 ---
 
-본 내용은 [Open Session In View Pattern](http://pds19.egloos.com/pds/201106/28/18/Open_Session_In_View_Pattern.pdf)의 내용을 기반으로 내용을 정리하였습니다.(본 내용을 이해하는데 `레이어 아키텍쳐`를 알면 더 이해가 빠를 수 있습니다.)
+본 내용은 [Open Session In View Pattern](http://aeternum.egloos.com/2798098)의 내용을 기반으로 내용을 정리하였습니다.(본 내용을 이해하는데 `레이어 아키텍쳐`를 알면 더 이해가 빠를 수 있습니다.)
 
 이번 포스팅에서는 `Spring Boot`에서 `Default`로 설정해주고 있는 `Open Session In View Pattern`에 대하여 설명해보도록 하겠습니다.
 
@@ -310,6 +311,8 @@ POJO FACADE 패턴의 가장 적절한 용도는 분산 환경에서 원격 통�
 
 ![전통적인 OSIV](../../../../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/servlet_osiv.png)
 
+[출처 : [Eternity's Chit-Chataeternum](aeternum.egloos.com) - [Open Session in View Pattern](http://aeternum.egloos.com/2798098) ]
+
 그러나 서블릿 필터 방식의 `Open Session In View` 패턴에는 JDBC 커넥션은 뷰의 렌더링이 모두 완료된 후에야 커넥션 풀로 반환되는 `JDBC 커넥션 보유 시간 증가`라는 단점과 , 뷰까지 트랜잭션이 확장될 수 있는 `모호한 트랜잭션 경계`라는 큰 단점이 있습니다.
 
 #### Spring의 Open Session In View 패턴
@@ -321,6 +324,8 @@ Spring 프레임워크에서는 `FlushMode` 와 `ConnectionReleaseMode`의 조�
 서블릿 필터에서 `Session`을 오픈하고 트랜잭션을 시작하던 전통적인 방식의 `Open Session In View` 패턴과 달리 SpringMVC 에서 제공하는 `OpenSessionInViewFilter` 는 필터 내에서 `Session`을 오픈하지만 트랜잭션은 시작하지 않습니다.
 
 ![Spring의 OSIV](../../../../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_osiv.png)
+
+[출처 : [Eternity's Chit-Chataeternum](aeternum.egloos.com) - [Open Session in View Pattern](http://aeternum.egloos.com/2798098) ]
 
 Stack으로 살펴보면,
 
@@ -368,3 +373,13 @@ spring.jpa.open-in-view를 바꿔가며 테스트해본다면 명확하게 알 �
 `어느 하나도 자동으로 해주는 것은 없다`고 생각합니다. 모든 것이 언젠가 누군가 겪었을 불편함을 편하게 만들어준 것일 뿐이지 않을까요?!
 
 모든 것이 대해서 다 알 순 없지만, 적어도 이렇게라도 하나씩 더 많이 알아갈 수 있도록 노력해야겠습니다.
+
+---
+
+### 참고 자료
+
+-	[Eternity's Chit-Chataeternum](aeternum.egloos.com) - [Open Session in View](http://aeternum.egloos.com/2798098)
+
+-	하이버네이트 완벽가이드 : 위키북스
+
+-	Spring 공식 문서 - https://spring.io/docs
