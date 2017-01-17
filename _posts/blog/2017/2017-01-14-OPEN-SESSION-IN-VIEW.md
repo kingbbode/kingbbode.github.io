@@ -1,4 +1,3 @@
-
 ---
 layout: post
 title: Spring - Open Session In View Pattern
