@@ -1,14 +1,9 @@
 ---
-layout: post
-title: Spring - Open Session In View Pattern
-categories: [blog]
-tags: [spring,boot,jpa,osiv,hibernate,spring layer]
-fullview: false
-comments: true
-published: true
-outlink: 0
+
+layout: post title: Spring - Open Session In View Pattern categories: [blog] tags: [spring,boot,jpa,osiv,hibernate,spring layer] fullview: false comments: true published: true outlink: 0
+
 description : 나는 Spring Jpa의 동작을 잘 이해했을까? 뷰까지 확장되는 영속성 컨텍스트를 이해해보자.
----
+---------------------------------------------------------------------------------------------------
 
 Spring에서 ORM을 사용하여 개발을 하며, `Transaction`을 이해할 때 쯔음 닥쳐온 혼란이 있습니다.
 
@@ -310,7 +305,7 @@ POJO FACADE 패턴의 가장 적절한 용도는 분산 환경에서 원격 통�
 
 ![전통적인 OSIV](../../../../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/servlet_osiv.png)
 
-[출처 : [Eternity's Chit-Chataeternum](aeternum.egloos.com) - [Open Session in View Pattern](http://aeternum.egloos.com/2798098) ]
+[출처 : [Eternity's Chit-Chataeternum](http://aeternum.egloos.com) - [Open Session in View Pattern](http://aeternum.egloos.com/2798098) ]
 
 그러나 서블릿 필터 방식의 `Open Session In View` 패턴에는 JDBC 커넥션은 뷰의 렌더링이 모두 완료된 후에야 커넥션 풀로 반환되는 `JDBC 커넥션 보유 시간 증가`라는 단점과 , 뷰까지 트랜잭션이 확장될 수 있는 `모호한 트랜잭션 경계`라는 큰 단점이 있습니다.
 
@@ -324,7 +319,7 @@ Spring 프레임워크에서는 `FlushMode` 와 `ConnectionReleaseMode`의 조�
 
 ![Spring의 OSIV](../../../../images/2016/2016_12_28_OPEN_SESSION_IN_VIEW/spring_osiv.png)
 
-[출처 : [Eternity's Chit-Chataeternum](aeternum.egloos.com) - [Open Session in View Pattern](http://aeternum.egloos.com/2798098) ]
+[출처 : [Eternity's Chit-Chataeternum](http://aeternum.egloos.com) - [Open Session in View Pattern](http://aeternum.egloos.com/2798098) ]
 
 Stack으로 살펴보면,
 
@@ -377,7 +372,7 @@ spring.jpa.open-in-view를 바꿔가며 테스트해본다면 명확하게 알 �
 
 ### 참고 자료
 
--	[Eternity's Chit-Chataeternum](aeternum.egloos.com) - [Open Session in View](http://aeternum.egloos.com/2798098)
+-	[Eternity's Chit-Chataeternum](http://aeternum.egloos.com) - [Open Session in View](http://aeternum.egloos.com/2798098)
 
 -	하이버네이트 완벽가이드 : 위키북스
 
