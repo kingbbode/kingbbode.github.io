@@ -32,8 +32,11 @@ Membase를 사용하면서 발생한 문제점을 분석하고, 개선을 진행
 
 ---
 
-사전 알아야 할 내용
--------------------
+<detail>
+
+<summary> 사전 알아야 할 내용 </summary>
+
+<p>
 
 ### CouchBase(Membase)
 
@@ -182,6 +185,8 @@ When a node is removed from the cluster during failover, it's possible for opera
 	-	`MemcachedSession`(자체 구현) 사용
 -	`SecurityContextRepository`의 생성인자로 `SecurityContextRepository`에 유일한 객체로 생성 됨
 
+</detail>
+
 ---
 
 장애 원인 파악 및 개선
@@ -246,105 +251,32 @@ free_memory ->
 
 장애 직전을 보았을 때 1번 서버뿐 아니라 모든 서버에서 free memory가 부족한 상태였습니다. (장애 상황에서는 1번 서버의 free memory가 64MB 밑으로 떨어졌습니다.)
 
-**2. 비정상적인 Replica Item**
-
-1개의 노드에서 2개의 Replica Node를 갖도록 설정되어 있지만, 장애 상황에서 1,3번의 Replica 통계는 비정상적으로 높았고, 2,4번의 Replica 통계는 0이였습니다.
+**2. 장애 직전 / 안정화 후 100배 이상 차이가 나는 diskqueue memory**
 
 ```
-<Node - 1>
-curr_items ->
-	장애 직전 : 377491
-	안정화 후 : 414453
-vb_replica_curr_items ->
-	장애 직전 : 10425536
-	안정화 후 : 829999
-
-<Node - 2>
-curr_items ->
-	장애 직전 : 383384
-	안정화 후 : 420429
-vb_replica_curr_items ->
-	장애 직전 : 0
-	안정화 후 : 831116
-
-<Node - 3>
-curr_items ->
-	장애 직전 : 377877
-	안정화 후 : 414262
-vb_replica_curr_items ->
-	장애 직전 : 10603310
-	안정화 후 : 830212
-
-<Node - 4>
-curr_items ->
-	장애 직전 : 383150
-	안정화 후 : 420267
-vb_replica_curr_items ->
-	장애 직전 : 0
-	안정화 후 : 830709
-```
-
-**3. 장애 직전 / 안정화 후 100배 이상의 통계 수치들**
-
-```
-ep_bg_fetched -> 2176105/0
-ep_commit_time_total -> 51599008351/5570838
 ep_diskqueue_items -> 641450407/633768
 ep_diskqueue_memory -> 56447635816/55771584
 ep_diskqueue_pending -> 201470649572/128580374
-ep_expired -> 205175389885/172392843
-ep_io_num_read -> 2176873/0
-ep_io_read_bytes -> 624829812/0
-ep_num_active_non_resident -> 10323325/0
-ep_num_eject_failures -> 161119834/0
-ep_num_eject_replicas -> 103088739/0
-ep_num_non_resident -> 16768831/0
-ep_num_not_my_vbuckets -> 5898/8368508
-ep_num_pager_runs -> 20546/0
-ep_num_value_ejects -> 115591616/0
-ep_pending_ops_max_duration -> 0/75323
-ep_storage_age_highwat -> 4294967295/11539
-ep_too_old -> 0/1426329
-ep_too_young -> 134793/0
-ep_vbucket_del -> 1/780
-ep_vbucket_del_total_walltime -> 26932/8323312
-ep_warmup_time -> 3167194/11148
-get_misses -> 207714469157/597466795
-tap_connect_received -> 3/1060
-vb_active_eject -> 12502877/0
-vb_active_num_non_resident -> 10323325/0
-vb_active_ops_reject -> 134793/0
-vb_active_perc_mem_resident -> 0/100
-vb_active_queue_age -> 4312177000/431741583187000
-vb_replica_eject -> 103088739/0
-vb_replica_num_non_resident -> 6445506/0
-vb_replica_queue_age -> 1066178329754685000/999121432430000
-vb_replica_queue_memory -> 56439928952/38455472
-vb_replica_queue_pending -> 201443403603/104791634
-vb_replica_queue_size -> 641362829/436994
 ```
 
 각 항목에 대한 설명은 [[memory : couchbase doc]](https://developer.couchbase.com/documentation/server/current/cli/cbstats/cbstats-memory.html)와 [[cbstats : couchbase doc]](https://developer.couchbase.com/documentation/server/current/cli/cbstats-intro.html)에서 확인 가능하지만, Membase Server 1.7.2 이후로 굉장히 많은 수정사항이 업데이트되며 사라지거나 새로 생긴 통계 항목들이 많기 때문에 정확한 확인이 어려웠습니다.
 
 #### 로그 수치 분석
 
-메모리 반환 작업이 정상적으로 수행되지 못하는 것을 의심하였으나 ep engine은 정상적인 주기로 동작하고 있는 것을 확인했습니다.
+지속적인 `Free Memory` 하강을 처음에는 메모리 반환 작업이 정상적으로 수행되지 못하는 것을 의심하였으나 ep engine은 정상적인 주기로 동작하고 있는 것을 확인했습니다.
 
 ```
 ep_exp_pager_stime            3600
 ep_item_flush_expired         1240193940
 ```
 
-eject에 실패했다는 `ep_num_eject_failures` 수치가 비정상적으로 높은 것을 확인하였고, 메타데이터-키-값을 저장하는데 사용되는 메모리인 `ep_kv_size`가 지속적으로 증가하고 있는 것을 확인하였고!
+이 현상은 Membase의 `expire` 데이터 처리 방식으로 어느 정도 설명이 가능합니다.
 
-```
-ep_num_eject_failures  161119834
-ep_kv_size 누적 증가량 321088428
-```
+[카우치베이스 공식 문서](https://developer.couchbase.com/documentation/server/4.0/developer-guide/expiry.html)에 의하면, expire된 데이터는 즉시 삭제되는 것이 아니고 메타 데이터에 저장된 expire 정보를 토대로 API로 요청이 있을 때 `expiry pager`에 의해 메모리에서 해제된다는 것 입니다.
 
-메모리는 해제되고 있으나, 메모리가 해제되는 것보다 쌓이는 속도가 더 클 수 있다는 가설을 세워 보았습니다.(가설이 맞다면 비정상적으로 많이 쌓인 DiskQueue가 설명이 될 것이라는..)
+그렇지만, 일정 시간이 지났을 경우 안정화되야하는 메모리가 지속적으로 떨어졌다는 문제는 여전합니다. 이 문제는 `diskqueue memory` 로그 수치를 보았을 때 예상이 가능했습니다. 로그를 더 자세히 확인한 결과 wirte diskqueue가 지속적으로 쌓이고 있다는 것을 확인했고, 그래서 데이터를 쓰는 속도보다 조금 더 빠르게, 쓰기 요청이 쌓이고 있다는 예상을 할 수 있었습니다.
 
-메모리를 쌓는 set, update operation 수치를 Membase Console을 통해 확인해보았습니다.
+그래서 데이터 쓰기 요청을 쌓는 API 요청 수치를 Membase Console을 통해 확인해보았습니다.
 
 **신규 Key 값에 대한 통계 수치**
 
@@ -366,9 +298,9 @@ membase에서 관리되는 Value가 사용자의 세션이기 때문에 사용�
 
 아무리보아도 어플리케이션의 동작 로직에 문제가 있다는 의심이 되었습니다.
 
-### 어플리케이션 개선
+#### 개선 - 어플리케이션-Membase 간 요청 개선
 
-#### 1. 불필요한 요청 제거
+##### 1. 불필요한 요청 제거
 
 첫번째로 테스트 환경을 구성하여 단일 사용자 접속시 그래프가 어떻게 그려지는지 확인을 해보았습니다.
 
@@ -401,11 +333,11 @@ filterChainMap.put((String) urlMatcher.compile("/**"), filters);
 수정 후
 
 ```java
-filterChainMap.put((String) urlMatcher.compile("/view/**"), Lists.<Filter>newArrayList());
+filterChainMap.put((String) urlMatcher.compile("/~~~/**"), Lists.<Filter>newArrayList());
 filterChainMap.put((String) urlMatcher.compile("/**"), filters);
 ```
 
-`동적 요청을` 처리하지 않도록 빈 필터를 적용
+`동적 요청` 처리하지 않도록 빈 필터를 적용해봅니다.
 
 다시 테스트!
 
@@ -427,7 +359,9 @@ filterChainMap.put((String) urlMatcher.compile("/**"), filters);
 
 눈에 띄게 요청 빈도가 떨어졌습니다. 사용자 체류시간과 활동을 알아야 정확히 통계를 낼 수 있기 때문에, 정확한 수치를 낼 수는 없지만 많은 트래픽이 이 부분에서 감소할 수 있을 거라고 생각합니다.
 
-#### 2. Touch Command를 활용
+회의를 거친 끝에 가장 많이 사용되는 사용자 세션과 전혀 연관 없는 것으로 확인된 일부 `동적 요청`을 처리하지 않도록 빈 필터를 적용하기로 했습니다.
+
+##### 2. Touch Command를 활용
 
 위에서 설명했 듯 `Membase`를 어플리케이션은 `SpringSecurity`의 `SecurityContextPersistenceFilter`에서 사용하는 `SecurityContextRepository`를 통해 `Membase`와 교류를 하고 있고 우리는 `SecurityContextRepository`를 상속한 `MemcachedSecurityContextRepository`를 구현해서 사용하고 있습니다.
 
@@ -552,12 +486,11 @@ Memcached는 vBucket을 기반으로 해당 데이터가 어디에 있는지 판
 
 ---
 
-**여기까지 Membase의 서버 부하를 줄여 서버를 조금 더 안정적으로 만들고자 하는 개선을 해보았습니다. 그러나 이번 이슈로 떠오른 이슈가 한가지 더 있습니다. <br><br>바로 Membase 서버가 죽었을 때 어플리케이션을 구동할 수 없는 문제입니다. Membase는 세션을 관리해주는 용도로 사용하기 때문, Membase가 죽었다고 어플리케이션을 올릴 수 없는 문제는 일어나서는 안되기 때문입니다.**
+### 세번째 문제
 
-어플리케이션 - Membase 의존성 제거하기
---------------------------------------
+**지금까지는 Membase의 서버 부하를 줄여 서버를 조금 더 안정적으로 만들고자 하는 개선을 해보았습니다. 그러나 이번 이슈로 떠오른 이슈가 한가지 더 있습니다. <br><br>바로 Membase 서버가 죽었을 때 어플리케이션을 구동할 수 없는 문제입니다. Membase는 세션을 관리해주는 용도로 사용하기 때문, Membase가 죽었다고 어플리케이션을 올릴 수 없는 문제는 일어나서는 안되기 때문입니다.**
 
-### 첫번째 상황
+#### 첫번째 상황
 
 **어플리케이션 실행 중 Membase 서버가 죽었을 때**
 
@@ -589,13 +522,13 @@ Memcached는 vBucket을 기반으로 해당 데이터가 어디에 있는지 판
 
 `Quota`를 Reset하기 전 또 다른 서버의 장애가 발생했을 경우 역시 `TimeOutException`을 반환하게 되고, 어플리케이션에서는 Reconnect를 시도하게 되며 자동 장애 조치가 되지 않으므로, 수동으로 해당 서버를 FailOver 시켜야 합니다. 수동 FailOver 역시 자동 장애 조치의 FailOver와 같은 방식으로 동작하게 됩니다.
 
-### 두번째 상황
+#### 두번째 상황
 
 **일부 Membase 서버가 죽었을 때 어플리케이션 로드**
 
 일부 서버가 죽었을 때도 `어플리케이션 실행 중 Membase 서버가 죽었을 때`와 같은 과정이 반복되어 동작하게 됩니다.
 
-### 세번째 상황
+#### 세번째 상황
 
 **모든 Membase 서버가 죽었을 때 어플리케이션 로드**
 
@@ -613,7 +546,7 @@ MemcachedClient의 Bean 생성 실패로 의존성을 갖는 나머지 빈들(Me
 
 ![Memcached 의존성](/images/2016/2016_12_23_COUCHBASE/dependence.jpg)
 
-### 해결
+#### 개선 - 어플리케이션-Membase 간 의존성 제거
 
 첫번째, 두번째 상황은 어플리케이션의 동작 제어를 통해서는 해결이 될 수 없습니다. 지속적인 서버의 모니터링으로만 예방 및 해결이 가능할 것 입니다. 또한 두 상황은 에러가 발생하여도 어플리케이션은 이미 정상적으로 동작되기 때문에 어플리케이션과의 의존성 문제와는 거리가 먼 문제라고 판단됩니다.
 
@@ -756,11 +689,82 @@ DynamicGeneratorAdapter의 `generate` Method를 재정의하여 세부적인 설
 
 ---
 
+### 네번째 문제
+
+모든 사용자를 대상으로 세션을 관리할 필요가 있는가 하는 의문이 추가로 제기되었습니다.
+
+#### 세션이란?
+
+세션이란 클라이언트를 식별하는 방법으로, 무상태 프로토콜인 HTTP에서 브라우저는 세션을 구현하는 방법으로 Session 쿠키를 사용하고 있으며 각 어플리케이션에서는 세션 쿠키와 매칭되는 데이터로 Session 상태 및 데이터를 보관하게 됩니다.
+
+즉, 클라이언트를 식별할 필요가 있는 서비스만 어플리케이션에서 세션을 보관하고 관리하면 된다는 결론이 나옵니다.
+
+#### 모든 사용자 서비스에서 세션을 사용하는가?
+
+zum.com의 사용자 서비스는 쿠키 기반의 서비스와, 세션 기반의 서비스 두 가지로 나뉩니다. 비로그인 사용자들을 대상으로 쿠키 기반의 서비스를 제공하며, 로그인 사용자들은 세션 기반으로 서비스를 제공합니다.
+
+즉, 비로그인 사용자를 대상으로는 세션을 관리할 필요가 없다는 이야기가 됩니다.
+
+#### 세션없이 로그인, 비로그인 사용자를 구분 가능한가?
+
+zum.com은 이미 특별한 로직을 통하여 사용자의 로그인, 비로그인 여부를 확인 가능하도록 설계되었습니다.
+
+#### 결론
+
+비로그인 사용자의 세션 정보를 Membase로 관리할 필요가 없다는 결론이 나옵니다. 그래서 비로그인 사용자는 Membase를 통하지 않도록 어플리케이션을 개선해야 합니다.
+
+#### 개선 - 어플리케이션 세션 관리 대상 변경
+
+`Spring`으로 개발된 해당 어플리케이션은 `Spring Security`라는 편리한 도구를 통하여 사용자의 세션을 관리하고 있습니다.
+
+![servlet filter](/images/2016/2016_12_23_COUCHBASE/sevlet.png)
+
+`Spring Security`의 `SecurityFilter`는 서블릿 필터 중간쯔음 위치하고 있으며, 아래와 같이 내부에서 또다른 `filter Chain` 구조를 가지고 있습니다.
+
+![security filter](/images/2016/2016_12_23_COUCHBASE/security.png)
+
+**해야할 일** 은 `SecurityFilter`를 제외한 모든 필터는 정상 동작하여야 하며, `SecurityFilter`는 로그인, 비로그인 사용자를 구분하여 Skip하거나 진행 시켜야 합니다.
+
+**방법1.** Security Filter 앞에 Filter를 설치
+
+`SecurityFilter` 앞에 검증 Filter를 설치하고, 검증 Filter에서는 로그인을 판별하고 비로그인 사용자라면 Filter Chain을 강제로 `iterator.next()`하여 `SecurityFilter`를 Skip할 수 있습니다.
+
+그러나 Security Filter의 정확한 실행 위치를 파악하여야 하고, 해당 위치에 정확히 필터를 배치하는 일이 까다롭습니다.
+
+**방법2.** Security Filter 내부의 첫번째 Filter에 Filter를 설치
+
+`SecurityFilter`의 내부 첫번째 Filter에 검증 Filter를 설치하고, 검증 Filter에서는 로그인을 판별하고 비로그인 사용자라면 `SecurityFilter`의 내부 Filter Chain이 아닌 원래 서블릿의 Filter Chain을 타도록 하여 `SecurityFilter`를 Skip할 수 있습니다.
+
+이 방법이 좋은 이유는 SecurityFilter의 내부 필터를 직접 추가하기 때문에, 순서 지정하기가 매우 쉽습니다.
+
+```
+filters.add(new 검증필터());
+filters.add(new Filter1());
+filters.add(new Filter2());
+filterChainMap.put(urlMatcher.compile("/**"), filters);
+filterChainProxy.setFilterChainMap(filterChainMap);
+```
+
+결과적으로 개선된 서블릿 필터 동작 순서도는 아래와 같습니다.
+
+![security filter2](/images/2016/2016_12_23_COUCHBASE/security2.png)
+
+아래는 테스트 시나리오 결과입니다.
+
+![filter test](/images/2016/2016_12_23_COUCHBASE/testcase2.png)
+
+---
+
+결과
+----
+
+성공? 실패?
+
 ### 마무리
 
 Membase의 1도 모르는 상태에서 Bug Tracking을 해보았습니다.
 
-오래된 프로젝트인지라 버전이 너무 낮아 문서를 찾기도 힘들었고,
+오래된 프로젝트인지라 버전이 너무 낮아 문서를 찾기도 힘들었고...
 
 ![Forum 답글](/images/2016/2016_12_23_COUCHBASE/notfound.png)
 
