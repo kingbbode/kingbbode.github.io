@@ -231,9 +231,9 @@ Object의 key 값이 중복될 수 없기 때문에, name을 다르게 정의를
 <input name="foo[0][bar]" value="a">
 <input name="foo[0][baf]" value="b">
 <input name="foo[1][bar]" value="c"
-<input name="foo[0][baf]" value="d">
+<input name="foo[1][baf]" value="d">
 <input name="foo[2][bar]" value="e"
-<input name="foo[0][baf]" value="f">
+<input name="foo[2][baf]" value="f">
 
 결과:
 {foo:
