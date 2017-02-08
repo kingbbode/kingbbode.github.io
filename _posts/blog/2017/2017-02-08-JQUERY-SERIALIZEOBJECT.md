@@ -1,3 +1,15 @@
+---
+layout: post
+title: [Jquery Plugin 소개] form 데이터를 Object로 만들기
+categories: [blog]
+tags: [javascript, jquery, form, spa, ajax]
+fullview: false
+comments: true
+published: true
+outlink: 0
+description : form 데이터와 실제 서버 데이터 스펙을 어떻게 맞추고 계신가요? 유용한 Jquery Plugin을 정리 및 소개합니다.
+---
+
 이번 포스팅에서는 유용한 Jquery 플러그인을 소개하려고 합니다.
 
 ![main](/images/2017/2017-02-08-JQUERY-SERIALIZEOBJECT/main.png)
