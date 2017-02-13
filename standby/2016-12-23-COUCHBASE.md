@@ -753,6 +753,10 @@ filterChainProxy.setFilterChainMap(filterChainMap);
 
 ![filter test](/images/2016/2016_12_23_COUCHBASE/testcase2.png)
 
+부하 상황에서 추가한 필터가 제대로 작동하는지 불안하여 부하 테스트까지!
+
+![ngrinder test](/images/2016/2016_12_23_COUCHBASE/ngrinder.png)
+
 ---
 
 결과
