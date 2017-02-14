@@ -465,9 +465,9 @@ if(!trustResolver.isAnonymous(context.getAuthentication())) {
 
 ### 두번째 문제
 
-**레플리케이션 도중 어플리케이션 다운**
+**리벨런싱 도중 어플리케이션 다운**
 
-`레플리케이션`이 많은 리소스를 사용하므로, 트래픽이 많은 상황에서 피해야 한다는 경고는 알고 있습니다. 그러나 `레플리케이션` 상황에 `Membase Server`가 죽은 것이 아닌 `어플리케이션`이 죽은 상황에 대해서는 정확한 파악이 필요해보였습니다.
+`리벨런싱`이 많은 리소스를 사용하므로, 트래픽이 많은 상황에서 피해야 한다는 경고는 알고 있습니다. 그러나 `리벨런싱` 상황에 `Membase Server`가 죽은 것이 아닌 `어플리케이션`이 죽은 상황에 대해서는 정확한 파악이 필요해보였습니다.
 
 결론부터 이야기하자면 원인은 `Main Thread`의 `StackOverFlow` 입니다.
 
@@ -480,9 +480,9 @@ Exception in thread "Memcached IO over {MemcachedConnection to xxxxxxxxxxxxxxxxx
 
 Memcached는 vBucket을 기반으로 해당 데이터가 어디에 있는지 판단을 하게 됩니다. vBucket을 통해 데이터를 탐색할 때 뱉게되는 Error로 `WARN` Level로 로깅되는 `NOT_MY_BUCKET`이란 것이 있습니다. 해당 Error는 해당 vBucket에 데이터가 없을 경우 경고를 띄운 뒤 재귀 탐색을 통해 다른 vBucket으로 데이터를 탐색하는 로직을 가지고 있습니다.
 
-`레플리케이션` 작업이 수행될 때 수많은 데이터가 vBucket에서 제외되어 데이터를 분배하는 복잡한 과정이 수행됩니다. 이 과정 중간에 특정 데이터를 요청했을 때 해당 데이터가 `레플리케이션` 과정 중 vBucket에서 제외되었다면, vBucket 안에 데이터가 자리 잡을 때까지 재귀탐색을 하게 되며, 레플리케이션 되야하는 데이터양이 많은 경우 이 작업에 긴 시간이 생기며, 그 긴 시간동안 MainThread에서는 엄청나게 빠른 속도로 재귀 탐색을 하다 결국 StatckOverFlow Error를 뱉게 되는 상황이였습니다.
+`리벨런싱` 작업이 수행될 때 수많은 데이터가 vBucket에서 제외되어 데이터를 분배하는 복잡한 과정이 수행됩니다. 이 과정 중간에 특정 데이터를 요청했을 때 해당 데이터가 `리벨런싱` 과정 중 vBucket에서 제외되었다면, vBucket 안에 데이터가 자리 잡을 때까지 재귀탐색을 하게 되며, 리벨런싱 되야하는 데이터양이 많은 경우 이 작업에 긴 시간이 생기며, 그 긴 시간동안 MainThread에서는 엄청나게 빠른 속도로 재귀 탐색을 하다 결국 StatckOverFlow Error를 뱉게 되는 상황이였습니다.
 
-해당 문제의 해결방법은 `Couchbase`에서 경고하듯, `트레픽`이 적은 시간대에 최대한 빠르게 `레플리케이션`을 수행하는 방법뿐이 없다고 판단됩니다.
+해당 문제의 해결방법은 `Couchbase`에서 경고하듯, `트레픽`이 적은 시간대에 최대한 빠르게 `리벨런싱`을 수행하는 방법뿐이 없다고 판단됩니다.
 
 ---
 
@@ -762,7 +762,31 @@ filterChainProxy.setFilterChainMap(filterChainMap);
 결과
 ----
 
-성공? 실패?
+이런 과정을 거쳐, 지난 2월 14일 릴리즈!
+
+결과는?
+
+![great](/images/2016/2016_12_23_COUCHBASE/result1.jpg)
+
+**효과가 굉장했다!**
+
+![result](/images/2016/2016_12_23_COUCHBASE/result2.jpg)
+
+배포 직후 급감하기 시작하더니,
+
+![result](/images/2016/2016_12_23_COUCHBASE/result22.png)
+
+감소 이후 안정적인 형태를 보이기 시작합니다!
+
+operation은 배포 직전 초당 4만3천건에서 배포 후 천건으로 무려 **97%** 감소하였습니다! 목표로 하였던 operation 감소를 크게 이루었습니다.
+
+![result](/images/2016/2016_12_23_COUCHBASE/result3.png)
+
+oepration 감소로 이루려고 했던 disk write queue도 매우 크게 감소했습니다.
+
+**결론**
+
+긴 버그 트래킹 끝에 Operation 이상을 확인했고, 끊임없이 의심하며 불필요 요청을 제거하였습니다. 또한 시스템의 의존성을 어느정도 제거해주어 장애 상황을 회피할 수 있도록 하였습니다.
 
 ### 마무리
 
