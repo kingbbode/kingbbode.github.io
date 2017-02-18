@@ -8,11 +8,11 @@ set -e
 echo "Started deploying"
 
 # Checkout gh-pages branch.
-if [ `git branch | grep gh-pages` ]
+if [ `git branch | grep master` ]
 then
-  git branch -D gh-pages
+  git branch -D master
 fi
-git checkout -b gh-pages
+git checkout -b master
 
 # Build site.
 # bower install
