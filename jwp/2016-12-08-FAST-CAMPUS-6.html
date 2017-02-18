@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kingbbode | 여섯번째 강의</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="여섯번째 강의">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kingbbode.github.io/jwp/2016-12-08-FAST-CAMPUS-6">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Kingbbode">
+  <meta property="og:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://kingbbode.github.io/jwp/2016-12-08-FAST-CAMPUS-6">
+  <meta name="twitter:title" content="여섯번째 강의">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://kingbbode.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Kingbbode Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Kingbbode">
+    <img src="https://www.gravatar.com/avatar/f4c8a1baaf62285612634ec4eec327fd?s=150" alt="kingbbode" style="width:135px;height: 135px;border-radius:100%;margin: auto;display:block;">
+    Kingbbode
+  </a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/iwannaknowcoding" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/kingbbode" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:kingbbode@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>여섯번째 강의</h1>
+            <p></p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                December 8, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  1 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h1 id="여섯번째-강의">여섯번째 강의</h1>
+
+<h2 id="배운-것">배운 것</h2>
+
+<h3 id="자바스크립트">자바스크립트</h3>
+
+<h4 id="diynamic-event-binding">Diynamic Event Binding</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>$(".answer-write input[type='submit']").on("click", addAnswer);
+$(".qna-comment-slipp-articles").on("click", ".delete-answer-form button[type='submit']", deleteAnswer);
+</code></pre>
+</div>
+
+<h4 id="javascript를-사용함에-알아두면-좋은-것들">Javascript를 사용함에 알아두면 좋은 것들</h4>
+
+<ul>
+  <li>event loop + async</li>
+  <li>event delegation(event bubble, event propagation)</li>
+  <li>this</li>
+  <li>closure</li>
+</ul>
+
+<h3 id="외장-tomcat-server-배포">외장 Tomcat Server 배포</h3>
+
+<h4 id="step-1-톰캣-설치">Step 1. 톰캣 설치</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>wget {톰캣 tar.gz 링크주소}
+
+tar -xvf {다운로드받은 파일}
+
+심볼릭 링크 설정(선택)
+ln -s {압축 풀린 경로} tomcat
+
+`/bin`에 실행파일 있다.
+
+`jps` - 떠있는 자바 프로세스를 확인할 수 있다.
+</code></pre>
+</div>
+
+<h4 id="step-2-spring-boot-설정">Step 2. Spring Boot 설정</h4>
+
+<ul>
+  <li>패키징 타입을 <code class="highlighter-rouge">WAR</code>로 변경</li>
+</ul>
+
+<pre><code class="language-JAVA">&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-boot-starter-tomcat&lt;/artifactId&gt;
+  &lt;scope&gt;provided&lt;/scope&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p><code class="highlighter-rouge">scope</code>를 <code class="highlighter-rouge">provided</code>로 하면 패키징시 제외</p>
+
+<p>Tomcat은 패키징된 War의 Servlet을 실행</p>
+
+<p>Embed Tomcat에서는 <code class="highlighter-rouge">@SpringBootApplication</code>로 실행할 메인 클레스를 명시를 해주지만, <br /> 외장 톰켓에서는 SpringBootServletInitializer의 상속을 통해 실행될 Class를 지정할 수 있다.</p>
+
+<h4 id="step-3-배포">Step 3. 배포</h4>
+
+<p>외장 톰켓의 기본 설정 APP은 <code class="highlighter-rouge">webapp/ROOT</code></p>
+
+<p><strong>빌드</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>./mvnw clean package
+</code></pre>
+</div>
+
+<p>빌드된 폴더를 해당 경로로 설정하여 톰켓 실행</p>
+
+<h4 id="step-4-배포-자동화">Step 4. 배포 자동화</h4>
+
+<p>bash shell script 사용</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+
+<span class="nv">REPOSITORIES_DIR</span><span class="o">=</span>~/my-jwp2
+<span class="nv">TOMCAT_HOME</span><span class="o">=</span>~/tomcat
+
+<span class="nb">cd</span> <span class="nv">$REPOSITORIES_DIR</span>
+<span class="nb">pwd
+</span>git pull
+./mvnw clean package
+
+<span class="nv">$TOMCAT_HOME</span>/bin/shutdown.sh
+
+rm -rf <span class="nv">$TOMCAT_HOME</span>/webapps/ROOT
+mv <span class="nv">$REPOSITORIES_DIR</span>/target/my-jwp-1.0 <span class="nv">$TOMCAT_HOME</span>/webapps/ROOT
+
+<span class="nv">$TOMCAT_HOME</span>/bin/startup.sh
+
+tail -500f <span class="nv">$TOMCAT_HOME</span>/logs/catalina.out
+</code></pre>
+</div>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=여섯번째 강의 - https://kingbbode.github.io/jwp/2016-12-08-FAST-CAMPUS-6 ', 'newwindow', 'width=500, height=225'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Twitter"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M128,23.294    c-4.703,2.142-9.767,3.59-15.079,4.237c5.424-3.328,9.587-8.606,11.548-14.892c-5.079,3.082-10.691,5.324-16.687,6.526    c-4.778-5.231-11.608-8.498-19.166-8.498c-14.493,0-26.251,12.057-26.251,26.927c0,2.111,0.225,4.16,0.676,6.133    C41.217,42.601,21.871,31.892,8.91,15.582c-2.261,3.991-3.554,8.621-3.554,13.552c0,9.338,4.636,17.581,11.683,22.412    c-4.297-0.131-8.355-1.356-11.901-3.359v0.331c0,13.051,9.053,23.937,21.074,26.403c-2.201,0.632-4.523,0.948-6.92,0.948    c-1.69,0-3.343-0.162-4.944-0.478c3.343,10.694,13.035,18.483,24.53,18.691c-8.986,7.227-20.315,11.533-32.614,11.533    c-2.119,0-4.215-0.123-6.266-0.37c11.623,7.627,25.432,12.088,40.255,12.088c48.309,0,74.717-41.026,74.717-76.612    c0-1.171-0.023-2.342-0.068-3.49C120.036,33.433,124.491,28.695,128,23.294" fill-rule="evenodd" id="Twitter_1_"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://kingbbode.github.io/jwp/2016-12-08-FAST-CAMPUS-6', 'newwindow', 'width=500, height=500'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Facebook_1_"><rect fill="none" height="128" width="128"/><path clip-rule="evenodd" d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z" fill-rule="evenodd" id="Facebook"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://kingbbode.github.io/jwp/2016-12-08-FAST-CAMPUS-6', 'newwindow', 'width=550, height=400'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" version="1.1" viewBox="0 0 128 128" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x35__stroke"><g id="Google_Plus"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M40.654,55.935v16.13    c0,0,15.619-0.021,21.979-0.021C59.189,82.5,53.834,88.194,40.654,88.194c-13.338,0-23.748-10.832-23.748-24.194    s10.41-24.194,23.748-24.194c7.052,0,11.607,2.483,15.784,5.944c3.344-3.35,3.065-3.828,11.573-11.877    c-7.222-6.586-16.822-10.6-27.357-10.6C18.201,23.273,0,41.507,0,64c0,22.493,18.201,40.727,40.654,40.727    c33.561,0,41.763-29.275,39.044-48.792H40.654z M113.912,56.742V42.628h-10.063v14.113H89.358v10.081h14.491v14.517h10.063V66.823    H128V56.742H113.912z" fill-rule="evenodd" id="Google_Plus_1_"/></g></g></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    @Copyright 2017 by <a href="/about" title="About me">Kingbbode</a> / template for Jekyll built by <a href="/about" title="About me">Nielsen Ramon</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-75876601-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

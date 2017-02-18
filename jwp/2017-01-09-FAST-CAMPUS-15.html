@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kingbbode | 열다번째 강의</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="열다번째 강의">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kingbbode.github.io/jwp/2017-01-09-FAST-CAMPUS-15">
+  <meta property="og:description" content="">
+  <meta property="og:site_name" content="Kingbbode">
+  <meta property="og:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://kingbbode.github.io/jwp/2017-01-09-FAST-CAMPUS-15">
+  <meta name="twitter:title" content="열다번째 강의">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://kingbbode.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Kingbbode Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Kingbbode">
+    <img src="https://www.gravatar.com/avatar/f4c8a1baaf62285612634ec4eec327fd?s=150" alt="kingbbode" style="width:135px;height: 135px;border-radius:100%;margin: auto;display:block;">
+    Kingbbode
+  </a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/iwannaknowcoding" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/kingbbode" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:kingbbode@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>열다번째 강의</h1>
+            <p></p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                January 9, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  2 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h1 id="열다섯번째-강의">열다섯번째 강의</h1>
+
+<h2 id="유용한-기능">유용한 기능</h2>
+
+<ul>
+  <li>Intellij Live Template 기능</li>
+</ul>
+
+<p><em>slf4j logging template code</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>${:import(org.slf4j.Logger,org.slf4j.LoggerFactory)}private static final Logger log = LoggerFactory.getLogger(${enclosing_type}.class);
+</code></pre>
+</div>
+
+<p><em>mockito template code</em></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>${is1:importStatic('org.hamcrest.CoreMatchers.*')}${is2:importStatic('org.junit.Assert.*')}${is5:importStatic('org.mockito.Mockito.*')}${is6:import('org.junit.Test')}${is7:import('org.junit.Before')}${is8:import('org.mockito.Mock')}${is9:import('org.mockito.runners.MockitoJUnitRunner')}${is10:import('org.junit.runner.RunWith')}
+</code></pre>
+</div>
+
+<h2 id="mockito">Mockito</h2>
+
+<p><strong>UserDao라는 객체와 의존 관계를 갖는 객체를 테스트 할 때 어떻게 테스트할 수 있을까?</strong></p>
+
+<p>Dependency Injection 활용, MockUserDao를 통해 추가해 해결할 수 있다.</p>
+
+<ul>
+  <li>동일한 인터페이스를 갖는 객체를 Database를 사용하지 않고 구현</li>
+</ul>
+
+<p>그러나 Dao 복잡도가 증가하면 구현하는데 너무 많은 비용이 발생한다.</p>
+
+<ul>
+  <li>인터페이스 구현체인 가짜 객체를 만드는게 더 귀찬다.</li>
+</ul>
+
+<p><strong>그래서 등장한 것이 Mockito!</strong></p>
+
+<p><strong>그러나!!!!</strong> Mock 객체를 사용했을 경우 객체지향적으로 개발했는지 의심해볼 필요가 있다.</p>
+
+<p><strong>Layered 아키텍처에 맞도록</strong></p>
+
+<ul>
+  <li>비즈니스 로직은 모델에</li>
+  <li>서비스 레이어에는 가볍게</li>
+</ul>
+
+<p><strong>Dependency Injection(의존성 주입) 기반으로 개발함으로써 테스트하기 쉬운 코드를 구현할 수 있지만 그 보다 객체지향적으로 프로그래밍하는 것이 더 중요하다.</strong></p>
+
+<h2 id="빈-컨테이너-설정-관리">빈 컨테이너 설정 관리</h2>
+
+<h3 id="부모자식-구조">부모/자식 구조</h3>
+
+<ul>
+  <li>프리젠테이션 Layer만 다르고 Service/DAO 설정을 재사용하고 싶은 경우</li>
+  <li>보통 일반 사용자용과 관리툴을 분리하는 경우가 많이 발생한다.</li>
+  <li>자식에서는 부모에서 관리하는 빈은 접근 가능, 반대는 불가능</li>
+</ul>
+
+<h2 id="인스턴스-생성--초기화제거">인스턴스 생성 – 초기화/제거</h2>
+
+<h3 id="callback-inteface-활용">Callback Inteface 활용</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public interface InitializingBean {
+ void afterPropertiesSet() throws Exception;
+}
+
+public interface DisposableBean {
+ void destroy() throws Exception;
+}
+</code></pre>
+</div>
+
+<p>위 인터페이스를 implements하는 Bean은 Spring 프레임워크에 의해 자동으로 초기화 작업과 제거 작업을 한다.</p>
+
+<h3 id="annotation">Annotation</h3>
+
+<ul>
+  <li>@PostContruct</li>
+  <li>@PreDestroy</li>
+</ul>
+
+<p><br /></p>
+
+<p>아래 설정들은 편집할 수 없는 외부 설정의 라이브러리를 컨트롤할 때 사용하면 좋다.</p>
+
+<h3 id="xml-활용한-초기화-제거">XML 활용한 초기화 제거</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>&lt;bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+ p:driverClassName="${database.driverClassName}" p:url="${database.url}"
+ p:username="${database.username}" p:password="${database.password}"
+ init-method="initResource"
+ destroy-method="close"
+/&gt;
+</code></pre>
+</div>
+
+<h3 id="bean-활용">Bean 활용</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>@Configuration
+public class Config {
+ @Bean(initMethod="initIt", destroyMethod="cleanUp")
+ public DataSource dataSource() {
+ BasicDataSource dataSource = new BasicDataSource();
+ dataSource.setDriverClassName("org.h2.Driver");
+ dataSource.setUrl("jdbc:h2:~/slipp");
+ dataSource.setUsername("sa");
+ dataSource.setPassword("");
+ return dataSource;
+ }
+}
+</code></pre>
+</div>
+
+<h2 id="aop">AOP</h2>
+
+<p>하나의 완전한 애플리케이션을 구현하려면 비즈니스 로직과 비즈니스 로직을 지탱하는 인프라 로직이 필요하다.</p>
+
+<p>OOP는 비즈니스 로직의 중복을 제거하기 위함이고 AOP는 인프라 로직 중복을 제거하기 위함이다.</p>
+
+<p><strong>인프라 로직이란?</strong></p>
+
+<p>데이터에 대한 조회, 변경은 하지 않으면서 성능을 높이고, 보안을 강화하기 위해 처리해야 하는 로직을 의미한다. 대표적인 인프라 로직으로 권한 로직, DB 트랜잭션 로직, 데이터 캐싱, 로깅, 성능 측정과 같은 로직을 들 수 있다.</p>
+
+<p><strong>AOP 용어</strong></p>
+
+<ul>
+  <li>target : 부가 기능을 부여할 대상</li>
+  <li>advice : target에 제공할 부가 기능을 담은 클래스</li>
+  <li>joinpoint : advice가 적용될 수 있는 위치. 예를 들어 method의 실행 단계</li>
+  <li>pointcut : advice가 적용될 target을 지정하는 것을 의미</li>
+</ul>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=열다번째 강의 - https://kingbbode.github.io/jwp/2017-01-09-FAST-CAMPUS-15 ', 'newwindow', 'width=500, height=225'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Twitter"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M128,23.294    c-4.703,2.142-9.767,3.59-15.079,4.237c5.424-3.328,9.587-8.606,11.548-14.892c-5.079,3.082-10.691,5.324-16.687,6.526    c-4.778-5.231-11.608-8.498-19.166-8.498c-14.493,0-26.251,12.057-26.251,26.927c0,2.111,0.225,4.16,0.676,6.133    C41.217,42.601,21.871,31.892,8.91,15.582c-2.261,3.991-3.554,8.621-3.554,13.552c0,9.338,4.636,17.581,11.683,22.412    c-4.297-0.131-8.355-1.356-11.901-3.359v0.331c0,13.051,9.053,23.937,21.074,26.403c-2.201,0.632-4.523,0.948-6.92,0.948    c-1.69,0-3.343-0.162-4.944-0.478c3.343,10.694,13.035,18.483,24.53,18.691c-8.986,7.227-20.315,11.533-32.614,11.533    c-2.119,0-4.215-0.123-6.266-0.37c11.623,7.627,25.432,12.088,40.255,12.088c48.309,0,74.717-41.026,74.717-76.612    c0-1.171-0.023-2.342-0.068-3.49C120.036,33.433,124.491,28.695,128,23.294" fill-rule="evenodd" id="Twitter_1_"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://kingbbode.github.io/jwp/2017-01-09-FAST-CAMPUS-15', 'newwindow', 'width=500, height=500'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Facebook_1_"><rect fill="none" height="128" width="128"/><path clip-rule="evenodd" d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z" fill-rule="evenodd" id="Facebook"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://kingbbode.github.io/jwp/2017-01-09-FAST-CAMPUS-15', 'newwindow', 'width=550, height=400'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" version="1.1" viewBox="0 0 128 128" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x35__stroke"><g id="Google_Plus"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M40.654,55.935v16.13    c0,0,15.619-0.021,21.979-0.021C59.189,82.5,53.834,88.194,40.654,88.194c-13.338,0-23.748-10.832-23.748-24.194    s10.41-24.194,23.748-24.194c7.052,0,11.607,2.483,15.784,5.944c3.344-3.35,3.065-3.828,11.573-11.877    c-7.222-6.586-16.822-10.6-27.357-10.6C18.201,23.273,0,41.507,0,64c0,22.493,18.201,40.727,40.654,40.727    c33.561,0,41.763-29.275,39.044-48.792H40.654z M113.912,56.742V42.628h-10.063v14.113H89.358v10.081h14.491v14.517h10.063V66.823    H128V56.742H113.912z" fill-rule="evenodd" id="Google_Plus_1_"/></g></g></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    @Copyright 2017 by <a href="/about" title="About me">Kingbbode</a> / template for Jekyll built by <a href="/about" title="About me">Nielsen Ramon</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-75876601-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

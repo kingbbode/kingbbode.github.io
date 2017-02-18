@@ -1,4 +1,0 @@
----
-slug: database
-name: Database
----

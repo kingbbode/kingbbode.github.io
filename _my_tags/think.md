@@ -1,4 +1,0 @@
----
-slug: think
-name: Think
----

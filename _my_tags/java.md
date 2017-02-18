@@ -1,4 +1,0 @@
----
-slug: java
-name: Java
----

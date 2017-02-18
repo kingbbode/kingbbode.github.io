@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kingbbode | JSONP 알고 쓰자</title>
+  <meta name="description" content="JSONP를 처음 접하는 사람들은 다 똑같은 것을 헤메고 있었습니다. 그래서 정리했습니다. 도움이 되었으면 합니다.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="JSONP 알고 쓰자">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kingbbode.github.io/posts/jsonp">
+  <meta property="og:description" content="JSONP를 처음 접하는 사람들은 다 똑같은 것을 헤메고 있었습니다. 그래서 정리했습니다. 도움이 되었으면 합니다.">
+  <meta property="og:site_name" content="Kingbbode">
+  <meta property="og:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://kingbbode.github.io/posts/jsonp">
+  <meta name="twitter:title" content="JSONP 알고 쓰자">
+  <meta name="twitter:description" content="JSONP를 처음 접하는 사람들은 다 똑같은 것을 헤메고 있었습니다. 그래서 정리했습니다. 도움이 되었으면 합니다.">
+  <meta name="twitter:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://kingbbode.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Kingbbode Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Kingbbode">
+    <img src="https://www.gravatar.com/avatar/f4c8a1baaf62285612634ec4eec327fd?s=150" alt="kingbbode" style="width:135px;height: 135px;border-radius:100%;margin: auto;display:block;">
+    Kingbbode
+  </a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/iwannaknowcoding" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/kingbbode" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:kingbbode@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>JSONP 알고 쓰자</h1>
+            <p>JSONP를 처음 접하는 사람들은 다 똑같은 것을 헤메고 있었습니다. 그래서 정리했습니다. 도움이 되었으면 합니다.</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                December 18, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  4 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/spring">spring</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+                  <a href="/tag/http">http</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <p>자바 스크립트는 서로 다른 도메인에 대한 요청을 보안상 제한합니다. 이 정책을 <code class="highlighter-rouge">동일근원정책(Same-Origin Policy, SOP) 정책</code>이라고 하며, 이러한 정책으로 인해 생기는 이슈를 <code class="highlighter-rouge">cross-domain</code> 문제라고 합니다. <br /> 개발을 하다보면 어쩔 수 없이 다른 도메인으로부터 데이터를 가져와야 하는 경우가 많기에 많은 사람들이 cross-domain 이슈를 겪고 있습니다.</p>
+
+<p>이런 경우 사용할 수 있는 것이 <code class="highlighter-rouge">JSONP(JSON with Padding)</code>입니다. 처음 JSONP를 접했을 때 잘 정리가 되지 않았던, 사용할 때 명확히 알아야 할 것들을 정리해보았습니다.</p>
+
+<h3 id="1-jsonp-요청은-일반-ajax-요청과-다르다">1. JSONP 요청은 일반 AJAX 요청과 다르다</h3>
+
+<p>처음 JSONP를 접할 때 우리를 혼란스럽게 하는 것은.. 다름아닌 <code class="highlighter-rouge">Jquery</code> 입니다.</p>
+
+<p>우리에게 좋은 사용성을 주기 위해 <code class="highlighter-rouge">Jquery</code>는 JSONP 요청을 마치 XHR 리퀘스트의 한 방식인 것 처럼 묶어주었습니다.<br /></p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'json'</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="nx">callback</span>
+<span class="p">});</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+
+</code></pre>
+</div>
+
+<p>위 요청은 일반적인 <code class="highlighter-rouge">json</code>을 요청하는 XHR 요청입니다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>
+<span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'jsonp'</span><span class="p">,</span>
+  <span class="na">jsonpCallback</span><span class="p">:</span> <span class="s2">"myCallback"</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="nx">callback</span>
+<span class="p">});</span>
+
+<span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">"?callback=?"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+
+</code></pre>
+</div>
+
+<p>위 요청은 <code class="highlighter-rouge">jsonp</code> 요청입니다.</p>
+
+<p><strong>dataType</strong> 만 변경하거나, 요청 url 뒤에 <strong>callback 파라미터</strong> 를 붙일 뿐입니다. 그렇지만 이것만으로도 <strong>완전히 다른 동작</strong> 을 하게 됩니다.</p>
+
+<h3 id="2-jsonp라는-데이터-타입-요청이-아닌-script-호출-방식">2. ‘JSONP’라는 데이터 타입 요청이 아닌 &lt;script&gt; 호출 방식</h3>
+
+<p>JSONP는 <strong>HTML의 script 요소로부터 요청되는 호출에는 보안상 정책이 적용되지 않는다는 점을 이용한 우회 방법</strong> 입니다.</p>
+
+<p>다시 한번 확실히 하자면, <code class="highlighter-rouge">script</code> 요소는 src를 호출한 결과를 javascript를 불러와서 <code class="highlighter-rouge">포함</code>시키는 것이 아니고 <code class="highlighter-rouge">실행</code>시키는 태그입니다.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>The &lt;script&gt; element (or HTML Script Element ) is used to embed or reference an &lt;executable script within an HTML or XHTML document.
+
+Scripts without async or defer attributes, as well as inline scripts, are fetched and executed immediately, before the browser continues to parse the page.
+</code></pre>
+</div>
+
+<p><a href="https://developer.mozilla.org/en/docs/Web/HTML/Element/script">Mozilla 참고</a></p>
+
+<p>아래는 일반적인 jsonp 응답입니다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">callback</span><span class="p">({</span><span class="na">name</span><span class="p">:</span><span class="s1">'kingbbode'</span><span class="p">,</span> <span class="na">age</span><span class="p">:</span><span class="mi">28</span><span class="p">})</span>
+</code></pre>
+</div>
+
+<p>&lt;script&gt;의 호출 후 즉시 실행하는 점을 이용하여 응답으로 온 Text Type의 결과를 <code class="highlighter-rouge">javascript</code>로 인식하여 바로 실행하게 됩니다.</p>
+
+<p>아래는 Jquery를 사용하지 않은 jsonp 요청입니다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">script</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'script'</span><span class="p">);</span>
+<span class="nx">script</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">'//kingbbode.com/jsonp?callback=myCallback'</span>
+
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'head'</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">script</span><span class="p">);</span>
+
+<span class="kd">function</span> <span class="nx">myCallback</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
+  <span class="c1">//callback method</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="3-jsonp-callback은-서버에서-지원해줘야-한다">3. JSONP Callback은 서버에서 지원해줘야 한다</h3>
+
+<p>JSONP를 적용하면서 거의 대부분 사람들이 한번씩 봤을 법한 에러 메시지!</p>
+
+<p><img src="/images/2016/2016-12-18-JSONP/error.png" alt="Error" /></p>
+
+<p>이 메시지를 보았다는 것은 아마도 jsonp에 대한 처리가 없는 서버에 요청을 하였을 경우일 것 입니다. 어째서 이런 결과가 나오는지 알아보겠습니다.</p>
+
+<p>알아두어야 할 중요한 것은 <strong>응답 데이터는 Text형</strong> 이란 것과, <strong>callback 함수명으로 감싸진다</strong> 는 점 입니다.</p>
+
+<p>응답 예)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>"myCallback({'name':'test','age':28})"
+</code></pre>
+</div>
+
+<p>정의한 Callback 함수명으로 감싸주는 것은 jquery 혹은 브라우저, javascript 등 클라이언트 단에서 지원하여 처리해주는 것이 아닙니다!<br /><strong>서버에서 감싸진 형태의 Text로 내려주어야 하는 것</strong> 입니다.</p>
+
+<p><strong>Text로 내려진 데이터가 Javascript로 실행되는 과정을 <code class="highlighter-rouge">Jquery</code>에서 지원하여 <code class="highlighter-rouge">Success 함수</code>로 연결시켜 주는 것 입니다.</strong></p>
+
+<p>위 텍스트의 결과 값 부분을 <code class="highlighter-rouge">파싱</code>하고 <code class="highlighter-rouge">$.parseJSON</code>을 통해 json Object로 만들어주게 됩니다. <br />jsonp 처리되지 않은 결과를 파싱하고, parseJSON하는 과정에서 <code class="highlighter-rouge">Uncaught SyntaxError: Unexpected token :</code> 에러가 발생하게 되는 것 입니다.</p>
+
+<h4 id="spring-boot-jsonp-응답-구현-소스">Spring Boot JSONP 응답 구현 소스</h4>
+
+<p>Spring에서 지원해주는 <code class="highlighter-rouge">AbstractJsonpResponseBodyAdvice</code>로 <code class="highlighter-rouge">ControllerAdvice</code>만 구현하면 끝! <code class="highlighter-rouge">AbstractJsonpResponseBodyAdvice</code>는 응답 Type과 Callback 파라미터 확인, 응답 데이터 확인과 가장 중요한 응답 결과 wrapping을 구현해놓은 추상 객체입니다.</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@ControllerAdvice</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">JsonpAdviceController</span> <span class="kd">extends</span> <span class="n">AbstractJsonpResponseBodyAdvice</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">JsonpAdviceController</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="s">"callback"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Object를 JSON String으로 변환하기 위한 메세지 컨버터까지만!</p>
+
+<div class="language-java highlighter-rouge"><pre class="highlight"><code><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">MappingJackson2HttpMessageConverter</span> <span class="nf">mappingJackson2HttpMessageConverter</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">MappingJackson2HttpMessageConverter</span> <span class="n">jsonConverter</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MappingJackson2HttpMessageConverter</span><span class="o">();</span>
+	<span class="n">ObjectMapper</span> <span class="n">objectMapper</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ObjectMapper</span><span class="o">();</span>
+	<span class="n">objectMapper</span><span class="o">.</span><span class="na">configure</span><span class="o">(</span><span class="n">DeserializationFeature</span><span class="o">.</span><span class="na">FAIL_ON_UNKNOWN_PROPERTIES</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+	<span class="n">jsonConverter</span><span class="o">.</span><span class="na">setObjectMapper</span><span class="o">(</span><span class="n">objectMapper</span><span class="o">);</span>
+	<span class="k">return</span> <span class="n">jsonConverter</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p><em>서버에서 처리대신 정적 파일 자체가 함수에 감싸져있는 형태여도 처리는 가능합니다. 그러나 $.getJSON은 사용할 수 없습니다.</em></p>
+
+<h3 id="4-고마운-jquery">4. 고마운 Jquery</h3>
+
+<p>처음부터 Jquery로 JSONP를 사용했던 것이 개념을 잡기 어렵게 했을 수도 있지만, Jquery는 너무나도 편하게 JSONP를 지원해주고 있습니다.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">url</span><span class="p">:</span> <span class="nx">url</span><span class="p">,</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="s1">'jsonp'</span><span class="p">,</span>
+  <span class="na">jsonpCallback</span><span class="p">:</span> <span class="s2">"myCallback"</span><span class="p">,</span>
+  <span class="na">success</span><span class="p">:</span> <span class="nx">callback</span>
+<span class="p">});</span>
+</code></pre>
+</div>
+
+<p>위 요청을 해석해보자면,</p>
+
+<ul>
+  <li>cross-domain 이슈를 회피하기 위하여 jsonp 요청을 한다</li>
+  <li>응답 데이터는 <code class="highlighter-rouge">myCallback(결과)</code> 형태의 text로 wrapping 되어질 것이다.</li>
+  <li>myCallback이란 함수를 나의 success function에 mapping 시킬 것이다.</li>
+</ul>
+
+<p>가 됩니다.</p>
+
+<p>실행 결과는</p>
+
+<p><img src="/images/2016/2016-12-18-JSONP/ajax.png" alt="ajax" /></p>
+
+<p>더 간단한 형태로는</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="nx">$</span><span class="p">.</span><span class="nx">getJSON</span><span class="p">(</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">"?callback=?"</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p><img src="/images/2016/2016-12-18-JSONP/getJson.png" alt="getJson" /></p>
+
+<p>getJSON은 callback 이름을 임의로 생성해 알아서 success function에 매칭시켜줍니다. <br />
+위 $.ajax 요청보다 훨씬 간단한 것을 알 수 있습니다.</p>
+
+<hr />
+
+<p>테스트에 사용된 <code class="highlighter-rouge">Spring Boot 기반 서버</code>와 <code class="highlighter-rouge">테스트 HTML</code>은 <a href="https://github.com/kingbbode/spring-jsonp-server">GITHUB</a>에 올려두었습니다!</p>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=JSONP 알고 쓰자 - https://kingbbode.github.io/posts/jsonp ', 'newwindow', 'width=500, height=225'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Twitter"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M128,23.294    c-4.703,2.142-9.767,3.59-15.079,4.237c5.424-3.328,9.587-8.606,11.548-14.892c-5.079,3.082-10.691,5.324-16.687,6.526    c-4.778-5.231-11.608-8.498-19.166-8.498c-14.493,0-26.251,12.057-26.251,26.927c0,2.111,0.225,4.16,0.676,6.133    C41.217,42.601,21.871,31.892,8.91,15.582c-2.261,3.991-3.554,8.621-3.554,13.552c0,9.338,4.636,17.581,11.683,22.412    c-4.297-0.131-8.355-1.356-11.901-3.359v0.331c0,13.051,9.053,23.937,21.074,26.403c-2.201,0.632-4.523,0.948-6.92,0.948    c-1.69,0-3.343-0.162-4.944-0.478c3.343,10.694,13.035,18.483,24.53,18.691c-8.986,7.227-20.315,11.533-32.614,11.533    c-2.119,0-4.215-0.123-6.266-0.37c11.623,7.627,25.432,12.088,40.255,12.088c48.309,0,74.717-41.026,74.717-76.612    c0-1.171-0.023-2.342-0.068-3.49C120.036,33.433,124.491,28.695,128,23.294" fill-rule="evenodd" id="Twitter_1_"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://kingbbode.github.io/posts/jsonp', 'newwindow', 'width=500, height=500'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Facebook_1_"><rect fill="none" height="128" width="128"/><path clip-rule="evenodd" d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z" fill-rule="evenodd" id="Facebook"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://kingbbode.github.io/posts/jsonp', 'newwindow', 'width=550, height=400'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" version="1.1" viewBox="0 0 128 128" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x35__stroke"><g id="Google_Plus"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M40.654,55.935v16.13    c0,0,15.619-0.021,21.979-0.021C59.189,82.5,53.834,88.194,40.654,88.194c-13.338,0-23.748-10.832-23.748-24.194    s10.41-24.194,23.748-24.194c7.052,0,11.607,2.483,15.784,5.944c3.344-3.35,3.065-3.828,11.573-11.877    c-7.222-6.586-16.822-10.6-27.357-10.6C18.201,23.273,0,41.507,0,64c0,22.493,18.201,40.727,40.654,40.727    c33.561,0,41.763-29.275,39.044-48.792H40.654z M113.912,56.742V42.628h-10.063v14.113H89.358v10.081h14.491v14.517h10.063V66.823    H128V56.742H113.912z" fill-rule="evenodd" id="Google_Plus_1_"/></g></g></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    @Copyright 2017 by <a href="/about" title="About me">Kingbbode</a> / template for Jekyll built by <a href="/about" title="About me">Nielsen Ramon</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-75876601-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

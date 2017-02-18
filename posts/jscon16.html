@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kingbbode | JSCON:16</title>
+  <meta name="description" content="세미나 정리 및 후기">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="JSCON:16">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kingbbode.github.io/posts/jscon16">
+  <meta property="og:description" content="세미나 정리 및 후기">
+  <meta property="og:site_name" content="Kingbbode">
+  <meta property="og:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://kingbbode.github.io/posts/jscon16">
+  <meta name="twitter:title" content="JSCON:16">
+  <meta name="twitter:description" content="세미나 정리 및 후기">
+  <meta name="twitter:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://kingbbode.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Kingbbode Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Kingbbode">
+    <img src="https://www.gravatar.com/avatar/f4c8a1baaf62285612634ec4eec327fd?s=150" alt="kingbbode" style="width:135px;height: 135px;border-radius:100%;margin: auto;display:block;">
+    Kingbbode
+  </a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/iwannaknowcoding" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/kingbbode" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:kingbbode@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>JSCON:16</h1>
+            <p>세미나 정리 및 후기</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                September 1, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  4 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/seminar">seminar</a>
+                
+                  <a href="/tag/web">web</a>
+                
+                  <a href="/tag/javascript">javascript</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h2 id="session-1-reactive-component-그리고-angularjs-20">Session 1. Reactive, Component 그리고 AngularJS 2.0</h2>
+
+<ul>
+  <li>프레임워크에서 플랫폼으로!(Framework to Platform)
+    <ul>
+      <li>Material, Angular Mobile, Universal(서버사이드 랜더링), CLI, Augury 등등</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="angular-cli">Angular CLI</h4>
+
+<ul>
+  <li>기본적인 환경설정을 ‘ng’ command 사용으로 쉽게.</li>
+  <li>webpack을 사용하기 위해선 브랜치를 설정해야 함.</li>
+  <li>beta 버전이라 아직 바뀌는 것이 많음.</li>
+  <li>ng -g
+    <ul>
+      <li>model, component 등 모듈 생성</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="컴포넌트">컴포넌트</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Directive + Controller = Component
+</code></pre>
+</div>
+
+<ul>
+  <li>웹 프레임워크의 발전
+    <ul>
+      <li>Library -&gt; Framework -&gt; Component</li>
+    </ul>
+  </li>
+  <li>컴파일 방식의 변화
+    <ul>
+      <li>app과 randering 로직의 분리</li>
+      <li>서버사이드 랜더링 가능.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="reactive">Reactive</h4>
+
+<ul>
+  <li>Observables
+    <ul>
+      <li>연속적인 Async, Stream Data를 처리</li>
+      <li>Promise는 Single?, Observable은 Muilti?</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="session-2-webpack-실무-적용전략">Session 2. Webpack 실무 적용전략</h2>
+<blockquote>
+  <p><a href="http://slides.com/odyss/webpack">자료</a></p>
+</blockquote>
+
+<h4 id="webpack이란">Webpack이란?</h4>
+<ul>
+  <li>bundling 도구
+    <ul>
+      <li>css, image, js 등 모두</li>
+    </ul>
+  </li>
+  <li>grunt, gulp 등 대체?</li>
+  <li>비동기 로딩 지원</li>
+  <li>loader, plugin이 많음</li>
+</ul>
+
+<h4 id="bower---npm">bower -&gt; NPM</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>- jquery plugin moved to npm
+- npm에 플러긴이 더 많음
+- 주요모듈들이 npm에 등록
+</code></pre>
+</div>
+
+<h4 id="npm-version-management">NPM Version Management</h4>
+<div class="highlighter-rouge"><pre class="highlight"><code>npm install -g npm-check-updates
+</code></pre>
+</div>
+<ul>
+  <li>ncu</li>
+  <li>updtr</li>
+  <li>GreenKeeper</li>
+</ul>
+
+<hr />
+
+<h2 id="session-3-ecma2015-inside">Session 3. ECMA2015 Inside</h2>
+<blockquote>
+  <p><a href="http://github.com/shallaa/async">자료</a></p>
+</blockquote>
+
+<ul>
+  <li>ECMA 스펙의 가장 큰 변화</li>
+  <li>ES5의 완벽한 상위 집합</li>
+  <li>완벽한 상위 집합이기 때문에 ECMA5에서 가지고 있던 버그를 수정하지 못했음.</li>
+</ul>
+
+<h4 id="promise">Promise</h4>
+
+<ul>
+  <li>
+    <p>실무에서 new Promise()보다는 Promise.resolve를 사용.</p>
+  </li>
+  <li>
+    <p>Promise 동작은 체이닝(연쇄 then)</p>
+  </li>
+  <li>Promise.all
+    <ul>
+      <li>값을 전부 확인</li>
+    </ul>
+  </li>
+  <li>Promise.race
+    <ul>
+      <li>값을 순차적 확인</li>
+    </ul>
+  </li>
+  <li>Job Queue
+    <ul>
+      <li>Promise 흐름을 잘 쓰기 위해 Job Queue를 이해해야함.</li>
+      <li>연속되는 이벤트 큐의 마지막에 추가되는 큐.</li>
+      <li>then 함수를 Job Queue에 적재.</li>
+      <li>Job Queue를 해소한 후에 Event가 넘어감.</li>
+    </ul>
+  </li>
+  <li>Promise의 한계
+    <ul>
+      <li>예외처리
+        <ul>
+          <li>논리적으로 완벽한 catch가 불가능</li>
+        </ul>
+      </li>
+      <li>단일귀결
+        <ul>
+          <li>Promise가 귀결되었기 때문에 내부 동적 Event를 캐치할 수 없음</li>
+          <li>해결하기 위해서는 내부에서 Promise 새로 생성</li>
+        </ul>
+      </li>
+      <li>취소 불가
+        <ul>
+          <li>한번 실행된 Promise는 취소할 수 없음.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="generator">Generator</h4>
+
+<ul>
+  <li>iterable / iterator
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>   <span class="kr">const</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">]</span>
+   <span class="kr">const</span> <span class="nx">it</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">]();</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">it</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 1</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">it</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 3</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">it</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 5</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">it</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 7</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">it</span><span class="p">.</span><span class="nx">next</span><span class="p">().</span><span class="nx">value</span><span class="p">);</span> <span class="c1">// 9</span>
+</code></pre>
+    </div>
+  </li>
+  <li>호출시 iterator를 반환</li>
+  <li>yield
+    <div class="language-javascript highlighter-rouge"><pre class="highlight"><code>      <span class="o">*</span><span class="nx">gen</span><span class="p">(){</span>
+          <span class="k">yield</span> <span class="mi">1</span><span class="p">;</span>
+          <span class="k">yield</span> <span class="mi">1</span><span class="p">;</span>
+      <span class="p">}</span>
+</code></pre>
+    </div>
+    <ul>
+      <li>yield를 만나면 제어권을 상위 호출로 넘겨줌</li>
+      <li>제어권을 넘어갔다는 것은 generator 함수가 종료된 것이 아닌, 일시정지 상태?라고 보면 됨.</li>
+    </ul>
+  </li>
+  <li>return 예외처리
+  내/외부 [try, catch, throw] 등 사용</li>
+</ul>
+
+<h4 id="generator--promise">Generator + Promise</h4>
+<ul>
+  <li><strong>generator에서 비동기적인 코드를 깔끔하게 처리</strong></li>
+  <li>항상 같은 코드를 작성하기 어려우므로 Generator 실행기 사용
+    <ul>
+      <li><a href="http://github.com/shallaa/async">Git 참고</a></li>
+      <li>http://github.com/shallaa/async</li>
+      <li>kangax.github.io/compat-table/es5/</li>
+      <li>http://es6-feture..</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="session-4-reactjs-실-서비스-적용하기">Session 4. react.js 실 서비스 적용하기</h2>
+
+<h4 id="쿠팡-react-도입-시도">쿠팡 React 도입 시도</h4>
+<blockquote>
+  <ul>
+    <li>문제점
+      <ul>
+        <li>환경적인 문제</li>
+        <li>개발시의 문제점
+          <ul>
+            <li>별도의 gulp watch를 실행해야 함</li>
+            <li>gulp를 통한 rebuild가 너무 오래 걸림</li>
+          </ul>
+        </li>
+        <li>deploy process 문제</li>
+        <li><strong>IE7 미지원</strong></li>
+      </ul>
+    </li>
+    <li>결국 여행딜 React 도입 Drop</li>
+    <li>후에 호텔예약에 IE7을 버리고 도입</li>
+    <li>결국 IE7은 버려야함…</li>
+  </ul>
+</blockquote>
+
+<h4 id="front-end-tool">Front-End Tool</h4>
+<ul>
+  <li>Babel</li>
+  <li>Webpack
+    <ul>
+      <li>의존성 추적으로 패키지 리펙토링 가능</li>
+      <li>외부 라이브러리는 CDN 사용. 번들링 x.</li>
+    </ul>
+  </li>
+  <li>Webpack-dev-server</li>
+  <li>dummy-server</li>
+</ul>
+
+<h4 id="좋았던-점">좋았던 점</h4>
+<ul>
+  <li>state와 props를 통해서만 Component 간의 데이터가 흐르므로 데이터 흐름 파악이 용이해서 좋았음.</li>
+  <li>propTypes를 통한 type checking</li>
+  <li>일관된 this context</li>
+  <li>state update시 알아서 화면이 바뀌므로 rendering에 신경 쓸 부분이 줄어듦</li>
+  <li>Component 재사용 좋았음</li>
+</ul>
+
+<h4 id="별로인-점">별로인 점</h4>
+<ul>
+  <li>학습비용이 큼</li>
+  <li>probs chaining 문제
+    <ul>
+      <li>input 처리(한글 밀림)</li>
+      <li>간단한 DOM 조작도 복잡할 경우 있음</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="tips">Tips</h4>
+<ul>
+  <li>window 7 문제
+    <ul>
+      <li>npm 2.x.x가 긴 경로명 때문에 문제 생기므로 npm 3.x.x 사용 권장</li>
+      <li>일부 모듈 window7 안깔림</li>
+      <li>watch 성능 떨어짐.</li>
+    </ul>
+  </li>
+  <li>Client Side Rendering
+    <ul>
+      <li>Dummy Markup 처리</li>
+    </ul>
+  </li>
+  <li>IE
+    <ul>
+      <li>react.js 0.14 버전은 IE 8부터 지원</li>
+      <li>차기 버전(.15)부터는 IE 9 부터 지원</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="session-5-react-native">Session 5. React Native</h2>
+
+<p><strong>‘쏘카’의 ‘제로카’가 React Native로!</strong></p>
+
+<h4 id="선택-동기">선택 동기</h4>
+<ul>
+  <li>기간이 촉박</li>
+  <li>개발 리소스가 웹 개발자 뿐</li>
+  <li>웹뷰는 속도도 느리고 별로.</li>
+  <li>NativeScript는 신뢰 떨어짐.</li>
+</ul>
+
+<h4 id="장점">장점</h4>
+<ul>
+  <li>React + Redux + ES6</li>
+  <li>Flex Layout</li>
+  <li>No compile, Hot-reload</li>
+  <li>javascript(npm 모듈 사용)</li>
+  <li>code push</li>
+  <li>Unit Test</li>
+</ul>
+
+<h4 id="단점">단점</h4>
+<ul>
+  <li>Navigation</li>
+  <li>Schrodinger’s cat in box</li>
+  <li>Performance</li>
+  <li>등등..</li>
+</ul>
+
+<hr />
+
+<h2 id="session-6-spring과-nodejs의-공존">Session 6. Spring과 nodejs의 공존!!</h2>
+
+<h3 id="j2v8을-활용한-자바에-빌붙기">J2V8을 활용한 자바에 빌붙기</h3>
+<blockquote>
+  <p><a href="http://slideshare.net/iolo/javaspring-nodejs-2">자료</a><br />
+<a href="http://github.com/iolo/spring/jscon-springboard-demo">git</a></p>
+</blockquote>
+
+<h3 id="nashorn">Nashorn</h3>
+<ul>
+  <li>Java에서 javascript를!</li>
+  <li>속도도 빠름</li>
+  <li>React Isomorphic에 적합</li>
+</ul>
+
+<h3 id="scripttemplate">ScriptTemplate</h3>
+<ul>
+  <li>ScriptTemplateView
+    <ul>
+      <li>Spring 4.2</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="nodejs">Node.js</h3>
+<ul>
+  <li>서버단과 프론트단을 분리하여 사용.</li>
+</ul>
+
+<h3 id="j2v8">J2V8</h3>
+<ul>
+  <li>속도가 빠름</li>
+  <li>아직 몇몇 문제가 많음</li>
+  <li>JNI performance bottleneck</li>
+  <li>CPU 사용률이 높음.(조금)</li>
+  <li><strong>require를 사용 가능</strong></li>
+  <li>커스터미아징을 거쳐 isomorphic이 나즈혼보다 빠름.</li>
+  <li>ScriptTemplate의 Nashorn 부분만 J2V8로 교체하여 Spring 사용.</li>
+</ul>
+
+<hr />
+
+<h2 id="후기">후기</h2>
+<blockquote>
+  <ul>
+    <li>각 세션의 구성과 내용은 정말 좋았다.
+관심있는 분야가 아닌 세션도 있었지만 발표자분들의 개발에 대한 열정에 감탄하였다.</li>
+    <li>계속 백엔드 분야의 개발 세미나만 참석하다가 GDG 세미나에 이어 JSCON까지 연속으로 프론트엔드 분야의 세미나에 참석하게 되었다.
+두 번째 프론트엔드 세미나를 참석하며 느낀 것은 프론트엔드와 백엔드 개발의 주된 관점과 포커스가 다른 것을 많이 느낄 수 있었다.
+그동안 백엔드, 프론트엔드를 함께 개발하며 내가 각 영역에서 무엇을 생각하며 개발하였었는지를 다시 한번 돌아보는 계기가 되었다.</li>
+    <li>마지막 세션에서 소개한 ‘Nashorn’은 ‘Scouter APM’과 더불어 최근 내 최대 관심사였다. 이 세션이 공개되고나서 엄청나게 기대를하였다.
+정말 완벽하게 기대했던 내용 이상이여서 정말 감사하였다. 장동수님은 ‘J2V8’을 주인공으로 사용하였지만, 나는 나대로 ‘Nashron’을 좀 더 깊게 공부해보려고 한다.</li>
+  </ul>
+</blockquote>
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=JSCON:16 - https://kingbbode.github.io/posts/jscon16 ', 'newwindow', 'width=500, height=225'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Twitter"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M128,23.294    c-4.703,2.142-9.767,3.59-15.079,4.237c5.424-3.328,9.587-8.606,11.548-14.892c-5.079,3.082-10.691,5.324-16.687,6.526    c-4.778-5.231-11.608-8.498-19.166-8.498c-14.493,0-26.251,12.057-26.251,26.927c0,2.111,0.225,4.16,0.676,6.133    C41.217,42.601,21.871,31.892,8.91,15.582c-2.261,3.991-3.554,8.621-3.554,13.552c0,9.338,4.636,17.581,11.683,22.412    c-4.297-0.131-8.355-1.356-11.901-3.359v0.331c0,13.051,9.053,23.937,21.074,26.403c-2.201,0.632-4.523,0.948-6.92,0.948    c-1.69,0-3.343-0.162-4.944-0.478c3.343,10.694,13.035,18.483,24.53,18.691c-8.986,7.227-20.315,11.533-32.614,11.533    c-2.119,0-4.215-0.123-6.266-0.37c11.623,7.627,25.432,12.088,40.255,12.088c48.309,0,74.717-41.026,74.717-76.612    c0-1.171-0.023-2.342-0.068-3.49C120.036,33.433,124.491,28.695,128,23.294" fill-rule="evenodd" id="Twitter_1_"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://kingbbode.github.io/posts/jscon16', 'newwindow', 'width=500, height=500'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Facebook_1_"><rect fill="none" height="128" width="128"/><path clip-rule="evenodd" d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z" fill-rule="evenodd" id="Facebook"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://kingbbode.github.io/posts/jscon16', 'newwindow', 'width=550, height=400'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" version="1.1" viewBox="0 0 128 128" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x35__stroke"><g id="Google_Plus"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M40.654,55.935v16.13    c0,0,15.619-0.021,21.979-0.021C59.189,82.5,53.834,88.194,40.654,88.194c-13.338,0-23.748-10.832-23.748-24.194    s10.41-24.194,23.748-24.194c7.052,0,11.607,2.483,15.784,5.944c3.344-3.35,3.065-3.828,11.573-11.877    c-7.222-6.586-16.822-10.6-27.357-10.6C18.201,23.273,0,41.507,0,64c0,22.493,18.201,40.727,40.654,40.727    c33.561,0,41.763-29.275,39.044-48.792H40.654z M113.912,56.742V42.628h-10.063v14.113H89.358v10.081h14.491v14.517h10.063V66.823    H128V56.742H113.912z" fill-rule="evenodd" id="Google_Plus_1_"/></g></g></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    @Copyright 2017 by <a href="/about" title="About me">Kingbbode</a> / template for Jekyll built by <a href="/about" title="About me">Nielsen Ramon</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-75876601-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>
