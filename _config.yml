@@ -1,51 +1,64 @@
-# visit https://github.com/mojombo/jekyll/wiki/Configuration for more settings
+# Mandatory settings
 
-paginate: 4 # pagination based on number of posts
-paginate_path: "page:num"
-exclude: ["README.md"] # files to exclude
-highlighter: rouge
-markdown: kramdown
-disqus:
-google_analytics: UA-75876601-1
-# Enter your Facebook app-code
-facebook_user_id: kingbbode.dev
-facebook_app_id: 1024035644361984
+name: Kingbbode
+paginate: 4
+paginate_path: "/posts/page/:num/"
+url: https://kingbbode.github.io
+blog_theme: dark
 
-title: kingbbode
+# Optional settings
 
+discus_identifier:
+ga_analytics: UA-75876601-1
+rss_enabled: true
+about_enabled: true
+social:
+  dribbble: kingbbode
+  github: kingbbode
+  twitter: kingbbode
+  email: kingbbode@gmail.com
+  tistory: kingbbode
+  facebook: iwannaknowcoding
+
+# Important settings (change at own risk)
+
+assets:
+  compress:
+    css: true
+    js: true
+  features:
+    automatic_img_size: false
+  sources:
+    - _assets/bower
+    - _assets/fonts
+    - _assets/images
+    - _assets/javascripts
+    - _assets/stylesheets
+    - _vendor/
+collections:
+  my_tags:
+    output: true
+    permalink: /tag/:slug/
 defaults:
   -
     scope:
-      path: "" # empty string for all files
+      path: ""
+      type: my_tags
     values:
-      title: KINGBBODE 개발노트
-
-collections:
-  jwp:
-    output: true
-  algorithm:
-    output: true
-
-description: Portal Web Developer
-author:
-  name: kingbbode
-  email: kingbbode@gmail.com
-  github: kingbbode
-  twitter:
-  linkedin:
-  bio: Portal Web Developer
-  email_md5: f4c8a1baaf62285612634ec4eec327fd
-  blog: http://kingbbode.tistory.com
-
-rss_path: feed.xml
-categories_path: categories.html
-tags_path: tags.html
-about_path: about.html
-
-# set it as url of an image
-# sidebar_background_image: https://www.dropbox.com/s/g9h23zrycedxtk5/sky.png?raw=1
-
-BASE_PATH:
-
+      layout: articles_by_tag
+exclude:
+  - .bowerrc
+  - .travis.yml
+  - bin/*
+  - bower.json
+  - circle.yml
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor/
 gems:
+  - jekyll-assets
   - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji
+permalink: posts/:slug

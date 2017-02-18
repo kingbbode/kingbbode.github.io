@@ -1,53 +1,39 @@
 ---
-layout: page
-permalink: 404.html
+permalink: /404.html
+sitemap: false
 ---
-<!----------------------------------------------------------------
-     _ _           _ _          
-  __| | |__  _   _| | |         Ascii arts included in this page:
- / _` | '_ \| | | | | |         - R2D2, provided by: http://www.chris.com/
-| (_| | |_) | |_| | | |         - Texts, generated from: http://www.network-science.de/ascii/
- \__,_|_.__/ \__, |_|_|         http://github.com/dbtek/dbyll
--------------|___/------------------------------------------------>
 
-  <style>
-    pre {
-          background: none;
-          border: none;
-    }
-  </style>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{{ site.name }} | Page not found</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <pre>
+  {% if site.blog_theme == "light" %}
+    {% stylesheet notfound-light %}
+  {% else %}
+    {% stylesheet notfound-dark %}
+  {% endif %}
+</head>
+<body>
+  <main role="main" class="notfound-wrapper">
+    <div class="notfound-content">
+      <h1><a href="{{ '/' | relative_url }}" title="Back to homepage">{{ site.name }}</a></h1>
+      <p>
+        Looks like you got lost. Let's get you back to the <a href="{{ '/' | relative_url }}">homepage</a>!
+      </p>
+    </div>
+  </main>
 
-                       444444444       000000000            444444444   
-                      4::::::::4     00:::::::::00         4::::::::4  
-                     4:::::::::4   00:::::::::::::00      4:::::::::4  
-                    4::::44::::4  0:::::::000:::::::0    4::::44::::4  
-                   4::::4 4::::4  0::::::0   0::::::0   4::::4 4::::4  
-                  4::::4  4::::4  0:::::0     0:::::0  4::::4  4::::4  
-                 4::::4   4::::4  0:::::0     0:::::0 4::::4   4::::4  
-                4::::444444::::4440:::::0 000 0:::::04::::444444::::444
-                4::::::::::::::::40:::::0 000 0:::::04::::::::::::::::4
-                4444444444:::::4440:::::0     0:::::04444444444:::::444
-                          4::::4  0:::::0     0:::::0          4::::4  
-                          4::::4  0::::::0   0::::::0          4::::4  
-                          4::::4  0:::::::000:::::::0          4::::4  
-                        44::::::44 00:::::::::::::00         44::::::44
-                        4::::::::4   00:::::::::00           4::::::::4
-                        4444444444     000000000             4444444444
-
-         ,-----.             _   _     _           _                 _     _               _   
-       ,'_/_|_\_`.          | |_| |__ (_)___   ___| |__   ___  _   _| | __| |  _ __   ___ | |_ 
-      /<<::8[O]::>\         | __| '_ \| / __| / __| '_ \ / _ \| | | | |/ _` | | '_ \ / _ \| __|
-     _|-----------|_        | |_| | | | \__ \ \__ \ | | | (_) | |_| | | (_| | | | | | (_) | |_ 
- :::|  | ====-=- |  |:::     \__|_| |_|_|___/ |___/_| |_|\___/ \__,_|_|\__,_| |_| |_|\___/ \__|
- :::|  | -=-==== |  |:::                                                                         
- :::\  | ::::|()||  /:::     _                                                          
- ::::| | ....|()|| |::::    | |__   __ _ _ __  _ __   ___ _ __       _____   _____ _ __ 
-     | |_________| |        | '_ \ / _` | '_ \| '_ \ / _ \ '_ \     / _ \ \ / / _ \ '__|
-     | |\_______/| |        | | | | (_| | |_) | |_) |  __/ | | |_  |  __/\ V /  __/ |   
-    /   \ /   \ /   \       |_| |_|\__,_| .__/| .__/ \___|_| |_( )  \___| \_/ \___|_|   
-    `---' `---' `---'                   |_|   |_|              |/                       
-
-
-    </pre>
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+  <script>
+    WebFont.load({
+      google: {
+        families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+      }
+    });
+  </script>
+</body>
+</html>
