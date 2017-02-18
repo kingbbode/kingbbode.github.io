@@ -6,7 +6,7 @@ $(document).on('turbolinks:load', function (event) {
 
   // Track page views on Turbolinks
   if (typeof ga === 'function') {
-    if(event.data[url]){
+    if(event.data['url']){
       ga('set', 'location', event.data.url)
     }
     ga('send', 'pageview')
