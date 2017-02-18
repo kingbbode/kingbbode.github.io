@@ -2,7 +2,7 @@
 layout: post
 title: W3C HTML5 Conference 2016
 categories: [seminar]
-tags: [seminar, web, html, angularjs, es6, rendering, universal]
+tags: [seminar, javascript]
 fullview: false
 comments: true
 published: true

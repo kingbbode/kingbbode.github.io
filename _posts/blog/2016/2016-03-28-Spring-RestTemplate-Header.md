@@ -2,7 +2,7 @@
 layout: post
 title: Spring RestTemplate Post Header & Json
 categories: [blog]
-tags: [Spring,RestTemplate]
+tags: [spring, web, http]
 fullview: false
 comments: true
 published: true

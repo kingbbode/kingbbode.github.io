@@ -2,7 +2,7 @@
 layout: post
 title: (2) 스프링, isomorphic, 서버사이드 렌더링 - Handlebars
 categories: [blog]
-tags: [spring,isomorphic,template,hadlebars]
+tags: [spring, web]
 fullview: false
 comments: true
 published: true

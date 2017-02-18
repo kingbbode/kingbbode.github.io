@@ -2,7 +2,7 @@
 layout: post
 title: Jquery Plugin 소개 - form 데이터를 Object로 만들기
 categories: [blog]
-tags: [javascript,jquery,form,spa,ajax]
+tags: [web, javascript]
 fullview: false
 comments: true
 published: true

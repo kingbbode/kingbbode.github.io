@@ -2,7 +2,7 @@
 layout: post
 title: Spring Boot로 TEAMUP BOT 만들기 - (1)
 categories: [blog]
-tags: [Spring,boot,bot,teamup]
+tags: [spring, chatbot]
 fullview: false
 comments: true
 published: true

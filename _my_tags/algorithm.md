@@ -1,0 +1,4 @@
+---
+slug: algorithm
+name: Algorithm
+---

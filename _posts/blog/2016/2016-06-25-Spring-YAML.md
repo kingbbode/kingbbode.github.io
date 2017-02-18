@@ -2,7 +2,7 @@
 layout: post
 title: Spring Boot, YAML 적용
 categories: [blog]
-tags: [Spring,XML,YAML,properties]
+tags: [spring]
 fullview: false
 comments: true
 published: true

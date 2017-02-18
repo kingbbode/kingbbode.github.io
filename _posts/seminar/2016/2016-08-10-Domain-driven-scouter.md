@@ -2,7 +2,7 @@
 layout: post
 title: 도메인 드리븐 정기 세미나 - Scouter
 categories: [seminar]
-tags: [seminar, scouter, apm]
+tags: [seminar, apm]
 fullview: false
 comments: true
 published: true

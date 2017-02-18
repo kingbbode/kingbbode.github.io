@@ -2,7 +2,7 @@
 layout: post
 title: 도메인 드리븐 정기 세미나 - TDD
 categories: [seminar]
-tags: [seminar, tdd]
+tags: [seminar, spring, tdd]
 fullview: false
 comments: true
 published: true

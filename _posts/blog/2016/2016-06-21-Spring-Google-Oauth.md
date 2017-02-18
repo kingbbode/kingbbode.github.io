@@ -2,7 +2,7 @@
 layout: post
 title: 스프링에서 구글 API 연동 (1)Oauth 인증
 categories: [blog]
-tags: [Oauth,Spring,Google API]
+tags: [spring, oauth]
 fullview: false
 comments: true
 published: true

@@ -2,7 +2,7 @@
 layout: post
 title: Spring - Open Session In View Pattern
 categories: [blog]
-tags: [spring,boot,jpa,osiv,hibernate,spring layer]
+tags: [spring, orm]
 fullview: false
 comments: true
 published: true

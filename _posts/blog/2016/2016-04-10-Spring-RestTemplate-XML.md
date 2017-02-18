@@ -2,7 +2,7 @@
 layout: post
 title: Spring RestTemplate Response XML
 categories: [blog]
-tags: [Spring,RestTemplate,XML]
+tags: [spring, web, java]
 fullview: false
 comments: true
 published: true

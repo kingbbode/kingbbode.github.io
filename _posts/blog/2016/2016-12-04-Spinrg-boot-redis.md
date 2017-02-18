@@ -2,7 +2,7 @@
 layout: post
 title: Spring Boot에서 Redis 사용하기
 categories: [blog]
-tags: [spring boot,redis,nosql]
+tags: [spring, database]
 fullview: false
 comments: true
 published: true

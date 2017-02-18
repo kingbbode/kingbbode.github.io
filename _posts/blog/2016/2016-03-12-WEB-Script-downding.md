@@ -2,7 +2,7 @@
 layout: post
 title: 스크립트 동시, 병렬 다운로드
 categories: [blog]
-tags: [javascript,performance]
+tags: [web, javascript]
 fullview: false
 comments: true
 published: true

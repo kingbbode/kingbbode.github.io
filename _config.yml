@@ -13,9 +13,9 @@ ga_analytics: UA-75876601-1
 rss_enabled: true
 about_enabled: true
 social:
-  dribbble: kingbbode
+  dribbble:
   github: kingbbode
-  twitter: kingbbode
+  twitter:
   email: kingbbode@gmail.com
   tistory: kingbbode
   facebook: iwannaknowcoding

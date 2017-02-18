@@ -2,7 +2,7 @@
 layout: post
 title: 구글 IO 2016 EXTENDED
 categories: [seminar]
-tags: [seminar]
+tags: [seminar, web]
 fullview: false
 comments: true
 published: true

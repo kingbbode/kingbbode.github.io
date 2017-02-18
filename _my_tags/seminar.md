@@ -1,0 +1,4 @@
+---
+slug: seminar
+name: Seminar
+---

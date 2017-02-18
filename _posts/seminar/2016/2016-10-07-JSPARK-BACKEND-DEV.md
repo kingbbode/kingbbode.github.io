@@ -2,7 +2,7 @@
 layout: post
 title: 학습 방법 및 웹 BackEnd 개발자 학습 로드맵 - 박재성
 categories: [seminar]
-tags: [seminar]
+tags: [seminar, java]
 fullview: false
 comments: true
 published: true

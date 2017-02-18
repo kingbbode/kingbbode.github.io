@@ -2,7 +2,7 @@
 layout: post
 title: Window에서 Aerospike 구축
 categories: [blog]
-tags: [db,nosql,aerospike]
+tags: [database]
 fullview: false
 comments: true
 published: true

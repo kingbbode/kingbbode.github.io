@@ -2,7 +2,7 @@
 layout: post
 title: GDG - 측정하는 놈:그리는 놈:로딩하는 놈
 categories: [seminar]
-tags: [seminar]
+tags: [seminar, web]
 fullview: false
 comments: true
 published: true

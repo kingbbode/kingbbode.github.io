@@ -2,7 +2,7 @@
 layout: post
 title: 내 서비스에 Scouter APM 적용해보기
 categories: [blog]
-tags: [APM,Scouter,performance]
+tags: [apm]
 fullview: false
 comments: true
 published: true
