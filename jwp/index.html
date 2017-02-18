@@ -6,8 +6,6 @@ description: "Chalk uses all the best tools and merges them into one premium blo
 
 <h3>패스트캠퍼스 자바 웹프로그래밍 캠프</h3>
 <ul class="article-list">
-  {% for post in paginator.posts %}
-    
 {% assign jwp = (site.jwp | sort: 'date') | reverse %}
 {% for post in jwp %}
 <li class="article-list-item reveal">
@@ -36,3 +34,4 @@ description: "Chalk uses all the best tools and merges them into one premium blo
   </div>
 </li>
 {% endfor %}
+</ul>
