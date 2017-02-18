@@ -1,34 +1,371 @@
----
-layout: default
-title: "The high quality, completely customizable, performant and 100% free blog template for Jekyll"
-description: "Chalk uses all the best tools and merges them into one premium blogging theme."
----
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kingbbode | The high quality, completely customizable, performant and 100% free blog template for Jekyll</title>
+  <meta name="description" content="Chalk uses all the best tools and merges them into one premium blogging theme.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<h3>패스트캠퍼스 자바 웹프로그래밍 캠프</h3>
+  <meta property="og:title" content="The high quality, completely customizable, performant and 100% free blog template for Jekyll">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kingbbode.github.io/jwp/">
+  <meta property="og:description" content="Chalk uses all the best tools and merges them into one premium blogging theme.">
+  <meta property="og:site_name" content="Kingbbode">
+  <meta property="og:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://kingbbode.github.io/jwp/">
+  <meta name="twitter:title" content="The high quality, completely customizable, performant and 100% free blog template for Jekyll">
+  <meta name="twitter:description" content="Chalk uses all the best tools and merges them into one premium blogging theme.">
+  <meta name="twitter:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://kingbbode.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Kingbbode Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Kingbbode">Kingbbode</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/kingbbode" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/iwannaknowcoding" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/kingbbode" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://dribbble.com/kingbbode" target="_blank" title="Dribbble">
+          <span class="icon icon-social-dribbble-outline"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:kingbbode@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <h3>패스트캠퍼스 자바 웹프로그래밍 캠프</h3>
 <hr>
 <div class="progress progress-striped">
-  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ site.jwp.size }}" aria-valuemin="0" aria-valuemax="30" style="width: 100%">
+  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="17" aria-valuemin="0" aria-valuemax="30" style="width: 100%">
     <span class="badge pull-right">끝</span>
   </div>
 </div>
 <hr>
-{% assign jwp = (site.jwp | sort: 'date') | reverse %}
-{% for post in jwp %}
+
+
 <article class="home">
   <h5>
-    <a href="{{ site.BASE_PATH }}{{ post.url }}">[패스트캠퍼스 자바 웹 프로그래밍 캠프] {{ post.title }}</a>
+    <a href="/jwp/2017-01-16-FAST-CAMPUS-17">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 열일곱번째 강의</a>
   </h5>
   <span class="post-date">
-    {% assign d = post.date | date: "%d" | plus:'0' %}
-    {{ post.date | date: "%B" }}
-    {% case d %}
-    {% when 1 or 21 or 31 %}{{ d }}st,
-    {% when 2 or 22 %}{{ d }}nd,
-    {% when 3 or 23 %}{{ d }}rd,
-    {% else %}{{ d }}th,
-    {% endcase %}
-    {{ post.date | date: "%Y" }}
+    
+    January
+    16th,
+    
+    2017
   </span>
 </article>
 <hr>
-{% endfor %}
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2017-01-09-FAST-CAMPUS-16">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 열여섯번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    January
+    9th,
+    
+    2017
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2017-01-09-FAST-CAMPUS-15">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 열다번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    January
+    9th,
+    
+    2017
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2017-01-05-FAST-CAMPUS-14">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 열네번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    January
+    5th,
+    
+    2017
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2017-01-02-FAST-CAMPUS-13">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 열세번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    January
+    2nd,
+    
+    2017
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-29-FAST-CAMPUS-12">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 열두번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    29th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-26-FAST-CAMPUS-11">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 열한번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    26th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-22-FAST-CAMPUS-10">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 열번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    22nd,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-19-FAST-CAMPUS-9">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 아홉번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    19th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-15-FAST-CAMPUS-8">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 여덟번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    15th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-12-FAST-CAMPUS-7">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 일곱번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    12th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-08-FAST-CAMPUS-6">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 여섯번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    8th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-05-FAST-CAMPUS-5">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 다섯번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    5th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-12-01-FAST-CAMPUS-4">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 네번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    December
+    1st,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-11-28-FAST-CAMPUS-3">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 세번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    November
+    28th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-11-24-FAST-CAMPUS-2">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 두번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    November
+    24th,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+<article class="home">
+  <h5>
+    <a href="/jwp/2016-11-21-FAST-CAMPUS-1">[패스트캠퍼스 자바 웹 프로그래밍 캠프] 첫번째 강의</a>
+  </h5>
+  <span class="post-date">
+    
+    November
+    21st,
+    
+    2016
+  </span>
+</article>
+<hr>
+
+
+        <footer class="footer reveal">
+  <p>
+    <a href="/about" title="About me">Kingbbode</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-75876601-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

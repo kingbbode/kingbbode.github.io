@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kingbbode | 도메인 드리븐 정기 세미나 - Scouter</title>
+  <meta name="description" content="세미나 정리 및 후기">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="도메인 드리븐 정기 세미나 - Scouter">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kingbbode.github.io/posts/domain-driven-scouter">
+  <meta property="og:description" content="세미나 정리 및 후기">
+  <meta property="og:site_name" content="Kingbbode">
+  <meta property="og:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://kingbbode.github.io/posts/domain-driven-scouter">
+  <meta name="twitter:title" content="도메인 드리븐 정기 세미나 - Scouter">
+  <meta name="twitter:description" content="세미나 정리 및 후기">
+  <meta name="twitter:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://kingbbode.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Kingbbode Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Kingbbode">Kingbbode</a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://twitter.com/kingbbode" target="_blank" title="Twitter">
+          <span class="icon icon-social-twitter"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.facebook.com/iwannaknowcoding" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/kingbbode" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://dribbble.com/kingbbode" target="_blank" title="Dribbble">
+          <span class="icon icon-social-dribbble-outline"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:kingbbode@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>도메인 드리븐 정기 세미나 - Scouter</h1>
+            <p>세미나 정리 및 후기</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                August 10, 2016
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  2 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/seminar">seminar</a>
+                
+                  <a href="/tag/scouter">scouter</a>
+                
+                  <a href="/tag/apm">apm</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h3 id="모니터링">모니터링?</h3>
+<ul>
+  <li>UXM</li>
+  <li>NMS</li>
+  <li>SMS</li>
+  <li>APM</li>
+  <li>EMS</li>
+</ul>
+
+<h3 id="왜-필요한가">왜 필요한가?</h3>
+<blockquote>
+  <p>대부분 문제는 Application.<br />
+문제의 원인을 찾는 것이 중요하기 때문.</p>
+</blockquote>
+
+<h2 id="scouter">Scouter</h2>
+
+<h4 id="scouter-장점">Scouter 장점</h4>
+<ul>
+  <li>반응속도가 빠르다.</li>
+  <li>Object Request에 다양한 옵션으로 정보를 확인 가능.</li>
+  <li>TPS에서 시간대별 확인 가능()</li>
+  <li>XLog(Affected low count 제공)</li>
+  <li>WAS 한대에 100ms 줬을 때 5%?(제니퍼보다 작음)</li>
+  <li>수집 서버가 달라도 그룹핑 가능</li>
+  <li>모든게 바이너리기때문에 hbase기반보다는 훨씬 더 적게 쓸 수 있음(DB가 아닌 파일)</li>
+  <li>구성요소 배치가 매우 자유로움.</li>
+  <li>플러그인 달기 편함.</li>
+</ul>
+
+<h4 id="아키텍처">아키텍처</h4>
+<ul>
+  <li>Collector : 성능정보 수집</li>
+  <li>Client : 수집된 정보 요청</li>
+  <li>Agent : Host, Java</li>
+</ul>
+
+<h4 id="어떤-문제">어떤 문제?</h4>
+<ul>
+  <li>THread hang</li>
+  <li>Slow transaction</li>
+  <li>out of memory</li>
+  <li>unhandled exception</li>
+</ul>
+
+<h4 id="문제">문제</h4>
+<ul>
+  <li>Slow transaction
+    <ul>
+      <li>Active Service를 통해 모니터링 가능(THread 탐색)</li>
+      <li>XLog - Thread/Time 분포도 제공
+        <ul>
+          <li>상세 profile(쿼리(기본), method(옵션 설정))</li>
+          <li>Fetch 시간까지 제공해서 Gap 확인 용이(DB는 쿼리가 끝난 시간만 봄)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Thread hang
+    <ul>
+      <li>Thread List, Dump(Object List)</li>
+      <li>List로 확인 후 Dump로 자세히 확인</li>
+    </ul>
+  </li>
+  <li>out of memory
+    <ul>
+      <li>Memory leak
+        <ul>
+          <li>Heap Memory를 확인 가능(GC)
+            <ul>
+              <li>Heap Dump로 확인</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>대량건 조회
+        <ul>
+          <li>Thread Dump로 확인</li>
+        </ul>
+      </li>
+      <li>Heap histogram, Heap Dump***</li>
+      <li>XLog에 기본 설정으로 10000건 초과시(too many record exception)</li>
+    </ul>
+  </li>
+  <li>Resource leak
+    <ul>
+      <li>스카우터 옵션으로 알아서 찾아줌
+        <ul>
+          <li>profile_connection_open_enabled=true</li>
+          <li>tarce_rs_leak_enabled=false</li>
+          <li>tarce_stmt_leak_enabled=false</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>inefficient Logic / Logic outside of app
+    <ul>
+      <li>XLog, Thread Dump를 봐도 별 이상 없을 때</li>
+      <li>좋은 기능! SFA -(옵션으로 사용 가능, 다른 APM에 없음)
+        <ul>
+          <li>일정 시간 간격으로 Thread Dump를 모아 통계적 분석을 통해</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="scouter-for-service-architecture">Scouter for service architecture</h3>
+<blockquote>
+  <p>관계의 복잡성으로 인한 문제 발생.<br />
+<strong>cascading failure</strong></p>
+</blockquote>
+
+<p>모니터링 cross service tarcing이 중요.</p>
+
+<p>##Scouter 좋은 기능!!</p>
+
+<p>###PLUGIN</p>
+<ul>
+  <li>Simple Scripting Plugin
+    <ul>
+      <li>Apgent Plugin
+        <ul>
+          <li>Http Service Plugin
+            <ul>
+              <li>모든 HTTP 리퀘스트 요청 시작, 끝</li>
+            </ul>
+          </li>
+          <li>Http call Plugin</li>
+          <li>capture plugin
+            <ul>
+              <li>hook_args_patterns(ex)org.mybatis.spring~~)
+                <ul>
+                  <li>redefine class - Object Request - Loaded Class - 우클릭 Redefine</li>
+                </ul>
+              </li>
+              <li>class, method capture 가능.(hook_args_pattern으로))</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>collector server Plugin</li>
+    </ul>
+  </li>
+  <li>Built-in Plugin
+    <ul>
+      <li>Scouter-Alert-telegram</li>
+      <li>Scouter-Alert-Slack</li>
+      <li>Scouter-Alter-~~?</li>
+      <li>제작할 수 있음. 어렵지않음.만들어서 jar를 스카우터 서버의 lib에 넣고 스카우터 서버만 재실행</li>
+      <li>가이드 문서 있음</li>
+    </ul>
+  </li>
+  <li>Influxdb-plugin
+    <ul>
+      <li>블로그있음, 불완전;</li>
+      <li>demo.scouterapm.com:3000 scouter/scouter</li>
+    </ul>
+  </li>
+</ul>
+
+<p>###PULSE(릴리즈는 안됌)</p>
+<ul>
+  <li>http프로토콜을 이용한 성능 카운터 수집 I/F
+    <ul>
+      <li>숫자로 이루어진 데이터의 수집</li>
+    </ul>
+  </li>
+  <li>속도가 빠르진 않음.</li>
+  <li>쉽게 제작 가능</li>
+  <li>활용 예
+    <ul>
+      <li>Redis / Apache HTTPD 등의 perf stat 정보를 scouter로 전송하여 모니터링</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="정리">정리</h2>
+<p>elk 
+centralized logging / monitoring -&gt; 어플리케이션 수정 없이..</p>
+
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=도메인 드리븐 정기 세미나 - Scouter - https://kingbbode.github.io/posts/domain-driven-scouter by @kingbbode', 'newwindow', 'width=500, height=225'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Twitter"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M128,23.294    c-4.703,2.142-9.767,3.59-15.079,4.237c5.424-3.328,9.587-8.606,11.548-14.892c-5.079,3.082-10.691,5.324-16.687,6.526    c-4.778-5.231-11.608-8.498-19.166-8.498c-14.493,0-26.251,12.057-26.251,26.927c0,2.111,0.225,4.16,0.676,6.133    C41.217,42.601,21.871,31.892,8.91,15.582c-2.261,3.991-3.554,8.621-3.554,13.552c0,9.338,4.636,17.581,11.683,22.412    c-4.297-0.131-8.355-1.356-11.901-3.359v0.331c0,13.051,9.053,23.937,21.074,26.403c-2.201,0.632-4.523,0.948-6.92,0.948    c-1.69,0-3.343-0.162-4.944-0.478c3.343,10.694,13.035,18.483,24.53,18.691c-8.986,7.227-20.315,11.533-32.614,11.533    c-2.119,0-4.215-0.123-6.266-0.37c11.623,7.627,25.432,12.088,40.255,12.088c48.309,0,74.717-41.026,74.717-76.612    c0-1.171-0.023-2.342-0.068-3.49C120.036,33.433,124.491,28.695,128,23.294" fill-rule="evenodd" id="Twitter_1_"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://kingbbode.github.io/posts/domain-driven-scouter', 'newwindow', 'width=500, height=500'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Facebook_1_"><rect fill="none" height="128" width="128"/><path clip-rule="evenodd" d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z" fill-rule="evenodd" id="Facebook"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://kingbbode.github.io/posts/domain-driven-scouter', 'newwindow', 'width=550, height=400'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" version="1.1" viewBox="0 0 128 128" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x35__stroke"><g id="Google_Plus"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M40.654,55.935v16.13    c0,0,15.619-0.021,21.979-0.021C59.189,82.5,53.834,88.194,40.654,88.194c-13.338,0-23.748-10.832-23.748-24.194    s10.41-24.194,23.748-24.194c7.052,0,11.607,2.483,15.784,5.944c3.344-3.35,3.065-3.828,11.573-11.877    c-7.222-6.586-16.822-10.6-27.357-10.6C18.201,23.273,0,41.507,0,64c0,22.493,18.201,40.727,40.654,40.727    c33.561,0,41.763-29.275,39.044-48.792H40.654z M113.912,56.742V42.628h-10.063v14.113H89.358v10.081h14.491v14.517h10.063V66.823    H128V56.742H113.912z" fill-rule="evenodd" id="Google_Plus_1_"/></g></g></svg>
+            </a>
+          </div>
+
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    <a href="/about" title="About me">Kingbbode</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-75876601-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

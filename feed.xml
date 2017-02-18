@@ -1,20 +1,90 @@
----
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
-    <title>{{ site.name | xml_escape }}</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
-    <link>{{ site.url }}</link>
-    <atom:link href="{{ page.path | absolute_url }}" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:10 %}
+    <title>Kingbbode</title>
+    <description></description>
+    <link>https://kingbbode.github.io</link>
+    <atom:link href="https://kingbbode.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.description | xml_escape }}</description>
-        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
-        <link>{{ post.url | absolute_url }}</link>
-        <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+        <title>Jquery Plugin 소개 - form 데이터를 Object로 만들기</title>
+        <description>form 데이터와 실제 서버 데이터 스펙을 어떻게 맞추고 계신가요? 유용한 Jquery Plugin을 정리 및 소개합니다.</description>
+        <pubDate>Wed, 08 Feb 2017 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/jquery-serializeobject</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/jquery-serializeobject</guid>
       </item>
-    {% endfor %}
+    
+      <item>
+        <title>Spring - Open Session In View Pattern</title>
+        <description>나는 Spring Jpa의 동작을 잘 이해했을까? 뷰까지 확장되는 영속성 컨텍스트를 이해해보자.</description>
+        <pubDate>Sat, 14 Jan 2017 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/open-session-in-view</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/open-session-in-view</guid>
+      </item>
+    
+      <item>
+        <title>JSONP 알고 쓰자</title>
+        <description>JSONP를 처음 접하는 사람들은 다 똑같은 것을 헤메고 있었습니다. 그래서 정리했습니다. 도움이 되었으면 합니다.</description>
+        <pubDate>Sun, 18 Dec 2016 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/jsonp</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/jsonp</guid>
+      </item>
+    
+      <item>
+        <title>W3C HTML5 Conference 2016</title>
+        <description>조금 밖에 못들은.. W3C HTML5 Conference 2016..</description>
+        <pubDate>Wed, 07 Dec 2016 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/w3c-html5-conference-2016</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/w3c-html5-conference-2016</guid>
+      </item>
+    
+      <item>
+        <title>Spring Boot에서 Redis 사용하기</title>
+        <description>Redis를 쓰고 있으면서도 잘 몰랐습니다. 그래서 정리했습니다!</description>
+        <pubDate>Sun, 04 Dec 2016 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/spinrg-boot-redis</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/spinrg-boot-redis</guid>
+      </item>
+    
+      <item>
+        <title>XEcon 2016</title>
+        <description>오픈소스 프로젝트 XpressEngine(XE)과 PHP 웹 개발 관련 기술 및 지식을 공유하고 나눌 수 있는 컨퍼런스 XEcon! XE와 PHP를 모두 사용하지 않지만, 프론트엔드와 인프라 영역의 세션에서 주제가 너무 좋아서 참여했습니다!</description>
+        <pubDate>Sat, 26 Nov 2016 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/xecon-2016</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/xecon-2016</guid>
+      </item>
+    
+      <item>
+        <title>1년차 웹개발자</title>
+        <description>이제 막 1년을 넘긴 1년차 웹 개발자입니다. 지금까지를 뒤돌아보며, 생각을 정리하기 위하여 글을 작성합니다.</description>
+        <pubDate>Tue, 15 Nov 2016 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/who-am-i</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/who-am-i</guid>
+      </item>
+    
+      <item>
+        <title>Campus Recruiting Day</title>
+        <description>구글 캠퍼스 리쿠르팅 데이</description>
+        <pubDate>Thu, 10 Nov 2016 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/campus-recruting-day</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/campus-recruting-day</guid>
+      </item>
+    
+      <item>
+        <title>GDG DevFest Seoul 2016</title>
+        <description>한국 Google Developers Group의 개발 컨퍼런스!</description>
+        <pubDate>Sat, 05 Nov 2016 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/gdg-fest-seoul</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/gdg-fest-seoul</guid>
+      </item>
+    
+      <item>
+        <title>DEVIEW 2016</title>
+        <description>네이버 개발 컨퍼런스 DEVIEW 2016!</description>
+        <pubDate>Tue, 25 Oct 2016 00:00:00 +0900</pubDate>
+        <link>https://kingbbode.github.io/posts/deview-2016</link>
+        <guid isPermaLink="true">https://kingbbode.github.io/posts/deview-2016</guid>
+      </item>
+    
   </channel>
 </rss>
