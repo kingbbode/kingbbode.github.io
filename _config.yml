@@ -21,14 +21,8 @@ social:
   facebook: iwannaknowcoding
 
 # Important settings (change at own risk)
-collections:
-  jwp:
-    output: true
-  algorithm:
-    output: true
-    
+
 assets:
-  baseurl: http://kingbbode.github.io/master/assets
   compress:
     css: true
     js: true
@@ -45,6 +39,10 @@ collections:
   my_tags:
     output: true
     permalink: /tag/:slug/
+  jwp:
+    output: true
+  algorithm:
+    output: true
 defaults:
   -
     scope:
