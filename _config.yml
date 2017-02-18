@@ -23,7 +23,6 @@ social:
 # Important settings (change at own risk)
 
 assets:
-  baseurl: http://kingbbode.github.io/master/assets
   compress:
     css: true
     js: true
