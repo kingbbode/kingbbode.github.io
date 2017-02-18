@@ -9,7 +9,7 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
-    autoprefixer-rails (6.7.2)
+    autoprefixer-rails (6.7.3)
       execjs
     colorator (1.1.0)
     colored (1.2)
@@ -118,4 +118,4 @@ DEPENDENCIES
   uglifier
 
 BUNDLED WITH
-   1.13.7
+   1.14.4
