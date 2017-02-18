@@ -21,7 +21,12 @@ social:
   facebook: iwannaknowcoding
 
 # Important settings (change at own risk)
-
+collections:
+  jwp:
+    output: true
+  algorithm:
+    output: true
+    
 assets:
   baseurl: http://kingbbode.github.io/master/assets
   compress:
