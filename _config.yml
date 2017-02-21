@@ -1,5 +1,3 @@
-encoding: "utf-8"
-
 # Mandatory settings
 
 name: Kingbbode
@@ -69,3 +67,4 @@ gems:
   - jekyll-sitemap
   - jemoji
 permalink: posts/:slug
+encoding: utf-8
