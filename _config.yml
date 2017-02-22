@@ -8,7 +8,7 @@ blog_theme: dark
 
 # Optional settings
 
-discus_identifier:
+discus_identifier: kingbbode
 ga_analytics: UA-75876601-1
 rss_enabled: true
 about_enabled: true
