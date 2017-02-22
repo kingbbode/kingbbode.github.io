@@ -14,6 +14,12 @@ description : 웹 서비스(Spring Framework)의 세션을 Membase(현재의 Cou
 
 주 내용은 웹 서비스의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.
 
+**버그 트래킹 일지(1) - 시작은 사전지식 확보부터** <br>
+[버그 트래킹 일지(2) - 로그를 보자!](https://kingbbode.github.io/posts/bug-tracking-2)<br>
+[버그 트래킹 일지(3) - 임시방편보단 장기적으로](https://kingbbode.github.io/posts/bug-tracking-3)<br>
+[버그 트래킹 일지(4) - 의심하고 또 의심하자](https://kingbbode.github.io/posts/bug-tracking-4)<br>
+[버그 트래킹 일지(5) - 대망의 적용 배포 그리고 결론](https://kingbbode.github.io/posts/bug-tracking-5)
+
 ### 버그트래킹 환경
 
 -	Membase Server
@@ -234,4 +240,4 @@ Memcached는 vBucket을 기반으로 해당 데이터가 어디에 있는지 판
 
 아마 Membase와 Spring의 Session의 모든 것을 공부하려면, 몇주 혹은 몇달이 소요될 수도 있었을 것 입니다. **의심이 됐던** , 그리고 **불확실했던** 지식들만 빠르게 습득하는 것이 중요할 것 같습니다.
 
-다음에 계속..
+다음에 계속..[버그 트래킹 일지(2) - 로그를 보자!](https://kingbbode.github.io/posts/bug-tracking-2)

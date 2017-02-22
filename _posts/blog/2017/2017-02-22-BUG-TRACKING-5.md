@@ -14,6 +14,12 @@ description : 웹 서비스(Spring Framework)의 세션을 Membase(현재의 Cou
 
 주 내용은 웹 서비스의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.
 
+[버그 트래킹 일지(1) - 시작은 사전지식 확보부터](https://kingbbode.github.io/posts/bug-tracking-1)<br>
+[버그 트래킹 일지(2) - 로그를 보자!](https://kingbbode.github.io/posts/bug-tracking-2)<br>
+[버그 트래킹 일지(3) - 임시방편보단 장기적으로](https://kingbbode.github.io/posts/bug-tracking-3)<br>
+[버그 트래킹 일지(4) - 의심하고 또 의심하자](https://kingbbode.github.io/posts/bug-tracking-4)<br>
+**버그 트래킹 일지(5) - 대망의 적용 배포 그리고 결론**
+
 ### 버그트래킹 환경
 
 -	Membase Server
@@ -91,3 +97,6 @@ Membase의 1도 모르는 상태에서 Bug Tracking을 해보았습니다.
 긴 버그 트래킹(약 2주) 끝에 Operation 이상을 확인했고, 끊임없이 의심하며 기존 시스템을 바꾸어 나갔고 결과적으로 서비스에 큰 안정화를 가져올 수 있었습니다.
 
 서버의 메모리부터 각종 데몬들과 용어들까지, 코드 외에도 알아야하고 배워나가야하는게 정말 많다는 것을 느꼈습니다. 이번 Bug Tracking 경험이 나중에 있을 개발에 많은 도움이 될 것 같습니다.
+
+
+**끝!**

@@ -14,6 +14,12 @@ description : 웹 서비스(Spring Framework)의 세션을 Membase(현재의 Cou
 
 주 내용은 웹 서비스의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.
 
+[버그 트래킹 일지(1) - 시작은 사전지식 확보부터](https://kingbbode.github.io/posts/bug-tracking-1)<br>
+[버그 트래킹 일지(2) - 로그를 보자!](https://kingbbode.github.io/posts/bug-tracking-2)<br>
+[버그 트래킹 일지(3) - 임시방편보단 장기적으로](https://kingbbode.github.io/posts/bug-tracking-3)<br>
+**버그 트래킹 일지(4) - 의심하고 또 의심하자** <br>
+[버그 트래킹 일지(5) - 대망의 적용 배포 그리고 결론](https://kingbbode.github.io/posts/bug-tracking-5)
+
 ### 버그트래킹 환경
 
 -	Membase Server
@@ -126,4 +132,4 @@ filterChainProxy.setFilterChainMap(filterChainMap);
 
 첫 시작은 의심으로부터 시작되었습니다. 생각해보면 지금까지 해결해왔던 모든 버그 트래킹 과정에 의심과 가설로부터 시작점을 찾을 수 있었습니다. 버그 트래킹에 있어서 의심하고 가설을 세워보는 것은 정말 중요한 일인 것 같습니다!
 
-다음에는 결론을..
+다음에는 결론을..[버그 트래킹 일지(5) - 대망의 적용 배포 그리고 결론](https://kingbbode.github.io/posts/bug-tracking-5)

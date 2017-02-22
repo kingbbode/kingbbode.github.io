@@ -14,6 +14,12 @@ description : 웹 서비스(Spring Framework)의 세션을 Membase(현재의 Cou
 
 주 내용은 웹 서비스의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.
 
+[버그 트래킹 일지(1) - 시작은 사전지식 확보부터](https://kingbbode.github.io/posts/bug-tracking-1)<br>
+**버그 트래킹 일지(2) - 로그를 보자!** <br>
+[버그 트래킹 일지(3) - 임시방편보단 장기적으로](https://kingbbode.github.io/posts/bug-tracking-3)<br>
+[버그 트래킹 일지(4) - 의심하고 또 의심하자](https://kingbbode.github.io/posts/bug-tracking-4)<br>
+[버그 트래킹 일지(5) - 대망의 적용 배포 그리고 결론](https://kingbbode.github.io/posts/bug-tracking-5)
+
 ### 버그트래킹 환경
 
 -	Membase Server
@@ -329,4 +335,4 @@ if(!trustResolver.isAnonymous(context.getAuthentication())) {
 
 로그를 분석하여 첫번째 문제점인 불필요한 요청이 많다는 것을 알 수 있었고, 그것을 개선해나가는 과정을 작성했습니다. 아마 로그가 없었다면, 훨씬 더 오랜기간이 걸렸을 것 입니다. 로그는 정말 중요한 것 같습니다! (APM 도입이 시급한데 ㅜㅜ)
 
-다음에 계속..
+다음에 계속..[버그 트래킹 일지(3) - 임시방편보단 장기적으로](https://kingbbode.github.io/posts/bug-tracking-3)<br>

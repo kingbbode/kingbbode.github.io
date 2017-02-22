@@ -14,6 +14,12 @@ description : 웹 서비스(Spring Framework)의 세션을 Membase(현재의 Cou
 
 주 내용은 웹 서비스의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.
 
+[버그 트래킹 일지(1) - 시작은 사전지식 확보부터](https://kingbbode.github.io/posts/bug-tracking-1)<br>
+[버그 트래킹 일지(2) - 로그를 보자!](https://kingbbode.github.io/posts/bug-tracking-2)<br>
+**버그 트래킹 일지(3) - 임시방편보단 장기적으로** <br>
+[버그 트래킹 일지(4) - 의심하고 또 의심하자](https://kingbbode.github.io/posts/bug-tracking-4)<br>
+[버그 트래킹 일지(5) - 대망의 적용 배포 그리고 결론](https://kingbbode.github.io/posts/bug-tracking-5)
+
 ### 버그트래킹 환경
 
 -	Membase Server
@@ -263,4 +269,5 @@ DynamicGeneratorAdapter의 `generate` Method를 재정의하여 세부적인 설
 
 그러나 중요한 것은 임시방편적인 것을 안정적인 코드로 해결해가려는 것이라고 생각했습니다! 다행히 시간적 여유가 있어 모듈을 만들어보았습니다.
 
-다음에 계속..
+다음에 계속..[버그 트래킹 일지(4) - 의심하고 또 의심하자](https://kingbbode.github.io/posts/bug-tracking-4)<br>
+
