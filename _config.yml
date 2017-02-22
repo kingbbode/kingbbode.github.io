@@ -1,7 +1,7 @@
 # Mandatory settings
 
 name: Kingbbode
-paginate: 4
+paginate: 10
 paginate_path: "/posts/page/:num/"
 url: https://kingbbode.github.io
 blog_theme: dark
