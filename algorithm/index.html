@@ -4,31 +4,34 @@ title: "The high quality, completely customizable, performant and 100% free blog
 description: "Chalk uses all the best tools and merges them into one premium blogging theme."
 ---
 
-<h3>알고리즘</h3>
-<hr>
-<div class="progress progress-striped">
-  <div class="progress-bar progress-bar-denger" role="progressbar" aria-valuenow="{{ site.algorithm.size }}" aria-valuemin="0" aria-valuemax="50" style="width: {{ site.algorithm.size | times: 1.7 | plus:'15' }}%">
-    <span class="badge pull-right">{{ site.algorithm.size }}</span>
-  </div>
-</div>
-<hr>
+<h3>패스트캠퍼스 자바 웹프로그래밍 캠프</h3>
+<ul class="article-list">
 {% assign algorithm = (site.algorithm | sort: 'date') | reverse %}
 {% for post in algorithm %}
-<article class="home">
-  <h5>
-    <a href="{{ site.BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
-  </h5>
-  <span class="post-date">
-    {% assign d = post.date | date: "%d" | plus:'0' %}
-    {{ post.date | date: "%B" }}
-    {% case d %}
-    {% when 1 or 21 or 31 %}{{ d }}st,
-    {% when 2 or 22 %}{{ d }}nd,
-    {% when 3 or 23 %}{{ d }}rd,
-    {% else %}{{ d }}th,
-    {% endcase %}
-    {{ post.date | date: "%Y" }}
-  </span>
-</article>
-<hr>
+<li class="article-list-item reveal">
+  <a href="{{ post.url | relative_url }}" title="{{ post.title }}">
+    <h5>
+      {{ post.title }}
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      {{ post.date | date: "%B %-d, %Y" }}
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      {% capture words %}
+        {{ post.content | number_of_words }}
+      {% endcapture %}
+      {% unless words contains "-" %}
+        {{ words | plus: 250 | divided_by: 250 | append: " minute read" }}
+      {% endunless %}
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
 {% endfor %}
+</ul>
