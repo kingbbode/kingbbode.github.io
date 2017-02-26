@@ -13,13 +13,13 @@ ga_analytics: UA-75876601-1
 rss_enabled: true
 about_enabled: true
 social:
-  dribbble:
   github: kingbbode
-  twitter:
   email: kingbbode@gmail.com
   tistory: kingbbode
   facebook: kingbbode
   instagram: kingbbode_dev
+  dribbble:
+  twitter:
 author:
   email_md5: f4c8a1baaf62285612634ec4eec327fd
 # Important settings (change at own risk)
