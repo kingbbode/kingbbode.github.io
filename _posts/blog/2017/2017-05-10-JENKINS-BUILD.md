@@ -19,7 +19,14 @@ description : 귀찮다. 귀찮다 너무 귀찮다. 그래서 자동 배포환�
 
 개발환경과 어플리케이션 서버가 분리되어 있고, 여러 원격 서버를 가지고 있는 구성에서 어플리케이션을 배포하기는 굉장히 까다롭습니다.
 
-### 구시대적 배포(?)!
+## 현재 상황
+
+- Gitlab으로 형상관리
+- 작업망과 개발망 분리(대략 개발하는 PC에서부터 각 어플리케이션 서버까지 3~4 Depth로 망 분리)
+- Spring Framework
+- Gradle or Maven Project
+
+## 구시대적 배포(?)!
 
 제가 겪어본 환경 기준으로 원시적인 배포 방법을 먼저 살펴보겠습니다. (자세한 git flow나 서버 환경은 생략)
 
@@ -39,7 +46,7 @@ description : 귀찮다. 귀찮다 너무 귀찮다. 그래서 자동 배포환�
 
 ![new Item](/images/2017/2017-05-10-JENKINS-BUILD/ang.png)
 
-#### 문제점
+### 문제점
 
 **배포 flow 및 history**
 
@@ -65,7 +72,7 @@ description : 귀찮다. 귀찮다 너무 귀찮다. 그래서 자동 배포환�
 
 ---
 
-### Jenkins로 자동 배포 환경 만들기
+## Jenkins로 자동 배포 환경 만들기
 
 Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
@@ -77,7 +84,7 @@ Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
 젠킨스의 배포 플로우를 중심으로 이 글을 작성하며 **지극히 개인적으로 생각하여 진행한 플로우이기에 피드백을 기대합니다.**
 
-#### 주 사용 Jenkins 기능 및 플로그인
+### 주 사용 Jenkins 기능 및 플로그인
 
 -	Build Pipeline Plugin
 
@@ -95,7 +102,7 @@ Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
 	-	Parameter를 사용하여 빌드할 수 있는 환경을 제공합니다.
 
-#### Step 1. 프로젝트 Job 생성
+### Step 1. 프로젝트 Job 생성
 
 각 프로젝트를 빌드하는 Job이 필요합니다. `new Item`을 클릭한 후
 
@@ -107,7 +114,7 @@ Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
 <br>
 
-##### git 특정 브랜치와 Trigger 연동
+#### git 특정 브랜치와 Trigger 연동
 
 **1. `Build Triggers`의`Build when a change is pushed to Git`을 선택합니다.**
 
@@ -121,7 +128,7 @@ Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
 ![freestyle project](/images/2017/2017-05-10-JENKINS-BUILD/git.png)
 
-##### Build
+#### Build
 
 저 같은 경우는 `Invoke Gradle script`를 사용하여 Gradle Version을 지정해주고, Task 및 Build File을 지정해주었습니다. Wrapper를 사용하여 다른 방법으로 빌드해도 상관없습니다. 각 프로젝트에 맞는 Build 설정을 합니다.
 
@@ -129,7 +136,7 @@ Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
 **이 과정까지는 여느 일반 젠킨스 사용과 같습니다.**
 
-#### Step 2. 공용 Job 생성
+### Step 2. 공용 Job 생성
 
 공용 Job이란 빌드 후 진행될 과정에 대한 `Job`을 말합니다.
 
@@ -142,9 +149,11 @@ Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
 **공용 Job이지만, 전송해야할 파일이 다르고 배포해야할 원격 서버가 다를텐데 어떻게라고 생각하실 수 있습니다.**
 
-이 때 유용한 기능이 Jenkins의 `Parameterized` 기능입니다.
+이 때 유용한 기능이 Jenkins의 `Parameterized` 기능입니다. 
 
-##### 공통
+**다음 Job으로 Parameter를 넘길수도 있고, 현재 Job에서 사용될 Parameter를 정의할 수도 있습니다. 즉 재사용이 가능하다는!**
+
+#### 공통
 
 **1. Job을 생성하는 방법은 기존과 같이 생성을 합니다.**
 
@@ -154,7 +163,7 @@ Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
 **3. 공용 Job은 Git과 무관하므로 `Source Code Management`를 `None`으로 체크합니다.**
 
-##### Scp Job
+#### Scp Job
 
 Scp Job은 빌드 추출물을 중앙 원격 서버로 전송하는 역할을 하게 됩니다.
 
@@ -185,7 +194,7 @@ Scp Job은 빌드 추출물을 중앙 원격 서버로 전송하는 역할을 �
 
 ![freestyle project](/images/2017/2017-05-10-JENKINS-BUILD/manual.png)
 
-##### Deploy Job
+#### Deploy Job
 
 Deploy Job은 중앙 원격 서버의 배포 스크립트를 실행하는 역할을 합니다. 이 배포 스크립트는 argument로 config 파일을 받아 특정 서버로 배포를 하도록 되어있습니다.
 
@@ -201,7 +210,7 @@ Deploy Job은 중앙 원격 서버의 배포 스크립트를 실행하는 역할
 
 ![freestyle project](/images/2017/2017-05-10-JENKINS-BUILD/deployshell.png)
 
-#### Step 3. 프로젝트 Job에 Scp Job 연동
+### Step 3. 프로젝트 Job에 Scp Job 연동
 
 Scp Job과 Deploy Job을 연동할 때 사용했던 `Post-build Actions`의 `Trigger parameterized build on other projects` Step을 사용하여 Scp Job과 연동합니다.
 
@@ -213,7 +222,7 @@ Jenkins는 각 빌드 환경에서 사용할 수 있는 변수를 제공합니�
 
 ![freestyle project](/images/2017/2017-05-10-JENKINS-BUILD/trigpc.png)
 
-#### Dashboard
+### Dashboard
 
 여기까지 구성했다면 아마 아래와 같이 Dashboard가 생성될 것 입니다!
 
@@ -221,7 +230,7 @@ Jenkins는 각 빌드 환경에서 사용할 수 있는 변수를 제공합니�
 
 빌드 히스토리를 볼 수 있고, 각 Job에서 실행된 내용을 Console로 Live 확인이 가능하며, 수동 빌드를 선택했다면 진행 버튼을 통해 다음 단계를 진행 시킬 수 있습니다.
 
-### 마무리
+## 마무리
 
 이렇게 해서 Git의 특정 브랜치에 Push를 했을 때 자동으로 원격 서버까지 배포하는 과정을 만들어 보았습니다.
 
