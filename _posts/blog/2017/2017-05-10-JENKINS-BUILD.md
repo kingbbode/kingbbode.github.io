@@ -1,13 +1,19 @@
-Jenkins Build
-=============
+---
+layout: post
+title: 젠킨스 사용하여 자동 배포환경 만들어보기!
+categories: [blog]
+tags: [think, ci]
+fullview: false
+comments: true
+published: true
+outlink: 0
+description : 귀찮다. 귀찮다 너무 귀찮다. 그래서 자동 배포환경이 꼭 필요했다..!
+---
 
--	Build 환경 설정
--	build.gradle
-	-	node
--	branch regex
--	build pipeline
--	pipe 구성
--	shell script
+굉장히 주관적으로 환경을 구축했습니다. 튜토리얼성 글이라기보단 피드백을 받고자 글을 작성하게 되었습니다. 많은 피드백 부탁드립니다..!
+
+젠킨스 사용하여 자동 배포환경 만들기!
+---------------------------
 
 (Git으로 형상관리가 되고 있는 Gradle 프로젝트를 기준으로 이 글이 작성되었습니다.)
 
