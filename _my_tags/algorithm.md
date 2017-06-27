@@ -1,4 +1,0 @@
----
-slug: algorithm
-name: Algorithm
----

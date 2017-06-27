@@ -1,4 +1,0 @@
----
-slug: tdd
-name: Tdd
----

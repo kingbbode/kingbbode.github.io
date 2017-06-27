@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kingbbode | Spring Camp 2017 1일차</title>
+  <meta name="description" content="스프링 캠프 2017 1일차 정리">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:title" content="Spring Camp 2017 1일차">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kingbbode.github.io/posts/spring-camp-2017-1">
+  <meta property="og:description" content="스프링 캠프 2017 1일차 정리">
+  <meta property="og:site_name" content="Kingbbode">
+  <meta property="og:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://kingbbode.github.io/posts/spring-camp-2017-1">
+  <meta name="twitter:title" content="Spring Camp 2017 1일차">
+  <meta name="twitter:description" content="스프링 캠프 2017 1일차 정리">
+  <meta name="twitter:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://kingbbode.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Kingbbode Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Kingbbode">
+    <img src="https://www.gravatar.com/avatar/f4c8a1baaf62285612634ec4eec327fd?s=150" alt="kingbbode" style="width:135px;height: 135px;border-radius:100%;margin: auto;display:block;">
+    Kingbbode
+  </a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/kingbbode" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.instagram.com/kingbbode_dev" target="_blank" title="Instagram">
+          <span class="icon icon-social-instagram"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/kingbbode" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:kingbbode@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <article class="article reveal">
+          <header class="article-header">
+            <h1>Spring Camp 2017 1일차</h1>
+            <p>스프링 캠프 2017 1일차 정리</p>
+            <div class="article-list-footer">
+              <span class="article-list-date">
+                April 22, 2017
+              </span>
+              <span class="article-list-divider">-</span>
+              <span class="article-list-minutes">
+                
+                
+                  4 minute read
+                
+              </span>
+              <span class="article-list-divider">-</span>
+              <div class="article-list-tags">
+                
+                  <a href="/tag/seminar">seminar</a>
+                
+                  <a href="/tag/spring">spring</a>
+                
+              </div>
+            </div>
+          </header>
+
+          <div class="article-content">
+            <h2 id="키노트">키노트</h2>
+
+<h3 id="35년-간의-발전">35년 간의 발전</h3>
+
+<ul>
+  <li>PC의 등장</li>
+  <li>대용량 장치의 등장</li>
+  <li>네트워크(인터넷)의 등장</li>
+  <li>PC를 휴대 가능한 시대</li>
+</ul>
+
+<p><strong>컴퓨터가 사람에게 스며들고 있다</strong></p>
+
+<h2 id="session-1-프로세스-스레드-리액티드">Session 1. 프로세스, 스레드, 리액티드</h2>
+
+<h3 id="thread-일반">Thread 일반</h3>
+
+<ul>
+  <li>
+    <p>코드상 정의된 데이터가 Process 영역에서 Heap, Stack 영역을 확보하며 Run</p>
+  </li>
+  <li>
+    <p>가상 메모리는 프로세스 간 주소공간을 논리적으로 차단</p>
+  </li>
+  <li>
+    <p>하나의 프로세스 안에서 Thread가 발생</p>
+  </li>
+</ul>
+
+<p><strong>스레드 장점</strong></p>
+
+<ul>
+  <li>스레드 생성에 비용이 필요하지만 프로세스를 만드는 것보다 저렴</li>
+  <li>스레드들간 HEAP 메모리 공간 공유</li>
+</ul>
+
+<h4 id="context-switching">Context Switching</h4>
+
+<ul>
+  <li>
+    <p>스케줄러에 의한 Thread 실행 관리</p>
+  </li>
+  <li>
+    <p>오버헤드가 발생할 수 있다</p>
+
+    <ul>
+      <li>cpu register에 등록해놓고 재사용하기 때문</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="process-vs-thread">Process vs Thread</h4>
+
+<ul>
+  <li>L1, L2, L3 등 캐시의 등장으로 위 문제를 어느정도 해결해주어 멀티 스레드가 각광을 받기 시작!</li>
+</ul>
+
+<h4 id="threadpool">ThreadPool</h4>
+
+<ul>
+  <li>미리 만들어놓고 재사용</li>
+  <li>스레드의 수를 제한</li>
+</ul>
+
+<h4 id="thread-in-jvm">Thread in JVM</h4>
+
+<ul>
+  <li>추상화 레벨이 높아 속도가 좋지 않음</li>
+</ul>
+
+<h4 id="비동기가-필요한-상황">비동기가 필요한 상황</h4>
+
+<ul>
+  <li>
+    <p>여러 API를 호출하는 과정이 동기방식으로 처리된다면 각 요청의 부하를 모두 겪게 됨.</p>
+  </li>
+  <li>
+    <p>비동기 방식이라면 이런 부하가 필요하지 않음.</p>
+  </li>
+</ul>
+
+<h4 id="java-비동기-api">Java 비동기 API</h4>
+
+<ul>
+  <li>
+    <p>Thread(Runable)</p>
+
+    <ul>
+      <li>동작 순서 처리 어려움</li>
+      <li>결과 값을 받아오기 어려움</li>
+    </ul>
+  </li>
+  <li>
+    <p>Future(Callable)</p>
+
+    <ul>
+      <li>쉽게 비동기 요청을 제어 가능</li>
+      <li>그러나 Callback Hell을 만날 수 있음</li>
+    </ul>
+  </li>
+  <li>
+    <p>CompletableFuture(Future<T>, CompletionStage<T>\)</T></T></p>
+
+    <ul>
+      <li>Java8부터 등장</li>
+      <li>테스크 간의 순서를 체이닝 방식으로 해결</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="nio">NIO</h3>
+
+<ul>
+  <li>ThreadPool이 꽉차는 현상은 아직 풀지 못했다.
+    <ul>
+      <li>Non-Blocking 으로 해결할 수 있지 않을까?</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="nonblocking-io">Nonblocking I/O</h4>
+
+<ul>
+  <li>Selector에 의해 단일 스레드로 처리 가능</li>
+  <li>DeferredResult</li>
+</ul>
+
+<h3 id="reactive에-대한-의문">Reactive에 대한 의문</h3>
+
+<ul>
+  <li>event programming 방식에서 절차형으로 프로그래밍하려고 하니 오히려 어려운게 아닐까?</li>
+</ul>
+
+<h3 id="정리">정리</h3>
+
+<ul>
+  <li>학습 범위를 정의하고 좁혀보자.
+    <ul>
+      <li>react streams</li>
+      <li>spring framework 5</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="session-2-async--spring">Session 2. Async &amp; Spring</h2>
+
+<h3 id="동기">동기</h3>
+
+<ul>
+  <li>A와 B가 시작시간 또는 종료시간이 일치하면 동기</li>
+</ul>
+
+<h3 id="블록킹-논블록킹">블록킹, 논블록킹</h3>
+
+<ul>
+  <li>동기,비동기와는 관점이 다름</li>
+  <li>내가 직접 제어할 수 없는 대상을 상대하는 방법</li>
+</ul>
+
+<p><strong>세분화하여 동기/비동기, 블록킹/논블록킹을 정의하는 자세가 필요</strong></p>
+
+<h3 id="async">@Async</h3>
+
+<ul>
+  <li>반환 타입이 void, Future, ListenableFuture, CompletableFuture만 지원</li>
+</ul>
+
+<h4 id="simpleasynctaskexecutor">SimpleAsyncTaskExecutor</h4>
+
+<ul>
+  <li>
+    <p>@Asyanc가 사용하는 기본 TaskExecutor</p>
+
+    <ul>
+      <li>SimpleAsyncTaskExecutor(기본)</li>
+      <li>Executor</li>
+      <li>ExecutorService</li>
+      <li>
+        <p>TaskExecutor</p>
+
+        <ul>
+          <li>
+            <p>Core</p>
+          </li>
+          <li>
+            <p>Queue</p>
+          </li>
+          <li>
+            <p>Max</p>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>쓰레드 풀 아님</p>
+  </li>
+  <li>
+    <p>@Async를 본격적으로 사용한다면 실전에서 사용하지 말 것</p>
+  </li>
+</ul>
+
+<h3 id="deferredresult">DeferredResult</h3>
+
+<h3 id="async와-deferredresult">@Async와 DeferredResult</h3>
+
+<h3 id="listenablefuture-vs-deferredresult">ListenableFuture vs DeferredResult</h3>
+
+<ul>
+  <li>기본 비동기 작업은 ListenableFuture가 더 쉽다.</li>
+  <li>ListenableFuture는 조합이 어렵다(콜백의 중첩). 그래서 DeferredResult를 사용하는 것이 좋다.</li>
+</ul>
+
+<h3 id="completablefuture-vs-deferredresult-vs-listenablefuture">CompletableFuture vs DeferredResult vs ListenableFuture</h3>
+
+<ul>
+  <li>CompletableFuture가 더 간결하고, 쉽다.</li>
+</ul>
+
+<p><strong>결론은 CompletableFuture가</strong></p>
+
+<h3 id="rest">REST</h3>
+
+<h4 id="resttemplate">RestTemplate</h4>
+
+<ul>
+  <li>동기방식</li>
+</ul>
+
+<h4 id="asyncresttemplate">AsyncRestTemplate</h4>
+
+<ul>
+  <li>논블록킹 IO 라이브러리와 함께 써야함</li>
+  <li>조합을 하려면 ListenableFuture의 complete와 exceptionally를 사용하여 CompletableFuture로 변환</li>
+</ul>
+
+<h3 id="결론">결론</h3>
+
+<ul>
+  <li>
+    <p>비동기 작업과 API 호출이 많은 @MVC 앱이라면</p>
+
+    <ul>
+      <li>@MVC</li>
+      <li>AsyncRestTemplate + 논블록킹 IO 라이브러리</li>
+      <li>@Async와 적절한 TaskExecutor</li>
+      <li>ListenableFuture, CompletableFuture</li>
+    </ul>
+  </li>
+  <li>
+    <p>사용하는 이유?</p>
+
+    <ul>
+      <li>모르면 쓰지마라</li>
+      <li>설명할 수 있어야 함</li>
+      <li>증명할 수 있어야 함</li>
+    </ul>
+  </li>
+  <li>
+    <p>비동기 스프링 기술의 단점?</p>
+
+    <ul>
+      <li>모르면 쓰지마라</li>
+      <li>잘못 쓰면 코드 복잡</li>
+      <li>디버깅 힘들고</li>
+      <li>혜택도 없음</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="session-3-spring-web-flux">Session 3. Spring Web Flux</h2>
+
+<h3 id="용도">용도</h3>
+
+<ul>
+  <li>비동기-논블록킹 리액티브 개발</li>
+  <li>자원을 낭비하지 않고, 작업을 처리할 수 있는 고성능 웹 애플리케이션</li>
+</ul>
+
+<h3 id="새로운-요청-응답-모델">새로운 요청-응답 모델</h3>
+
+<ul>
+  <li>서블릿 스택을 버림</li>
+  <li>ServerRequest, ServerResponse</li>
+</ul>
+
+<h3 id="지원-웹-서버컨테이너">지원 웹 서버/컨테이너</h3>
+
+<ul>
+  <li>Servlet 3.1+ (Tomcat, Jetty, ..) - 비동기-논블록킹</li>
+  <li>Netty</li>
+  <li>Undertow</li>
+</ul>
+
+<h3 id="함수형-web-flux">함수형 Web Flux</h3>
+
+<h4 id="요청-처리-방식">요청 처리 방식</h4>
+
+<ul>
+  <li>매핑
+    <ul>
+      <li>RouterFunction</li>
+    </ul>
+  </li>
+  <li>바인딩, 핸들링, 응답
+    <ul>
+      <li>ServerResponse를 리턴하는 HandlerFunction</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="장점">장점</h4>
+
+<ul>
+  <li>모든 웹 요청 처리 작업을 명시적인 코드로 작성</li>
+  <li>함수 조합을 통한 편리한 구성, 추상화에 유리</li>
+  <li>테스트 작성의 편리</li>
+</ul>
+
+<h4 id="단점">단점</h4>
+
+<ul>
+  <li>함수형 스타일의 코드 작성이 편하지 않으면 코드 작성과 이해가 모두 어려움</li>
+</ul>
+
+<h3 id="mvc-web-flux">MVC Web Flux</h3>
+
+<h4 id="기존과-같지만-output이-다름">기존과 같지만 Output이 다름</h4>
+
+<ul>
+  <li>Output : Mono or Flux</li>
+</ul>
+
+<h4 id="requestbody">RequestBody</h4>
+
+<ul>
+  <li>바인딩 (JSON, XML)</li>
+  <li>Mono 컨테이너 방식이 허용</li>
+</ul>
+
+<h4 id="flux는-스트림을-받을-수-있음">Flux는 스트림을 받을 수 있음.</h4>
+
+<h4 id="responsebody-리턴-타입">ResponseBody 리턴 타입</h4>
+
+<ul>
+  <li>T</li>
+  <li>Mono</li>
+  <li>Flux</li>
+</ul>
+
+<h3 id="web-flux--reactive">Web Flux + Reactive</h3>
+
+<ul>
+  <li>Web Flux만으로는 성능이 좋아지지 않는다.</li>
+</ul>
+
+<h4 id="개선할-블록킹-io">개선할 블록킹 IO</h4>
+
+<ul>
+  <li>
+    <p>데이터 액세스 리포지토리</p>
+
+    <ul>
+      <li>
+        <p>현재는 답이 없다.</p>
+      </li>
+      <li>
+        <p>JDK 10에서 Async JDBC가 등장할 수도 있음..</p>
+      </li>
+      <li>
+        <p>대안</p>
+
+        <ul>
+          <li>JPA에서 @Async + CompletableFuture</li>
+          <li>Mono로 리턴(fromCompletionStage)</li>
+        </ul>
+      </li>
+      <li>
+        <p>MongoDB, Cassandra, Redis 는 Non-Blocking을 지원</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>HTTP API 호출</p>
+
+    <ul>
+      <li>WebClient 지원
+        <ul>
+          <li>AsyncRestTemplate의 리액티브 버전</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="session-4-spring-cloud-data-flow">Session 4. Spring Cloud Data Flow</h2>
+
+<ul>
+  <li>필요할 때마다 배포하는 것이 모아서 한번에 배포하는 것보다 위험성이 작다.</li>
+</ul>
+
+<h3 id="데이터-플로우가-하나로-묶여있다면">데이터 플로우가 하나로 묶여있다면?</h3>
+
+<ul>
+  <li>업그레이드</li>
+  <li>확장</li>
+  <li>재배포</li>
+  <li>업데이트</li>
+  <li>마이그레이션</li>
+  <li>분산 처리</li>
+</ul>
+
+<p><strong>많은 영역에서 문제가 발생</strong></p>
+
+<h3 id="spring-cloud-stream">spring cloud stream</h3>
+
+<p><strong>스프링 부트 어플리케이션을 통해 data flow를 지원하는 도구</strong></p>
+
+<ul>
+  <li>
+    <p>spring boot starter pack 제공</p>
+  </li>
+  <li>
+    <p>RabbitMQ, kafka, Redis 등 연동을 위한 클래스를 제공</p>
+  </li>
+  <li>
+    <p>pipeline을 제공</p>
+  </li>
+  <li>
+    <p>deploy 제공</p>
+  </li>
+  <li>
+    <p>ui 제공</p>
+  </li>
+</ul>
+
+<hr />
+
+          </div>
+
+          <div class="article-share">
+            
+            <a href="" title="Share on Twitter" onclick="window.open('https://twitter.com/home?status=Spring Camp 2017 1일차 - https://kingbbode.github.io/posts/spring-camp-2017-1 ', 'newwindow', 'width=500, height=225'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x37__stroke"><g id="Twitter"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M128,23.294    c-4.703,2.142-9.767,3.59-15.079,4.237c5.424-3.328,9.587-8.606,11.548-14.892c-5.079,3.082-10.691,5.324-16.687,6.526    c-4.778-5.231-11.608-8.498-19.166-8.498c-14.493,0-26.251,12.057-26.251,26.927c0,2.111,0.225,4.16,0.676,6.133    C41.217,42.601,21.871,31.892,8.91,15.582c-2.261,3.991-3.554,8.621-3.554,13.552c0,9.338,4.636,17.581,11.683,22.412    c-4.297-0.131-8.355-1.356-11.901-3.359v0.331c0,13.051,9.053,23.937,21.074,26.403c-2.201,0.632-4.523,0.948-6.92,0.948    c-1.69,0-3.343-0.162-4.944-0.478c3.343,10.694,13.035,18.483,24.53,18.691c-8.986,7.227-20.315,11.533-32.614,11.533    c-2.119,0-4.215-0.123-6.266-0.37c11.623,7.627,25.432,12.088,40.255,12.088c48.309,0,74.717-41.026,74.717-76.612    c0-1.171-0.023-2.342-0.068-3.49C120.036,33.433,124.491,28.695,128,23.294" fill-rule="evenodd" id="Twitter_1_"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Facebook" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=https://kingbbode.github.io/posts/spring-camp-2017-1', 'newwindow', 'width=500, height=500'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" width="15px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x31__stroke"><g id="Facebook_1_"><rect fill="none" height="128" width="128"/><path clip-rule="evenodd" d="M68.369,128H7.065C3.162,128,0,124.836,0,120.935    V7.065C0,3.162,3.162,0,7.065,0h113.871C124.837,0,128,3.162,128,7.065v113.87c0,3.902-3.163,7.065-7.064,7.065H88.318V78.431    h16.638l2.491-19.318H88.318V46.78c0-5.593,1.553-9.404,9.573-9.404l10.229-0.004V20.094c-1.769-0.235-7.841-0.761-14.906-0.761    c-14.749,0-24.846,9.003-24.846,25.535v14.246H51.688v19.318h16.681V128z" fill-rule="evenodd" id="Facebook"/></g></g></svg>
+            </a>
+            <a href="" title="Share on Google+" onclick="window.open('https://plus.google.com/share?url=https://kingbbode.github.io/posts/spring-camp-2017-1', 'newwindow', 'width=550, height=400'); return false;" data-turbolinks="false">
+              <svg enable-background="new 0 0 128 128" version="1.1" viewBox="0 0 128 128" width="20px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="_x35__stroke"><g id="Google_Plus"><rect clip-rule="evenodd" fill="none" fill-rule="evenodd" height="128" width="128"/><path clip-rule="evenodd" d="M40.654,55.935v16.13    c0,0,15.619-0.021,21.979-0.021C59.189,82.5,53.834,88.194,40.654,88.194c-13.338,0-23.748-10.832-23.748-24.194    s10.41-24.194,23.748-24.194c7.052,0,11.607,2.483,15.784,5.944c3.344-3.35,3.065-3.828,11.573-11.877    c-7.222-6.586-16.822-10.6-27.357-10.6C18.201,23.273,0,41.507,0,64c0,22.493,18.201,40.727,40.654,40.727    c33.561,0,41.763-29.275,39.044-48.792H40.654z M113.912,56.742V42.628h-10.063v14.113H89.358v10.081h14.491v14.517h10.063V66.823    H128V56.742H113.912z" fill-rule="evenodd" id="Google_Plus_1_"/></g></g></svg>
+            </a>
+          </div>
+
+          
+            <div id="disqus_thread" class="article-comments"></div>
+            <script>
+              (function() {
+                  var d = document, s = d.createElement('script');
+                  s.src = '//kingbbode.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          
+        </article>
+        <footer class="footer reveal">
+  <p>
+    @Copyright 2017 by <a href="/about" title="About me">Kingbbode</a> / template for Jekyll built by <a href="http://chalk.nielsenramon.com/about" title="About me">Nielsen Ramon</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-75876601-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

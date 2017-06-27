@@ -1,4 +1,0 @@
----
-slug: oauth
-name: Oauth
----

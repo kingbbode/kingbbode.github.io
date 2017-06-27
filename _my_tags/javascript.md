@@ -1,4 +1,0 @@
----
-slug: javascript
-name: Javascript
----

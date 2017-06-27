@@ -1,4 +1,0 @@
----
-slug: http
-name: Http
----

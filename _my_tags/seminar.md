@@ -1,4 +1,0 @@
----
-slug: seminar
-name: Seminar
----

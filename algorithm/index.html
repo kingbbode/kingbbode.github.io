@@ -1,37 +1,342 @@
----
-layout: default
-title: "algorithm"
-description: "hate algorithm."
----
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Kingbbode | algorithm</title>
+  <meta name="description" content="hate algorithm.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<h3>가끔하는 알고리즘 공부..</h3>
+  <meta property="og:title" content="algorithm">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kingbbode.github.io/algorithm/">
+  <meta property="og:description" content="hate algorithm.">
+  <meta property="og:site_name" content="Kingbbode">
+  <meta property="og:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:url" content="https://kingbbode.github.io/algorithm/">
+  <meta name="twitter:title" content="algorithm">
+  <meta name="twitter:description" content="hate algorithm.">
+  <meta name="twitter:image" content="https://kingbbode.github.io/assets/og-image.jpg">
+
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link href="https://kingbbode.github.io/feed.xml" type="application/rss+xml" rel="alternate" title="Kingbbode Last 10 blog posts" />
+
+  
+    <link type="text/css" rel="stylesheet" href="/assets/dark.css">
+  
+</head>
+
+<body>
+  <main role="main">
+    <div class="grid grid-centered">
+      <div class="grid-cell">
+        <nav class="header-nav reveal">
+  <a href="/" class="header-logo" title="Kingbbode">
+    <img src="https://www.gravatar.com/avatar/f4c8a1baaf62285612634ec4eec327fd?s=150" alt="kingbbode" style="width:135px;height: 135px;border-radius:100%;margin: auto;display:block;">
+    Kingbbode
+  </a>
+  <ul class="header-links">
+    
+      <li>
+        <a href="/about" title="About me">
+          <span class="icon icon-android-person"></span>
+        </a>
+      </li>
+    
+    
+    
+      <li>
+        <a href="https://www.facebook.com/kingbbode" target="_blank" title="Facebook">
+          <span class="icon icon-social-facebook"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://www.instagram.com/kingbbode_dev" target="_blank" title="Instagram">
+          <span class="icon icon-social-instagram"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="https://github.com/kingbbode" target="_blank" title="GitHub">
+          <span class="icon icon-social-github"></span>
+        </a>
+      </li>
+    
+    
+    
+    
+    
+    
+      <li>
+        <a href="mailto:kingbbode@gmail.com" title="Email">
+          <span class="icon icon-at"></span>
+        </a>
+      </li>
+    
+    
+      <li>
+        <a href="/feed.xml" target="_blank" title="RSS">
+          <span class="icon icon-social-rss"></span>
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+        <h3>가끔하는 알고리즘 공부..</h3>
 <ul class="article-list">
-{% assign algorithm = (site.algorithm | sort: 'date') | reverse %}
-{% for post in algorithm %}
+
+
 <li class="article-list-item reveal">
-  <a href="{{ post.url | relative_url }}" title="{{ post.title }}">
+  <a href="/algorithm/2016/2016-11-11-BACKJOON-1003" title="피보나치 함수">
     <h5>
-      {{ post.title }}
+      피보나치 함수
       <span class="icon icon-ios-arrow-thin-right"></span>
     </h5>
   </a>
   <div class="article-list-footer">
     <span class="article-list-date">
-      {{ post.date | date: "%B %-d, %Y" }}
+      November 11, 2016
     </span>
     <span class="article-list-divider">-</span>
     <span class="article-list-minutes">
-      {% capture words %}
-        {{ post.content | number_of_words }}
-      {% endcapture %}
-      {% unless words contains "-" %}
-        {{ words | plus: 250 | divided_by: 250 | append: " minute read" }}
-      {% endunless %}
+      
+      
+        1 minute read
+      
     </span>
     <span class="article-list-divider">-</span>
     <div class="article-list-tags">
     </div>
   </div>
 </li>
-{% endfor %}
+
+<li class="article-list-item reveal">
+  <a href="/algorithm/2016/2016-11-08-BACKJOON-1916" title="최소비용 구하기">
+    <h5>
+      최소비용 구하기
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      November 8, 2016
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      
+      
+        1 minute read
+      
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
+
+<li class="article-list-item reveal">
+  <a href="/algorithm/2016/2016-10-16-BACKJOON-2293" title="동전1">
+    <h5>
+      동전1
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      October 16, 2016
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      
+      
+        1 minute read
+      
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
+
+<li class="article-list-item reveal">
+  <a href="/algorithm/2016/2016-10-11-BACKJOON-1937" title="욕심쟁이 판다">
+    <h5>
+      욕심쟁이 판다
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      October 11, 2016
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      
+      
+        1 minute read
+      
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
+
+<li class="article-list-item reveal">
+  <a href="/algorithm/2016/2016-10-09-BACKJOON-1912" title="연속합">
+    <h5>
+      연속합
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      October 9, 2016
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      
+      
+        1 minute read
+      
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
+
+<li class="article-list-item reveal">
+  <a href="/algorithm/2016/2016-09-25-BACKJOON-1107" title="리모컨">
+    <h5>
+      리모컨
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      September 25, 2016
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      
+      
+        1 minute read
+      
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
+
+<li class="article-list-item reveal">
+  <a href="/algorithm/2016/2016-09-14-BACKJOON-1476" title="날짜 계산">
+    <h5>
+      날짜 계산
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      September 14, 2016
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      
+      
+        1 minute read
+      
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
+
+<li class="article-list-item reveal">
+  <a href="/algorithm/2016/2016-09-12-BACKJOON-2292" title="벌집">
+    <h5>
+      벌집
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      September 12, 2016
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      
+      
+        1 minute read
+      
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
+
+<li class="article-list-item reveal">
+  <a href="/algorithm/2016/2016-07-26-BACKJOON-1021" title="회전하는 큐">
+    <h5>
+      회전하는 큐
+      <span class="icon icon-ios-arrow-thin-right"></span>
+    </h5>
+  </a>
+  <div class="article-list-footer">
+    <span class="article-list-date">
+      July 26, 2016
+    </span>
+    <span class="article-list-divider">-</span>
+    <span class="article-list-minutes">
+      
+      
+        1 minute read
+      
+    </span>
+    <span class="article-list-divider">-</span>
+    <div class="article-list-tags">
+    </div>
+  </div>
+</li>
+
 </ul>
+
+        <footer class="footer reveal">
+  <p>
+    @Copyright 2017 by <a href="/about" title="About me">Kingbbode</a> / template for Jekyll built by <a href="http://chalk.nielsenramon.com/about" title="About me">Nielsen Ramon</a>
+  </p>
+</footer>
+
+      </div>
+    </div>
+  </main>
+  <script type="text/javascript" src="/assets/vendor.js"></script>
+<script type="text/javascript" src="/assets/application.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Cormorant Garamond:700', 'Lato:300,400,700']
+    }
+  });
+</script>
+
+
+  <script>
+    window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+    ga('create','UA-75876601-1','auto');ga('send','pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+
+</body>
+</html>

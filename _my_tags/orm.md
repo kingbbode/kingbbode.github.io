@@ -1,4 +1,0 @@
----
-slug: orm
-name: Orm
----

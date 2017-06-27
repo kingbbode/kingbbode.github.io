@@ -1,4 +1,0 @@
----
-slug: ci
-name: Ci
----

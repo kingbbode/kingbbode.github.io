@@ -1,4 +1,0 @@
----
-slug: job
-name: Job
----
