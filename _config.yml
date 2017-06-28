@@ -38,6 +38,7 @@ defaults:
     values:
       layout: "project"
       header-img: "img/home-bg.jpg"
+      og-img: "img/og-image.jpg"
 
 # Prose Settings
 prose:
