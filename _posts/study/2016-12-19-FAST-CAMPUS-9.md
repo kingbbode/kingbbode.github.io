@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      [Fast-Campus] Java Web Programming Camp 9일차
+title:      Fast-Campus Java Web Programming Camp 9일차
 author:     kingbbode
 tags:       spring
 subtitle:   강의 정리

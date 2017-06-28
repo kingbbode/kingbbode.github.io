@@ -1,10 +1,10 @@
 ---
 layout:     post
-title:      [Fast-Campus] Java Web Programming Camp 2일차
+title:      Fast-Campus Java Web Programming Camp 2일차
 author:     kingbbode
 tags:       spring
 subtitle:   강의 정리
-category:  study
+category:  	study
 outlink: 0
 ---
 
