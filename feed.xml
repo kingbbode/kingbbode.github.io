@@ -1,90 +1,30 @@
+---
+layout: null
+---
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kingbbode</title>
-    <description></description>
-    <link>https://kingbbode.github.io</link>
-    <atom:link href="https://kingbbode.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    
+    <title>{{ site.title | xml_escape }}</title>
+    <description>{{ site.description | xml_escape }}</description>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml" />
+    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
+    <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
+    <generator>Jekyll v{{ jekyll.version }}</generator>
+    {% for post in site.posts limit:10 %}
       <item>
-        <title>jOOQ !! (Java Object Oriented Querying)</title>
-        <description>jOOQ가 뭐지? 사내에서 Query Repository로 사용하게 된 `jOOQ` 를 간단하게 정리</description>
-        <pubDate>Sun, 25 Jun 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/jooq</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/jooq</guid>
+        <title>{{ post.title | xml_escape }}</title>
+        <description>{{ post.content | strip_html | xml_escape }}</description>
+        <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
+        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
+        {% for tag in post.tags %}
+        <category>{{ tag | xml_escape }}</category>
+        {% endfor %}
+        {% for cat in post.categories %}
+        <category>{{ cat | xml_escape }}</category>
+        {% endfor %}
       </item>
-    
-      <item>
-        <title>젠킨스 사용하여 자동 배포환경 만들어보기!</title>
-        <description>귀찮다. 귀찮다 너무 귀찮다. 그래서 자동 배포환경이 꼭 필요했다..!</description>
-        <pubDate>Wed, 10 May 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/jenkins-build</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/jenkins-build</guid>
-      </item>
-    
-      <item>
-        <title>Spring Camp 2017 2일차</title>
-        <description>스프링 캠프 2017 2일차 정리</description>
-        <pubDate>Sun, 23 Apr 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/spring-camp-2017-2</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/spring-camp-2017-2</guid>
-      </item>
-    
-      <item>
-        <title>Spring Camp 2017 1일차</title>
-        <description>스프링 캠프 2017 1일차 정리</description>
-        <pubDate>Sat, 22 Apr 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/spring-camp-2017-1</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/spring-camp-2017-1</guid>
-      </item>
-    
-      <item>
-        <title>개발자의 재능기부 == 자기개발</title>
-        <description>개발자에게 재능기부란? 재능기부를 가장하여 기술 사용과 습득의 목마름을 해소한 경험(자기개발?)을 기록으로 남겨봅니다.</description>
-        <pubDate>Sat, 25 Mar 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/donation</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/donation</guid>
-      </item>
-    
-      <item>
-        <title>버그 트래킹 일지(5) - 대망의 적용 배포 그리고 결론</title>
-        <description>웹 서비스(Spring Framework)의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.</description>
-        <pubDate>Wed, 22 Feb 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/bug-tracking-5</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/bug-tracking-5</guid>
-      </item>
-    
-      <item>
-        <title>버그 트래킹 일지(4) - 의심하고 또 의심하자</title>
-        <description>웹 서비스(Spring Framework)의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.</description>
-        <pubDate>Wed, 22 Feb 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/bug-tracking-4</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/bug-tracking-4</guid>
-      </item>
-    
-      <item>
-        <title>버그 트래킹 일지(3) - 임시방편보단 장기적으로</title>
-        <description>웹 서비스(Spring Framework)의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.</description>
-        <pubDate>Wed, 22 Feb 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/bug-tracking-3</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/bug-tracking-3</guid>
-      </item>
-    
-      <item>
-        <title>버그 트래킹 일지(2) - 로그를 보자!</title>
-        <description>웹 서비스(Spring Framework)의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.</description>
-        <pubDate>Wed, 22 Feb 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/bug-tracking-2</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/bug-tracking-2</guid>
-      </item>
-    
-      <item>
-        <title>버그 트래킹 일지(1) - 시작은 사전지식 확보부터</title>
-        <description>웹 서비스(Spring Framework)의 세션을 Membase(현재의 Couchbase)로 관리하면서 발생한 이슈입니다. 이슈를 해결해 나가는 과정을 기록으로 남깁니다.</description>
-        <pubDate>Wed, 22 Feb 2017 00:00:00 +0900</pubDate>
-        <link>https://kingbbode.github.io/posts/bug-tracking-1</link>
-        <guid isPermaLink="true">https://kingbbode.github.io/posts/bug-tracking-1</guid>
-      </item>
-    
+    {% endfor %}
   </channel>
 </rss>
