@@ -1,6 +1,11 @@
 ---
-layout: post
-title: 첫번째 강의
+layout:     post
+title:      [Fast-Campus] Java Web Programming Camp 1일차
+author:     kingbbode
+tags:       spring
+subtitle:   강의 정리
+category:  study
+outlink: 0
 ---
 
 *스프링 프레임워크를 사용하면서도 스프링이 어떻게 동작하는 것일까, 무엇을 기반으로 어떻게 동작하는가? 하는 생각을 많이하였다. 그래서 큰맘 먹고 선배 개발자가 적극 추천한 박재성 교수님의 자바 웹 프로그래밍 2기를 거금을 투자하여 수강하기로 하였다.<br>거금이 들어간 만큼 열심히, 성실히 배워서 목적을 이루고 수업을 마쳤으면 좋겠다.*
