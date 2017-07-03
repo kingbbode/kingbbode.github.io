@@ -149,7 +149,9 @@ Gradle에서 Maven Repository로 사용
 
 설정을 참고하여 구조를 작성할 수 있습니다.
 
-### Upload
+### Nexus 저장소로 Upload
+
+`build.gradle` 에 Nexus 배포를 위한 `uploadArchives` 스크립트를 작성합니다.
 
 > build.gradle
 
@@ -191,7 +193,7 @@ Nexus의 Component를 살펴보면, 업로드한 프로젝트가 올라와 있�
 
 ![d3](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/d3.png)
 
-### Download
+### Nexus 저장소에서 가져오기
 
 Nexus를 통해 Dependency를 가져올 때는 해당 Hosted를 직접 지정하거나 상위 Group을 지정할 수 있습니다.
 
@@ -210,6 +212,9 @@ repositories {
 }
 ```
 
+Nexus로 라이브러리를 업로드할 때는 uploadArchives 로 release, snapshot 배포를 하고, Nexus 저장소를 사용하려면 `build.gradle` 의 `repositories`에 Maven 저장소의 Group을 등록합니다.
+
+
 NPM Mirror Server로 사용
 ------------------------
 
@@ -225,7 +230,7 @@ NPM Mirror Server로 사용
 
 `npm-group` 은 두 저장소를 묶습니다.
 
-### Upload
+### Nexus 저장소로 Upload
 
 `addUser`를 통해 `global` 로 인증을 선언할 수 있지만, Nexus 저장소의 특성상 계정별 접근 권한 및 다양한 구성과 환경이 있을 것을 감안하여, 저는 각 프로젝트에 `.npmrc` 파일을 생성하였습니다.
 
@@ -267,7 +272,7 @@ npm publish
 
 배포를 위한 package.json 및 모듈 작성 방법은 아웃사이더님의 [Node.js 모듈을 npm 저장소에 배포하기](https://blog.outsider.ne.kr/829)를 추천!
 
-### Download
+### Nexus 저장소에서 가져오기
 
 Nexus를 미러 서버로 사용하기 위해서도 global 로 선언이 가능지만,
 
