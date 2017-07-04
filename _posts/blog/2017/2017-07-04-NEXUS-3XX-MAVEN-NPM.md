@@ -34,7 +34,7 @@ Nexus는 Sonatype 에서 만든 저장소 관리자 프로젝트로, 다양한 F
 
 ### DIFF NEXUS 2.X, 3.X
 
-Nexus Repository 3은 아키텍처와 기능을 완전히 새로 작성하여 만들어졌다고 합니다. 그래서 2.X 버전과의 동등성과 하위호환성이 보장되지 않습니다.
+Nexus 3는 아키텍처와 기능을 완전히 새로 작성하여 성능 및 사용성 개선을 하였고, 더 많은 Format을 지원하며, 2016년 4월경 릴리즈되었습니다. 아키텍처와 기능을 완전히 새로 작성하여 만들어졌기 때문에 2.X 버전과의 동등성과 하위호환성이 보장되지 않습니다.
 
 ![jeff](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/jeff.png)
 
@@ -50,7 +50,7 @@ Nexus Repository 3은 아키텍처와 기능을 완전히 새로 작성하여 �
 
 ![oss3](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/oss3.png)
 
-2.X 에서 3.X 로 업그레이드되면서 지원 포맷이 확장되었습니다!
+2.X 에서 3.X 로 업그레이드되면서 지원 포맷이 대폭 확장되었습니다!
 
 **Docker** 와 **npm** 까지!! ( 제가 .NET과 Python, Ruby를 안써서 나머지는 인기있다는 정도만 압니다! )
 
@@ -58,9 +58,9 @@ Nexus Repository 3은 아키텍처와 기능을 완전히 새로 작성하여 �
 
 ![format](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/format.png)
 
-이제 본격적으로 Nexus `설치`부터, `Maven`, `NPM` 까지의 사용 방법입니다. 
+---
 
-`Docker` 에 대한 내용은 SlideShare에 공유 된 [Sonatype nexus 로 docker registry 관리하기](https://www.slideshare.net/ssuser800974/sonatype-nexus-docker-registry) 를 추천드립니다! Nexus 3 환경을 기준으로 잘 작성되어있습니다.
+이제 본격적으로 Nexus `설치`부터, `Maven`, `NPM` 까지의 사용 방법입니다. `Docker` 에 대한 내용은 SlideShare에 공유 된 [Sonatype nexus 로 docker registry 관리하기](https://www.slideshare.net/ssuser800974/sonatype-nexus-docker-registry) 를 추천드립니다! Nexus 3 환경을 기준으로 잘 작성되어있습니다.
 
 
 Nexus 3 시작하기
