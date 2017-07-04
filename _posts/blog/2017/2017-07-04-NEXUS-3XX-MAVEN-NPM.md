@@ -15,11 +15,11 @@ Nexus란?
 
 ![nexus](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/nexus.png)
 
-다양한 Format 의 저장소를 제공하는 Sonatype 에서 진행 중인 Repository Manager 프로젝트 입니다. Maven 에서 사용할 수 있는 가장 널리 사용되는 무료 저장소(정확하게는 무료 제품인 Nexus OSS)로 잘 알려져있습니다.
+Nexus는 Sonatype 에서 만든 저장소 관리자 프로젝트로, 다양한 Format 의 사설 저장소를 만들 수 있으며 메인 저장소를 Cache할 수 있는 기능 또한 제공하여 저장소를 관리할 수 있도록 도와주는 관리자 도구입니다. Maven 에서 사용할 수 있는 가장 널리 사용되는 무료 저장소로 잘 알려져있습니다.
 
-Nexus는 사설 저장소를 제공해주는 도구입니다.
+### 사설 저장소가 필요한 이유
 
-사설 저장소의 필요 이유는 [(가리사니-사설 Repository Nexus 설치 / 연동)](https://gs.saro.me/#!m=elec&jn=774) 에 박용서님이 작성해주신 글에 잘 설명되어있습니다.
+[가리사니-사설 Repository Nexus 설치 / 연동](https://gs.saro.me/#!m=elec&jn=774) 에 박용서님이 작성해주신 글에 잘 설명되어있습니다.
 
 ![why](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/why.png)
 
@@ -31,8 +31,6 @@ Nexus는 사설 저장소를 제공해주는 도구입니다.
 -	특정 솔루션을 사용하기 위한 3rd Party 라이브러리의 관리
 
 를 위해서도 필요하다고 생각됩니다.
-
----
 
 ### DIFF NEXUS 2.X, 3.X
 
@@ -58,16 +56,23 @@ Nexus Repository 3은 아키텍처와 기능을 완전히 새로 작성하여 �
 
 2.X 버전 때는 Nexus는 `Maven 저장소` 라는 인식이 강했는데, 3.X 버전의 Nexus는 **Maven 뿐만아니라, 다양한 포맷을 지원하는 저장소 관리자** 라는 생각이 확 듭니다!
 
-이제 본격적으로 Nexus `설치`부터, `Maven`, `NPM` 까지의 사용 방법입니다.
+![format](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/format.png)
 
-설치
-----
+이제 본격적으로 Nexus `설치`부터, `Maven`, `NPM` 까지의 사용 방법입니다. 
+
+`Docker` 에 대한 내용은 SlideShare에 공유 된 [Sonatype nexus 로 docker registry 관리하기](https://www.slideshare.net/ssuser800974/sonatype-nexus-docker-registry) 를 추천드립니다! Nexus 3 환경을 기준으로 잘 작성되어있습니다.
+
+
+Nexus 3 시작하기
+--------------
+
+### 설치
 
 Nexus를 설치하는 방법은 크게 2가지 입니다.
 
 Sonatype 사이트에서 제공하는 압축 파일을 통해 설치 및 실행하는 방법과, Docker 이미지로 설치 및 실행하는 방법입니다.
 
-### 파일 설치 및 실행
+#### 파일 설치 및 실행
 
 Sonatype 홈페이지(https://www.sonatype.com/download-oss-sonatype)에서 OSS 3.X 버전을 다운로드하고 압축을 해제합니다.
 
@@ -103,11 +108,11 @@ nexus.exe /run
 
 이 외의 다양한 설정은 [공식 Document](https://books.sonatype.com/nexus-book/reference3/install.html)를 참고! (위 내용도 이 문서에 다 있습니다.)
 
-### Docker
+#### Docker
 
 [Sonaytype Github](https://github.com/sonatype/docker-nexus3)에 설명이 잘 되어있어 링크로 대체합니다!
 
-#### 설치 끝
+##### 설치 끝
 
 -	요약
 	-	다운 받는다.
@@ -117,14 +122,15 @@ nexus.exe /run
 
 기본 ID 와 비밀번호는 `admin / admin123` 입니다!
 
-공통
-----
+---
 
 ### Blob Stores
 
 모든 저장소는 Blob Stores를 지정해줘야 합니다. Blob Store는 실제 데이터가 저장되는 장소이며, sonatype-work의 하위 디렉토리와 매칭됩니다.
 
 ![blob](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/blob.png)
+
+---
 
 ### Repository Type
 
@@ -142,8 +148,9 @@ nexus.exe /run
 
 	-	proxy 와 hosted 들을 묶을 수 있는 단위 집단입니다. 그룹에 저장소를 나열하는 순서가 그룹의 라이브러리를 탐색 우선순위가 됩니다.
 
-Gradle에서 Maven Repository로 사용
-----------------------------------
+---
+
+### Gradle에서 Maven Repository로 사용
 
 이 곳에서 Maven의 Snapshots과 releases 구성에 대한 설명은 하지 않겠습니다. 기본적으로 아래와 같은 샘플들이 주어집니다.
 
@@ -151,7 +158,7 @@ Gradle에서 Maven Repository로 사용
 
 설정을 참고하여 구조를 작성할 수 있습니다.
 
-### Nexus 저장소로 Upload
+#### Nexus 저장소로 Upload
 
 `build.gradle` 에 Nexus 배포를 위한 `uploadArchives` 스크립트를 작성합니다.
 
@@ -195,7 +202,7 @@ Nexus의 Component를 살펴보면, 업로드한 프로젝트가 올라와 있�
 
 ![d3](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/d3.png)
 
-### Nexus 저장소에서 가져오기
+#### Nexus 저장소에서 가져오기
 
 Nexus를 통해 Dependency를 가져올 때는 해당 Hosted를 직접 지정하거나 상위 Group을 지정할 수 있습니다.
 
@@ -216,9 +223,10 @@ repositories {
 
 Nexus로 라이브러리를 업로드할 때는 uploadArchives 로 release, snapshot 배포를 하고, Nexus 저장소를 사용하려면 `build.gradle` 의 `repositories`에 Maven 저장소의 Group을 등록합니다.
 
+---
 
-NPM Mirror Server로 사용
-------------------------
+
+### NPM Mirror Server로 사용
 
 아래와 같은 구조를 기본 구조로 사용합니다.
 
@@ -232,7 +240,7 @@ NPM Mirror Server로 사용
 
 `npm-group` 은 두 저장소를 묶습니다.
 
-### Nexus 저장소로 Upload
+#### Nexus 저장소로 Upload
 
 `addUser`를 통해 `global` 로 인증을 선언할 수 있지만, Nexus 저장소의 특성상 계정별 접근 권한 및 다양한 구성과 환경이 있을 것을 감안하여, 저는 각 프로젝트에 `.npmrc` 파일을 생성하였습니다.
 
@@ -274,7 +282,7 @@ npm publish
 
 배포를 위한 package.json 및 모듈 작성 방법은 아웃사이더님의 [Node.js 모듈을 npm 저장소에 배포하기](https://blog.outsider.ne.kr/829)를 추천!
 
-### Nexus 저장소에서 가져오기
+#### Nexus 저장소에서 가져오기
 
 Nexus를 미러 서버로 사용하기 위해서도 global 로 선언이 가능지만,
 
