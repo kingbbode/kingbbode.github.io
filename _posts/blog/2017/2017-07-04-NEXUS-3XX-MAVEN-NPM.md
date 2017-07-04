@@ -70,7 +70,9 @@ Nexus 3 시작하기
 
 Nexus를 설치하는 방법은 크게 2가지 입니다.
 
-Sonatype 사이트에서 제공하는 압축 파일을 통해 설치 및 실행하는 방법과, Docker 이미지로 설치 및 실행하는 방법입니다.
+Sonatype 사이트에서 제공하는 압축 파일을 통해 설치 및 실행하는 방법과, Docker 이미지로 설치 및 실행하는 방법입니다. 
+
+Docker 이미지로 설치는 [Sonaytype Github](https://github.com/sonatype/docker-nexus3)에 설명이 잘 되어있어 링크로 대체합니다! 아래에서는 파일로 설치 및 실행만 기술하였습니다.
 
 #### 파일 설치 및 실행
 
@@ -90,13 +92,13 @@ Sonatype 홈페이지(https://www.sonatype.com/download-oss-sonatype)에서 OSS 
 
 `nexus 3.x` 폴더 하위의 `bin` 폴더에는 Nexus 어플리케이션 구동에 관한 스크립트가 있습니다. `bin` 폴더 하위의 `nexus`를 실행합니다.
 
-**UNIX**
+- UNIX
 
 ```
 ./nexus run
 ```
 
-**WINDOW**
+- WINDOW
 
 ```
 nexus.exe /run
@@ -108,11 +110,7 @@ nexus.exe /run
 
 이 외의 다양한 설정은 [공식 Document](https://books.sonatype.com/nexus-book/reference3/install.html)를 참고! (위 내용도 이 문서에 다 있습니다.)
 
-#### Docker
-
-[Sonaytype Github](https://github.com/sonatype/docker-nexus3)에 설명이 잘 되어있어 링크로 대체합니다!
-
-##### 설치 끝
+#### 설치 끝
 
 -	요약
 	-	다운 받는다.
