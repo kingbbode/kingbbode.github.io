@@ -124,7 +124,7 @@ nexus.exe /run
 
 ### Blob Stores
 
-모든 저장소는 Blob Stores를 지정해줘야 합니다. Blob Store는 실제 데이터가 저장되는 장소이며, sonatype-work의 하위 디렉토리와 매칭됩니다.
+모든 저장소는 Blob Store를 지정해줘야 합니다. Blob Store는 실제 데이터가 저장되는 장소이며, sonatype-work의 하위 디렉토리와 매칭됩니다.
 
 ![blob](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/blob.png)
 
@@ -132,7 +132,7 @@ nexus.exe /run
 
 ### Repository Type
 
-모든 Format에 3가지 타입이 있습니다.
+모든 Format의 저장소에는 3가지 `Type` 이 있습니다.
 
 -	proxy
 
@@ -140,11 +140,35 @@ nexus.exe /run
 
 -	hosted
 
-	-	하나의 사설 라이브러리 집단입니다.
+	-	자체 모듈 저장소입니다.
 
 -	group
 
 	-	proxy 와 hosted 들을 묶을 수 있는 단위 집단입니다. 그룹에 저장소를 나열하는 순서가 그룹의 라이브러리를 탐색 우선순위가 됩니다.
+
+---
+
+### UI 구성
+
+#### Browse
+
+접속 초기 화면의 Browse 탭에서는 생성된 저장소들을 확인할 수 있으며, 저장소에 저장되어 있는 내용을 확인할 수 있습니다.
+
+![browser](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/browser.png)
+
+#### Administration
+
+로그인을 하면 생기는 Administration 탭에서는 Nexus의 모든 것을 설정할 수 있습니다. 권한 관리 및 Blob, Repository 생성 삭제도 이곳에서 할 수 있습니다.
+
+![settings](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/settings.png)
+
+#### 데이터 UI 업로드 기능
+
+충격적이게도 UI 에서 라이브러리 등의 파일을 업로드하는 기능이 없습니다. 이 건은 Neuxs 3가 릴리즈 됐을 때부터 지금까지도 활발히 Nexus Issue([https://issues.sonatype.org/browse/NEXUS-10121](https://issues.sonatype.org/browse/NEXUS-10121))에서 진행 중 입니다.
+
+꼭 생겼으면..
+
+![cry](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/cry.png)
 
 ---
 
