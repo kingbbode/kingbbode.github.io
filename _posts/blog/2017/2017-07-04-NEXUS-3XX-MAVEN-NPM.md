@@ -245,6 +245,25 @@ repositories {
 
 Nexus로 라이브러리를 업로드할 때는 uploadArchives 로 release, snapshot 배포를 하고, Nexus 저장소를 사용하려면 `build.gradle` 의 `repositories`에 Maven 저장소의 Group을 등록합니다.
 
+> build.gradle
+
+```java
+
+dependencies {
+  compile('com.kingbbode:jooq-practice:0.0.1-SNAPSHOT')
+  ...
+}
+
+```
+
+dependencies 에 업로드한 라이브러리의 group id, artifact id, version을 조합하여 작성한 후 gradle 을 새로고침 합니다.
+
+![mavenget](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/mavenget.png)
+
+성공적으로 잘 들어오는 것을 확인할 수 있습니다!
+
+*Snapshot 버전이 새로고침되지 않는 이슈가 있습니다. 이게 IntelliJ 이슈인지 Gradle 이슈인지 명확하지 않아 , 링크([https://youtrack.jetbrains.com/issue/IDEA-125822](https://youtrack.jetbrains.com/issue/IDEA-125822))를 대신 남깁니다.*
+
 ---
 
 
