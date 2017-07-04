@@ -13,6 +13,8 @@ outlink: 0
 Nexus란?
 --------
 
+![nexus](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/nexus.png)
+
 다양한 Format 의 저장소를 제공하는 Sonatype 에서 진행 중인 Repository Manager 프로젝트 입니다. Maven 에서 사용할 수 있는 가장 널리 사용되는 무료 저장소(정확하게는 무료 제품인 Nexus OSS)로 잘 알려져있습니다.
 
 Nexus는 사설 저장소를 제공해주는 도구입니다.
