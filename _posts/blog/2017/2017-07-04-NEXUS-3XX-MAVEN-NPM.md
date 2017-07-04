@@ -160,7 +160,7 @@ nexus.exe /run
 
 로그인을 하면 생기는 Administration 탭에서는 Nexus의 모든 것을 설정할 수 있습니다. 권한 관리 및 Blob, Repository 생성 삭제도 이곳에서 할 수 있습니다.
 
-![settings](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/settings.png)
+![settings](/images/2017/2017-07-04-NEXUS-3XX-MAVEN-NPM/sett.png)
 
 #### 데이터 UI 업로드 기능
 
