@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      eBrain Tech-HR Conference
+author:     kingbbode
+tags:       HR study
+subtitle:   개발자를 위한 HR 컨퍼런스 후기
+category:  seminar
+outlink: 0
+---
+
 블리자드와 넥슨 HR 시스템
 -------------------------
 
