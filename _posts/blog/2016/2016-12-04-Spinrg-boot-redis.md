@@ -13,9 +13,9 @@ Redis란?
 
 ![Redis](/images/2016/2016_12_04_Spring_Boot_Redis/redis.png)
 
--	`Remote Dictionary Server`의 약자 
-- 오픈 소스 소프트웨어 
-- `휘발성`이면서 `영속성`을 가진 `key-value` 저장소
+-	`Remote Dictionary Server`의 약자
+-	오픈 소스 소프트웨어
+-	`휘발성`이면서 `영속성`을 가진 `key-value` 저장소
 
 ### Redis는 NoSQL
 
@@ -101,48 +101,37 @@ Redis는 key-value 데이터 모델에서 Value가 가질 수 있는 자료 구�
 Spring Boot 시작
 ----------------
 
-### Dependency
+*2017-08-07 Spring Boot Version으로 재작성*
 
 > build.gradle
 
 ```
-compile("org.springframework.data:spring-data-redis:1.7.2.RELEASE")
-compile("redis.clients:jedis:2.8.1")
+compile("org.springframework.boot:spring-boot-starter-data-redis")
 ```
+
+**spring-boot-starter-data-redis**
+
+Spring Boot 에서 제공하는 Starter 로 Redis 를 사용함에 필요한 Dependency 와 Configuration 을 제공합니다.
+
+### Dependency
 
 -	spring-data-redis : 스프링에서 공식 지원하는 Dependency로 Redis Client와 연동 가능한 높은 레벨의 `RedisTemplate` 추상화를 제공합니다.
 
 -	jedis : 가장 많이 사용되고 있는 Java Client로 가장 활발한 오픈소스이며, 레디스에서 공식 추천하고 있는 Client 중 하나입니다. [[참고]](http://redis.io/clients#java)
 
-### Java Configuration
+### Auto Configuration
 
-> RedisConfig.java
+> application.properteis
 
-```java
-@Configuration
-public class RedisConfig {
-    @Bean
-    public JedisConnectionFactory jedisConnectionFactory() {
-
-        JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
-        jedisConnectionFactory.setHostName("xxx.xxx.xxx.xxx");
-        jedisConnectionFactory.setPort(6379);
-        jedisConnectionFactory.setTimeout(0);
-        jedisConnectionFactory.setUsePool(true);
-
-        return jedisConnectionFactory;
-    }
-
-    @Bean
-    public StringRedisTemplate redisTemplate() {
-        StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
-        stringRedisTemplate.setConnectionFactory(jedisConnectionFactory());
-        return stringRedisTemplate;
-    }
-}
+```
+spring.redis.host = 127.0.0.1
+spring.redis.password=
+spring.redis.port=6379
 ```
 
-Spring Data에서 제공하는 만큼 기존 JDBC 설정 지원과 거의 유사함을 볼 수 있습니다.
+-	JedisConnectionFactory : Redis 연동
+
+-	RedisTemplate : Redis Command 를 도와주는 Template
 
 #### Operations
 
