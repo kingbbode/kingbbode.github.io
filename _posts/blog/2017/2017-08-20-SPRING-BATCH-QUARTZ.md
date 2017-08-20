@@ -138,6 +138,7 @@ Quartz vs Jenkins
 ### Quartz 단점
 
 -	UI Admin 을 제공하지 않습니다.
+    - 알람 기능, Schedule Control 기능 등을 직접 구현하거나, 안써야 함
 
 ### History 기능
 
@@ -151,41 +152,9 @@ Quartz vs Jenkins
 
 각 Job 과 Step 에 대한 꽤 상세한 히스토리를 알 수 있습니다.
 
-> `Jenkins` 를 사용하면 Job 에 대한 History 를 볼 수 있다라고 이야기를 하시는 분들이 계셨는데, `Jenkins` 를 사용한다고 해도 `Spring Batch` Job History 는 반드시 봐야한다고 생각합니다. 사실 우리가 알고 싶은 건 Job 에 대한 History 지 Scheduling 에 대한 History가 아니기 때문입니다.
+> 개인적으로는 `Jenkins` 를 사용한다고 해도 `Spring Batch` Job History 는 반드시 봐야한다고 생각합니다. 사실 우리가 알고 싶은 건 Job 에 대한 History 지 Scheduling 에 대한 History가 아니기 때문입니다.
 
-### 결론
-
-제가 생각하는 결론은 `Jenkins` 보다는 `Quartz` 입니다.
-
-#### UI 가 제공된다는 것은 분명히 굉장히 크지만,
-
-반론을 해보자면
-
-1.	`Jenkins` 를 사용한다고 해도 `Spring Batch` History 를 모니터링하기 위한 도구가 필요합니다. 즉, 어차피 Jenkins 만으로는 안된다는 것 입니다.
-
-2.	관계가 복잡하지 않은 테이블 3-4개를 컨트롤 하는 Application 을 만드는게 어렵진 않을 것이라고 생각합니다. 어느 정도 Quartz Table 들에 대한 사전지식이 있어야겠지만, 너무 간단해서 학습비용은 적을 것 입니다. (그래도 만들어져 있는 것이 없고, 누군가 만들어야 한다는게 크지만.. 그 누군가가 제가 될 듯 합니다.)
-
-#### Quartz 가 갖는 장점인,
-
-Clustering 기능과 초기 구동 속도가 필요없는 정확한 시간의 Job 수행도 매력적이고 필요한 기능입니다.
-
-#### Jenkins는 CI가 목적인 툴이라는 것도,
-
-제가 `Jenkins` 를 Batch Job Luncher로서 꺼려하는 굉장히 큰 이유입니다.
-
-Jenkins가 CI 를 목적으로 하다보니, Batch Scheduling 을 위한 기능도 다 가지고 있게 되었고, 그렇다보니 편하기 때문에 `Jenkins` 를 유두리 있게 사용하는 것도 센스있고 좋은 시도인 것은 분명합니다.
-
-그러나 저는 이건 분명 `개발부채` 라고 생각합니다. `Jenkins` 가 영원할지 아닐지는 아무도 모르고, 굉장히 엄청난 CI 툴이 나올 수도 있고 등등 만에 하나 CI 툴로 `Jenkins`를 사용 안하게 되었을 때?
-
-Batch 를 위하여 Jenkins 시스템을 남겨둘 것인가. 새로운 CI 툴에도 Batch Application 을 컨트롤할 수 있는지를 체크할 것인가.
-
-뭔가 목적에 맞지 않고 억지로 껴맞추어진 느낌이라면, 결국엔 언젠가 값을 치루어야할 `개발부채` 일 것 입니다.
-
-#### 그래서 제 결론은 Jenkins 보단 Quartz 입니다.
-
-웹을 돌아다니다가 제 의견과 비슷한 블로그 링크가 있어서 첨부합니다!
-
-[자바기반 스케줄링 프로그래밍(7) - Quartz vs Jenkins](http://blog.cjred.net/269/)
+결론은 Quartz로 내려고 했으나, 많은 호불호가 있을 것으로 예상하여.. 각각 장단점이 있는 것으로.
 
 ---
 
