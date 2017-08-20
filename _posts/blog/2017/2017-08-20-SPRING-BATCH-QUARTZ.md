@@ -18,7 +18,9 @@ Quartz란?
 
 ![logo](/images/2017/2017-08-20-SPRING-BATCH-QUARTZ/logo.png)
 
-[Quartz Scheduler](http://www.quartz-scheduler.org/) 는 거의 모든 Java 응용 프로그램에 통합 할 수 있는 풍부한 기능 의 오픈 소스 작업 스케줄 라이브러리 라고 소개하고 있습니다.
+[Quartz Scheduler](http://www.quartz-scheduler.org/) 는 거의 모든 Java 응용 프로그램에 통합 할 수 있는 풍부한 기능의 오픈 소스 작업 스케줄 라이브러리입니다.
+
+저에게는 다소 생소했던 라이브러리였습니다. 그래서 리서치를 해보았더니,
 
 ```
 스프링에서 Unix의 Cron 처럼 특정시간 혹은 몇분 혹은 몇시간마다 동작해는 스케쥴러를 구현해야 했다.
@@ -30,11 +32,13 @@ Quartz란?
 
 *출처: http://javafactory.tistory.com/1386 [FreeLife의 저장소]*
 
-라고 합니다. 위 말 처럼 우리는 이미 `Spring Framework` 안에서 `@Scheduled` 를 통해 과거 Quartz 에서 제공해주었던 `cron schedule` 기능 등을 사용하고 있습니다.
+위와 같은 글을 보았습니다. 위 말 처럼 우리는 이미 `Spring Framework` 안에서 `@Scheduled` 를 통해 과거 Quartz 에서 제공해주었던 `cron schedule` 기능 등을 사용하고 있는 것 입니다.
 
-[FreeLife의 저장소 : What is Quartz](http://javafactory.tistory.com/272) 의 글을 보면 2001년 봄에 해당 라이브러리가 등장하였다고 소개하고 있는만큼 많은 경험과 경력을 가지신 개발자 분들은 `Quartz` 에 대해 많이 들어보셨을 것이라고 생각합니다.
+[FreeLife의 저장소 : What is Quartz](http://javafactory.tistory.com/272) 의 글을 보면 2001년 봄에 해당 라이브러리가 등장하였다고 소개합니다. 많은 경험과 경력을 가지신 개발자 분들은 이미 `Quartz` 에 대해 많이 들어보셨을까요? 
 
-> 그래서 제가 추측하건데, 위 글을 종합하였을 때 `Quartz` 는 과거 Cron 과 같은 스케줄링을 위해 많이 쓰이던 라이브러리였지만, 스프링 3.1 버전 후부터 그 기능을 `Spring Framework` 에서 제공해주기 때문에 조금은 `Spring Framework` 와 멀어졌던 라이브러리라고 생각합니다.
+저에게는 굉장히 생소한 그런 라이브러리였습니다. 그럼에도 그 기능이나 내용에 큰 매력을 느꼈습니다. :)
+
+> 그래서 추측해보면, `Quartz` 는 과거 Cron 과 같은 스케줄링을 위해 많이 쓰이던 라이브러리였지만, 스프링 3.1 버전 후부터 그 기능을 `Spring Framework` 에서 제공해주기 때문에 조금은 `Spring Framework` 와 멀어졌던 라이브러리라고 생각합니다.
 
 ---
 
