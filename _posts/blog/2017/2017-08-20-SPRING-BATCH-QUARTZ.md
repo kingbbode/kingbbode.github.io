@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      Quartz + Spring Batch 조합!
+author:     kingbbode
+tags:       web batch spring quartz
+subtitle:   Quartz Scheduler 와 Spring Batch 의 궁합과 조합을 정리.
+category:  posts
+outlink: 0
+---
+
 Quartz + Spring Batch 조합하기
 ==============================
 
