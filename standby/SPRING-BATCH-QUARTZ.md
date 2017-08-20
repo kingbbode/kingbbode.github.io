@@ -169,10 +169,14 @@ Batch 를 위하여 Jenkins 시스템을 남겨둘 것인가. 새로운 CI 툴�
 
 #### 그래서 제 결론은 Jenkins 보단 Quartz 입니다.
 
+웹을 돌아다니다가 제 의견과 비슷한 블로그 링크가 있어서 첨부합니다!
+
+[자바기반 스케줄링 프로그래밍(7) - Quartz vs Jenkins](http://blog.cjred.net/269/)
+
 ---
 
-Quartz + Spring Batch 조합
---------------------------
+Quartz + Spring Batch 조합 개발하기
+-----------------------------------
 
 **Quartz 개발과 Spring Batch 개발에 대한 내용은 생략하겠습니다.**
 
@@ -297,3 +301,85 @@ jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
 `Quartz` Job을 만들면 주입받는 Quartz `JobExecutionContext`을 통해 Spring Batch Job으로 Schedule에 대한 정보를 Parameter로 공급하는 것 입니다.
 
 이렇게 되면 어떤 형태로든, Quartz와 Spring Batch 간의 관계를 찾을 수 있지 않을까 합니다!
+
+### GracefulShutdown
+
+Quartz 는 자체 Plugin을 통해 GracefulShutdown을 지원하고 있기는 합니다.
+
+Scheduler에 등록되는 Properties에서 `org.quartz.plugin.shutdownhook` 을 사용하는 것 입니다. 그러나! DataSource에 대한 설정을 Spring Framework에게 위임했다면 이 설정을 쓸 수 없습니다.
+
+그 이유는 Spring Framework가 종료될 때 독립적으로 수행되고 있는 Quartz Job을 기다리지 않기 때문입니다. 기다리지 않기 때문에 Spring Framework는 DataSource Connection을 close할 것이고, Quartz는 Job이 정상적으로 완료되었다고 할지라도 DataSource 에 정보를 업데이트하지 못한 채 종료가 됩니다.
+
+해결책은 간단합니다. Spring Framework 가 종료될 때 Quartz 상태를 체크하고 기다리거나 종료하거나 하는 것 입니다.
+
+```java
+@Bean
+public SmartLifecycle gracefulShutdownHookForQuartz(SchedulerFactoryBean schedulerFactoryBean) {
+    return new SmartLifecycle() {
+        private boolean isRunning = false;
+        private final Logger logger = LoggerFactory.getLogger(this.getClass());
+        @Override
+        public boolean isAutoStartup() {
+            return true;
+        }
+
+        @Override
+        public void stop(Runnable callback) {
+            stop();
+            logger.info("Spring container is shutting down.");
+            callback.run();
+        }
+
+        @Override
+        public void start() {
+            logger.info("Quartz Graceful Shutdown Hook started.");
+            isRunning = true;
+        }
+
+        @Override
+        public void stop() {
+            isRunning = false;
+            try {
+                logger.info("Quartz Graceful Shutdown... ");
+                schedulerFactoryBean.destroy();
+            } catch (SchedulerException e) {
+                try {
+                    logger.info(
+                            "Error shutting down Quartz: " + e.getMessage(), e);
+                    schedulerFactoryBean.getScheduler().shutdown(false);
+                } catch (SchedulerException ex) {
+                    logger.error("Unable to shutdown the Quartz scheduler.", ex);
+                }
+            }
+        }
+
+        @Override
+        public boolean isRunning() {
+            return isRunning;
+        }
+
+        @Override
+        public int getPhase() {
+            return Integer.MAX_VALUE;
+        }
+    };
+}
+
+```
+
+![shutdowngif](/images/2017/2017-08-20-SPRING-BATCH-QUARTZ/shutdowngif.gif)
+
+Spring Application에 Showdown Hook을 등록해놓고, Quartz Job이 종료될 때까지 기다린 후 Application이 종료되게 합니다.
+
+---
+
+결론
+----
+
+![clsutering](/images/2017/2017-08-20-SPRING-BATCH-QUARTZ/clusteringgif.gif)
+
+(위 그림은 동일한 Schedule 의 Application이 Job1, Job2 를 데이터베이스 기반으로 Clustering 하여 Job을 수행하는 모습입니다.)
+
+회사 표준화 프로젝트의 일환으로 최대한 간소화한 코드를 공개하는 점에 양해를 부탁드립니다. 철저히 제 생각을 기반으로 Spring Batch + Quartz 를 만들고 정리해보았습니다.
+
+잘못된 정보가 있을 수도 있고, 맞지 않는 생각이나, 불안요소가 있을 것 입니다. 선배 개발자님들의 많은 피드백 부탁드립니다 :) !
