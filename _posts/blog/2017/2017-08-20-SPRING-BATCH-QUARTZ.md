@@ -173,7 +173,7 @@ Quartz + Spring Batch 조합 개발하기
 
 Quartz 와 Spring Batch 를 구성함에 **핵심** 은 Quartz의 Job(Spring Batch Job이 아닌.. 둘 다 Job이라 조금 혼돈이 올 수 있습니다)에서 사용되는 Class가 단 하나라는 것 입니다. 그 Class 는 `QuartzJobLauncher` 라는 파라미터를 기반으로 Spring Batch의 Job을 구동시키는 역할을 합니다.
 
-![springquartzbatch](/images/2017/2017-08-20-SPRING-BATCH-QUARTZ/springquartz.png)
+![springquartzbatch](/images/2017/2017-08-20-SPRING-BATCH-QUARTZ/springquartz-fix.png)
 
 기존 Spring Framework + Quartz 가 위와 같고,
 
