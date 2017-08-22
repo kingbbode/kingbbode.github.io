@@ -179,7 +179,11 @@ class BarConfig {
 ```
 using @PropertySource is definitely something that we do not recommend.
 
+(@PropertySource를 사용하는 것은 우리가 권장하지 않는 것입니다.)
+
 Easy doesn't necessarily means correct. In the context of Spring Boot, the whole use of @PropertySource (be it for properties or potentially yaml based format) is kind of inconsistent and we don't want to promote that feature.
+
+(쉬운 것이 반드시 올바른 것은 아닙니다. Spring Boot의 맥락에서 @PropertySource (속성 또는 yaml 기반 형식 일 수도 있음)의 전체 사용은 일관성이 없으며 해당 기능을 승격하고 싶지 않습니다.)
 ```
 
 *출처 : https://jira.spring.io/browse/SPR-13912*
@@ -188,6 +192,139 @@ Easy doesn't necessarily means correct. In the context of Spring Boot, the whole
 
 ```
 While using @PropertySource on your @SpringBootApplication seems convenient and easy enough to load a custom resource in the Environment, we do not recommend it as Spring Boot prepares the Environment before the ApplicationContext is refreshed. Any key defined via @PropertySource will be loaded too late to have any effect on auto-configuration.
+
+(@SpringBootApplication에서 @PropertySource를 사용하는 것이 환경에서 사용자 정의 리소스를로드하기에 편리하고 쉽지만 ApplicationContext가 새로 고쳐지기 전에 Spring 부트가 환경을 준비 할 때 권장하지 않습니다. @PropertySource를 통해 정의 된 키는 자동 구성에 영향을 미치기에는 너무 늦게로드됩니다.)
 ```
 
 *출처 : http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-customize-the-environment-or-application-context*
+
+#### Spring Boot의 Auto Configuration을 사용함에`@PropertySource` 는 너무 늦다고 말합니다.
+
+제가 아는 Auto Configuration으로만 이해하려고 했어서 위의 내용을 이해데 한참 늦었습니다 (아직도..?). 저는 Auto Configuration 에서 `@Conditional*` 기반의 `ApplicationContext` 가 생성된 후의 일만을 생각했기 때문입니다.
+
+```
+Classes passed to the SpringApplication static convenience methods, and those added using setSources() are inspected to see if they have @PropertySources, and if they do, those properties are added to the Environment early enough to be used in all phases of the ApplicationContext lifecycle.
+
+(
+SpringApplication 정적 편리 메소드에 전달 된 클래스와 setSources ()를 사용하여 추가 된 클래스는 @PropertySources가 있는지 검사하여 ApplicationContext 라이프 사이클의 모든 단계에서 사용할 수있을만큼 일찍 환경에 추가됩니다 .)
+```
+
+*출처 : https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-change-the-location-of-external-properties*
+
+실제로 `@PropertySource`는 느리지 않습니다. `ApplicationContext` 의 lifecycle 에서 매우 빠르다고 문서에서 말하고 있습니다.
+
+**그렇다면 무엇이 느린 것인가!**
+
+핵심 문장은 이것 입니다!
+
+`Spring Boot prepares the Environment before the ApplicationContext is refreshed`
+
+ApplicationContext 생성 전 Spring Boot가 준비하는 과정이라고 저는 해석을 했습니다.
+
+아래가 스프링 부트 어플리케이션이 실행될 때 이벤트 순서입니다. 그리고 ApplicationContext가 생성되기 전에 실행되는 이벤트가 보입니다.
+
+```
+1. An ApplicationStartingEvent is sent at the start of a run, but before any processing except the registration of listeners and initializers.
+
+2. An ApplicationEnvironmentPreparedEvent is sent when the Environment to be used in the context is known, but before the context is created.
+
+3. An ApplicationPreparedEvent is sent just before the refresh is started, but after bean definitions have been loaded.
+
+4. An ApplicationReadyEvent is sent after the refresh and any related callbacks have been processed to indicate the application is ready to service requests.
+
+5. An ApplicationFailedEvent is sent if there is an exception on startup.
+```
+
+```
+Some events are actually triggered before the ApplicationContext is created so you cannot register a listener on those as a @Bean.
+
+(어떤 이벤트는 실제로 ApplicationContext가 생성되기 전에 트리거되어서 @Bean으로 리스너를 등록 할 수 없습니다.)
+```
+
+*출처 : http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-application-events-and-listeners*
+
+#### Spring Boot 는 어디선가 ApplicationContext 가 생성되기도 전에 무엇인가를 하고 있구나 확신이 듭니다!
+
+그럼 그 무엇인가는 무엇일까요?
+
+Spring Boot 의 Auto Configuration의 핵심인 `EnableAutoConfigurationImportSelector`는 `SpringFactoriesLoader` 를 사용하고 있습니다.
+
+`SpringFactoriesLoader`는 Class Path의 META-INF 경로 하위의 모든 `spring.factories` 로드하여 Spring Framework의 내부 사용을 위한 설정을 적용하는 클래스입니다.
+
+spring.factories 의 대표적인 기능이 바로 Spring Framework 의 listener 를 등록하는 것 입니다.
+
+```
+If you want those listeners to be registered automatically regardless of the way the application is created you can add a META-INF/spring.factories file to your project and reference your listener(s) using the org.springframework.context.ApplicationListener key.
+
+(응용 프로그램의 작성 방법에 관계없이 리스너를 자동으로 등록하려면 META-INF / spring.factories 파일을 프로젝트에 추가하고 org.springframework.context.ApplicationListener 키를 사용하여 리스너를 참조 할 수 있습니다.)
+```
+
+*출처 : http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-application-events-and-listeners*
+
+그리고 아래는 Spring Boot Auto Configuration 프로젝트인 `spring-boot-autoconfigure` 의 `spring.factories` 내용의 일부입니다.
+
+```
+# Initializers
+org.springframework.context.ApplicationContextInitializer=\
+org.springframework.boot.autoconfigure.SharedMetadataReaderFactoryContextInitializer,\
+org.springframework.boot.autoconfigure.logging.AutoConfigurationReportLoggingInitializer
+
+# Application Listeners
+org.springframework.context.ApplicationListener=\
+org.springframework.boot.autoconfigure.BackgroundPreinitializer
+
+# Auto Configuration Import Listeners
+org.springframework.boot.autoconfigure.AutoConfigurationImportListener=\
+org.springframework.boot.autoconfigure.condition.ConditionEvaluationReportAutoConfigurationImportListener
+
+# Auto Configuration Import Filters
+org.springframework.boot.autoconfigure.AutoConfigurationImportFilter=\
+org.springframework.boot.autoconfigure.condition.OnClassCondition
+
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\
+org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
+```
+
+일단 찾고 있던 Spring Framework 에게 ApplicationContextInitializer와 ApplicationListener 을 등록하는 것이 보입니다.
+
+그리고 그 외에도 여러가지 Key 값이 보이며, 지난 스프링 캠프의 저의 발표에서도 언급했던 `EnableAutoConfiguration` 도 보입니다. Spring Boot는 `factories`를 통해 `EnableAutoConfiguration` 클래스 리스트를 주입받고, 어디에선가 사용을 하고 있습니다.
+
+#### 현재까지 내용을 정리해보자면,
+
+Spring Boot 는 `ApplicationContext` 가 생성되기 전(`@PropertySource`로 설정한 파일이 로드되기도 전)에도 Environment 를 사용한 `무엇인가`를 통해 Auto Configuration 에 영향을 미치고 있겠다고 생각이 됩니다.
+
+그래서 Spring Boot는 @PropertySource를 권장하지 않겠구나라는 것을 대충 짐작으로 생각하게 되었습니다.
+
+### 4. 그래서 부트는 @PropertySource 와 같은 기능의 대안으로 무엇을 사용하라는 것인가?
+
+TODO..
+
+---
+
+이건 팁..
+
+Spring Boot는 합리적인 값 `Override`를 허용하도록 설계된 **매우 특별한 PropertySource 순서** 를 사용.
+
+```
+1. Devtools global settings properties on your home directory (~/.spring-boot-devtools.properties when devtools is active).
+2. @TestPropertySource annotations on your tests.
+3. @SpringBootTest#properties annotation attribute on your tests.
+4. Command line arguments.
+5. Properties from SPRING_APPLICATION_JSON (inline JSON embedded in an environment variable or system property)
+6. ServletConfig init parameters.
+7. ServletContext init parameters.
+8. JNDI attributes from java:comp/env.
+9. Java System properties (System.getProperties()).
+10. OS environment variables.
+11. A RandomValuePropertySource that only has properties in random.*.
+12. Profile-specific application properties outside of your packaged jar (application-{profile}.properties and YAML variants)
+13. Profile-specific application properties packaged inside your jar (application-{profile}.properties and YAML variants)
+14. Application properties outside of your packaged jar (application.properties and YAML variants).
+15. Application properties packaged inside your jar (application.properties and YAML variants).
+16. @PropertySource annotations on your @Configuration classes.
+17. Default properties (specified using SpringApplication.setDefaultProperties).
+```
+
+*출처 : https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html*
