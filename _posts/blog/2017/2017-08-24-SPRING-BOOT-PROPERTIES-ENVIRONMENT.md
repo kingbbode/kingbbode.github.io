@@ -26,7 +26,7 @@ Spring Boot 에서 properties 설정에 대한 깨달음을 얻어 정리하고�
 
 ---
 
-### 발단
+## 발단
 
 저의 10번째 블로깅이였던 [스프링 부트, YAML 적용](http://kingbbode.tistory.com/10) 이라는 블로그에서 소개하였던 `@ConfigurationProeprties` 의 `locations` 이 Spring Boot 1.4 를 이후로 Deprecated 되었습니다.
 
@@ -58,7 +58,7 @@ https://github.com/spring-projects/spring-boot/issues/6220
 
 ---
 
-### 1. 처음에는 답정너인줄 알았음
+## 1. 처음에는 답정너인줄 알았음
 
 처음에는 이슈들을 보면서 `무슨 말을 해도 답은 정해져 있다` 의 느낌을 받았습니다.
 
@@ -68,11 +68,11 @@ https://github.com/spring-projects/spring-boot/issues/6220
 
 `ConfigurationProeprties` 의 `locations` Deprecated 와 `@PropertySource` 의 Yaml 미지원에도 거의 비슷한 말만 계속..!
 
-### 2. 나는 왜 `@PropertySource` 와 `@ConfigurationProeprties` 의 location 지정 기능에 집착을 했나?
+## 2. 나는 왜 `@PropertySource` 와 `@ConfigurationProeprties` 의 location 지정 기능에 집착을 했나?
 
 *(@ConfigurationProeprties 의 location 기능이 @PropertySource 와 거의 유사하므로, @PropertySource 를 기준으로 작성)*
 
-#### 보안을 위한 파일 분리
+### 보안을 위한 파일 분리
 
 민감한 데이터나 정보를 저장소에 보관할 수는 없다는 이유가 있습니다.
 
@@ -85,7 +85,7 @@ https://github.com/spring-projects/spring-boot/issues/6220
 
 `PropertySource` 의 특성상 나중에 로드된 파일로 설정을 `Override` 할 수 있습니다.
 
-#### 환경에 따라 다른 값을 주입
+### 환경에 따라 다른 값을 주입
 
 ```java
 @PropertySource(value = {
@@ -96,7 +96,7 @@ https://github.com/spring-projects/spring-boot/issues/6220
 
 마찬가지로 설정이 `Override` 되는 것을 이용하여 프로필별로 다른 값을 주입받을 수도 있을 것 입니다.
 
-#### 그냥 명시적으로 분리
+### 그냥 명시적으로 분리
 
 ```java
 @PropertySource(value = {"classpath:/properties/foo.properties"})
@@ -120,7 +120,7 @@ class BarConfig {
 
 위의 내용들은 그동안 자주 보았고, 해보았던 설정들입니다. 이 외에도 많은 경우가 있을 수도 있지만, 제 기준으로는 일단 3가지를 예로 작성했습니다.
 
-### 3. Spring Boot 는 `@PropertySource` 를 권장하지 않으며, `@ConfigurationProeprties` 의 locations 는 Deprecated 시켰다.
+## 3. Spring Boot 는 `@PropertySource` 를 권장하지 않으며, `@ConfigurationProeprties` 의 locations 는 Deprecated 시켰다.
 
 이슈를 보다가 Spring Boot 가 `@PropertySource` 를 권장하지 않는다는 것을 처음 알게 되었습니다.
 
@@ -146,7 +146,7 @@ While using @PropertySource on your @SpringBootApplication seems convenient and 
 
 *출처 : http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-customize-the-environment-or-application-context*
 
-#### Spring Boot의 Auto Configuration을 사용함에`@PropertySource` 는 너무 늦다고 말합니다.
+### Spring Boot의 Auto Configuration을 사용함에`@PropertySource` 는 너무 늦다고 말합니다.
 
 제가 아는 Auto Configuration으로만 이해하려고 했어서 위의 내용을 이해데 한참 늦었습니다 (아직도..?). 저는 Auto Configuration 에서 `@Conditional*` 기반의 `ApplicationContext` 가 생성된 후의 일만을 생각했기 때문입니다.
 
@@ -191,7 +191,7 @@ Some events are actually triggered before the ApplicationContext is created so y
 
 *출처 : http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-application-events-and-listeners*
 
-#### Spring Boot 는 어디선가 ApplicationContext 가 생성되기도 전에 무엇인가를 하고 있구나 확신이 듭니다!
+### Spring Boot 는 어디선가 ApplicationContext 가 생성되기도 전에 무엇인가를 하고 있구나 확신이 듭니다!
 
 그럼 그 무엇인가는 무엇일까요?
 
@@ -239,19 +239,19 @@ org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
 
 그리고 그 외에도 여러가지 Key 값이 보이며, 지난 스프링 캠프의 저의 발표에서도 언급했던 `EnableAutoConfiguration` 도 보입니다. Spring Boot는 `factories`를 통해 `EnableAutoConfiguration` 클래스 리스트를 주입받고, 어디에선가 사용을 하고 있습니다.
 
-#### 현재까지 내용을 정리해보자면,
+### 현재까지 내용을 정리해보자면,
 
 Spring Boot 는 `ApplicationContext` 가 생성되기 전(`@PropertySource`로 설정한 파일이 로드되기도 전)에도 Environment 를 사용한 `무엇인가`를 통해 Auto Configuration 에 영향을 미치고 있겠다고 생각이 됩니다.
 
 그래서 Spring Boot는 @PropertySource를 권장하지 않겠구나라는 것을 대충 짐작으로 생각하게 되었습니다.
 
-### 4. 그래서 무엇을 사용하라는 것인가?
+## 4. 그래서 무엇을 사용하라는 것인가?
 
 그들이 제안하는 방식은 모두 동일합니다. 스프링이 로드되는 과정의 아주 앞단에서 properties 를 정의하는 방식입니다.
 
 그들이 소개했던 방식을 옮겨 적습니다.
 
-#### 1. spring.config 옵션
+### 1. spring.config 옵션
 
 Spring Boot 에서는 spring.config 라는 옵션을 제공합니다.
 
@@ -261,7 +261,7 @@ Spring Boot 에서는 spring.config 라는 옵션을 제공합니다.
 
 해당 옵션을 정의하는 방법을 두 가지 소개합니다.
 
-##### Spring Boot 환경변수
+#### Spring Boot 환경변수
 
 jar나 war 를 구동할 때 삽입하는 옵션입니다.
 
@@ -269,7 +269,7 @@ jar나 war 를 구동할 때 삽입하는 옵션입니다.
 java -jar kingbbode.jar --spring.config.name=kingbbode
 ```
 
-##### SpringApplicationBuilder
+#### SpringApplicationBuilder
 
 `SpringApplicationBuilder` class는 우리가 스프링 프레임워크 어플리케이션의 main 에 항상 작성했던 `SpringApplication` class 의 Builder class 입니다. 빌더를 사용해 properties 를 주입합니다.
 
@@ -288,7 +288,7 @@ public static void main(String[] args) {
 
 > location 옵션은 경로를 지정할 수 있지만, 단일 파일도 지정할 수 있습니다. ignoreResourceNotFound 옵션을 따로 지정할 필요없이 자동으로 적용이 됩니다.
 
-#### 2. ApplicationEnvironmentPreparedEvents
+### 2. ApplicationEnvironmentPreparedEvents
 
 Environment 구성 전에 이벤트를 만들어서 삽입하는 방식입니다.
 
@@ -320,7 +320,7 @@ public class LoadAdditionalProperties implements ApplicationListener<Application
 
 *출처 : https://github.com/spring-projects/spring-boot/issues/6220*
 
-#### 3. EnvironmentPostProcessor
+### 3. EnvironmentPostProcessor
 
 Listener 보다는 Spring 을 사용함에 꽤 친숙한 Class 입니다. 수많은 `PostProcessor` 중 `Environment` 의 `PostProcessor` 를 정의하는 것 입니다.
 
@@ -363,7 +363,7 @@ org.springframework.boot.env.EnvironmentPostProcessor=com.example.YourEnvironmen
 
 ---
 
-### 마무리
+## 마무리
 
 ![before](/images/2017/2017-08-21-SPRING-BOOT-PROPERTIES/before.jpg)
 
@@ -375,7 +375,7 @@ org.springframework.boot.env.EnvironmentPostProcessor=com.example.YourEnvironmen
 
 호기심을 쫓아 내용을 정리하였습니다. 조금은 불편하지만, Spring Boot 가 우리를 정말 편하게 해주고 있으니, 믿고 일단 따라가야겠습니다.
 
-##### 정리를 하면서 알아두면 반드시 좋은 정보도 공유하겠습니다!
+#### 정리를 하면서 알아두면 반드시 좋은 정보도 공유하겠습니다!
 
 Spring Boot는 합리적인 값 `Override`를 허용하도록 설계된 **매우 특별한 PropertySource 순서** 를 사용한다는 내용입니다. Override 순서에 맞게 잘 작성하여, 삽질하는 일을 방지! 밑의 번호는 우선순위입니다. 밑으로 갈 수록 우선순위가 낮다는 말 입니다.
 
@@ -401,7 +401,7 @@ Spring Boot는 합리적인 값 `Override`를 허용하도록 설계된 **매우
 
 *출처 : https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html*
 
-##### 그리고 한편으로는 그들에게 조금은 아쉬운 면도 있습니다.
+#### 그리고 한편으로는 그들에게 조금은 아쉬운 면도 있습니다.
 
 `@PropertySource` 는 Spring Boot가 아닌 Spring Framework 가 제공하는 class 입니다.
 
