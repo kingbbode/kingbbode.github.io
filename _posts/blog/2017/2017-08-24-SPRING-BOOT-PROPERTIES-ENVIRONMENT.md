@@ -253,25 +253,25 @@ Spring Boot 는 `ApplicationContext` 가 생성되기 전(`@PropertySource`로 �
 
 그들이 제안하는 방식은 모두 동일합니다. 스프링이 로드되는 과정의 아주 앞단에서 properties 를 정의하는 방식입니다.
 
-그들이 소개했던 방식을 옮겨 적습니다.
-
 ### 1. spring.config 옵션
 
 Spring Boot 에서는 spring.config 라는 옵션을 제공합니다.
 
 `ConfigFileApplicationListener` class 를 통해 제공되는 옵션으로, `spring.config.name`은 파일 이름, `spring.config.location`은 경로를 입력받습니다.
 
-> 해당 class 를 열어보시면 알겠지만, 저 옵션을 통해 `spring.config` 옵션과는 무관하게 `classpath:/,classpath:/config/,file:./,file:./config/` 와 그 경로에서 name이 `application`인 properties(or yaml) 파일은 항상 로드됩니다.
+> 해당 class 를 열어보시면 알겠지만, `spring.config` 옵션과는 무관하게 `classpath:/,classpath:/config/,file:./,file:./config/` 와 그 경로에서 name이 `application`인 properties(or yaml) 파일은 항상 로드됩니다.
 
 해당 옵션을 정의하는 방법을 두 가지 소개합니다.
 
 #### Spring Boot 환경변수
 
-jar나 war 를 구동할 때 삽입하는 옵션입니다.
+jar 를 구동할 때 삽입하는 방법입니다.
 
 ```
 java -jar kingbbode.jar --spring.config.name=kingbbode
 ```
+
+<br>
 
 #### SpringApplicationBuilder
 
@@ -294,7 +294,7 @@ public static void main(String[] args) {
 
 ### 2. ApplicationEnvironmentPreparedEvents
 
-Environment 구성 전에 이벤트를 만들어서 삽입하는 방식입니다.
+이벤트를 만들어서 삽입하여 Environment 구성 전에 적용하는 방식입니다.
 
 ```java
 new SpringApplicationBuilder(SanityCheckApplication.class)
@@ -328,7 +328,9 @@ public class LoadAdditionalProperties implements ApplicationListener<Application
 
 Listener 보다는 Spring 을 사용함에 꽤 친숙한 Class 입니다. 수많은 `PostProcessor` 중 `Environment` 의 `PostProcessor` 를 정의하는 것 입니다.
 
-이 방식은 부트 공식 문서에서도 추천하는 방식입니다. 를 정의하고 `spring.factories` 를 통해 등록하는 방식입니다. 자세한 내용은 아래 출처로 작성한 공식 문서를 보시면 됩니다.
+**이 방식은 부트 공식 문서에서도 추천하는 방식입니다.** 
+
+EnvironmentPostProcessor interface 를 정의하고 `spring.factories` 를 통해 등록하는 방식입니다. 자세한 내용은 아래 출처로 작성한 공식 문서를 보시면 됩니다.
 
 ```java
 public class EnvironmentPostProcessorExample implements EnvironmentPostProcessor {
@@ -379,7 +381,7 @@ org.springframework.boot.env.EnvironmentPostProcessor=com.example.YourEnvironmen
 
 호기심을 쫓아 내용을 정리하였습니다. 조금은 불편하지만, Spring Boot 가 우리를 정말 편하게 해주고 있으니, 믿고 일단 따라가야겠습니다.
 
-#### 정리를 하면서 알아두면 반드시 좋은 정보도 공유하겠습니다!
+#### 정리를 하면서 찾게 된 알아두면 반드시 좋은 문서도 공유하겠습니다!
 
 Spring Boot는 합리적인 값 `Override`를 허용하도록 설계된 **매우 특별한 PropertySource 순서** 를 사용한다는 내용입니다. Override 순서에 맞게 잘 작성하여, 삽질하는 일을 방지! 밑의 번호는 우선순위입니다. 밑으로 갈 수록 우선순위가 낮다는 말 입니다.
 
@@ -415,11 +417,11 @@ Easy doesn't necessarily means correct. In the context of Spring Boot, the whole
 (쉬운 것이 반드시 올바른 것은 아닙니다. Spring Boot의 맥락에서 @PropertySource (속성 또는 yaml 기반 형식 일 수도 있음)의 전체 사용은 일관성이 없으며 해당 기능을 승격하고 싶지 않습니다.)
 ```
 
-Spring Boot 를 위해 `properties` 지원하지만 더 이상 개발은 안하겠다는 것인데, Spring Framework 이면 무조건 Spring Boot 를 쓰라는 것 일까요? 이 부분에서는 아직 잘 모르겠습니다.
+이미 properties 파일은 적용되는 @PropertySource 지만, Spring Boot 를 위해 더 이상 개발은 안하겠다는 것인데, Spring Boot 는 이제 Spring Framework 그 자체가 되어가는 것일까요?
 
 그리고 정리를 하면서 느낀 것은, 내가 설정할 properties 가 Spring Boot 의 자동 설정과 전혀 무관하며, 관계 없다고 여겨지는 것은 그냥 사용해도 괜찬다고도 생각되어 집니다. 이것은 개인적인 생각입니다!
 
-그래서 `@PropertySource` Yaml 을 사용하는 코드는 공유를 하겠습니다.
+그래서 `@PropertySource` 에서 Yaml 을 사용할 수 있는 코드는 공유를 하겠습니다.
 
 ---
 
