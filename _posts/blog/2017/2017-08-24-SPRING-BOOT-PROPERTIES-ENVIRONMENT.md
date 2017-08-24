@@ -245,7 +245,9 @@ org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
 
 Spring Boot 는 `ApplicationContext` 가 생성되기 전(`@PropertySource`로 설정한 파일이 로드되기도 전)에도 Environment 를 사용한 `무엇인가`를 통해 Auto Configuration 에 영향을 미치고 있겠다고 생각이 됩니다.
 
-그래서 Spring Boot는 @PropertySource를 권장하지 않겠구나라는 것을 대충 짐작으로 생각하게 되었습니다.
+그래서 Spring Boot는 @PropertySource를 권장하지 않겠구나라는 것을 생각하게 되었습니다.
+
+무언가를 하는지는 알겠고, 뭘 하는지까지는 다음에 언젠가.. 이해할 날이 오겠지요.
 
 ## 4. 그래서 무엇을 사용하라는 것인가?
 
