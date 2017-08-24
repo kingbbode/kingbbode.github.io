@@ -36,17 +36,17 @@ Spring Boot 에서 properties 설정에 대한 깨달음을 얻어 정리하고�
 
 ![jira](/images/2017/2017-08-21-SPRING-BOOT-PROPERTIES/jira.png)
 
-그래서 검색하다가 Spring Jira 를 보았고 짧은 영어 실력으로 잘못 해석하여 설레발 치다가 창피를 당했습니다..(제목 말고 댓글 중에 그런 부분이 정말 있습니다..;;)
+그래서 검색하다가 Spring Jira 를 보았고 짧은 영어 실력으로 잘못 해석하여 PropertySource가 이제 Yaml을 지원하는 줄 알고 설레발 치다가 창피를 당했습니다..(제목 말고 댓글 중에 그런 부분이 정말 있습니다..;;)
 
 ![sulebal](/images/2017/2017-08-21-SPRING-BOOT-PROPERTIES/sulebal.png)
 
-창피함을 극복하기 위해 `@PropertySource`에 있는 `Factory`를 이용하여 Yaml을 지원하도록 만들어보았습니다.
+창피함을 극복하기 위해 `@PropertySource`에 있는 `Factory`를 이용하여 Yaml을 지원하도록 만들었습니다.
 
-**해당 문서 맨 밑에 작성 코드는 공유합니다.**
+(**해당 문서 맨 밑에 작성 코드는 공유합니다.**)
 
-코드를 작서해보고 느낀 것은 생각보다 너무 간단하다는 것 입니다...
+코드를 작성해보고 느낀 것은 생각보다 너무 간단하다는 것 입니다...
 
-아무리 생각해도 그들이 이걸 만들기 어려워서 안만들었을리가 없고,,
+아무리 생각해도 그들이 이걸 **만들기 어려워서 안만들었을리가 없고** ..
 
 https://jira.spring.io/browse/SPR-13912
 
@@ -66,7 +66,9 @@ https://github.com/spring-projects/spring-boot/issues/6220
 -	SpringApplicationBuilder
 -	EnvironmentPostProcessor
 
-`ConfigurationProeprties` 의 `locations` Deprecated 와 `@PropertySource` 의 Yaml 미지원에도 거의 비슷한 말만 계속..!
+`ConfigurationProeprties` 의 `locations` Deprecated 와 `@PropertySource` 의 Yaml 미지원에 대한 이슈들에 항상 거의 비슷한 말로 위의 것들로 해결하라는 내용이 보였습니다.
+
+당시에 저는 `@PropertySource` 와 `@ConfigurationProeprties` 에 대한 불만들로 가득차있었기에, 이것들에 대한 대답은 왜 안하고 대답을 계속 그렇게 하는지 이상해보였습니다.
 
 ## 2. 나는 왜 `@PropertySource` 와 `@ConfigurationProeprties` 의 location 지정 기능에 집착을 했나?
 
