@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      Spring Boot 와 Properties(or Yaml) Environment
+author:     kingbbode
+tags:       web spring boot springboot
+subtitle:   @PropertySource 의 Yaml 미지원과 @ConfigurationProeprties 의 locations Deprecated 의 배경을 알아보자!
+category:  posts
+outlink: 0
+---
+
 Spring Boot 와 Properties(or Yaml) Environment
 ==============================================
 
@@ -351,7 +361,17 @@ org.springframework.boot.env.EnvironmentPostProcessor=com.example.YourEnvironmen
 
 *출처 : http://docs.spring.io/spring-boot/docs/1.5.x-SNAPSHOT/reference/htmlsingle/#howto-customize-the-environment-or-application-context*
 
+---
+
 ### 마무리
+
+![before](/images/2017/2017-08-21-SPRING-BOOT-PROPERTIES/before.jpg)
+
+처음에는 `왜 이래, 뭐야` 했지만.
+
+![after](/images/2017/2017-08-21-SPRING-BOOT-PROPERTIES/after.jpg)
+
+이제는 대단하고 멋져보입니다. 피보탈 짱짱.
 
 호기심을 쫓아 내용을 정리하였습니다. 조금은 불편하지만, Spring Boot 가 우리를 정말 편하게 해주고 있으니, 믿고 일단 따라가야겠습니다.
 
@@ -400,8 +420,6 @@ Spring Boot 를 위해 `properties` 지원하지만 더 이상 개발은 안하�
 ---
 
 **@PropertySource Yaml 사용하기**
-
-(결론이야 어찌되었든 만들었으니 공개..)
 
 ```java
 public class YamlPropertiesProcessor extends YamlProcessor {
@@ -470,3 +488,7 @@ public class AppConfiguration {
 링크로 공유드립니다!!
 
 [fabiomaffioletti : http://fabiomaffioletti.me/blog/2016/12/20/spring-configuration-properties-handle-deprecated-locations/](http://fabiomaffioletti.me/blog/2016/12/20/spring-configuration-properties-handle-deprecated-locations/)
+
+---
+
+여기까지 파볼 수 있는 계기 마련해주신 [창천향로(갓천향로)](http://jojoldu.tistory.com/) 님 감사합니다!
