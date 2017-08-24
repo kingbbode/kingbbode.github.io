@@ -3,7 +3,7 @@ layout:     post
 title:      Spring Boot 와 Properties(or Yaml) Environment
 author:     kingbbode
 tags:       web spring boot springboot
-subtitle:   @PropertySource 의 Yaml 미지원과 @ConfigurationProeprties 의 locations Deprecated 의 배경을 알아보자!
+subtitle:   Spring의 PropertySource 의 Yaml 미지원과 ConfigurationProeprties 의 locations Deprecated 의 배경을 알아보자!.
 category:  posts
 outlink: 0
 ---
