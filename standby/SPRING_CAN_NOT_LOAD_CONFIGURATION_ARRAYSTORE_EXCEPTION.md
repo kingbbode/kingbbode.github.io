@@ -35,3 +35,7 @@ ArrayStoreException : TypeNotPresentExceptionProxy
 ### ArrayStoreException
 
 can not load configuration(ArrayStoreException, TypeNotPresentExceptionProxy)
+
+https://github.com/spring-projects/spring-boot/issues/9870
+
+아까비...ㅜㅜ
