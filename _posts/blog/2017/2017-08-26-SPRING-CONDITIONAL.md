@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      Spring 에서 @ConditionalOnClass, @ConditionalOnBean 사용할 때 주의할 점
+author:     kingbbode
+tags:       web spring boot springboot
+subtitle:   Spring Boot 기반의 자동 설정을 위한 AutoConfiguration 클래스를 만들다가 발생한 이슈 공유 (ClassNotFoundException, ArrayStoreException)
+category:  posts
+outlink: 0
+---
+
 Spring 에서 @ConditionalOnClass, @ConditionalOnBean 사용할 때 주의할 점
 =======================================================================
 
