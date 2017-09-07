@@ -231,20 +231,28 @@ public class TestConfiguration {
 
 위의 내용을 종합해보았을 때 Class 를 받는 ConditionalOn* 은 Method 레벨에서는 반드시 String 을 작성하여야 하기 때문에 Annotation 이 Method Target을 지원하지 않고 Method Target 을 지원하는 Condition 은 따로 분리되야 한다고 생각했습니다.
 
+클래스 Javadoc 을 찾아보니
+
+```
+The classes that must be present. Since this annotation is parsed by loading class bytecode, it is safe to specify classes here that may ultimately not be on the classpath, only if this annotation is directly on the affected component and not if this annotation is used as a composed, meta-annotation. In order to use this annotation as a meta-annotation, only use the name() attribute.
+```
+
+무언가 주의사항이 적혀 있기는 합니다. 그러나 이해하기는 조금 힘드네요ㅜㅜ
+
 이슈 재기 해야겠다! 라고 생각했지만,, 딱 한달 전에 피보탈 개발자가 이슈를 등록해놓았습니다 ㅜㅜ
 
 ![late](/images/2017/2017-08-26-SPRING-CONDITIONAL/late.png)
 
 https://github.com/spring-projects/spring-boot/issues/9870
 
-그래서 댓글로 다리만 살짝 걸치며,, 마무리..
-
-했지만 해당 이슈가 `Close` 되었네요ㅜㅜ
+그래서 댓글로 다리만 살짝 걸치려 했지만 해당 이슈가 `Close` 되었네요ㅜㅜ
 
 ```
 We've decided this will cause too much pain for the gain that it'll bring.
 ```
 
-너무 많은 고통이 초래할 것이라는.. 조심해서 잘 써야겠습니다!
+너무 많은 고통이 초래할 것이라는..
+
+우리가 잘 조심해서 잘 써야겠습니다!
 
 현재는 여러 서비스들에서 자사 라이브러리를 Auto Configuration 화 시키는 사례가 잘 없지만, 점점 부트가 잘 보급된다면 언젠가 반드시 만나게 될 이슈라고 생각하여 이슈를 정리하여 작성합니다.
