@@ -239,4 +239,12 @@ https://github.com/spring-projects/spring-boot/issues/9870
 
 그래서 댓글로 다리만 살짝 걸치며,, 마무리..
 
-현재는 여러 서비스들에서 자사 라이브러리를 Autu Configuration 화 시키는 사례가 잘 없지만, 점점 부트가 잘 보급된다면 언젠가 반드시 만나게 될 이슈라고 생각하여 이슈를 정리하여 작성합니다.
+했지만 해당 이슈가 `Close` 되었네요ㅜㅜ
+
+```
+We've decided this will cause too much pain for the gain that it'll bring.
+```
+
+너무 많은 고통이 초래할 것이라는.. 조심해서 잘 써야겠습니다!
+
+현재는 여러 서비스들에서 자사 라이브러리를 Auto Configuration 화 시키는 사례가 잘 없지만, 점점 부트가 잘 보급된다면 언젠가 반드시 만나게 될 이슈라고 생각하여 이슈를 정리하여 작성합니다.
