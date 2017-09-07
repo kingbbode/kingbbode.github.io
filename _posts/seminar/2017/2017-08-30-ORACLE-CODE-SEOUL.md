@@ -1,7 +1,13 @@
-오라클 코드 서울 2017
-=====================
+---
+layout:     post
+title:      오라클 코드 서울 2017
+author:     kingbbode
+tags:       java oracle
+subtitle:   대망의 오라클 코드 서울!
+category:  seminar
+outlink: 0
+---
 
-*2017-08-30*
 
 Session 1. When, Why, and How to CQRS
 -------------------------------------
