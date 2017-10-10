@@ -23,13 +23,17 @@ Java의 버전이 올라가면서 정말 많은 기능이 추가되었지만, 2%
 Collections.unmodifiableList(
   Arrays.asList(1,2,3,4,5,6,7,8,9,10,11)
 );
+
+//or
+
+Stream.of(1,2,3,4,5,6,7,8,9,10,11)
+  .collect(collectingAndThen(toList(),Collections::unmodifiableList));
 ```
 
 ```java
-Collections.unmodifiableList(
-  IntStream.range(1, 100)
-    .boxed()
-    .collect(Collectors.toList())
+IntStream.range(1, 100)
+  .boxed()
+  .collect(collectingAndThen(toList(),Collections::unmodifiableList))
 );
 ```
 
@@ -57,15 +61,18 @@ Collections.unmodifiableSet(
                 Arrays.asList(1,2,3,4,5,6,7,8,9,10,11)
         )
 );
+
+//or
+
+Stream.of(1,2,3,4,5,6,7,8,9,10,11)
+  .collect(collectingAndThen(toSet(),Collections::unmodifiableSet));
 ```
 
 ```java
-Collections.unmodifiableSet(
-        new HashSet<>(
-                IntStream.range(1, 100)
-                        .boxed()
-                        .collect(Collectors.toSet())
-        )
+
+IntStream.range(1, 100)
+  .boxed()
+  .collect(collectingAndThen(toSet(),Collections::unmodifiableSet))
 );
 ```
 
@@ -88,17 +95,11 @@ set = Set.of(
 **Java 8**
 
 ```java
-Collections.unmodifiableList(
-  Arrays.asList(1,2,3,4,5,6,7,8,9,10,11)
-);
+
 ```
 
 ```java
-Collections.unmodifiableList(
-  IntStream.range(1, 100)
-    .boxed()
-    .collect(Collectors.toList())
-);
+
 ```
 
 **Java 9**
