@@ -8,7 +8,7 @@ category:  posts
 outlink: 0
 ---
 
-지난 글에서 Jenkins Build Pipeline 으로 자동 배포 시스템을 구축하는 것에 대해 공유를 했었습니다.
+[지난 글(젠킨스 사용하여 자동 배포환경 만들어보기)](https://kingbbode.github.io/posts/jenkins-build) 에서 Jenkins Build Pipeline 으로 자동 배포 시스템을 구축하는 것에 대해 공유를 했었습니다.
 
 ![huk](/images/2017/2017-11-04-JEKINS-PIPELINE/huk.png)
 
