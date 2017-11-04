@@ -80,6 +80,12 @@ Jenkins에 대한 설명은 굉장히 많기 때문에 생략하겠습니다.
 
 추천하여 대신합니다.
 
+---
+
+# Jenkins 2.0부터 지원되는 `Jenkins Pipeline` 은 아래 작성한 내용보다 강력합니다. 글을 재작성했으니, `Jenkins Pipeline` 기반으로 작성을 원하시는 분들께서는 [https://kingbbode.github.io/posts/jenkins-dsl-to-pipeline](https://kingbbode.github.io/posts/jenkins-dsl-to-pipeline)로 이동해주시길 바랍니다.
+
+---
+
 젠킨스의 배포 플로우를 중심으로 이 글을 작성하며 **지극히 개인적으로 생각하여 진행한 플로우이기에 피드백을 기대합니다.**
 
 ### 주 사용 Jenkins 기능 및 플로그인
