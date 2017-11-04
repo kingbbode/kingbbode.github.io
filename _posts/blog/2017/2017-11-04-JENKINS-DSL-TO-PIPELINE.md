@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      젠킨스 파이프라인 사용하여 자동 배포환경 만들어보기!
+author:     kingbbode
+tags:       think, ci
+subtitle:   Build Pipeline 으로 작성했던 배포 구조를 Jenkins Pipeline으로 이전!
+category:  posts
+outlink: 0
+---
+
 지난 글에서 Jenkins Build Pipeline 으로 자동 배포 시스템을 구축하는 것에 대해 공유를 했었습니다.
 
 ![huk](/images/2017/2017-11-04-JEKINS-PIPELINE/huk.png)
