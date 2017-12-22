@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      마스터즈 오픈 세미나
+author:     kingbbode
+tags:       java oracle
+subtitle:   -
+category:  seminar
+outlink: 0
+---
+
 마스터즈 오픈 세미나
 --------------------
 
@@ -67,7 +77,3 @@
 **자존감 유지하기**
 
 **슬기로운 생활**
-
----
-
-### 개발자를 위한 넓고 얕은 지식
