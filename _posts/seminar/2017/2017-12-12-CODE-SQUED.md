@@ -3,7 +3,7 @@ layout:     post
 title:      마스터즈 오픈 세미나
 author:     kingbbode
 tags:       think
-subtitle:   -
+subtitle:   마스터즈 오픈 세미나
 category:  seminar
 outlink: 0
 ---
