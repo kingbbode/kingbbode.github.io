@@ -2,14 +2,11 @@
 layout:     post
 title:      마스터즈 오픈 세미나
 author:     kingbbode
-tags:       java oracle
+tags:       think
 subtitle:   -
 category:  seminar
 outlink: 0
 ---
-
-마스터즈 오픈 세미나
---------------------
 
 ### 재미로 시작한 프로그래밍 공부 열달, 그리고 삽질기
 
