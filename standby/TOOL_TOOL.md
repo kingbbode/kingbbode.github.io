@@ -11,7 +11,19 @@ TOOL TOOL DEV TOOL!
 
 ---
 
-### New Relic
+### New Relic APM
+
+`New Relic`은 `SaaS` 기반의 `APM(Application Performance Management)` 서비스를 제공하는 회사이다.
+
+`New Relic` 의 다양한 서비스 중 내가 가장 잘 사용할 줄 알아야 할 서비스는 `APM`과 `INFRASTRUCTURE`다. `APM`은 어플리케이션에 대한 성능 모니터링을 제공한다. `INFRASTRUCTURE`는 서버에 대한 성능 모니터링을 제공한다.
+
+`INFRASTRUCTURE`는 16년 말에 오픈한 서비스로 이전에는 `New Relic Server`란 이름으로 `APM`에 내장된 서비스로 제공되었다가, 독립된 상품으로 전환되었다.
+
+```
+New Relic Servers is available for existing users, but not for New Relic accounts created after November 16, 2016. If a master account has access to Servers, any new sub-accounts created after November 16, 2016 will also have Servers access.
+```
+
+(출처 : https://docs.newrelic.com/docs/servers/new-relic-servers/getting-started/new-relic-servers-new-relic-infrastructure\)
 
 ### PINPOINT
 
