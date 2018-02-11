@@ -1,17 +1,19 @@
-TOOL TOOL DEV TOOL!
-===================
+내가 바라던 모니터링 환경!
+==========================
 
--	좋은 환경에서 더 좋은 퍼포먼스를 내기 위한 기술부채 청산기
+내가 이상적으로 바라던 그런 모니터링 환경을 만나게 되었다.
 
-내가 이상적으로 바라던 그런 개발환경을 만나게 되었다. 그러나 나는 이 툴들을 쓸 줄 모른다. 결국 이전에 하던 귀찬은 방법들을 찾게 된다.
+![monitoring](/images/2018/TOOL/monitoring.png)
+
+그러나 나는 이 툴들을 쓸 줄도, 어디까지 해주는지, 뭘 해주는지도 잘 모른다. 결국 이전에 하던 귀찬은 방법들을 찾게 된다.
 
 비효율적이지만 익숙한 방법을 고수하는 것, 이게 바로 `기술부채` 구나!
 
-그래서 내가 접하게 된 툴들을 정리해본다.
+그래서 내가 처음 접하게 된 모니터링 툴들을 정리해본다.
 
 ---
 
-### New Relic
+### 1. New Relic
 
 `New Relic`은 `SaaS` 기반의 `APM(Application Performance Management)` 서비스를 제공하는 회사이다.
 
@@ -90,7 +92,9 @@ New Relic Servers is available for existing users, but not for New Relic account
 
 *이미지, 자료 등 출처 : https://docs.newrelic.com*
 
-### PINPOINT
+---
+
+### 2. PINPOINT
 
 PINPOINT는`Java`로 작성된 대규모 분산 시스템 용 `오픈 소스 APM`이다.
 
@@ -133,12 +137,42 @@ public interface AlarmMessageSender {
 
 *이미지, 자료 등 출처 : https://naver.github.io/pinpoint*
 
-### logentries
+---
 
-### Jira
+### 3. logentries
 
-### Confluence
+logentries는 실시간 로그 관리, 분석 서비스이다. `Saas` 기반의 서비스로 `Agent`로부터 수집되는 `로그`에 대한 검색, 시각화, 분석을 제공한다.
 
-### Upsource
+![logentries](/images/2018/TOOL/logentries.png)
 
-### IntelliJ
+즉 이 서비스를 이용하면, 더 이상 모든 서버에 들어가 로그를 확인해야하는 노가다를 안할 수 있다.
+
+-	실시간으로 수집되는 로그를 볼 수 있다.
+-	특정 패턴에 대한 시각화를 할 수 있다.
+-	수집된 로그에서 검색을 할 수 있다.
+
+등의 아주 편리한 사용성을 제공한다. 이 편리한 사용성을 잘 사용하기 위해서는 효율적인 로그의 검색을 위해서 각 서비스에 맞게 로그의 구조에 대한 정책이 선행되는 것이 좋다고 한다. https://docs.logentries.com/docs/best-practices-logs
+
+#### 알람
+
+![logenttag](/images/2018/TOOL/logenttag.png)
+
+특정 패턴에 대한 `Tag`를 만들 수 있는데, 이를 이용한 경고 알림이 가능하다.
+
+![logentalert](/images/2018/TOOL/logentalert.png)
+
+logentries 역시 다양한 메신저들과의 쉬운 연동을 제공하면서, Web Hook을 제공하기 때문 다른 곳에 연동에도 크게 어려움이 없을 것이다.
+
+*이미지, 자료 등 출처 : https://docs.logentries.com*
+
+---
+
+### 마무리
+
+로그를 찾기 위해 모든 서버를 들어가지 않는다. 서버 모니터링을 위해 16분할의 터미널을 띄워놓지 않는다. 서버의 상황에 따라 그때그때 여러가지 시도를 해볼 수 있다. 등등 위 시스템들이 제공해주는 여러 편리함들이 있다. (상황에 따라 필요한 경우도 있지만)
+
+아직도 무슨 상황이 되면 터미널 키는 것을 먼저 생각하는 것이.. 적응이 덜 되었지만, 이제는 이것들이 무엇을 해주고 있는지, 날 어떻게 더 편하게 해주는지, 내가 뭘 이것들을 통해 봐야하는지를 대략 알 것 같다.
+
+이러한 시스템들의 보호는 나의 시간을 절약시켜주고, 내가 더 개발에 집중할 수 있게 해주고 있다.
+
+---
