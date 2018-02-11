@@ -11,7 +11,7 @@ TOOL TOOL DEV TOOL!
 
 ---
 
-### New Relic APM
+### New Relic
 
 `New Relic`은 `SaaS` 기반의 `APM(Application Performance Management)` 서비스를 제공하는 회사이다.
 
@@ -23,13 +23,15 @@ TOOL TOOL DEV TOOL!
 
 ![newrelic_ui](/images/2018/TOOL/newrelic_ui.png)
 
-New Relic 의 UI는 훌륭하다. 다양한 시각 자료를 통해 모니터링을 위한 자료를 보여주며, 시간 범위 설정 등 모니터링을 위한 기능들을 제공하고 있다.
+New Relic은 하나의 전용 페이지를 제공하며, 각각의 상품들은 상단 탭으로서 존재한다.
+
+다양한 시각 자료를 통해 다양한 통계 모니터링을 보여준다.
 
 (위 그림에서 INFRASTRUCTURE 는 빠져있다. 옛날 버전 캡쳐본인듯..?)
 
 ![custom_dashboard](/images/2018/TOOL/custom_dashboard.png)
 
-사용자 정의 DashBoard도 제공한다. 매우 유용한 기능인 것 같다.
+사용자 정의 DashBoard도 제공한다. 중점적으로 모니터링해야할 내용으로 DashBoard 를 구성하여 효율적으로 모니터링을 할 수 있도록 돕는다.
 
 #### New Relic INFRASTRUCTURE
 
@@ -53,6 +55,8 @@ New Relic Servers is available for existing users, but not for New Relic account
 
 #### New Relic APM
 
+![newrelic_apm](/images/2018/TOOL/newrelicapm.png)
+
 ##### Ruby, Java, Node.js, PHP, .NET, Python, Go 기반의 어플리케이션 모니터링을 지원한다.
 
 -	응답 시간, 처리량 및 오류 비율
@@ -74,9 +78,60 @@ New Relic Servers is available for existing users, but not for New Relic account
 
 #### 알람
 
+특정 환경에 대한 정책, 임계 값 설정 등으로 경고 알림을 받을 수 있다.
+
+![newrelicalert](/images/2018/TOOL/newrelicalert.png)
+
+다양한 메신저들과의 쉬운 연동을 제공하면서, Web Hook을 제공하기 때문 다른 곳에 연동에도 크게 어려움이 없을 것이다.
+
+![newrelicslack](/images/2018/TOOL/newrelicslack.png)
+
+빠른 알림 시스템을 제공하고, 해당 시간에 대한 통계 페이지를 제공해주어, 빠르게 대처할 수 있게 도와준다.
+
 *이미지, 자료 등 출처 : https://docs.newrelic.com*
 
 ### PINPOINT
+
+PINPOINT는`Java`로 작성된 대규모 분산 시스템 용 `오픈 소스 APM`이다.
+
+![naver_pinpoint](/images/2018/TOOL/naver_pinpoint.png)
+
+`Naver`에서 만든 자랑스런 국산 오픈소스로 작년 말 `5000 스타`를 돌파했고, 현재도 계속 상승 중인 네이버의 대표적인 오픈 소스 프로젝트이다.
+
+#### UI
+
+![pinpointui](/images/2018/TOOL/pinpointui.png)
+
+서비스의 흐름과 실시간 상태를 보기 굉장히 좋은 UI를 제공하고 있다.
+
+#### APM
+
+제공되는 대표적인 기능들은 아래와 같다.
+
+-	ServerMap
+-	Realtime Active Thread Chart
+-	Request/Response Scatter Chart
+-	CallStack
+-	Inspector
+
+#### 알람
+
+![pinpointalarm](/images/2018/TOOL/pinpointalarm.png)
+
+핀포인트 역시 특정 임계치를 설정하여 알람을 받는 방식이 가능하다.
+
+그러나 실제 알람을 받기 위해서는 AlarmMessageSender 인터페이스의 구현체를 작성하여야 한다.
+
+```Java
+public interface AlarmMessageSender {
+    void sendSms(AlarmChecker checker, int sequenceCount);
+    void sendEmail(AlarmChecker checker, int sequenceCount);
+}
+```
+
+[Github Source](https://github.com/naver/pinpoint/blob/master/web/src/main/java/com/navercorp/pinpoint/web/alarm/AlarmMessageSender.java) 에서 인터페이스를 보면, 현재 공식적으로는 sms와 email만을 지원하는 듯 하다. (위 안에 억지로 구현은 할 수 있겠지만..)
+
+*이미지, 자료 등 출처 : https://naver.github.io/pinpoint*
 
 ### logentries
 
