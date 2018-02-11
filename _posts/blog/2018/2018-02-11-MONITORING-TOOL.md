@@ -1,3 +1,13 @@
+---
+layout:     post
+title:      바라던 모니터링 환경 (New Relic, PINPOINT, logentries)
+author:     kingbbode
+tags:       monitoring, devops
+subtitle:   이상적으로 바라던 그런 모니터링 환경을 만났지만, 뭐가 뭔지 몰라서 정리
+category:  posts
+outlink: 0
+---
+
 내가 바라던 모니터링 환경!
 ==========================
 
