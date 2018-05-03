@@ -1,7 +1,7 @@
 # Site settings
 title: Kingbbode
 description: "개발 블로그"
-url: "//kingbbode.github.io"
+url: "//blog.kingbbode.com"
 
 
 
@@ -42,7 +42,7 @@ defaults:
 # Prose Settings
 prose:
   ignore: ['feed.xml', '/stl', '/ply', '/js', '/plugin', '/lib', '/projectors', '_layouts', '/_includes', 'Gruntfile.js', 'package.json', 'proselinks.jsonp', 'ppanchor.matin', '.gitignore', '/search', '/css', '/img', '/images', 'favicon.ico','_data/*.json','LICENSES.md','README.md','colorscheme.scss','index.html']
-  siteurl: '//kingbbode.github.io'
+  siteurl: '//blog.kingbbode.com'
   ispp: true
   media: 'img'
   metadata:
@@ -107,7 +107,7 @@ prose:
       - name: "horizontal"
         field:
           element: "hidden"
-          value: </section></section><section markdown="1" data-background="//kingbbode.github.io/img/slidebackground.png"><section markdown="1">
+          value: </section></section><section markdown="1" data-background="//blog.kingbbode.com/img/slidebackground.png"><section markdown="1">
       - name: "vertical"
         field:
           element: "hidden"
@@ -115,7 +115,7 @@ prose:
       - name: "slideinit"
         field:
           element: "hidden"
-          value: <section markdown="1" data-background="//kingbbode.github.io/img/slidebackground.png"><section markdown="1">
+          value: <section markdown="1" data-background="//blog.kingbbode.com/img/slidebackground.png"><section markdown="1">
       - name: "theme"
         field:
           element: "select"
