@@ -8,6 +8,8 @@ category:  posts
 outlink: 0
 ---
 
+> 회사 블로그에 작성한 글 : [우아한형제들 기술블로그](http://woowabros.github.io/experience/2018/05/08/billing-performance_test_experience.html)
+
 안녕하세요. 우아한형제들에서 결제시스템을 개발하고 있는 권용근입니다. 입사한 지 4개월 만에, 드디어 우아한형제들 기술 블로그에 글을 남기게 되어 감회가 새롭습니다.
 
 저는 최근 `결제 시스템`의 개비를 진행하며 경험한 `성능, 부하, 스트레스 테스트` 경험을 작성해보려고 합니다.
