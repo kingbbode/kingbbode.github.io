@@ -1,9 +1,9 @@
 ---
 layout:     post
-title:      스프링캠프 2018: Consumer Driven Contract
+title:      스프링캠프 2018-Consumer Driven Contract
 author:     kingbbode
 tags:       spring think
-subtitle:   결제 시스템을 개비하며 진행한 성능, 부하, 스트레스 테스트 경험기
+subtitle:   Consumer Driven Contract 기법을 활용한 마이크로서비스 API의 진화
 category:  seminar
 outlink: 0
 ---
