@@ -22,7 +22,7 @@ outlink: 0
 
 이래서 존재하는 것이 바로 **테스트 코드** !! 다행히 테스트 코드를 지향하는 프로젝트였기에 작성된 테스트의 보호 아래 신나게 개발을 할 수 있었습니다.
 
-![UNIT TEST](./images/2018/PERFORMANCE/testok.png)
+![UNIT TEST](/images/2018/PERFORMANCE/testok.png)
 
 결국 테스트를 모두 통과시키며, 개발이 완료되었습니다!
 
@@ -30,7 +30,7 @@ outlink: 0
 
 ### 공포의 시작
 
-![모르는 것에 대한 공포](./images/2018/PERFORMANCE/dark.png)
+![모르는 것에 대한 공포](/images/2018/PERFORMANCE/dark.png)
 
 **내가 만든 이 시스템은 실제 장비에서**
 
@@ -55,7 +55,7 @@ outlink: 0
 
 결제 시스템은 사용자의 주문 비용을 각종 결제수단(`PG사`, `포인트`, `쿠폰`) 등의 시스템과 통신하여 지불처리하는 시스템입니다. 많은 부분을 생략하고 간단하게만 표현하면, 하나의 결제는 `결제수단` 시스템이란 외부 인터페이스를 거치게 됩니다.
 
-![결제 시스템 간단히](./images/2018/PERFORMANCE/billing.png)
+![결제 시스템 간단히](/images/2018/PERFORMANCE/billing.png)
 
 그래서 저는 `결제수단` 시스템을 Mock 처리해야 했습니다. 온전히 테스트 대상 시스템의 성능을 측정하기 위해서 외부 시스템은 항상 기대한 결과만을 반환하는 환경이 필요하기 때문입니다.
 
@@ -93,7 +93,7 @@ outlink: 0
 
 제가 만든 것은 가짜 PG사인 `Gazua PAY` 입니다. 요청 인터페이스는 기대한 결과와 퍼포먼스로 응답을 하도록 하는 값을 받도록 하였습니다.
 
-![Gazua Pay](./images/2018/PERFORMANCE/gazua.png)
+![Gazua Pay](/images/2018/PERFORMANCE/gazua.png)
 
 *(개발 당시에는 코인 시장이 엄청 핫할 때 였습니다. 승인 결과의 message는 차트의 상승을 표현했는데 아무도 눈치채지 못했습니다.)*
 
@@ -101,7 +101,7 @@ outlink: 0
 
 이제 Mock Application 을 배포해야 합니다. 이럴 때 정말 유용했던 것은 `AWS Elastic Beanstalk` 입니다. (우아한형제들은 `AWS` 사용을 적극 지원해주기 때문에 마음껏 쓸 수 있었습니다.)
 
-![Elastic Beanstalk](./images/2018/PERFORMANCE/beanstalk.png)
+![Elastic Beanstalk](/images/2018/PERFORMANCE/beanstalk.png)
 
 *(Elastic Beanstalk 홍보 영상 중..)*
 
@@ -115,11 +115,11 @@ outlink: 0
 
 #### nGrinder
 
-![nGrinder](./images/2018/PERFORMANCE/ngrinder.png)
+![nGrinder](/images/2018/PERFORMANCE/ngrinder.png)
 
 `nGrinder` 는 성능 측정 목적으로 개발된 오픈소스 프로젝트로
 
-![nGrinder](./images/2018/PERFORMANCE/ngrinder2.png)
+![nGrinder](/images/2018/PERFORMANCE/ngrinder2.png)
 
 - 테스트 프로세스를 제공
 - 부하를 줄 수 있는 웹 인터페이스를 제공
@@ -129,23 +129,23 @@ outlink: 0
 
 성능 측정 도구로 `nGrinder` 가 가장 좋았던 것은 `groovy` 스크립트로 테스트 시나리오를 작성할 수 있다는 것 입니다.
 
-![nGrinder](./images/2018/PERFORMANCE/groovy.png)
+![nGrinder](/images/2018/PERFORMANCE/groovy.png)
 
 `groovy`는 `gradle`, `jenkins file`, `spock` 등에서 자주 다루었던 친숙한 언어였기에 내가 원하는 테스트 시나리오를 쉽고 자유롭게 작성할 수 있었습니다.
 
 #### pinpoint
 
-![pinpoint](./images/2018/PERFORMANCE/pinpoint.png)
+![pinpoint](/images/2018/PERFORMANCE/pinpoint.png)
 
 `pinpoint` 는 Java로 작성된 대규모 분산 시스템용 APM 도구입니다.
 
 사내에서 사용하고 있는 모니터링툴이기도 하며, `Transaction` 의 추적을 제공하는 APM 중 하나입니다.
 
-![stacktrace](./images/2018/PERFORMANCE/stacktrace.png)
+![stacktrace](/images/2018/PERFORMANCE/stacktrace.png)
 
 단일 `Transaction`의 Stack Trace 를 기록하여 직접적인 병목이나 문제를 빠르게 추적할 수 있고,
 
-![transactionview](./images/2018/PERFORMANCE/transactionview.png)
+![transactionview](/images/2018/PERFORMANCE/transactionview.png)
 
 `Transaction` 이 DOT 로 그려지는 응답시간/요청시간 그래프 `Transaction View` 는 테스트의 상태를 실시간으로 확인하여, 가장 빠르게 이상을 감지하도록 도와줍니다.
 
@@ -153,17 +153,17 @@ outlink: 0
 
 실제로 테스트를 하며 수많은 이상 패턴들이 탄생하기도 하였습니다.
 
-![기영이 패턴](./images/2018/PERFORMANCE/gy.png)
+![기영이 패턴](/images/2018/PERFORMANCE/gy.png)
 
 *(기영이 패턴)*
 
-![롯데타워 패턴](./images/2018/PERFORMANCE/lt.png)
+![롯데타워 패턴](/images/2018/PERFORMANCE/lt.png)
 
 *(L타워 패턴)*
 
 그리고 노력 끝에 얻어진..
 
-![백설기 패턴](./images/2018/PERFORMANCE/bsg.png)
+![백설기 패턴](/images/2018/PERFORMANCE/bsg.png)
 
 *(백설기 패턴)*
 
@@ -173,13 +173,13 @@ outlink: 0
 
 이럴 때 우리는 `Thread Dump` 를 분석해야 합니다.
 
-![JSTACK](./images/2018/PERFORMANCE/jstack.png)
+![JSTACK](/images/2018/PERFORMANCE/jstack.png)
 
 저는 JVM 의 내장 명령 도구인 `jstack` 을 사용하여 쉽게 `Thread Dump` 를 획득할 수 있었습니다.
 
 이제 `Tread Dump` 를 분석하여 병목의 원인을 파악할 수 있습니다.
 
-![JSTACK](./images/2018/PERFORMANCE/jstazua.png)
+![JSTACK](/images/2018/PERFORMANCE/jstazua.png)
 
 *(Tread Dump 를 보기 편하게 가공)*
 
@@ -193,7 +193,7 @@ outlink: 0
 
 `dstat` 은 vmstat, iostat, ifstat, netstat 정보 등을 결합한 내용을 보여주고, 실시간성 통계를 제공해주어 성능 테스트 중 모니터링하기에 매우 적합했습니다.
 
-![dstat](./images/2018/PERFORMANCE/dstat.png)
+![dstat](/images/2018/PERFORMANCE/dstat.png)
 
 `dstat` 하나의 명령어로 대부분의 리소스를 모니터링할 수 있었습니다.
 
@@ -207,7 +207,7 @@ outlink: 0
 
 정말 보아야 하는 것이 있는데 그것을 지원하는 도구가 없다면, **테스트를 위한 요소가 실제 어플리케이션의 성능에 절대 영향을 주지 않는다는 것을 꼭 지키는 선에서** 만들어보는 것도 나쁘지 않을 것 같습니다.
 
-![kingpoint](./images/2018/PERFORMANCE/kingpoint.png)
+![kingpoint](/images/2018/PERFORMANCE/kingpoint.png)
 
 비동기 대한 모니터링을 위해 요청과 완료 시점에 특정 key 값으로 통계를 전송하도록 하여, 분석한 지표를 chart.js 로 그려주는 간단한 모니터링 툴 입니다. 저는 이로인해 많은 두려움을 해소할 수 있었습니다.
 
@@ -216,7 +216,7 @@ outlink: 0
 
 ## 테스트 진행
 
-![어둠을 밝혀보자](./images/2018/PERFORMANCE/light.png)
+![어둠을 밝혀보자](/images/2018/PERFORMANCE/light.png)
 
 그래서 저는 아래와 같은 테스트들을 진행했습니다.
 
@@ -261,11 +261,11 @@ outlink: 0
 
 보았어야 했는데 보지 않았던 것, 더 쉽게 볼 수 있었는데 어렵게 보았던 것 등 많은 시행 착오가 있었지만, 환경을 만들고 테스트를 하면서 많은 자신감을 얻을 수 있었습니다.
 
-![now](./images/2018/PERFORMANCE/success.png)
+![now](/images/2018/PERFORMANCE/success.png)
 
 그래도 배포할 땐..
 
-![배포날](./images/2018/PERFORMANCE/deploy.png)
+![배포날](/images/2018/PERFORMANCE/deploy.png)
 
 긴 글 읽어주셔서 감사합니다.
 
