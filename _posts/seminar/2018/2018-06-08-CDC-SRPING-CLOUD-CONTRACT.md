@@ -18,6 +18,8 @@ outlink: 0
 
 `Consumer Driven Contract 기법을 활용한 마이크로서비스 API의 진화` 라는 주제로 발표되었던 이 세션을 조금은 늦게 정리하여 봅니다.
 
+---
+
 # Consumer Driven Contract : Spring Cloud Contract
 
 **2018-04-21 pivotal 김민석님**
@@ -74,7 +76,7 @@ outlink: 0
 
 ## Spring Cloud Contract
 
-#### Spring Cloud Contract 목표
+### Spring Cloud Contract 목표
 
 1. Contract를 공유하는 메커니즘을 제공
 
@@ -82,35 +84,35 @@ outlink: 0
 
 Spring Cloud Contract 는 목표를 이루기 위해 아래와 같은 기능들을 제공합니다.
 
-#### 컨트랙트 공유 메커니즘 제공:자동으로 Mock 환경 생성
+### 컨트랙트 공유 메커니즘 제공:자동으로 Mock 환경 생성
 
 `제공자(Producer)`는 `Contract` 기반으로 자동으로 Mock 테스트를 수행할 수 있습니다. `Rest 기반의 Http 통신` 혹은 `PUB/SUB QUEUE 기반 Message 통신`을 모두 지원합니다.
 
-#### 자동화된 최신화 유지:자동으로 Stub 생성
+### 자동화된 최신화 유지:자동으로 Stub 생성
 
  `제공자(Producer)` 가 정의한 테스트 Mock을 제공하여, `소비자(Consumer)`가 테스트에서 사용 가능합니다.
 
  `제공자(Producer)`가 정의한 테스트를 기반으로 동작하는 application jar 제공하기 때문에 어플리케이션 서버를 띄워서도 `소비자(Consumer)`가 테스트할 수도 있습니다.
 
-#### Contract 작성 DSL 제공
+### Contract 작성 DSL 제공
 
 정의하고 읽기 쉬운 형태로 `Contract` 작성이 가능하도록 DSl을 제공합니다. 이 DSL 은 `groovy` 이나 `yml` 로 작성 가능합니다.
 
-#### Spring Cloud Contract Plugin
+### Spring Cloud Contract Plugin
 
 쉽게 사용할 수 있도록 `Maven`, `Gradle` Plugin 을 제공합니다.
 
 - contract verifier : `제공자(Producer)`용
 - contract stub runner : `소비자(Consumer)`용
 
-#### Spring Cloud 연동
+### Spring Cloud 연동
 
 - Spring cloud를 연동하는 프로젝트 지원
 - Spring cloud eureka에 stub 자동등록 지원
 
-#### Spring Cloud Contract Workflow
+### Spring Cloud Contract Workflow
 
-![workflow](./images/2018/SPRING-CAMP-CDC/workflow.jpeg)
+![workflow](/images/2018/SPRING-CAMP-CDC/workflow.jpeg)
 
 (이것만 보아도 대략 내용을 알 수 있을 것 같습니다)
 
