@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      [미완] 스프링캠프 2018-Consumer Driven Contract
+title:      스프링캠프 2018-Consumer Driven Contract(미완성)
 author:     kingbbode
 tags:       spring think
 subtitle:   Consumer Driven Contract 기법을 활용한 마이크로서비스 API의 진화
