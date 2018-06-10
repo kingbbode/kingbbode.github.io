@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      스프링캠프 2018-Consumer Driven Contract(미완성)
+title:      스프링캠프 2018-Consumer Driven Contract
 author:     kingbbode
 tags:       spring think
 subtitle:   Consumer Driven Contract 기법을 활용한 마이크로서비스 API의 진화
@@ -20,7 +20,7 @@ outlink: 0
 
 ---
 
-# Consumer Driven Contract : Spring Cloud Contract
+# Consumer Driven Contract 기법을 활용한 마이크로서비스 API의 진화 ( Spring Cloud Contract )
 
 **2018-04-21 pivotal 김민석님**
 
@@ -82,44 +82,93 @@ outlink: 0
 
 2. Contract를 적용할 때 자동화를 통해 확신을 주자
 
-Spring Cloud Contract 는 목표를 이루기 위해 아래와 같은 기능들을 제공합니다.
 
-### 컨트랙트 공유 메커니즘 제공:자동으로 Mock 환경 생성
 
-`제공자(Producer)`는 `Contract` 기반으로 자동으로 Mock 테스트를 수행할 수 있습니다. `Rest 기반의 Http 통신` 혹은 `PUB/SUB QUEUE 기반 Message 통신`을 모두 지원합니다.
+### Spring Cloud Contract Workflow
 
-### 자동화된 최신화 유지:자동으로 Stub 생성
+![workflow](/images/2018/SPRING-CAMP-CDC/workflow.png)
 
- `제공자(Producer)` 가 정의한 테스트 Mock을 제공하여, `소비자(Consumer)`가 테스트에서 사용 가능합니다.
+1. `소비자(Consumer)` 는 `Contract` 를 정의하여 `제공자(Producer)` 에게 요청합니다. (Pull Request)
 
- `제공자(Producer)`가 정의한 테스트를 기반으로 동작하는 application jar 제공하기 때문에 어플리케이션 서버를 띄워서도 `소비자(Consumer)`가 테스트할 수도 있습니다.
+2. `제공자(Producer)` 는 `Contract` 를 구현합니다. 
 
-### Contract 작성 DSL 제공
+3. `제공자(Producer)` 의 `Contract` 구현으로 생성된 `stub.jar` 를 업로드합니다. (Nexus or Spring Cloud Eureka 등)
+
+4. `소비자(Consumer)` 는 자신이 요청한 `Contract` 기반으로 구현된 `stub.jar` 를 다운로드 받아 테스트합니다. 
+
+### Spring Cloud Contract 는 목표를 이루기 위해 아래와 같은 편의 기능들을 제공
+
+#### API 스펙 지원
+
+`Rest 기반의 Http 통신` 혹은 `PUB/SUB QUEUE 기반 Message 통신`을 모두 지원합니다.
+
+#### Contract 작성 DSL 제공
 
 정의하고 읽기 쉬운 형태로 `Contract` 작성이 가능하도록 DSl을 제공합니다. 이 DSL 은 `groovy` 이나 `yml` 로 작성 가능합니다.
 
-### Spring Cloud Contract Plugin
+#### Spring Cloud Contract Plugin
 
 쉽게 사용할 수 있도록 `Maven`, `Gradle` Plugin 을 제공합니다.
 
 - contract verifier : `제공자(Producer)`용
 - contract stub runner : `소비자(Consumer)`용
 
-### Spring Cloud 연동
+#### 컨트랙트 공유 메커니즘 제공:자동으로 Mock 환경 생성
+
+`제공자(Producer)`는 `Contract` 기반으로 자동으로 Mock 테스트를 수행할 수 있습니다.
+
+#### 자동화된 최신화 유지:자동으로 Stub 생성
+
+`제공자(Producer)` 가 `Contract` 기반으로 정의한 테스트 Mock을 제공하여, `소비자(Consumer)`가 테스트에서 사용 가능합니다. `application jar`도 제공하기 때문에 쉽게 Mock 어플리케이션 서버를 띄울 수도 있습니다.
+
+#### Spring Cloud 연동
 
 - Spring cloud를 연동하는 프로젝트 지원
 - Spring cloud eureka에 stub 자동등록 지원
-
-### Spring Cloud Contract Workflow
-
-![workflow](/images/2018/SPRING-CAMP-CDC/workflow.jpeg)
-
-(이것만 보아도 대략 내용을 알 수 있을 것 같습니다)
 
 ---
 
 데모를 제외한 발표는 여기까지였다.
 
+##### 더 자세한 내용은 제공 Slide 자료로! : https://www.slideshare.net/MinseokKim4/consumerdrivencontract-with-spring-cloud-contract-at-spring-camp-2018
+
 ##### 데모샘플 : https://github.com/myminseok/spring-cloud-contract-beer-sample
 
-그 이후 흥미로운 여러가지를 찾을 수 있었다.
+아래는 발표 이후 추가로 궁금해져 찾아본 내용이다.
+
+---
+
+### Document와 Spring Cloud Contract는 별게여야 하는가?
+
+요즘 `Swagger`의 어노테이션 지옥을 맛본 후 `Spring Rest Docs`로 넘어오게 되었다. 문서 작업을 위해 조금의 번거로운 작업을 해줘야 하지만, 이러한 문서 자동화 도구를 통해 문서와 코드를 일치시킬 수 있다.
+
+#### 그렇다면 스펙과 코드를 일치시키는 `Spring Cloud Contract`는 `Spring Rest Docs`와 어떻게 사용하여야 할까?
+
+역시나 `Spring Cloud Contract`에서 지원을 해주고 있다. [Spring Cloud Contract with Rest Docs](http://cloud-samples.spring.io/spring-cloud-contract-samples/tutorials/rest_docs.html)에 잘 설명하고 있다.
+
+`Rest Doccumentation` 테스트 코드에 Contract 를 끼워넣어 검증을 수행한다.
+
+```java
+.andDo(MockMvcRestDocumentation
+    .document("shouldRejectABeerIfTooYoung", SpringCloudContractRestDocs.dslContract()));
+```
+
+### 이미 만들어진 RestDocs 에 Contract 를 끼워넣었는데, 역으로 Contract 기반으로 RestDocs를 생성할 순 없을까?
+
+역시나 이미 진행 중이였다! 
+
+[Spring Cloud Contract 이슈](https://github.com/spring-cloud/spring-cloud-contract/issues/613) 에 등록이 되어있었다. 이 이슈는 받아들여져 `2.0.0.RC2` 버전에 들어갔다. 빠른 시일 내에 정식버전에서 사용할 수 있지 않을까 생각한다.
+
+## 마무리
+
+요즘 세미나들에서 자사 제품 끼워팔기를 많이 보았다. 이 세션 역시 그렇지 않을까 우려하면서도 듣게 되었다. 
+
+**약팔이 당하진 않을꺼야!**
+
+그러나
+
+![넘어감](/images/2018/SPRING-CAMP-CDC/kakaotalk.png)
+
+넘어가버렸다. 요즘 같은 시대의 흐름에서 반드시 생기고 고민하게 되는 내용에 대한 솔루션이였기 때문이다.
+
+모두가 `소비자(Consumer)` 이자 `제공자(Producer)` 가 되는 구조에서 도입은 쉽지 않을 것이다. 한쪽이 일방적으로 제공하는 것이 아닌, 서로 모두가 추구해야하기 때문이다. 쉽지 않지만 언젠가 반드시 필요한 기술이 아닐까 생각한다.
