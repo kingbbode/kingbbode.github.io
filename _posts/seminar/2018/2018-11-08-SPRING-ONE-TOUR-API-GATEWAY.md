@@ -1,13 +1,12 @@
 ---
 layout:     post
-title:      SpringOne Tour Seoul : Spring Cloud Gateway
+title:      SpringOne Tour Seoul - Spring Cloud Gateway
 author:     kingbbode
 tags:       spring think
 subtitle:   스프링 원 투어 서울 컨퍼런스 중 정윤진님의 Spring Cloud Gateway 세션
 category:  seminar
 outlink: 0
 ---
-
 
 2018년 11월 8일 `스프링 원 투어 서울 컨퍼런스` 중 정윤진님의 `Spring Cloud Gateway` 세션
 
