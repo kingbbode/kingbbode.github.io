@@ -143,17 +143,17 @@ jobs:
 
 여러 어플리케이션 모듈 중 웹어플리케이션 모듈을 배포하기 위한 스크립트이므로, `event_type`을 특정하여 `deploy-web` 으로 지정하여 해당 `WorkFlow` 만 동작시키도록 할 수 있습니다. 아래와 같은 스크립트를 프로젝트에 첨부하여, 로컬 콘솔에서 트리깅을 하는 방식을 선택했습니다.
 
-```shell
+```
 while : ; do
-    printf "github id > "
-    read githubId
+  printf "github id > "
+  read githubId
 
-    if [[ -z "$githubId" ]]; then
-      printf '%s\n' "github id is required!"
-      continue
-    else
-      break;
-    fi
+  if [[ -z "$githubId" ]]; then
+    printf '%s\n' "github id is required!"
+    continue
+  else
+    break
+  fi
 done
 
 curl \
