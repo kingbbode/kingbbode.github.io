@@ -139,14 +139,11 @@ jobs:
 
 ![dispatch-api](/images/2020/GITHUB-ACTION-CODE-DEPLOY/dispatch-api.png){: style="width:75%; display:block; margin:40px auto 0;"}
 
-저장소에 API 를 통해 이벤트를 발송시킬 수 있었으며, 이 때 `event_type` 은 자유롭게 작성할 수 있습니다.
+저장소에 API 를 통해 이벤트를 발송시킬 수 있었으며, 이 때 `event_type` 은 자유롭게 작성할 수 있습니다.([Github API](https://developer.github.com/v3/repos/))
 
+여러 어플리케이션 모듈 중 웹어플리케이션 모듈을 배포하기 위한 스크립트이므로, `event_type`을 특정하여 `deploy-web` 으로 지정하여 해당 `WorkFlow` 만 동작시키도록 할 수 있습니다. 아래와 같은 스크립트를 프로젝트에 첨부하여, 로컬 콘솔에서 트리깅을 하는 방식을 선택했습니다.
 
-[Github API](https://developer.github.com/v3/repos/)
-
-여러 어플리케이션 모듈 중 웹어플리케이션을 배포하기 위한 스크립트이므로, `event_type`을 특정하여 `deploy-web` 으로 지정하여 해당 `WorkFlow` 만 동작시키도록 할 수 있습니다. 아래와 같은 스크립트를 프로젝트에 첨부하여, 로컬 콘솔에서 트리깅을 하는 방식을 선택했습니다.
-
-```bash
+```shell
 while : ; do
     printf "github id > "
     read githubId
