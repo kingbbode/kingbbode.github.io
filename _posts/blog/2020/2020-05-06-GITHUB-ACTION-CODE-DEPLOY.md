@@ -22,7 +22,7 @@ outlink: 0
 
 코딩덕후 프로젝트는 개인 프로젝트로 운영하는 만큼 언제나 비용 최적화에 초점을 맞추고 있습니다.
 
-![gazua](/images/2020/GITHUB-ACTION-CODE-DEPLOY/gazua.png){: style="width:75%; display:block; margin:40px auto 0;"}
+![gazua](/images/2020/GITHUB-ACTION-CODE-DEPLOY/gazua.png)
 
 `Jenkins` 가 구동 중인 인스턴스는 `t2.micro` 타입으로(메모리 1Gib) 메모리 부족으로 인해 일반적인 설정으로는 `npm` 빌드조차 할 수 없습니다. [swap 파일을 사용하도록 하여](https://tecnstuff.net/how-to-add-swap-space-on-debian-10-linux/) 인스턴스의 모든 것을 끌어내 빌드를 하고 있지만, 이 젠킨스에는 빌드 이외에도 데이터 갱신을 위한 수십개의 스케줄 배치 프로그램이 함께 실행되기 때문에 간혹 스케줄이 꼬이면 인스턴스 사망 사태가 벌어지곤 했습니다.
 
@@ -59,7 +59,7 @@ Github Action 에서 가장 놀라웠던 것은 가격과 제공하는 스팩이
 
 `IAM` 에서 사용자를 만들고, `CodeDeploy` 를 사용하기 위한 역할을 부여합니다.
 
-![add-user1](/images/2020/GITHUB-ACTION-CODE-DEPLOY/add-user1.png){: style="width:75%; display:block; margin:40px auto 0;"}
+![add-user1](/images/2020/GITHUB-ACTION-CODE-DEPLOY/add-user.png){: style="width:75%; display:block; margin:40px auto 0;"}
 
 ![add-user2](/images/2020/GITHUB-ACTION-CODE-DEPLOY/add-user2.png){: style="width:75%; display:block; margin:40px auto 0;"}
 
