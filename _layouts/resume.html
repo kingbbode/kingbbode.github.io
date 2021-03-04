@@ -146,7 +146,7 @@
         {% for association in site.data.opensource %}
         <div class="resume-item" itemscope itemprop="memberOf" itemtype="http://schema.org/Organization">
           <h3 class="resume-item-title" itemprop="name">{% if association.url %}<a href="{{ association.url }}">{{ association.organization }}</a>{% else %}{{ association.organization }}{% endif %}</h3>
-          <h4 class="resume-item-details" itemprop="description">{{ association.role }} &bull; {{ association.year }}</h4>
+          <h4 class="resume-item-details" itemprop="description">{{ association.role }} {% if association.year %} &bull; {{ association.year }} {% endif %}</h4>
           <p class="resume-item-copy">{{ association.summary }}</p>
         </div>
         {% endfor %}
