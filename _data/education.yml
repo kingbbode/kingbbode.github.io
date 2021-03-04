@@ -1,13 +1,16 @@
 # Degree
-- degree: Bachelor of Arts, Human Rights
-  uni: Yale University
-  year: 2004 &mdash; 2008
-  awards:
-    - award: Summa Cumme Laude graduate
-  summary: If you had any meaningful roles at college, feel free to write about them here
+- degree: 코덕(co-duck.com) 구축 및 운영
+  uni: 코딩덕후
+  year: 17.06 &mdash; 진행중
 
-- degree: High School Diploma
-  uni: Springfield High School
-  year: 2004
-  award: Most likely to succeed
-  summary: You can choose to have either a single or multiple awards
+- degree: 우아한 테크코스 1-2기 리뷰어
+  uni: 우아한형제들
+  year: 19.07 &mdash; 20.09
+  #awards:
+  #summary:
+
+- degree: 패스트캠퍼스 자바 웹 프로그래밍 CAMP 2기
+  uni: 패스트캠퍼스
+  year: 16.11 &mdash; 17.01
+  #award: Most likely to succeed
+  #summary: You can choose to have either a single or multiple awards

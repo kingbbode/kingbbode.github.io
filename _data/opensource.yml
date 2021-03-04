@@ -1,0 +1,32 @@
+# Associations
+# comment out the urls if you do not wish to display them
+
+- organization: spring-boot-ehcache-monitor
+  role: Java
+  year: Vaadin, Spring framework
+  url: https://github.com/kingbbode/spring-boot-ehcache-monitor
+  summary: Spring Boot 기반 Ehcache 모니터링 툴
+
+- organization: spring-boot-chatbot
+  role: Java
+  year: Spring Framework
+  url: https://github.com/kingbbode/spring-boot-chatbot
+  summary: Spring Boot 기반 대화형 챗봇 서포트 프레임워크
+
+- organization: spring-boot-custom-yaml-importer
+  role: Java
+  year: Spring Framework
+  url: https://github.com/kingbbode/spring-boot-custom-yaml-importer
+  summary: Spring Boot 기반 커스텀 YAML 구성 자동 로더
+
+- organization: gitzua
+  role: Shell
+  #year:
+  url: https://github.com/kingbbode/gitzua
+  summary: 다중 Git 사용자를 관리하기 위한 CLI TOOL
+
+- organization: jstazua
+  role: Shell
+  #year:
+  url: https://github.com/kingbbode/jstazua
+  summary: Java Stack Dump 출력기

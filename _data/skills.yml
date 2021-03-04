@@ -1,12 +1,18 @@
 # Skills
-# Organizational leadership
-- skill: Organizational leadership
-  description: I have several years of experience leading organziations from community groups to business departments. From public speaking, to mentoring, to coordination of people and events, I can lead in any context.
+- skill: Backend
+  description: Java, Groovy, Spring Framework, Play Framework, Gradle, Maven, Junit, Nginx, Tomcat, Netty
 
-# Communications strategy
-- skill: Communications strategy
-  description: Content and marketing strategy,
+- skill: Backend(Spring Framework Stack)
+  description: Spring Boot, Spring Security, Spring MVC, Spring Webflux, Spring Data Jpa/Redis/Mongo, Spring Reactive Data Redis/Mongo, Spring Cloud AWS S3/SNS/SQS/CloudWatch, Spring Batch, Spring Micrometer, Spring Resilience4j
 
-# Digital content development and creation
-- skill: Digital content development and creation
-  description: Copy writing, graphic design, web design, front-end web development, print design
+- skill: Backend(Etc Stack)
+  description: Aws SDK 2(nio), Testcontainers(Local Stack), Nimbus JOSE JWT
+
+- skill: Database
+  description: MySql, MariDB, Redis, IfluxDB, AWS RDS(Aurora), AWS ElastiCache(Redis), AWS DynamoDB, AWS DocumentDB(Mongo)
+
+- skill: Frontend
+  description: ES6, Npm, Grunt, Webpack, Handlebars, Lodash, Backbone, Vuejs
+
+- skill: DevOps
+  description: Jenkins, Sonaqube, Nexus, Pinpoint, Ngrinder, Grafana, Docker, AWS Code Deploy, AWS Beanstalk

@@ -1,19 +1,15 @@
 # Jobs
-# VP of Global Communications
-- company: Springfield International Human Rights Outreach
-  position: VP of Global Communications
-  duration: Oct, 2013 &mdash; Present
-  summary: Write about your core competencies in one or two sentences describing your position. If you held the position for a long time, it could be a longer section, including a couple bullet points	<ul class="resume-item-list"><li>A project you are proud of</li><li>Another awesome project</li><li>or a team or department you worked with</li></ul>
+- company: 우아한형제들
+  position: 자바 서버 개발자
+  duration: 2018.01 &mdash; 현재
+  summary: <ul class="resume-item-list"><li>결제, 주문, 가게노출, 회원/인증 시스템 개편 및 운영</li><li>A/B 테스트, 배달예상시간 시스템 구축 및 운영</li><li>2019년 배민부문 상반기 우수사원 수상</li></ul>
 
-# Director of Digital Stratgy
-- company: United Nations Human Rights Council
-  position: Director of Digital Strategy
-  duration:  Jun, 2010 &mdash; Sept, 2013
-  summary: If your stint was shorter, feel free to be brief and just call out the most meaningful points of your role. Be concise, and be meaninful. The person reading just needs enough to want to talk to you more about your experience.
+- company: 줌인터넷
+  position: 웹 개발자
+  duration:  2015.09 &mdash; 2017.12
+  summary: <ul class="resume-item-list"><li>포털 메인, 회원, TV 영상서비스 개발 및 운영</li><li>2017년 본부 추천 특진</li></ul>
 
-
-# Communications Coordinator
-- company: Springfield Women & Children's Center
-  position: Communications Coordinator
-  duration:   Jun, 2008  &mdash; May, 2010
-  summary: Led communication efforts across digital and traditional media channels for marketing and public relations, internal communication strategies, and coordinated support programs for the recipients of the center's services.
+- company: Exicon
+  position: 임베디드 시스템 개발자
+  duration:   2015.01  &mdash; 2015.08
+  summary: <ul class="resume-item-list"><li>임베디드 시스템 IDE 개발</li><li></li>반도체 검사 장비 소프트웨어 개발</ul>

@@ -53,7 +53,7 @@
       <section class="content-section">
 
         <header class="section-header">
-          <h2>Experience</h2>
+          <h2>경력</h2>
         </header>
 
         {% for job in site.data.experience %}
@@ -73,7 +73,7 @@
       <!-- begin Education -->
       <section class="content-section">
         <header class="section-header">
-          <h2>Education</h2>
+          <h2>교육, 활동</h2>
         </header>
 
         {% for education in site.data.education %}
@@ -101,7 +101,7 @@
       <!-- begin Projects -->
       <section class="content-section">
         <header class="section-header">
-          <h2>Projects</h2>
+          <h2>개발 경험</h2>
         </header>
 
         {% for project in site.data.projects %}
@@ -122,7 +122,7 @@
       <section class="content-section">
 
         <header class="section-header">
-          <h2>Skills</h2>
+          <h2>경험 기술</h2>
         </header>
         {% for skill in site.data.skills %}
         <div class="resume-item">
@@ -135,35 +135,15 @@
       <!-- end Skills -->
       {% endif %}
 
-      {% if site.resume_section_recognition %}
-      <!-- begin Recognition -->
-      <section class="content-section">
-
-        <header class="section-header">
-          <h2>Recognition</h2>
-        </header>
-
-        {% for recognition in site.data.recognitions %}
-        <div class="resume-item">
-          <h3 class="resume-item-title" itemprop="award">{{ recognition.award }}</h3>
-          <h4 class="resume-item-details">{{ recognition.organization }} &bull; {{ recognition.year }}</h4>
-          <p class="resume-item-copy">{{ recognition.summary }}</p>
-        </div>
-        {% endfor %}
-
-      </section>
-      <!-- end Recognition -->
-      {% endif %}
-
-      {% if site.resume_section_associations %}
+      {% if site.resume_section_opensource %}
       <!-- begin Associations -->
       <section class="content-section">
 
         <header class="section-header">
-          <h2>Associations</h2>
+          <h2>오픈소스</h2>
         </header>
 
-        {% for association in site.data.associations %}
+        {% for association in site.data.opensource %}
         <div class="resume-item" itemscope itemprop="memberOf" itemtype="http://schema.org/Organization">
           <h3 class="resume-item-title" itemprop="name">{% if association.url %}<a href="{{ association.url }}">{{ association.organization }}</a>{% else %}{{ association.organization }}{% endif %}</h3>
           <h4 class="resume-item-details" itemprop="description">{{ association.role }} &bull; {{ association.year }}</h4>
@@ -175,37 +155,17 @@
       <!-- end Associations -->
       {% endif %}
 
-      {% if site.resume_section_interests %}
-      <!-- begin Interests -->
-      <section class="content-section">
-
-        <header class="section-header">
-          <h2>Outside Interests</h2>
-        </header>
-
-        <div class="resume-item">
-          <ul class="resume-item-list">
-            {% for interest in site.data.interests %}
-            <li>{{ interest.description }}</li>
-            {% endfor %}
-          </ul>
-        </div>
-
-      </section>
-      <!-- end Interests -->
-      {% endif %}
-
-      {% if site.resume_section_links %}
+      {% if site.resume_section_activity %}
       <!-- begin Links -->
       <section class="content-section">
 
         <header class="section-header">
-          <h2>Additional Links</h2>
+          <h2>기고, 연사발표</h2>
         </header>
 
         <div class="resume-item">
           <ul class="resume-item-list">
-            {% for link in site.data.links %}
+            {% for link in site.data.activity %}
             <li><a href={{ link.url }} itemprop="url">{{ link.description }}</a></li>
             {% endfor %}
           </ul>
@@ -233,7 +193,6 @@
 
       <footer class="page-footer">
         <p class="footer-line">Made by <a href="http://twitter.com/jglovier">@jglovier</a>. Fork me on <a href="https://github.com/jglovier/resume-template">GitHub</a>.</p>
-        <p class="footer-line">If this is your live resume, you can modify or remove this part. ;-)</p>
       </footer>
 
     </div>

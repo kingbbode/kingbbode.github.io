@@ -1,0 +1,17 @@
+# links
+- url: "https://www.youtube.com/watch?v=38cmd_fYwQk"
+  description: [발표] 우아콘2020 - 프론트서버의 사실과 오해
+- url: "https://woowabros.github.io/experience/2020/02/19/introduce-shop-display.html"
+  description: [기고] 우아한형제들 기술블로그 - 배달의민족 최전방 시스템! '가게노출 시스템'을 소개합니다.
+- url: "https://www.youtube.com/watch?v=YdtknE_yPk4"
+  description: [발표] 우아한테크세미나 - 우아한 멀티모듈
+- url: "https://woowabros.github.io/study/2019/07/01/multi-module.html"
+  description: [기고] 우아한형제들 기술블로그 - 멀티모듈 설계 이야기 with Spring, Gradle
+- url: "https://www.youtube.com/watch?v=YdtknE_yPk4"
+  description: [발표] 스프링캠프 2019 - 무엇을 테스트할 것인가? 어떻게 테스트할 것인가?
+- url: "https://woowabros.github.io/experience/2018/11/12/toy-project.html"
+  description: [기고] 우아한형제들 기술블로그 - 프로젝트가 장난이야?!
+- url: "https://woowabros.github.io/experience/2018/05/08/billing-performance_test_experience.html"
+  description: [기고] 우아한형제들 기술블로그 - 결제 시스템 성능, 부하, 스트레스 테스트
+- url: "https://www.slideshare.net/ssuser59a869/ksug-2017-95250583"
+  description: [발표] 스프링캠프 2017 - 스프링 부트를 대하는 자세
