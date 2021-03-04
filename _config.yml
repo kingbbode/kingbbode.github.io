@@ -1,160 +1,63 @@
 # Site settings
-title: Kingbbode
-description: "개발 블로그"
-url: "//blog.kingbbode.com"
-rss_prefix: "https://blog.kingbbode.com"
-
-
-
-
-# Secondary Parameters
-baseurl: ""
-header-img: img/home-bg.jpg
-headercolor: "#FFFFFF"
-logo: /img/logos/logos.png
-
-# Tertiary Parameters
-facebook_username: kingbbode
-github_username:  kingbbode
-project_repository: kingbbode.github.io
-g-analytics: UA-75876601-1
-altmetric: false
+title: "Jekyll Resume Template"
+description: "A resume template for Jekyll and GitHub Pages sites."
 
 # Build settings
-gems: [jekyll-paginate]
 markdown: kramdown
-highlighter: rouge
-permalink: posts/:slug
-paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+sass:
+  sass_dir: _sass
+  style: compressed
 
-# Jekyll Settings
+# Resume settings
+resume_avatar:                  "true"
+resume_name:                    "Lisa M. Simpson"
+resume_title:                   "VP of Global Communications"
 
-defaults:
-  -
-    scope:
-      path: "/"
-      type: "pages"
-    values:
-      layout: "project"
-      header-img: "img/home-bg.jpg"
-      og-img: "img/og-image.jpg"
+# used for the contact button in _layouts/resume.html
+resume_contact_email:           "lisasimpson@youremailaddress.com"
 
-# Prose Settings
-prose:
-  ignore: ['feed.xml', '/stl', '/ply', '/js', '/plugin', '/lib', '/projectors', '_layouts', '/_includes', 'Gruntfile.js', 'package.json', 'proselinks.jsonp', 'ppanchor.matin', '.gitignore', '/search', '/css', '/img', '/images', 'favicon.ico','_data/*.json','LICENSES.md','README.md','colorscheme.scss','index.html']
-  siteurl: '//blog.kingbbode.com'
-  ispp: true
-  media: 'img'
-  metadata:
-    projects:
-      - name: "title"
-        field:
-          element: "text"
-          label: "Title"
-          value: ""
-      - name: "description"
-        field:
-          element: "text"
-          label: "Description"
-          value: ""
-      - name: "category"
-        field:
-          element: "text"
-          label: "Project"
-          value: ""
-    _posts:
-      - name: "subtitle"
-        field:
-          element: "text"
-          label: "Sub-Title (Short Description)"
-          value: ""
-      - name: "layout"
-        field:
-          element: "select"
-          label: "Choose Layout"
-          placeholder: "Layouts"
-          options:
-            - name: "Post"
-              value: "post"
-            - name: "Slide"
-              value: "slide"
-            - name: "Projector"
-              value: "projector"
-            - name: "Notebook"
-              value: "notebook"
-            - name: "Ply Surface"
-              value: "plysurface"
-      - name: "title"
-        field:
-          element: "text"
-          label: "Title"
-          value: ""
-      - name: "author"
-        field:
-          element: "text"
-          label: "Author"
-          value: ""
-      - name: "tags"
-        field:
-          element: "text"
-          label: "Tags (seperate with whitespace)"
-          value: ""
-      - name: "category"
-        field:
-          element: "text"
-          label: "Project"
-          value: ""
-      - name: "horizontal"
-        field:
-          element: "hidden"
-          value: </section></section><section markdown="1" data-background="//blog.kingbbode.com/img/slidebackground.png"><section markdown="1">
-      - name: "vertical"
-        field:
-          element: "hidden"
-          value: </section><section markdown="1">
-      - name: "slideinit"
-        field:
-          element: "hidden"
-          value: <section markdown="1" data-background="//blog.kingbbode.com/img/slidebackground.png"><section markdown="1">
-      - name: "theme"
-        field:
-          element: "select"
-          label: "Theme (Slide)"
-          placeholder: "Theme (Slide)"
-          options:
-            - name: "Beige"
-              value: "beige"
-            - name: "Blood"
-              value: "blood"
-            - name: "Moon"
-              value: "moon"
-            - name: "Night"
-              value: "night"
-            - name: "Sky"
-              value: "sky"
-            - name: "Solarized"
-              value: "solarized"
-      - name: "trans"
-        field:
-          element: "select"
-          label: "Transition (Slide)"
-          placeholder: "Transition (Slide)"
-          options:
-            - name: "Cube"
-              value: "cube"
-            - name: "Page"
-              value: "page"
-            - name: "Concave"
-              value: "concave"
-            - name: "Linear"
-              value: "linear"
-            - name: "Fade"
-              value: "fade"
-            - name: "None"
-              value: "none"
-      - name: "visualworkflow"
-        field:
-          element: "checkbox"
-          label: "Visual Workflow Chart (Some Layouts)"
-          value: "true"
+# the next two items are used for schema itemprops in _layouts/resume.html
+resume_contact_telephone:       "555-7334"
+resume_contact_address:         "742 Evergreen Terrace, Springfield"
+
+resume_header_contact_info:     "742 Evergreen Terrace, Springfield • 555-7334 • lisasimpson@youremailaddress.com"
+display_header_contact_info:    "false"
+
+resume_header_intro: "<p>This is the executive summary. You should write a few brief, concise, and meaningful sentences about yourself from a professional context, and your immediate career goals. Make the length appropriate for your needs, but keep it brief and concise</p>"
+
+# use "yes" to display the email contact button,
+# "no" to display an "I'm not looking for work" message,
+# or remove the resume_looking_for_work option entirely
+# to leave blank
+resume_looking_for_work:        "yes"
+
+# Decide which sections to use
+# comment out to hide
+resume_section_experience:      true
+resume_section_education:       true
+resume_section_projects:        true
+resume_section_skills:          true
+resume_section_recognition:     true
+resume_section_links:           true
+resume_section_associations:    true
+# resume_section_interests:       true
+
+# Resume social links
+# uncomment the options you wish to display, and add your own URL
+resume_social_links:
+  resume_github_url:            "https://github.com/jglovier/resume-template"
+  resume_twitter_url:           "http://twitter.com/jglovier"
+  resume_dribbble_url:          "https://dribbble.com/jag"
+  # resume_facebook_url:          "insert Facebook URL here"
+  resume_linkedin_url:          "https://www.linkedin.com/in/joelglovier"
+  # resume_instagram_url:         "insert your Instagram URL here"
+  resume_website_url:           "http://joelglovier.com"
+  resume_medium_url:            "https://medium.com/@jglovier"
+resume_print_social_links:      true
+
+# Design settings
+resume_theme:                   default
+
+# Note: when editing locally, remember to restart
+# your Jekyll server when you edit this file. Changes
+# to _config.yml are only recognized when the server starts
