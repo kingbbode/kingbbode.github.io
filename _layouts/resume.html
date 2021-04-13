@@ -48,6 +48,44 @@
 
       </header>
 
+
+
+      {% if site.resume_section_manages %}
+      <!-- begin Projects -->
+      <section class="content-section">
+        <header class="section-header">
+          <h2>매니징 경험</h2>
+        </header>
+
+        {% for manage in site.data.manages %}
+        <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
+          <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
+          <h4 class="resume-item-details" itemprop="description">{{ manage.title }}  &bull; {{ manage.duration }}</h4>
+        </div>
+        {% endfor %}
+
+      </section>
+      <!-- end Projects -->
+      {% endif %}
+
+      {% if site.resume_section_projects %}
+      <!-- begin Projects -->
+      <section class="content-section">
+        <header class="section-header">
+          <h2>시스템 운영 경험</h2>
+        </header>
+
+        {% for operation in site.data.operations %}
+        <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
+          <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
+          <h4 class="resume-item-details" itemprop="description">{{ operation.title }}  &bull; {{ operation.duration }}</h4>
+        </div>
+        {% endfor %}
+
+      </section>
+      <!-- end Projects -->
+      {% endif %}
+
       {% if site.resume_section_projects %}
       <!-- begin Projects -->
       <section class="content-section">

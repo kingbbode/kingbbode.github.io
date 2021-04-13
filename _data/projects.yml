@@ -1,7 +1,55 @@
-# Projects
-# uncomment the urls if you wish to display them, and add your own URL
-- project: TODO
+- project: 인증시스템 신규 구축
   #role: Co-Founder & Organizer
-  duration: TODO
+  duration: 2021.03 ~
   # url: "#"
-  description: TODO
+  description:
+    - 회원 시스템에서 독립된 인증 시스템 신규 구축 진행 중
+
+- project: 회원시스템 개편
+  #role: Co-Founder & Organizer
+  duration: 2020.10 ~
+  # url: "#"
+  description:
+    - MAU 1000만 (2020년 8월 기준) 수준의 회원을 보유한 서비스의 회원시스템을 개편 및 운영
+
+- project: 배달의민족 가족계정 시스템 구축
+  #role: Co-Founder & Organizer
+  duration: 2020.10 ~
+  # url: "#"
+  description:
+    - TODO
+
+- project: 배달의민족 A/B 테스트 시스템 구축
+  #role: Co-Founder & Organizer
+  duration: 2020.10 ~
+  # url: "#"
+  description:
+    - TODO
+
+- project: 배달의민족 배달예상시간 시스템 구축
+  #role: Co-Founder & Organizer
+  duration: 2020.10 ~
+  # url: "#"
+  description:
+    - TODO
+
+- project: 배달의민족 가게노출 시스템 구축
+  #role: Co-Founder & Organizer
+  duration: 2020.10 ~
+  # url: "#"
+  description:
+    - TODO
+
+- project: 배달의민족 주문 시스템 개편
+  #role: Co-Founder & Organizer
+  duration: 2020.10 ~
+  # url: "#"
+  description:
+    - TODO
+
+- project: 배달의민족 비동기 결제 시스템 구축
+  #role: Co-Founder & Organizer
+  duration: 2020.10 ~
+  # url: "#"
+  description:
+    - TODO
