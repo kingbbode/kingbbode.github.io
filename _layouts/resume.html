@@ -60,7 +60,8 @@
         {% for manage in site.data.manages %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
-          <h4 class="resume-item-details" itemprop="description">{{ manage.title }}  ({{ manage.duration }})</h4>
+          <p class="resume-item-copy">{{ manage.title }}  ({{ manage.duration }})</p>
+          <h4 class="resume-item-details" itemprop="description">&bull; {{ manage.title }}  ({{ manage.duration }})</h4>
         </div>
         {% endfor %}
 
@@ -68,7 +69,7 @@
       <!-- end Projects -->
       {% endif %}
 
-      {% if site.resume_section_projects %}
+      {% if site.resume_section_operations %}
       <!-- begin Projects -->
       <section class="content-section">
         <header class="section-header">
@@ -78,7 +79,7 @@
         {% for operation in site.data.operations %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
-          <h4 class="resume-item-details" itemprop="description">{{ operation.title }}  ({{ operation.duration }})</h4>
+          <h4 class="resume-item-details" itemprop="description">&bull; {{ operation.title }}  ({{ operation.duration }})</h4>
         </div>
         {% endfor %}
 
