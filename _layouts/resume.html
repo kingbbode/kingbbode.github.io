@@ -60,8 +60,7 @@
         {% for manage in site.data.manages %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
-          <p class="resume-item-copy">{{ manage.title }}  ({{ manage.duration }})</p>
-          <h4 class="resume-item-details" itemprop="description">&bull; {{ manage.title }}  ({{ manage.duration }})</h4>
+          <p class="resume-item-copy">&bull; {{ manage.title }}  ({{ manage.duration }})</p>
         </div>
         {% endfor %}
 
@@ -79,7 +78,7 @@
         {% for operation in site.data.operations %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
-          <h4 class="resume-item-details" itemprop="description">&bull; {{ operation.title }}  ({{ operation.duration }})</h4>
+          <p class="resume-item-copy">&bull; {{ operation.title }}  ({{ operation.duration }})</p>
         </div>
         {% endfor %}
 
