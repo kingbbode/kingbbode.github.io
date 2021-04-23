@@ -48,5 +48,5 @@
   duration: 2018.03 ~ 2018.06
   url: https://woowabros.github.io/experience/2018/05/08/billing-performance_test_experience.html
   description:
-    - PG의 성능과 트래픽에 민감한 동기방식의 결제흐름을 사용자에게 트래픽에 유연한 비동기방식의 결제흐름 구조로 변경 구현
+    - PG의 성능과 트래픽에 민감한 동기방식의 결제흐름을 트래픽에 유연한 비동기방식의 결제흐름 구조로 변경 구현
     - 특정 PG의 장애로부터 격리 가능한 요청풀 분리 구현
