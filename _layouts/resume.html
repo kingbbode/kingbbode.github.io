@@ -78,7 +78,10 @@
         {% for operation in site.data.operations %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
-          <p class="resume-item-copy">&bull; {{ operation.title }}  ({{ operation.duration }})</p>
+          <h4 class="resume-item-details" itemprop="description">{% if operation.url %}<a href="{{ operation.url }}" itemprop="url">{{ operation.title }}</a>{% else %}{{ operation.title }}{% endif %} ({{ operation.duration }})</h4>
+          {% for desc in operation.description %}
+          <p class="resume-item-copy">&bull; {{ desc }}</p>
+          {% endfor %}
         </div>
         {% endfor %}
 
@@ -97,7 +100,9 @@
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
           <h4 class="resume-item-details" itemprop="description">{% if project.url %}<a href="{{ project.url }}" itemprop="url">{{ project.project }}</a>{% else %}{{ project.project }}{% endif %} ({{ project.duration }})</h4>
-          <p class="resume-item-copy">{{ project.description }}</p>
+          {% for desc in project.description %}
+          <p class="resume-item-copy">&bull; {{ desc }}</p>
+          {% endfor %}
         </div>
         {% endfor %}
 
