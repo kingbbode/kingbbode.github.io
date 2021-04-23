@@ -1,12 +1,10 @@
 - project: 인증시스템 신규 구축
-  #role: Co-Founder & Organizer
   duration: 2021.03 ~ 현재
   # url: "#"
   description:
     - 아키텍처 설계 및 구현
 
 - project: 회원시스템 개편
-  #role: Co-Founder & Organizer
   duration: 2020.10 ~ 현재
   # url: "#"
   description:
@@ -15,38 +13,32 @@
     - 인증 시스템을 분리하기 위한 의존성, 인터페이스 분리
 
 - project: 배달의민족 가족계정 시스템 구축
-  #role: Co-Founder & Organizer
   duration: 2020.09 ~ 2020.12
   # url: "#"
   description:
     - 아키텍처 설계 및 구현
 
 - project: 배달의민족 A/B 테스트 시스템 구축
-  #role: Co-Founder & Organizer
   duration: 2019.11 ~ 2020.01
   # url: "#"
   description:
     - 아키텍처 설계 및 구현
 
 - project: 배달의민족 배달예상시간 시스템 구축
-  #role: Co-Founder & Organizer
   duration: 2019.09 ~ 2019.11
-  # url: "#"
   description:
     - 아키텍처 설계 및 구현
 
 - project: 배달의민족 가게노출 시스템 구축
-  url: https://woowabros.github.io/experience/2020/02/19/introduce-shop-display.html
-  #role: Co-Founder & Organizer
+  url: https://www.youtube.com/watch?v=38cmd_fYwQk
   duration: 2019.01 ~ 2019.04
-  # url: "#"
   description:
     - 아키텍처 설계 및 구현
 
 - project: 배달의민족 주문 시스템 개편
   #role: Co-Founder & Organizer
   duration: 2018.07 ~ 2018.10
-  # url: "#"
+  url: https://woowabros.github.io/study/2019/07/01/multi-module.html
   description:
     - 도메인 레이어 변경을 위한 의존성 정리 및 모듈 분리
     - 더 많은 주문을 소화할 수 있는 신규 주문 데이터베이스 구조의 도메인 및 도메인 비지니스 구현
@@ -54,7 +46,7 @@
 - project: 배달의민족 비동기 결제 시스템 구축
   #role: Co-Founder & Organizer
   duration: 2018.03 ~ 2018.06
-  # url: "#"
+  url: https://woowabros.github.io/experience/2018/05/08/billing-performance_test_experience.html
   description:
     - PG의 성능과 트래픽에 민감한 동기방식의 결제흐름을 사용자에게 트래픽에 유연한 비동기방식의 결제흐름 구조로 변경 구현
     - 특정 PG의 장애로부터 격리 가능한 요청풀 분리 구현
