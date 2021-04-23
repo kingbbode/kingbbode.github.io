@@ -1,11 +1,18 @@
+- title: 코딩덕후
+  url: https://co-duck.com
+  duration: 2017.06 ~
+  description:
+    - 개인 프로젝트
+    - 깃헙 활동 수집 및 시각화
+    - 랭킹, 그룹, 게시판 기능 운영
 - title: 배달의민족 인증 시스템
-  duration: 2020.06 ~
+  duration: 2020.06 ~ 현재
   description:
     - JWT 기반의 인증
     - 최상단 인증 게이트웨이
     - 장애 격리 가능한 인증 아키텍처
 - title: 배달의민족 회원 시스템
-  duration: 2020.06 ~
+  duration: 2020.06 ~ 현재
   description:
     - MAU 1000만 (2020년 8월 기준) 수준의 회원 보유
 - title: 배달의민족 가족계정 시스템
