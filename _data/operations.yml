@@ -24,13 +24,13 @@
   duration: 2019.11 ~ 2020.09
   description:
     - 전사 공용 A/B 테스트 시스템
-    - A/B 테스트를 위한 실험군 분리 기능 제공
-    - 실험 통계 시각화 제공
+    - A/B 테스트를 위한 실험군 분리 기능
+    - 실험 통계 시각화
 - title: 배달의민족 배달예상시간 시스템
   duration: 2019.09 ~ 2020.09
   description:
     - 룰 기반 배달예상시간 계산
-    - 50만개 배달예상시간 실시간 계산
+    - 50만개 가게 배달예상시간 실시간 계산
 - title: 배달의민족 가게노출 시스템
   duration: 2019.01 ~ 2020.09
   url: https://woowabros.github.io/experience/2020/02/19/introduce-shop-display.html
