@@ -56,11 +56,3 @@
   description:
     - 일 평균 2000만 PV
     - 이벤트(올림픽, 대선 등) 대응
-- title: 줌인터넷 회원시스템
-  duration: 2016.01 ~ 2016.06
-  description:
-    - 포털 회원 서비스
-- title: 줌인터넷 사용자 타게팅 시스템
-  duration: 2016.05 ~ 2017.05
-  description:
-    - 지역기반 사용자 타겟팅
