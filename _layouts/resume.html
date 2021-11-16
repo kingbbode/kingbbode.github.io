@@ -77,7 +77,7 @@
 
         <h2>전시 시스템</h2>
 
-        {% for operation in site.data.projectdisplay %}
+        {% for operation in site.data.pdisplay %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
           <h4 class="resume-item-details" itemprop="description">{% if operation.url %}<a href="{{ operation.url }}" itemprop="url">{{ operation.title }}</a>{% else %}{{ operation.title }}{% endif %} ({{ operation.duration }})</h4>
@@ -89,7 +89,7 @@
 
         <h2>커머스 시스템</h2>
 
-        {% for operation in site.data.projectcommerce %}
+        {% for operation in site.data.pcommerce %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
           <h4 class="resume-item-details" itemprop="description">{% if operation.url %}<a href="{{ operation.url }}" itemprop="url">{{ operation.title }}</a>{% else %}{{ operation.title }}{% endif %} ({{ operation.duration }})</h4>
@@ -101,7 +101,7 @@
 
         <h2>회원/인증 시스템</h2>
 
-        {% for operation in site.data.projectmember %}
+        {% for operation in site.data.pmember %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
           <h4 class="resume-item-details" itemprop="description">{% if operation.url %}<a href="{{ operation.url }}" itemprop="url">{{ operation.title }}</a>{% else %}{{ operation.title }}{% endif %} ({{ operation.duration }})</h4>
@@ -113,7 +113,7 @@
 
         <h2>플랫폼 시스템</h2>
 
-        {% for operation in site.data.projectplatform %}
+        {% for operation in site.data.pplatform %}
         <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
           <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
           <h4 class="resume-item-details" itemprop="description">{% if operation.url %}<a href="{{ operation.url }}" itemprop="url">{{ operation.title }}</a>{% else %}{{ operation.title }}{% endif %} ({{ operation.duration }})</h4>
