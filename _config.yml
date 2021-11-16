@@ -11,7 +11,7 @@ sass:
 # Resume settings
 resume_avatar:                  "true"
 resume_name:                    "권용근"
-resume_title:                   "자바 서버 개발자"
+resume_title:                   "서버 개발자"
 
 # used for the contact button in _layouts/resume.html
 resume_contact_email:           "kingbbode@gmail.com"
