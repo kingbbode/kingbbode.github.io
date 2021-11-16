@@ -1,10 +1,9 @@
-- title: 배달의민족 주문시스템
+- title: 배달의민족 주문 시스템
   url: https://woowabros.github.io/study/2019/07/01/multi-module.html
   duration: 2018.07 ~ 2018.12
   description:
     - 일 주문 300만건 시스템 구조 리펙토링 및 도메인, 저장소 레이어 개편
-
-- title: 배달의민족 결제시스템
+- title: 배달의민족 결제 시스템
   url: https://woowabros.github.io/experience/2018/05/08/billing-performance_test_experience.html
   duration: 2018.01 ~ 2018.06
   description:
