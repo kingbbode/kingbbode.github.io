@@ -1,4 +1,4 @@
-- project: 배달의민족 가게노출 시스템
+- title: 배달의민족 가게노출 시스템
   duration: 2019.01 ~ 2020.09
   url: https://woowabros.github.io/experience/2020/02/19/introduce-shop-display.html
   description:
@@ -6,12 +6,12 @@
     - 15000TPS 사용자 트래픽 API 운영
     - 일 1000만 이벤트 처리 시스템 및 배치 시스템 운영
 
-- project: 줌인터넷 영상 콘텐츠 시스템
+- title: 줌인터넷 영상 콘텐츠 시스템
   duration: 2017.08 ~ 2017.12
   description:
     - 동영상 컨텐츠 서비스 설계 및 구축
 
-- project: 줌인터넷 포탈메인 시스템
+- title: 줌인터넷 포탈메인 시스템
   duration: 2016.05 ~ 2017.07
   description:
     - 일 평균 2000만 PV 포털 메인 페이지 운영
