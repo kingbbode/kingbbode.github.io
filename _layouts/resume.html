@@ -123,6 +123,18 @@
         </div>
         {% endfor %}
 
+        <h2>이벤트 시스템</h2>
+
+        {% for operation in site.data.pevent %}
+        <div class="resume-item" itemscope itemtype="http://schema.org/CreativeWork">
+          <meta itemprop="creator" content="{{ site.resume_name }}" itemtype="http://schema.org/Person" />
+          <h4 class="resume-item-details" itemprop="description">{% if operation.url %}<a href="{{ operation.url }}" itemprop="url">{{ operation.title }}</a>{% else %}{{ operation.title }}{% endif %} ({{ operation.duration }})</h4>
+          {% for desc in operation.description %}
+          <p class="resume-item-copy">&bull; {{ desc }}</p>
+          {% endfor %}
+        </div>
+        {% endfor %}
+
       </section>
       <!-- end Projects -->
       {% endif %}
