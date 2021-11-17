@@ -15,3 +15,13 @@
   description: 우아한형제들 기술블로그 - 결제 시스템 성능, 부하, 스트레스 테스트
 - url: "https://www.slideshare.net/ssuser59a869/ksug-2017-95250583"
   description: 스프링캠프 2017 - 스프링 부트를 대하는 자세
+- url: "https://zuminternet.github.io/NEXUS-3XX-MAVEN-NPM"
+  description: 줌인터넷 기술블로그 - Spring Nexus 3.X - Maven, NPM 저장소로 이용하기
+- url: "https://zuminternet.github.io/JOOQ"
+  description: 줌인터넷 기술블로그 - jOOQ !! (Java Object Oriented Querying)
+- url: "https://zuminternet.github.io/JENKINS-BUILD"
+  description: 줌인터넷 기술블로그 - 젠킨스 자동 배포환경 만들기
+- url: "https://zuminternet.github.io/BUG-TRACKING-1"
+  description: 줌인터넷 기술블로그 - 버그 트래킹 일지
+- url: "https://zuminternet.github.io/TEAMUP-BOT-START"
+  description: 줌인터넷 기술블로그 - Spring Boot로 챗봇 만들기
