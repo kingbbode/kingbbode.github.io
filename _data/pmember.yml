@@ -1,9 +1,13 @@
-- title: 배달의민족 인증 시스템
+- title: 배달의민족 B2B 회원/인증 플랫폼
+  duration: 2022.03 ~ 현재
+  description:
+    - 신규시스템 설계 및 구축, 기존 시스템 연동 진행중
+- title: 배달의민족 B2C 인증 시스템
   duration: 2021.03 ~ 현재
   description:
     - 신규시스템 설계 및 구축
-    - 일 ~ 건 인증 처리 시스템 API / EVENT WORKER / BATCH 개발 및 운영
-- title: 배달의민족 회원 시스템
+    - 일 2000만 인증 처리 시스템 API / EVENT WORKER / BATCH 개발 및 운영
+- title: 배달의민족 B2C 회원 시스템
   duration: 2020.10 ~ 현재
   description:
     - 배달의민족 시스템 내 가장 오래된 시스템 개편 설계 및 구축
