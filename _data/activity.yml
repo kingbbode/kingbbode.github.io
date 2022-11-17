@@ -1,5 +1,7 @@
 # links
-- url: "https://www.inflearn.com/course/infcon2022"
+- url: "https://www.youtube.com/watch?v=b65zIH7sDug"
+  description: [연사발표] 우아콘 2022 - 이벤트기반 아키텍처 구축하기
+- url: "https://www.youtube.com/watch?v=HNt3H_7muHs"
   description: [연사발표] INFCON 2022 - (레거시 시스템) 개편의 기술
 - url: "https://techblog.woowahan.com/7835/"
   description: [기고] 우아한형제들 기술블로그 - 회원시스템 이벤트기반 아키텍처 구축하기
@@ -17,7 +19,7 @@
   description: [기고] 우아한형제들 기술블로그 - 프로젝트가 장난이야?!
 - url: "https://techblog.woowahan.com/2572/"
   description: [기고] 우아한형제들 기술블로그 - 결제 시스템 성능, 부하, 스트레스 테스트
-- url: "https://www.slideshare.net/ssuser59a869/ksug-2017-95250583"
+- url: "https://www.youtube.com/watch?v=52i6gHnS1_g"
   description: [연사발표] 스프링캠프 2017 - 스프링 부트를 대하는 자세
 - url: "https://zuminternet.github.io/NEXUS-3XX-MAVEN-NPM"
   description: [기고] 줌인터넷 기술블로그 - Spring Nexus 3.X - Maven, NPM 저장소로 이용하기
